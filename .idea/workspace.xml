@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Asset work">
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,12 +95,12 @@
     &quot;assignee&quot;: &quot;MysticKoko&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/hybridlabs/hybrid-birds.git&quot;,
-    &quot;accountId&quot;: &quot;29ca49eb-ed1a-4b96-aeab-3f6d76883bb7&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/hybridlabs/fish-n-ships.git",
+    "accountId": "29ca49eb-ed1a-4b96-aeab-3f6d76883bb7"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -142,10 +143,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "<unknown>",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/textures/gui",
+    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships",
     "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -192,7 +193,7 @@
       <recent name="dev.hybridlabs.birds.mixin" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.fish-n-ships:fabric [build]">
+  <component name="RunManager" selected="Application.Fabric Client (:fabric)">
     <configuration name="Datagen" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="net.fabricmc.devlaunchinjector.Main" />
       <module name="hybrid-birds.fabric.main" />

@@ -1,0 +1,8 @@
+{
+  "entity.fish_n_ships.ship": "Ship",
+  "item.fish_n_ships.ship_spawn_egg": "Ship Spawn Egg",
+  "itemGroup.fish_n_ships.spawn_eggs": "Fish N Ships",
+  "subtitles.fish_n_ships.entity.albatross.ambient": "Albatross squawks",
+  "subtitles.fish_n_ships.entity.albatross.die": "Albatross dies",
+  "subtitles.fish_n_ships.entity.albatross.hurt": "Albatross hurts"
+}

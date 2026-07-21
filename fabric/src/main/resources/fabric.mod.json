@@ -1,0 +1,62 @@
+{
+    "schemaVersion": 1,
+    "id": "fish_n_ships",
+    "version": "${version}",
+
+    "name": "Fish N' Ships",
+    "description": "A mod that adds new boats and ships to Minecraft",
+
+    "authors": [
+        "MysticKoko",
+        "Aqua",
+        "Andante",
+        "Eggo"
+    ],
+
+    "contact": {
+        "sources": "https://github.com/hybridlabs/fish-n-ships",
+        "issues": "https://github.com/hybridlabs/fish-n-ships/issues"
+    },
+
+    "license": "ARR",
+    "icon": "assets/fish_n_ships/icon.png",
+
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            {
+                "value": "dev.hybridlabs.fishnships.FishNShips",
+                "adapter": "kotlin"
+            }
+        ],
+        "client": [
+            {
+                "value": "dev.hybridlabs.fishnships.FishNShipsClient",
+                "adapter": "kotlin"
+            }
+        ],
+        "fabric-datagen": [
+            {
+                "value": "dev.hybridlabs.fishnships.data.FSDataGenerator",
+                "adapter": "kotlin"
+            }
+        ],
+        "preLaunch": [
+            "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
+        ]
+    },
+
+    "mixins": [
+        "fish_n_ships.fabric.mixins.json"
+    ],
+
+    "accessWidener": "fish_n_ships.accesswidener",
+
+    "depends": {
+        "minecraft": "~1.20.1",
+        "java": ">=17",
+        "fabric-language-kotlin": "*",
+        "fabric-api": ">=0.92",
+        "geckolib": ">=4.4"
+    }
+}

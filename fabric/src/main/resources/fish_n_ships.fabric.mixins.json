@@ -1,0 +1,15 @@
+{
+    "required": true,
+    "package": "dev.hybridlabs.fishnships.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+      "ServerGamePacketListenerImplMixin"
+    ],
+  "client": [
+    "client.CameraMixin",
+    "client.LocalPlayerMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
