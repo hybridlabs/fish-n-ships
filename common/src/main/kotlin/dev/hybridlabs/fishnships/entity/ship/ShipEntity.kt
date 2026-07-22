@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
@@ -79,9 +80,16 @@ open class ShipEntity(
     private var status: Status? = null
     private var oldStatus: Status? = null
     private var lastYd = 0.0
-
     private var litTime = 0
     private var litDuration = 0
+    private val body: ShipCabinPart = ShipCabinPart(this, "body", 5.0f, 2.0f)
+    private val cabin: ShipCabinPart = ShipCabinPart(this, "cabin", 2.0f, 3.0f)
+    private val subEntities: Array<ShipCabinPart> = arrayOf(body, cabin)
+
+    init {
+        noCulling = true
+    }
+
     private val dataAccess = object : ContainerData {
         override fun get(index: Int): Int {
             return when (index) {
@@ -122,10 +130,14 @@ open class ShipEntity(
         tag.putString("FlagColor", this.getFlagColor().serializedName)
         tag.putInt("BurnTime", this.litTime)
         this.addChestVehicleSaveData(tag)
+        tag.putBoolean("HasIceBreaker", this.hasIceBreaker())
+        tag.putBoolean("HasTrawlingNet", this.hasTrawlingNet())
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         setDamage(tag.getFloat("Damage"))
+        setHasTrawlingNet(tag.getBoolean("HasTrawlingNet"))
+        setHasIceBreaker(tag.getBoolean("HasIceBreaker"))
 
         if (tag.contains("FlagColor", 8)) {
             val colorName = tag.getString("FlagColor")
@@ -207,6 +219,10 @@ open class ShipEntity(
         return entityData.get(HAS_TRAWLING_NET)
     }
 
+    fun setHasTrawlingNet(value: Boolean) {
+        this.entityData.set(HAS_TRAWLING_NET, value)
+    }
+
     fun setTrawling(value: Boolean) {
         this.entityData.set(IS_TRAWLING, value)
     }
@@ -217,6 +233,10 @@ open class ShipEntity(
 
     fun hasIceBreaker(): Boolean {
         return entityData.get(HAS_ICEBREAKER)
+    }
+
+    fun setHasIceBreaker(value: Boolean) {
+        this.entityData.set(HAS_ICEBREAKER, value)
     }
 
     private fun breakIce() {
@@ -250,8 +270,37 @@ open class ShipEntity(
         }
     }
 
+    private fun tickPart(part: ShipCabinPart, offsetX: Double, offsetY: Double, offsetZ: Double) {
+        part.setPos(this.x + offsetX, this.y + offsetY, this.z + offsetZ)
+    }
+
+    fun getSubEntities(): Array<ShipCabinPart> {
+        return this.subEntities
+    }
+
+    override fun recreateFromPacket(packet: ClientboundAddEntityPacket) {
+        super.recreateFromPacket(packet)
+        val shippart: Array<ShipCabinPart> = this.getSubEntities()
+
+        for (i in shippart.indices) {
+            shippart[i].id = i + packet.id
+        }
+    }
+
     override fun tick() {
         super.tick()
+
+        tickPart(body,
+            0.0,
+            0.0,
+            0.0
+        )
+
+        tickPart(cabin,
+            0.0,
+            2.0,
+            0.0
+        )
 
         burnTick()
 
