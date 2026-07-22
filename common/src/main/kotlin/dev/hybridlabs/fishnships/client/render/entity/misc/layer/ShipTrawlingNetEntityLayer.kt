@@ -16,8 +16,8 @@ class ShipTrawlingNetEntityLayer<T: ShipEntity>(
     renderer: ShipEntityRenderer<T>
 ): GeoRenderLayer<T>(renderer) {
 
-    private fun getFlagTexture(animatable: T): ResourceLocation {
-        return (geoModel as ShipEntityModel).getFlagTextureResource(animatable)
+    private fun getTrawlingNetTexture(): ResourceLocation {
+        return (geoModel as ShipEntityModel).getTrawlingNetTextureResource()
     }
 
     override fun render(
@@ -31,12 +31,12 @@ class ShipTrawlingNetEntityLayer<T: ShipEntity>(
         packedLight: Int,
         packedOverlay: Int
     ) {
-        val flagTexture = getFlagTexture(animatable)
-        val flagRenderType = RenderType.entityTranslucent(flagTexture)
-        if (animatable.getFlagColor() == ShipEntity.FlagColor.NONE) return
+        val trawlingNetTexture = getTrawlingNetTexture()
+        val trawlingNetRenderType = RenderType.entityTranslucent(trawlingNetTexture)
+        if (!animatable.hasTrawlingNet()) return
 
-        getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, flagRenderType,
-            bufferSource.getBuffer(flagRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
+        getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, trawlingNetRenderType,
+            bufferSource.getBuffer(trawlingNetRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
             1f, 1f, 1f, 1f)
     }
 }

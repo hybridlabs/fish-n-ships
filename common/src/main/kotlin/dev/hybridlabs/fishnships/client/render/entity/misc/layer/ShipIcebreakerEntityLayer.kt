@@ -16,8 +16,8 @@ class ShipIcebreakerEntityLayer<T: ShipEntity>(
     renderer: ShipEntityRenderer<T>
 ): GeoRenderLayer<T>(renderer) {
 
-    private fun getFlagTexture(animatable: T): ResourceLocation {
-        return (geoModel as ShipEntityModel).getFlagTextureResource(animatable)
+    private fun getIcebreakerTexture(): ResourceLocation {
+        return (geoModel as ShipEntityModel).getIcebreakerTextureResource()
     }
 
     override fun render(
@@ -31,12 +31,12 @@ class ShipIcebreakerEntityLayer<T: ShipEntity>(
         packedLight: Int,
         packedOverlay: Int
     ) {
-        val flagTexture = getFlagTexture(animatable)
-        val flagRenderType = RenderType.entityTranslucent(flagTexture)
-        if (animatable.getFlagColor() == ShipEntity.FlagColor.NONE) return
+        val icebreakerTexture = getIcebreakerTexture()
+        val icebreakerRenderType = RenderType.entityTranslucent(icebreakerTexture)
+        if (!animatable.hasIceBreaker()) return
 
-        getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, flagRenderType,
-            bufferSource.getBuffer(flagRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
+        getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, icebreakerRenderType,
+            bufferSource.getBuffer(icebreakerRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
             1f, 1f, 1f, 1f)
     }
 }

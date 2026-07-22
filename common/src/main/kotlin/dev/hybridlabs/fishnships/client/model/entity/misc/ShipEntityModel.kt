@@ -33,6 +33,14 @@ class ShipEntityModel<T : ShipEntity>() :
         return CommonClass.locate("textures/entity/ship/flag/$textureName.png")
     }
 
+    fun getIcebreakerTextureResource(): ResourceLocation {
+        return CommonClass.locate("textures/entity/ship/icebreaker.png")
+    }
+
+    fun getTrawlingNetTextureResource(): ResourceLocation {
+        return CommonClass.locate("textures/entity/ship/trawling_net.png")
+    }
+
     override fun getAnimationResource(animatable: T): ResourceLocation {
         return CommonClass.locate("animations/entity/ship/ship.animation.json")
     }
