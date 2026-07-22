@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Asset work">
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/icebreaker.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/trawling_net.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/ShipTrawlerOutputSlot.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/ShipEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/ShipEntityRenderer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipIcebreakerEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipIcebreakerEntityLayer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipTrawlingNetEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipTrawlingNetEntityLayer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/animations/entity/ship/ship.animation.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/animations/entity/ship/ship.animation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/ship.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/ship.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/ShipScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/ShipScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/ShipMenu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/ShipMenu.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/gui/container/ship_3row.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/gui/container/ship_3row.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,8 +177,8 @@
       <recent name="dev.hybridlabs.birds" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
       <recent name="dev.hybridlabs.fishnships.world.inventory" />
+      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
       <recent name="dev.hybridlabs.fishnships.item" />
       <recent name="dev.hybridlabs.fishnships.client.render.entity" />
       <recent name="dev.hybridlabs.fishnships.entity.ship" />
@@ -439,14 +434,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00138" summary="Puffin">
-      <option name="closed" value="true" />
-      <created>1782482377746</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1782482377746</updated>
     </task>
     <task id="LOCAL-00139" summary="Changed how birds spawn">
       <option name="closed" value="true" />
@@ -832,7 +819,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784676694432</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="Added trawling net assets">
+      <option name="closed" value="true" />
+      <created>1784685811886</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1784685811886</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -848,7 +843,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed bird spawning on neoforge" />
     <MESSAGE value="Removed chicks, they were kinda broken" />
     <MESSAGE value="Fixed rooster offspring" />
     <MESSAGE value="Spawn egg textures, credit to L2" />
@@ -873,6 +867,7 @@
     <MESSAGE value="1.0.0" />
     <MESSAGE value="Asset" />
     <MESSAGE value="Asset work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Asset work" />
+    <MESSAGE value="Added trawling net assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added trawling net assets" />
   </component>
 </project>

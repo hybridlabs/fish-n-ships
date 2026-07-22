@@ -13,14 +13,14 @@ class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
     private val shipRows: Int = menu.rowCount
 
     init {
-        val totalGUIHeight = 222
+        val totalGUIHeight = 226
         val firstSlotFromBottomHeight = 115
 
         // size of screen in pixels
         imageHeight = firstSlotFromBottomHeight + this.shipRows * 18 + 71
         imageWidth = 182
 
-        inventoryLabelY = imageHeight - 112
+        inventoryLabelY = imageHeight - 107
     }
 
 
@@ -45,12 +45,13 @@ class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
             val litProgress = this.menu.getLitProgress()
             guiGraphics.blit(
                 SHIP_BACKGROUND,
-                leftDrawPos + 84,
-                topDrawPos + 38 + 12 - litProgress,
+                leftDrawPos + 48,
+                topDrawPos + 58 - litProgress,
                 198,
                 12 - litProgress,
                 14,
-                litProgress + 1)
+                litProgress + 1
+            )
         }
     }
 

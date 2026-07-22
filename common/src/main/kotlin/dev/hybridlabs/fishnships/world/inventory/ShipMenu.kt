@@ -14,49 +14,62 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
     val rowCount: Int
 
     init {
-        checkContainerSize(container, rows * SLOTS_PER_ROW + 3)
+        checkContainerSize(container, rows * SLOTS_PER_ROW + 15)
         checkContainerDataCount(containerData, 2)
         this.container = container
         this.rowCount = rows
         container.startOpen(playerInventory.player)
         val playerInventoryOffset = (this.rowCount - 4) * 18
 
-        this.addSlot(
-            ShipIcebreakerSlot(
-                this,
-                container,
-                1,
-                LEFT_PIXEL_TO_SLOT + 54,
-                TOP_OFFSET + (-36)
-            )
-        )
-
-        this.addSlot(
+        addSlot(
             ShipFuelSlot(
                 this,
                 container,
                 0,
-                LEFT_PIXEL_TO_SLOT + 72,
-                TOP_OFFSET + (-36)
+                LEFT_PIXEL_TO_SLOT + 18,
+                TOP_OFFSET - 26
             )
         )
 
-        this.addSlot(
+        addSlot(
             ShipTrawlingNetSlot(
                 this,
                 container,
-                2,
-                LEFT_PIXEL_TO_SLOT + 90,
-                TOP_OFFSET + (-36)
+                1,
+                LEFT_PIXEL_TO_SLOT + 54,
+                TOP_OFFSET - 44
             )
         )
+
+        addSlot(
+            ShipIcebreakerSlot(
+                this,
+                container,
+                2,
+                LEFT_PIXEL_TO_SLOT + 54,
+                TOP_OFFSET - 8
+            )
+        )
+
+        for (row in 0 until 3) {
+            for (column in 0 until 4) {
+                addSlot(
+                    ShipTrawlerOutputSlot(
+                        container,
+                        3 + column + row * 4,
+                        LEFT_PIXEL_TO_SLOT + 90 + column * 18,
+                        TOP_OFFSET - 44 + row * 18
+                    )
+                )
+            }
+        }
 
         for (shipRow in 0..<this.rowCount) {
             for (shipColumn in 0..<SLOTS_PER_ROW) {
                 this.addSlot(Slot(container,
-                    (shipColumn + shipRow * SLOTS_PER_ROW) + 3,
+                    (shipColumn + shipRow * SLOTS_PER_ROW) + 15,
                     LEFT_PIXEL_TO_SLOT + shipColumn * 18,
-                    TOP_OFFSET + (18 + shipRow * 18)
+                    TOP_OFFSET + (22 + shipRow * 18)
                 ))
             }
         }
@@ -66,7 +79,7 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
                 this.addSlot(Slot(playerInventory,
                     playerColumn + playerRow * 9 + 9,
                     LEFT_PIXEL_TO_SLOT + playerColumn * 18,
-                    TOP_OFFSET + (103 + playerRow * 18 + playerInventoryOffset)
+                    TOP_OFFSET + (107 + playerRow * 18 + playerInventoryOffset)
                 ))
             }
         }
@@ -76,7 +89,7 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
                 playerInventory,
                 playerHotbar,
                 LEFT_PIXEL_TO_SLOT + playerHotbar * 18,
-                TOP_OFFSET + (161 + playerInventoryOffset)))
+                TOP_OFFSET + (165 + playerInventoryOffset)))
         }
 
         addDataSlots(containerData)
@@ -97,7 +110,7 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
                 if (!this.moveItemStackTo(itemstack1, this.rowCount * SLOTS_PER_ROW, this.slots.size, true)) {
                     return ItemStack.EMPTY
                 }
-            } else if (!this.moveItemStackTo(itemstack1, 0, this.rowCount * SLOTS_PER_ROW + 3, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, 0, this.rowCount * SLOTS_PER_ROW + 15, false)) {
                 return ItemStack.EMPTY
             }
 
@@ -154,7 +167,7 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
                 FSMenuTypes.SHIP_MENU_2ROW.get(),
                 containerId,
                 playerInventory,
-                SimpleContainer(SLOTS_PER_ROW * 2 + 3),
+                SimpleContainer(SLOTS_PER_ROW * 2 + 15),
                 2,
                 SimpleContainerData(2)
             )
@@ -165,7 +178,7 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
                 FSMenuTypes.SHIP_MENU_3ROW.get(),
                 containerId,
                 playerInventory,
-                SimpleContainer(SLOTS_PER_ROW * 3 + 3),
+                SimpleContainer(SLOTS_PER_ROW * 3 + 15),
                 3,
                 SimpleContainerData(2)
             )

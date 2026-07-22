@@ -55,7 +55,7 @@ open class ShipEntity(
     Entity(type, world), PlayerRideable, HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private val animCache = GeckoLibUtil.createInstanceCache(this)
-    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(30, ItemStack.EMPTY)
+    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(42, ItemStack.EMPTY)
     private var shipLootTable: ResourceLocation? = null
     private var shipLootTableSeed: Long = 0
     private var inputLeft = false
@@ -794,7 +794,7 @@ open class ShipEntity(
     }
 
     override fun getContainerSize(): Int {
-        return 30
+        return 42
     }
 
     override fun getItem(slot: Int): ItemStack {
@@ -822,11 +822,11 @@ open class ShipEntity(
     }
 
     private fun updateIceBreaker() {
-        entityData.set(HAS_ICEBREAKER, itemStacks[1].`is`(FSItems.ICEBREAKER.get()))
+        entityData.set(HAS_ICEBREAKER, itemStacks[2].`is`(FSItems.ICEBREAKER.get()))
     }
 
     private fun updateTrawlingNet() {
-        entityData.set(HAS_TRAWLING_NET, itemStacks[2].`is`(FSItems.TRAWLING_NET.get()))
+        entityData.set(HAS_TRAWLING_NET, itemStacks[1].`is`(FSItems.TRAWLING_NET.get()))
     }
 
     override fun setChanged() {
