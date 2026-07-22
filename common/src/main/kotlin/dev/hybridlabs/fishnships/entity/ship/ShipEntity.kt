@@ -29,6 +29,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
@@ -45,6 +46,10 @@ import software.bernie.geckolib.constant.DefaultAnimations
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager
 import software.bernie.geckolib.core.animation.AnimationController
+import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
+import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.core.animation.RawAnimation
+import software.bernie.geckolib.core.`object`.PlayState
 import software.bernie.geckolib.util.GeckoLibUtil
 import java.util.function.IntFunction
 import kotlin.math.max
@@ -714,6 +719,16 @@ open class ShipEntity(
                 }
             }
         )
+        controllers.add(
+            AnimationController(
+                this, "Trawling",
+                AnimationStateHandler { state: AnimationState<ShipEntity> ->
+                    if (this.isTrawling())
+                        return@AnimationStateHandler state.setAndContinue(TRAWL_ON_ANIMATION)
+                    else return@AnimationStateHandler state.setAndContinue(TRAWL_OFF_ANIMATION)
+                }
+            )
+        )
     }
 
     override fun getAnimatableInstanceCache(): AnimatableInstanceCache? {
@@ -943,6 +958,9 @@ open class ShipEntity(
 
         private val HAS_ICEBREAKER: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(ShipEntity::class.java, EntityDataSerializers.BOOLEAN)
+
+        val TRAWL_ON_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.trawl_on")
+        val TRAWL_OFF_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.trawl_off")
     }
     
     enum class Status {
