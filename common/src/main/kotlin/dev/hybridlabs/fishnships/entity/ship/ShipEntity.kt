@@ -29,7 +29,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
@@ -49,7 +48,6 @@ import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
 import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.core.animation.RawAnimation
-import software.bernie.geckolib.core.`object`.PlayState
 import software.bernie.geckolib.util.GeckoLibUtil
 import java.util.function.IntFunction
 import kotlin.math.max
@@ -220,12 +218,12 @@ open class ShipEntity(
         setLit(true)
     }
 
-    fun hasTrawlingNet(): Boolean {
-        return entityData.get(HAS_TRAWLING_NET)
-    }
-
     fun setHasTrawlingNet(value: Boolean) {
         this.entityData.set(HAS_TRAWLING_NET, value)
+    }
+
+    fun hasTrawlingNet(): Boolean {
+        return entityData.get(HAS_TRAWLING_NET)
     }
 
     fun setTrawling(value: Boolean) {
@@ -329,8 +327,8 @@ open class ShipEntity(
             this.setDamage(this.getDamage() - 1.0f)
         }
 
-        super.tick()
         this.tickLerp()
+
         if (this.isControlledByLocalInstance) {
             if (this.firstPassenger !is Player) {
                 setPropellerState(left = false, right = false)

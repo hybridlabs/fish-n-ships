@@ -69,4 +69,15 @@ class ShipCabinPart(parentMob: ShipEntity, name: String?, width: Float, height: 
     override fun shouldBeSaved(): Boolean {
         return false
     }
+
+    override fun tick() {
+        super.tick()
+        tickLerp()
+    }
+
+    private fun tickLerp() {
+        if (this.isControlledByLocalInstance) {
+            this.syncPacketPositionCodec(this.x, this.y, this.z)
+        }
+    }
 }

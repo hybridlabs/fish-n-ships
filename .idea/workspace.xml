@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Trying to do multipart">
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Ship work">
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipCabinPart.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipCabinPart.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/animations/entity/ship/ship.animation.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/animations/entity/ship/ship.animation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/gui/container/ship_3row.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/gui/container/ship_3row.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/fish_n_ships.fabric.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/fish_n_ships.fabric.mixins.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,8 +79,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Kotlin Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -96,12 +98,12 @@
     &quot;assignee&quot;: &quot;MysticKoko&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/hybridlabs/fish-n-ships.git",
-    "accountId": "29ca49eb-ed1a-4b96-aeab-3f6d76883bb7"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hybridlabs/fish-n-ships.git&quot;,
+    &quot;accountId&quot;: &quot;29ca49eb-ed1a-4b96-aeab-3f6d76883bb7&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -119,42 +121,42 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Datagen.executor": "Run",
-    "Application.Fabric Client (:fabric).executor": "Run",
-    "Application.forge - Client.executor": "Run",
-    "Application.forge - Data.executor": "Run",
-    "Gradle.Build hybrid-birds.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
-    "Gradle.fish-n-ships:fabric [build].executor": "Run",
-    "Gradle.fish-n-ships:forge [copyDatagen].executor": "Run",
-    "Gradle.hybrid-birds [build].executor": "Debug",
-    "Gradle.hybrid-birds [runDatagen].executor": "Run",
-    "Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
-    "Gradle.hybrid-birds:fabric [build].executor": "Run",
-    "Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor": "Run",
-    "Gradle.hybrid-birds:forge [build].executor": "Run",
-    "Gradle.hybrid-birds:forge [copyDatagen].executor": "Run",
-    "Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor": "Run",
-    "Gradle.hybrid-birds:neoforge [build].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships",
-    "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Datagen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Fabric Client (:fabric).executor&quot;: &quot;Run&quot;,
+    &quot;Application.forge - Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.forge - Data.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build hybrid-birds.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.fish-n-ships:fabric [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.fish-n-ships:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds [build].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.hybrid-birds [runDatagen].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:fabric [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:forge [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:neoforge [build].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/fish-n-ships&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\textures\gui" />
@@ -381,17 +383,6 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="fish_n_ships" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="fish_n_ships" />
-      <option name="filePath" />
       <method v="2" />
     </configuration>
     <list>
