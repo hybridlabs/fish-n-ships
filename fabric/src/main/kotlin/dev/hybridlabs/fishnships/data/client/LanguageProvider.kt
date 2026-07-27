@@ -33,6 +33,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
     private fun generateEntities(builder: TranslationBuilder) {
         val entityNameMap = mapOf<EntityType<*>, String>(
             FSEntityTypes.SHIP.get() to "Ship",
+            FSEntityTypes.CANOE.get() to "Canoe",
         )
 
         val nonPresentEntityNames = mutableListOf<EntityType<*>>()
