@@ -1,8 +1,11 @@
 package dev.hybridlabs.fishnships.entity.ship
 
 import com.mojang.serialization.Codec
+import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.fishnships.loot.FSLootTables
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.NonNullList
@@ -13,6 +16,7 @@ import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
@@ -36,7 +40,12 @@ import net.minecraft.world.level.block.IceBlock
 import net.minecraft.world.level.block.WaterlilyBlock
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import net.minecraft.world.level.gameevent.GameEvent
+import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.LootTable
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.AABB
+import net.minecraft.world.phys.Vec2
 import net.minecraft.world.phys.Vec3
 import net.minecraft.world.phys.shapes.BooleanOp
 import net.minecraft.world.phys.shapes.Shapes
@@ -88,6 +97,8 @@ open class ShipEntity(
     private val body: ShipCabinPart = ShipCabinPart(this, "body", 5.0f, 2.0f)
     private val cabin: ShipCabinPart = ShipCabinPart(this, "cabin", 2.0f, 3.0f)
     private val subEntities: Array<ShipCabinPart> = arrayOf(body, cabin)
+    private val trawlingInterval = 20
+    private val trawlingChance = 0.4
 
     init {
         noCulling = true
@@ -124,7 +135,7 @@ open class ShipEntity(
         this.entityData.define(SAIL_COLOR, FlagColor.NONE.id)
         this.entityData.define(IS_BURNING, false)
         this.entityData.define(HAS_TRAWLING_NET, false)
-        this.entityData.define(IS_TRAWLING, false)
+        this.entityData.define(IS_TRAWLING, true)
         this.entityData.define(HAS_ICEBREAKER, false)
     }
 
@@ -227,11 +238,29 @@ open class ShipEntity(
     }
 
     fun setTrawling(value: Boolean) {
-        this.entityData.set(IS_TRAWLING, value)
+        Constants.LOG.info("Set trawling: {}", value)
+        this.entityData.set(IS_TRAWLING, value, true)
     }
 
+    // This always returns the default value on the server?
     fun isTrawling(): Boolean {
         return entityData.get(IS_TRAWLING)
+    }
+
+    // This always returns false on the server?
+    fun isMoving(): Boolean {
+        val horizontalMovement = Vec2(deltaMovement.x.toFloat(), deltaMovement.z.toFloat())
+        return horizontalMovement.length() >= 0.01
+    }
+
+    fun canTrawl(): Boolean {
+        Constants.LOG.info("Trawling: {}", isTrawling())
+        Constants.LOG.info("Moving: {}", isMoving())
+        return hasTrawlingNet() &&
+                isTrawling() &&
+                isLit() &&
+                //isMoving()  &&
+                controllingPassenger is Player
     }
 
     fun hasIceBreaker(): Boolean {
@@ -293,17 +322,20 @@ open class ShipEntity(
     override fun tick() {
         super.tick()
 
-        tickPart(body,
+        tickPart(
+            body,
             0.0,
             0.0,
             0.0
         )
 
-        tickPart(cabin,
+        tickPart(
+            cabin,
             0.0,
             2.0,
             0.0
         )
+
 
         burnTick()
 
@@ -329,6 +361,7 @@ open class ShipEntity(
 
         this.tickLerp()
 
+        tickTrawling()
         if (this.isControlledByLocalInstance) {
             if (this.firstPassenger !is Player) {
                 setPropellerState(left = false, right = false)
@@ -354,8 +387,31 @@ open class ShipEntity(
 
         this.checkInsideBlocks()
 
+
         if (!level().isClientSide && hasIceBreaker()) {
             breakIce()
+        }
+    }
+
+    private fun tickTrawling() {
+        if (level().isClientSide
+            || (level().gameTime.toInt() % trawlingInterval) != 0
+            || !canTrawl()
+            || random.nextFloat() > trawlingChance
+
+        ) return
+        Constants.LOG.info("Successfully trawled…")
+        val loottable: LootTable? = server?.lootData?.getLootTable(FSLootTables.TRAWLING)
+
+        if (loottable != null) {
+            val lootParamsBuilder = LootParams.Builder(this.level() as ServerLevel).withParameter<Vec3?>(
+                LootContextParams.ORIGIN,
+                this.position()
+            )
+            val loot: ObjectArrayList<ItemStack> = loottable.getRandomItems(
+                lootParamsBuilder.create(LootContextParamSets.CHEST), this.lootTableSeed
+            )
+            Constants.LOG.info(loot.toString())
         }
     }
 
@@ -960,7 +1016,7 @@ open class ShipEntity(
         val TRAWL_ON_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.trawl_on")
         val TRAWL_OFF_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.trawl_off")
     }
-    
+
     enum class Status {
         IN_WATER,
         UNDER_WATER,
@@ -968,7 +1024,7 @@ open class ShipEntity(
         ON_LAND,
         IN_AIR
     }
-    
+
     enum class FlagColor(val id: Int, val key: String) : StringRepresentable {
         NONE(0, ""),
         WHITE(1, "white"),
