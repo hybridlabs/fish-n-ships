@@ -11,6 +11,8 @@ object FSMenuTypes {
     val SHIP_MENU_3ROW = register("ship_3row", ShipMenu.Companion::threeRows)
     val SHIP_MENU_2ROW = register("ship_2row", ShipMenu.Companion::twoRows)
 
+    val RAFT_MENU_6ROW = register("raft_6row", RaftMenu.Companion::sixRows)
+
     fun <T: AbstractContainerMenu> register(id: String, menuType: MenuType.MenuSupplier<T>): Supplier<MenuType<T>> {
         return CommonClass.MENU_TYPE.register(id) {
             MenuType<T>(menuType, FeatureFlags.VANILLA_SET)

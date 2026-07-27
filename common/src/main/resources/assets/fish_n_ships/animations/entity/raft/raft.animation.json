@@ -1,0 +1,18 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"misc.idle": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": {
+						"vector": ["Math.cos(query.anim_time*45)*1.5", 0, 0]
+					},
+					"position": {
+						"vector": [0, "0.25+math.cos(query.anim_time*22.5)*-0.25", "0.25+math.sin(query.anim_time*22.5)*-0.25"]
+					}
+				}
+			}
+		}
+	}
+}

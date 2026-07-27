@@ -15,13 +15,15 @@ object  FSItemGroups {
 
     val FISH_N_SHIPS = register(
         Constants.MOD_ID, CreativeModeTab.builder(CreativeModeTab.Row.TOP,0)
-        .title(Component.translatable("itemGroup.${Constants.MOD_ID}.spawn_eggs"))
+        .title(Component.translatable("itemGroup.${Constants.MOD_ID}.main"))
         .icon { ItemStack(FSItems.SHIP.get()) }
         .displayItems { _, entries ->
 
             entries.accept(FSItems.SHIP.get())
             entries.accept(FSItems.TRAWLING_NET.get())
             entries.accept(FSItems.ICEBREAKER.get())
+            entries.accept(FSItems.CANOE.get())
+            entries.accept(FSItems.RAFT.get())
 
             BuiltInRegistries.ITEM.forEach { item ->
                 val id = BuiltInRegistries.ITEM.getKey(item)

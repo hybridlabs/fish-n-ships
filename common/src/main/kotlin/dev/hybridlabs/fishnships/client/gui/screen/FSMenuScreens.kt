@@ -6,5 +6,6 @@ import net.minecraft.client.gui.screens.MenuScreens
 object FSMenuScreens {
     init {
         MenuScreens.register(FSMenuTypes.SHIP_MENU_3ROW.get(), ::ShipScreen)
+        MenuScreens.register(FSMenuTypes.RAFT_MENU_6ROW.get(), ::RaftScreen)
     }
 }

@@ -10,6 +10,8 @@ import java.util.function.Supplier
 object FSItems {
 
     val SHIP = register("ship") { ShipItem(Item.Properties().stacksTo(1))}
+    val CANOE = register("canoe") { CanoeItem(Item.Properties().stacksTo(1))}
+    val RAFT = register("raft") { RaftItem(Item.Properties().stacksTo(1))}
     val ICEBREAKER = register("icebreaker") { Item(Item.Properties().stacksTo(1))}
     val TRAWLING_NET = register("trawling_net") { Item(Item.Properties().stacksTo(1))}
 

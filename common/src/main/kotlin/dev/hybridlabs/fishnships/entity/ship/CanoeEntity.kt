@@ -71,6 +71,10 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
     private var bubbleAngle = 0f
     private var bubbleAngleO = 0f
 
+    init {
+        noCulling = true
+    }
+
     override fun registerControllers(controllers: AnimatableManager.ControllerRegistrar) {
         controllers.add(
             AnimationController(this, "Canoe Controller", 4) { state ->
@@ -281,7 +285,7 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
                 this.setPaddleState(left = false, right = false)
             }
 
-            this.floatBoat()
+            this.floatCanoe()
             if (this.level().isClientSide) {
                 this.controlCanoe()
                 this.level()
@@ -589,7 +593,7 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
             return if (flag) Status.UNDER_WATER else null
         }
 
-    private fun floatBoat() {
+    private fun floatCanoe() {
         val d0 = -0.04
         var d1 = if (this.isNoGravity) 0.0 else -0.04
         var d2 = 0.0
@@ -630,42 +634,6 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
                 val vec31 = this.deltaMovement
                 this.setDeltaMovement(vec31.x, (vec31.y + d2 * 0.06153846016296973) * 0.75, vec31.z)
             }
-        }
-    }
-
-    private fun controlBoat() {
-        if (this.isVehicle) {
-            var f = 0.0f
-            if (this.inputLeft) {
-                --this.deltaRotation
-            }
-
-            if (this.inputRight) {
-                ++this.deltaRotation
-            }
-
-            if (this.inputRight != this.inputLeft && !this.inputUp && !this.inputDown) {
-                f += 0.005f
-            }
-
-            this.yRot += this.deltaRotation
-            if (this.inputUp) {
-                f += 0.04f
-            }
-
-            if (this.inputDown) {
-                f -= 0.005f
-            }
-
-            this.deltaMovement = this.deltaMovement.add(
-                (Mth.sin(-this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble(),
-                0.0,
-                (Mth.cos(this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble()
-            )
-            this.setPaddleState(
-                this.inputRight && !this.inputLeft || this.inputUp,
-                this.inputLeft && !this.inputRight || this.inputUp
-            )
         }
     }
 
@@ -880,8 +848,6 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
         inputRight: Boolean,
         inputUp: Boolean,
         inputDown: Boolean,
-        inputJumping: Boolean,
-        inputSprint: Boolean,
     ) {
         this.inputLeft = inputLeft
         this.inputRight = inputRight
@@ -930,6 +896,7 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
         private const val PADDLE_SPEED = (Math.PI.toFloat() / 8f)
         const val PADDLE_SOUND_TIME: Double = (Math.PI.toFloat() / 4f).toDouble()
         const val BUBBLE_TIME: Int = 60
+
         fun canVehicleCollide(vehicle: Entity, entity: Entity): Boolean {
             return (entity.canBeCollidedWith() || entity.isPushable) && !vehicle.isPassengerOfSameVehicle(entity)
         }

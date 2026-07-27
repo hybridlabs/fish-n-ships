@@ -1,5 +1,6 @@
 package dev.hybridlabs.fishnships.mixin.client;
 
+import dev.hybridlabs.fishnships.entity.ship.CanoeEntity;
 import dev.hybridlabs.fishnships.entity.ship.ShipEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.Input;
@@ -34,6 +35,23 @@ public abstract class LocalPlayerMixin {
                     this.input.down,
                     this.input.jumping,
                     sprint
+            );
+        }
+    }
+
+    @Inject(method = "rideTick", at = @At("TAIL"))
+    private void handleCanoeInput(CallbackInfo ci) {
+        LocalPlayer player = (LocalPlayer)(Object)this;
+
+        Entity vehicle = player.getControlledVehicle();
+
+        if (vehicle instanceof CanoeEntity canoe) {
+
+            canoe.setInput(
+                    this.input.left,
+                    this.input.right,
+                    this.input.up,
+                    this.input.down
             );
         }
     }
