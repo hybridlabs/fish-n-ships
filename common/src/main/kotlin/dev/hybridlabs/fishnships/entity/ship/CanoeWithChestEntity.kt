@@ -1,13 +1,8 @@
 package dev.hybridlabs.fishnships.entity.ship
 
-import dev.hybridlabs.fishnships.item.CanoeWithChestItem
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.world.inventory.CanoeWithChestMenu
 import net.minecraft.core.NonNullList
-import net.minecraft.nbt.CompoundTag
-import net.minecraft.network.syncher.EntityDataAccessor
-import net.minecraft.network.syncher.EntityDataSerializers
-import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
@@ -25,7 +20,6 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 
 open class CanoeWithChestEntity(entityType: EntityType<out CanoeWithChestEntity>, level: Level) :
     CanoeEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
