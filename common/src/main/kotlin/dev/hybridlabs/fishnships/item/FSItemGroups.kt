@@ -26,6 +26,7 @@ object  FSItemGroups {
             entries.accept(FSItems.CANOE_WITH_CHEST.get())
             entries.accept(FSItems.CANOE_WITH_DOUBLE_CHEST.get())
             entries.accept(FSItems.RAFT.get())
+            entries.accept(FSItems.SUPPLY_RAFT.get())
 
             BuiltInRegistries.ITEM.forEach { item ->
                 val id = BuiltInRegistries.ITEM.getKey(item)

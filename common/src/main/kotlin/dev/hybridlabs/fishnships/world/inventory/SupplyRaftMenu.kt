@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.*
 import net.minecraft.world.item.ItemStack
 
-class RaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, container: Container, rows: Int) :
+class SupplyRaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, container: Container, rows: Int) :
     AbstractContainerMenu(type, containerId) {
     val container: Container
     val rowCount: Int
@@ -98,9 +98,9 @@ class RaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
     companion object {
         private const val SLOTS_PER_ROW = 11
 
-        fun sixRows(containerId: Int, playerInventory: Inventory): RaftMenu {
-            return RaftMenu(
-                FSMenuTypes.RAFT_MENU_6ROW.get(),
+        fun sixRows(containerId: Int, playerInventory: Inventory): SupplyRaftMenu {
+            return SupplyRaftMenu(
+                FSMenuTypes.SUPPLY_RAFT_MENU_6ROW.get(),
                 containerId,
                 playerInventory,
                 SimpleContainer(SLOTS_PER_ROW * 6),
@@ -112,9 +112,9 @@ class RaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
             containerId: Int,
             playerInventory: Inventory,
             container: Container
-        ): RaftMenu {
-            return RaftMenu(
-                FSMenuTypes.RAFT_MENU_6ROW.get(),
+        ): SupplyRaftMenu {
+            return SupplyRaftMenu(
+                FSMenuTypes.SUPPLY_RAFT_MENU_6ROW.get(),
                 containerId,
                 playerInventory,
                 container,

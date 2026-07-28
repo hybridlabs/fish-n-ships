@@ -3,10 +3,8 @@ package dev.hybridlabs.fishnships.entity.ship
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.fishnships.world.inventory.RaftMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
-import net.minecraft.core.NonNullList
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtUtils
@@ -14,11 +12,9 @@ import net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.Mth
-import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
@@ -27,12 +23,8 @@ import net.minecraft.world.entity.animal.WaterAnimal
 import net.minecraft.world.entity.decoration.HangingEntity
 import net.minecraft.world.entity.decoration.LeashFenceKnotEntity
 import net.minecraft.world.entity.monster.Enemy
-import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.entity.vehicle.DismountHelper
-import net.minecraft.world.inventory.AbstractContainerMenu
-import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
@@ -57,12 +49,8 @@ open class RaftEntity(
     type: EntityType<out RaftEntity>,
     world: Level,
 ) :
-    Entity(type, world), HasCustomInventoryScreen, ContainerEntity,
-    GeoEntity {
+    Entity(type, world), GeoEntity {
     private val animCache = GeckoLibUtil.createInstanceCache(this)
-    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
-    private var raftLootTable: ResourceLocation? = null
-    private var raftLootTableSeed: Long = 0
     private var deltaRotation = 0f
     private var lerpSteps = 0
     private var lerpX = 0.0
@@ -280,7 +268,6 @@ open class RaftEntity(
         } else if (this.leashInfoTag != null) {
             tag.put("Leash", this.leashInfoTag!!.copy())
         }
-        this.addChestVehicleSaveData(tag)
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
@@ -289,7 +276,6 @@ open class RaftEntity(
         if (tag.contains("Leash", 10)) {
             this.leashInfoTag = tag.getCompound("Leash")
         }
-        this.readChestVehicleSaveData(tag)
     }
 
     override fun canCollideWith(entity: Entity): Boolean {
@@ -917,126 +903,16 @@ open class RaftEntity(
         }
     }
 
-    fun getShipItem(): ItemStack {
-        val stack = ItemStack(FSItems.SHIP.get())
+    fun getRaftItem(): ItemStack {
+        val stack = ItemStack(FSItems.RAFT.get())
 
         return stack
     }
 
-    //#region Container
-
-    private val dataAccess = object : ContainerData {
-        override fun get(index: Int): Int {
-            return 0
-        }
-
-        override fun set(index: Int, value: Int) {
-        }
-
-        override fun getCount(): Int {
-            return 2
-        }
-    }
-
     protected open fun destroy(damageSource: DamageSource) {
-        val stack = getShipItem()
+        val stack = getRaftItem()
         this.spawnAtLocation(stack)
-        this.chestVehicleDestroyed(damageSource, this.level(), this)
     }
-
-    override fun remove(reason: RemovalReason) {
-        if (!this.level().isClientSide && reason.shouldDestroy()) {
-            Containers.dropContents(this.level(), this, this)
-        }
-        super.remove(reason)
-    }
-
-    override fun setChanged() {
-    }
-
-    override fun openCustomInventoryScreen(player: Player) {
-        player.openMenu(this)
-        if (!player.level().isClientSide) {
-            this.gameEvent(GameEvent.CONTAINER_OPEN, player)
-        }
-    }
-
-    override fun getLootTable(): ResourceLocation? {
-        return raftLootTable
-    }
-
-    override fun setLootTable(id: ResourceLocation?) {
-        raftLootTable = id
-    }
-
-    override fun getLootTableSeed(): Long {
-        return raftLootTableSeed
-    }
-
-    override fun setLootTableSeed(seed: Long) {
-        raftLootTableSeed = seed
-    }
-
-    override fun getItemStacks(): NonNullList<ItemStack> {
-        return this.itemStacks
-    }
-
-    override fun clearItemStacks() {
-        this.itemStacks = NonNullList.withSize(this.containerSize, ItemStack.EMPTY)
-    }
-
-    override fun getContainerSize(): Int {
-        return 66
-    }
-
-    override fun getItem(slot: Int): ItemStack {
-        return this.getChestVehicleItem(slot)
-    }
-
-    override fun removeItem(slot: Int, amount: Int): ItemStack {
-        val result = removeChestVehicleItem(slot, amount)
-        return result
-    }
-
-    override fun removeItemNoUpdate(slot: Int): ItemStack {
-        val result = removeChestVehicleItemNoUpdate(slot)
-        return result
-    }
-
-    override fun setItem(slot: Int, stack: ItemStack) {
-        this.setChestVehicleItem(slot, stack)
-    }
-
-    override fun stillValid(player: Player): Boolean {
-        return this.isChestVehicleStillValid(player)
-    }
-
-    override fun clearContent() {
-        this.clearChestVehicleContent()
-    }
-
-    override fun createMenu(
-        containerId: Int,
-        playerInventory: Inventory,
-        player: Player,
-    ): AbstractContainerMenu? {
-        if (this.lootTable != null && player.isSpectator) {
-            return null
-        } else {
-            this.unpackLootTable(playerInventory.player)
-            return RaftMenu.sixRows(containerId, playerInventory, this)
-        }
-    }
-
-    fun unpackLootTable(player: Player?) {
-        this.unpackChestVehicleLootTable(player)
-    }
-
-    override fun stopOpen(player: Player) {
-        this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
-    }
-    //#endregion
-
 
     companion object {
         private val DATA_ID_HURT: EntityDataAccessor<Int> =

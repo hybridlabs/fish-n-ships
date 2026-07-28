@@ -37,6 +37,7 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             FSEntityTypes.CANOE_WITH_CHEST.get() to "Canoe With Chest",
             FSEntityTypes.CANOE_WITH_DOUBLE_CHEST.get() to "Canoe With Double Chest",
             FSEntityTypes.RAFT.get() to "Raft",
+            FSEntityTypes.SUPPLY_RAFT.get() to "Supply Raft",
         )
 
         val nonPresentEntityNames = mutableListOf<EntityType<*>>()

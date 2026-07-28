@@ -5,6 +5,7 @@ import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithChestEntityR
 import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithDoubleChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.RaftEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.ShipEntityRenderer
+import dev.hybridlabs.fishnships.client.render.entity.misc.SupplyRaftEntityRenderer
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.platform.ClientServices
 
@@ -39,5 +40,11 @@ object FSEntityRenderers {
         ClientServices.RENDERER.registerEntityRenderer(
             FSEntityTypes.RAFT,
             ::RaftEntityRenderer
+        )
+
+    val SUPPLY_RAFT =
+        ClientServices.RENDERER.registerEntityRenderer(
+            FSEntityTypes.SUPPLY_RAFT,
+            ::SupplyRaftEntityRenderer
         )
 }

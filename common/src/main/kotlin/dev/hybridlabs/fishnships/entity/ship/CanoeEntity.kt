@@ -661,7 +661,7 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
 
         val xOffset = when (passengers.indexOf(passenger)) {
             0 -> -0.25
-            1 -> -0.85
+            1 -> -0.9
             2 -> 0.65
             else -> 0.0
         }

@@ -11,7 +11,7 @@ object FSMenuTypes {
     val SHIP_MENU_3ROW = register("ship_3row", ShipMenu.Companion::threeRows)
     val SHIP_MENU_2ROW = register("ship_2row", ShipMenu.Companion::twoRows)
 
-    val RAFT_MENU_6ROW = register("raft_6row", RaftMenu.Companion::sixRows)
+    val SUPPLY_RAFT_MENU_6ROW = register("supply_raft_6row", SupplyRaftMenu.Companion::sixRows)
 
     val CANOE_MENU_3ROW = register("canoe_3row", CanoeWithChestMenu.Companion::threeRows)
     val CANOE_MENU_6ROW = register("canoe_6row", CanoeWithDoubleChestMenu.Companion::sixRows)

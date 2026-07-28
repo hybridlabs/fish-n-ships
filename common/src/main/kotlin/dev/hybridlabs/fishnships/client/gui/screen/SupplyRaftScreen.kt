@@ -1,18 +1,18 @@
 package dev.hybridlabs.fishnships.client.gui.screen
 
 import dev.hybridlabs.fishnships.CommonClass
-import dev.hybridlabs.fishnships.world.inventory.RaftMenu
+import dev.hybridlabs.fishnships.world.inventory.SupplyRaftMenu
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Inventory
 
-class RaftScreen(
-    menu: RaftMenu,
+class SupplyRaftScreen(
+    menu: SupplyRaftMenu,
     playerInventory: Inventory,
     title: Component
-) : AbstractContainerScreen<RaftMenu>(menu, playerInventory, title) {
+) : AbstractContainerScreen<SupplyRaftMenu>(menu, playerInventory, title) {
 
     init {
         // size of screen in pixels
@@ -36,7 +36,7 @@ class RaftScreen(
         val top = (height - imageHeight) / 2
 
         guiGraphics.blit(
-            RAFT_BACKGROUND,
+            SUPPLY_RAFT_BACKGROUND,
             left,
             top,
             0,
@@ -53,6 +53,6 @@ class RaftScreen(
     }
 
     companion object {
-        val RAFT_BACKGROUND: ResourceLocation = CommonClass.locate("textures/gui/container/raft_6row.png")
+        val SUPPLY_RAFT_BACKGROUND: ResourceLocation = CommonClass.locate("textures/gui/container/supply_raft_6row.png")
     }
 }

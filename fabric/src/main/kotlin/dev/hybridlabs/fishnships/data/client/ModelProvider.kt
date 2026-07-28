@@ -19,5 +19,6 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
         generator.generateFlatItem(FSItems.CANOE_WITH_CHEST.get(), ModelTemplates.FLAT_ITEM)
         generator.generateFlatItem(FSItems.CANOE_WITH_DOUBLE_CHEST.get(), ModelTemplates.FLAT_ITEM)
         generator.generateFlatItem(FSItems.RAFT.get(), ModelTemplates.FLAT_ITEM)
+        generator.generateFlatItem(FSItems.SUPPLY_RAFT.get(), ModelTemplates.FLAT_ITEM)
     }
 }
