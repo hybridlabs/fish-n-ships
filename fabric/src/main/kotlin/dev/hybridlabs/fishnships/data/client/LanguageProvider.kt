@@ -34,6 +34,8 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
         val entityNameMap = mapOf<EntityType<*>, String>(
             FSEntityTypes.SHIP.get() to "Ship",
             FSEntityTypes.CANOE.get() to "Canoe",
+            FSEntityTypes.CANOE_WITH_CHEST.get() to "Canoe With Chest",
+            FSEntityTypes.CANOE_WITH_DOUBLE_CHEST.get() to "Canoe With Double Chest",
             FSEntityTypes.RAFT.get() to "Raft",
         )
 

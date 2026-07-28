@@ -2,6 +2,7 @@ package dev.hybridlabs.fishnships.client.model.entity.misc
 
 import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.entity.ship.CanoeEntity
+import dev.hybridlabs.fishnships.entity.ship.CanoeWithChestEntity
 import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
@@ -10,7 +11,7 @@ import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.model.GeoModel
 
 @Suppress("OVERRIDE_DEPRECATION")
-class CanoeEntityModel<T : CanoeEntity>() :
+class CanoeWithChestEntityModel<T : CanoeWithChestEntity>() :
     GeoModel<T>() {
 
     override fun getRenderType(animatable: T, texture: ResourceLocation): RenderType {
@@ -18,11 +19,11 @@ class CanoeEntityModel<T : CanoeEntity>() :
     }
 
     override fun getModelResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("geo/entity/canoe/canoe.geo.json")
+        return CommonClass.locate("geo/entity/canoe/canoe_with_chest.geo.json")
     }
 
     override fun getTextureResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("textures/entity/canoe/canoe.png")
+        return CommonClass.locate("textures/entity/canoe/canoe_with_chest.png")
     }
 
     override fun getAnimationResource(animatable: T): ResourceLocation {

@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.HitResult
 
-class CanoeItem(properties: Properties) : Item(properties) {
+class CanoeWithDoubleChestItem(properties: Properties) : Item(properties) {
 
     override fun use(level: Level, player: Player, hand: InteractionHand): InteractionResultHolder<ItemStack?> {
         val itemstack = player.getItemInHand(hand)
@@ -64,7 +64,7 @@ class CanoeItem(properties: Properties) : Item(properties) {
     }
 
     private fun getCanoe(level: Level, hitResult: HitResult): CanoeEntity {
-        val canoe = FSEntityTypes.CANOE.get().create(level)
+        val canoe = FSEntityTypes.CANOE_WITH_DOUBLE_CHEST.get().create(level)
             ?: throw IllegalStateException("Failed to create canoe")
 
         canoe.setPos(

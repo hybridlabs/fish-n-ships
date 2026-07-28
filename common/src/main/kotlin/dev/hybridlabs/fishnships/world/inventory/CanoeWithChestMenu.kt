@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.*
 import net.minecraft.world.item.ItemStack
 
-class RaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, container: Container, rows: Int) :
+class CanoeWithChestMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, container: Container, rows: Int) :
     AbstractContainerMenu(type, containerId) {
     val container: Container
     val rowCount: Int
@@ -39,7 +39,7 @@ class RaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
                     Slot(
                         playerInventory,
                         column + row * 9 + 9,
-                        26 + column * 18,
+                        8 + column * 18,
                         playerY + row * 18
                     )
                 )
@@ -51,7 +51,7 @@ class RaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
                 Slot(
                     playerInventory,
                     column,
-                    26 + column * 18,
+                    8 + column * 18,
                     playerY + 58
                 )
             )
@@ -96,29 +96,29 @@ class RaftMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
     }
 
     companion object {
-        private const val SLOTS_PER_ROW = 11
+        private const val SLOTS_PER_ROW = 9
 
-        fun sixRows(containerId: Int, playerInventory: Inventory): RaftMenu {
-            return RaftMenu(
-                FSMenuTypes.RAFT_MENU_6ROW.get(),
+        fun threeRows(containerId: Int, playerInventory: Inventory): CanoeWithChestMenu {
+            return CanoeWithChestMenu(
+                FSMenuTypes.CANOE_MENU_3ROW.get(),
                 containerId,
                 playerInventory,
-                SimpleContainer(SLOTS_PER_ROW * 6),
-                6
+                SimpleContainer(SLOTS_PER_ROW * 3),
+                3
             )
         }
 
-        fun sixRows(
+        fun threeRows(
             containerId: Int,
             playerInventory: Inventory,
             container: Container
-        ): RaftMenu {
-            return RaftMenu(
-                FSMenuTypes.RAFT_MENU_6ROW.get(),
+        ): CanoeWithChestMenu {
+            return CanoeWithChestMenu(
+                FSMenuTypes.CANOE_MENU_3ROW.get(),
                 containerId,
                 playerInventory,
                 container,
-                6
+                3
             )
         }
     }

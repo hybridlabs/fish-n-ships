@@ -3,7 +3,7 @@ package dev.hybridlabs.fishnships.entity.ship
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.fishnships.world.inventory.ShipMenu
+import dev.hybridlabs.fishnships.world.inventory.RaftMenu
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.NonNullList
@@ -53,7 +53,6 @@ import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.util.GeckoLibUtil
 import kotlin.math.max
 import kotlin.math.sin
-import kotlin.math.withSign
 
 open class RaftEntity(
     type: EntityType<out RaftEntity>,
@@ -62,9 +61,9 @@ open class RaftEntity(
     Entity(type, world), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private val animCache = GeckoLibUtil.createInstanceCache(this)
-    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(42, ItemStack.EMPTY)
-    private var shipLootTable: ResourceLocation? = null
-    private var shipLootTableSeed: Long = 0
+    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
+    private var raftLootTable: ResourceLocation? = null
+    private var raftLootTableSeed: Long = 0
     private var deltaRotation = 0f
     private var lerpSteps = 0
     private var lerpX = 0.0
@@ -163,34 +162,35 @@ open class RaftEntity(
     }
 
     protected fun tickLeash() {
-        if (this.leashInfoTag != null) {
-            this.restoreLeashFromSave()
+        if (leashInfoTag != null) {
+            restoreLeashFromSave()
         }
 
-        if (this.leashHolder != null) {
-            if (!this.isAlive || !this.leashHolder!!.isAlive) {
-                this.dropLeash(broadcastPacket = true, dropLeash = true)
-            }
+        if (leashHolder != null && (!isAlive || !leashHolder!!.isAlive)) {
+            dropLeash(broadcastPacket = true, dropLeash = true)
         }
 
-        val entity = this.getLeashHolder()
-        if (entity != null && entity.level() === this.level()) {
-            val f = this.distanceTo(entity)
+        val holder = getLeashHolder()
+        if (holder != null && holder.level() === level()) {
+            val distance = distanceTo(holder)
 
-            if (f > 10.0f) {
-                this.dropLeash(true, dropLeash = true)
-            } else if (f > 6.0f) {
-                val d0 = (entity.x - this.x) / f.toDouble()
-                val d1 = (entity.y - this.y) / f.toDouble()
-                val d2 = (entity.z - this.z) / f.toDouble()
+            if (distance > 10.0f) {
+                dropLeash(true, dropLeash = true)
+            } else if (distance > 6.0f && shouldStayCloseToLeashHolder()) {
+                val direction = Vec3(
+                    holder.x - x,
+                    holder.y - y,
+                    holder.z - z
+                ).normalize()
 
-                this.deltaMovement = this.deltaMovement.add(
-                    (d0 * d0 * 0.4).withSign(d0),
-                    (d1 * d1 * 0.4).withSign(d1),
-                    (d2 * d2 * 0.4).withSign(d2)
+                val followSpeed = followLeashSpeed()
+
+                val targetVelocity = direction.scale(followSpeed)
+
+                deltaMovement = deltaMovement.lerp(
+                    Vec3(targetVelocity.x, deltaMovement.y, targetVelocity.z),
+                    0.15
                 )
-
-                this.checkSlowFallDistance()
             }
         }
     }
@@ -201,9 +201,6 @@ open class RaftEntity(
 
     protected open fun followLeashSpeed(): Double {
         return 1.0
-    }
-
-    protected open fun onLeashDistance(distance: Float) {
     }
 
     fun dropLeash(broadcastPacket: Boolean, dropLeash: Boolean) {
@@ -439,6 +436,8 @@ open class RaftEntity(
         return this.direction.clockWise
     }
 
+    override fun getControllingPassenger(): LivingEntity? = null
+
     override fun tick() {
         super.tick()
 
@@ -465,13 +464,18 @@ open class RaftEntity(
         this.tickLerp()
         this.tickLeash()
 
-        if (this.isControlledByLocalInstance) {
+        floatRaft()
+        this.move(MoverType.SELF, this.deltaMovement)
 
-            floatRaft()
+        val velocity = this.deltaMovement
 
-            this.move(MoverType.SELF, this.deltaMovement)
-        } else {
-            this.deltaMovement = Vec3.ZERO
+        if (velocity.horizontalDistanceSqr() > 1.0E-4) {
+            val targetYaw = (Mth.atan2(velocity.z, velocity.x) * (180.0 / Math.PI)).toFloat() - 90.0f
+
+            this.yRot = Mth.approachDegrees(this.yRot, targetYaw, 5.0f)
+            this.yRot = this.yRot
+            this.setYBodyRot(yRot)
+            this.yHeadRot = this.yRot
         }
 
         this.checkInsideBlocks()
@@ -497,11 +501,6 @@ open class RaftEntity(
     }
 
     private fun tickLerp() {
-        if (this.isControlledByLocalInstance) {
-            this.lerpSteps = 0
-            this.syncPacketPositionCodec(this.x, this.y, this.z)
-        }
-
         if (this.lerpSteps > 0) {
             val d = this.x + (this.lerpX - this.x) / this.lerpSteps
             val e = this.y + (this.lerpY - this.y) / this.lerpSteps
@@ -566,38 +565,54 @@ open class RaftEntity(
     }
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (this.hasPassenger(passenger)) {
-            var f = this.singlePassengerXOffset
-            val f1 =
-                ((if (this.isRemoved) 0.01 else this.passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-            if (this.passengers.size > 1) {
-                val i = this.passengers.indexOf(passenger)
-                f = if (i == 0) {
-                    0.2f
-                } else {
-                    -0.6f
-                }
+        if (!hasPassenger(passenger)) {
+            return
+        }
 
-                if (passenger is Animal) {
-                    f += 0.2f
-                }
+        val yOffset =
+            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+
+        val (xOffset, zOffset) = when (passengers.size) {
+            1 -> when (passengers.indexOf(passenger)) {
+                0 -> 0.0 to 0.0
+                else -> 0.0 to 0.0
             }
 
-            val vec3 = (Vec3(
-                f.toDouble(),
-                0.0,
-                0.0
-            )).yRot(-this.yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
-            callback.accept(passenger, this.x + vec3.x, this.y + f1.toDouble(), this.z + vec3.z)
-            passenger.yRot += this.deltaRotation
-            passenger.yHeadRot += this.deltaRotation
-            this.clampRotation(passenger)
-            if (passenger is Animal && this.passengers.size == this.maxPassengers) {
-                val j = if (passenger.id % 2 == 0) 90 else 270
-                passenger.setYBodyRot(passenger.yBodyRot + j.toFloat())
-                passenger.setYHeadRot(passenger.getYHeadRot() + j.toFloat())
+            2 -> when (passengers.indexOf(passenger)) {
+                0 -> 0.0 to 0.5
+                1 -> 0.0 to -0.5
+                else -> 0.0 to 0.0
+            }
+
+            3 -> when (passengers.indexOf(passenger)) {
+                0 -> 0.0 to 0.5
+                1 -> 0.5 to -0.5
+                2 -> -0.5 to -0.5
+                else -> 0.0 to 0.0
+            }
+
+            else -> when (passengers.indexOf(passenger)) {
+                0 -> 0.5 to 0.5
+                1 -> -0.5 to 0.5
+                2 -> 0.5 to -0.5
+                3 -> -0.5 to -0.5
+                else -> 0.0 to 0.0
             }
         }
+
+        val offset = Vec3(xOffset, 0.0, zOffset)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+
+        callback.accept(
+            passenger,
+            x + offset.x,
+            y + yOffset,
+            z + offset.z
+        )
+
+        passenger.yRot += deltaRotation
+        passenger.yHeadRot += deltaRotation
+        clampRotation(passenger)
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {
@@ -948,19 +963,19 @@ open class RaftEntity(
     }
 
     override fun getLootTable(): ResourceLocation? {
-        return shipLootTable
+        return raftLootTable
     }
 
     override fun setLootTable(id: ResourceLocation?) {
-        shipLootTable = id
+        raftLootTable = id
     }
 
     override fun getLootTableSeed(): Long {
-        return shipLootTableSeed
+        return raftLootTableSeed
     }
 
     override fun setLootTableSeed(seed: Long) {
-        shipLootTableSeed = seed
+        raftLootTableSeed = seed
     }
 
     override fun getItemStacks(): NonNullList<ItemStack> {
@@ -972,7 +987,7 @@ open class RaftEntity(
     }
 
     override fun getContainerSize(): Int {
-        return 54
+        return 66
     }
 
     override fun getItem(slot: Int): ItemStack {
@@ -1010,7 +1025,7 @@ open class RaftEntity(
             return null
         } else {
             this.unpackLootTable(playerInventory.player)
-            return ShipMenu.threeRows(containerId, playerInventory, this, this.dataAccess)
+            return RaftMenu.sixRows(containerId, playerInventory, this)
         }
     }
 

@@ -1,7 +1,15 @@
 {
+  "entity.fish_n_ships.canoe": "Canoe",
+  "entity.fish_n_ships.canoe_with_chest": "Canoe With Chest",
+  "entity.fish_n_ships.canoe_with_double_chest": "Canoe With Double Chest",
+  "entity.fish_n_ships.raft": "Raft",
   "entity.fish_n_ships.ship": "Ship",
+  "item.fish_n_ships.canoe_spawn_egg": "Canoe Spawn Egg",
+  "item.fish_n_ships.canoe_with_chest_spawn_egg": "Canoe With Chest Spawn Egg",
+  "item.fish_n_ships.canoe_with_double_chest_spawn_egg": "Canoe With Double Chest Spawn Egg",
+  "item.fish_n_ships.raft_spawn_egg": "Raft Spawn Egg",
   "item.fish_n_ships.ship_spawn_egg": "Ship Spawn Egg",
-  "itemGroup.fish_n_ships.spawn_eggs": "Fish N Ships",
+  "itemGroup.fish_n_ships.main": "Fish N Ships",
   "subtitles.fish_n_ships.entity.albatross.ambient": "Albatross squawks",
   "subtitles.fish_n_ships.entity.albatross.die": "Albatross dies",
   "subtitles.fish_n_ships.entity.albatross.hurt": "Albatross hurts"

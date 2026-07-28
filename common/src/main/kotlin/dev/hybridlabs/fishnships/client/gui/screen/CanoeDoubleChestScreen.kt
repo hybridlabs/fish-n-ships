@@ -1,23 +1,23 @@
 package dev.hybridlabs.fishnships.client.gui.screen
 
 import dev.hybridlabs.fishnships.CommonClass
-import dev.hybridlabs.fishnships.world.inventory.RaftMenu
+import dev.hybridlabs.fishnships.world.inventory.CanoeWithDoubleChestMenu
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Inventory
 
-class RaftScreen(
-    menu: RaftMenu,
+class CanoeDoubleChestScreen(
+    menu: CanoeWithDoubleChestMenu,
     playerInventory: Inventory,
     title: Component
-) : AbstractContainerScreen<RaftMenu>(menu, playerInventory, title) {
+) : AbstractContainerScreen<CanoeWithDoubleChestMenu>(menu, playerInventory, title) {
 
     init {
         // size of screen in pixels
         imageHeight = 222
-        imageWidth = 212
+        imageWidth = 176
         inventoryLabelY = imageHeight - 94
     }
 
@@ -36,7 +36,7 @@ class RaftScreen(
         val top = (height - imageHeight) / 2
 
         guiGraphics.blit(
-            RAFT_BACKGROUND,
+            CANOE_6ROW_BACKGROUND,
             left,
             top,
             0,
@@ -53,6 +53,6 @@ class RaftScreen(
     }
 
     companion object {
-        val RAFT_BACKGROUND: ResourceLocation = CommonClass.locate("textures/gui/container/raft_6row.png")
+        val CANOE_6ROW_BACKGROUND: ResourceLocation = CommonClass.locate("textures/gui/container/canoe_6row.png")
     }
 }

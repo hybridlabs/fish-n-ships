@@ -2,6 +2,7 @@ package dev.hybridlabs.fishnships.entity.ship
 
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
+import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.BlockUtil
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
@@ -19,7 +20,6 @@ import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
-import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.animal.WaterAnimal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
@@ -49,7 +49,7 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
     private val paddlePositions: FloatArray = FloatArray(2)
     private var invFriction = 0f
     private var outOfControlTicks = 0f
-    private var deltaRotation = 0f
+    var deltaRotation = 0f
     private var lerpSteps = 0
     private var lerpX = 0.0
     private var lerpY = 0.0
@@ -97,6 +97,15 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
         return animCache
     }
 
+    override fun defineSynchedData() {
+        this.entityData.define(DATA_ID_HURT, 0)
+        this.entityData.define(DATA_ID_HURTDIR, 1)
+        this.entityData.define(DATA_ID_DAMAGE, 0.0f)
+        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
+        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
+        this.entityData.define(DATA_ID_BUBBLE_TIME, 0)
+    }
+
     override fun addAdditionalSaveData(tag: CompoundTag) {
         tag.putFloat("Damage", getDamage())
     }
@@ -127,15 +136,6 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
 
     override fun getMovementEmission(): MovementEmission {
         return MovementEmission.EVENTS
-    }
-
-    override fun defineSynchedData() {
-        this.entityData.define(DATA_ID_HURT, 0)
-        this.entityData.define(DATA_ID_HURTDIR, 1)
-        this.entityData.define(DATA_ID_DAMAGE, 0.0f)
-        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
-        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
-        this.entityData.define(DATA_ID_BUBBLE_TIME, 0)
     }
 
     override fun canCollideWith(entity: Entity): Boolean {
@@ -185,8 +185,15 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
         }
     }
 
-    protected open fun destroy(damageSource: DamageSource?) {
-        this.spawnAtLocation(Items.OAK_BOAT)
+    private fun getCanoeItem(): ItemStack {
+        val stack = ItemStack(FSItems.CANOE.get())
+
+        return stack
+    }
+
+    protected open fun destroy(damageSource: DamageSource) {
+        val stack = getCanoeItem()
+        this.spawnAtLocation(stack)
     }
 
     override fun onAboveBubbleCol(downwards: Boolean) {
@@ -645,38 +652,33 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
     }
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (this.hasPassenger(passenger)) {
-            var f = this.singlePassengerXOffset
-            val f1 =
-                ((if (this.isRemoved) 0.01 else this.passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-            if (this.passengers.size > 1) {
-                val i = this.passengers.indexOf(passenger)
-                f = if (i == 0) {
-                    0.2f
-                } else {
-                    -0.6f
-                }
-
-                if (passenger is Animal) {
-                    f += 0.2f
-                }
-            }
-
-            val vec3 = (Vec3(
-                f.toDouble(),
-                0.0,
-                0.0
-            )).yRot(-this.yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
-            callback.accept(passenger, this.x + vec3.x, this.y + f1.toDouble(), this.z + vec3.z)
-            passenger.yRot += this.deltaRotation
-            passenger.yHeadRot += this.deltaRotation
-            this.clampRotation(passenger)
-            if (passenger is Animal && this.passengers.size == this.maxPassengers) {
-                val j = if (passenger.id % 2 == 0) 90 else 270
-                passenger.setYBodyRot(passenger.yBodyRot + j.toFloat())
-                passenger.setYHeadRot(passenger.getYHeadRot() + j.toFloat())
-            }
+        if (!hasPassenger(passenger)) {
+            return
         }
+
+        val yOffset =
+            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+
+        val xOffset = when (passengers.indexOf(passenger)) {
+            0 -> -0.25
+            1 -> -0.85
+            2 -> 0.65
+            else -> 0.0
+        }
+
+        val offset = Vec3(xOffset, 0.0, 0.0)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+
+        callback.accept(
+            passenger,
+            x + offset.x,
+            y + yOffset,
+            z + offset.z
+        )
+
+        passenger.yRot += deltaRotation
+        passenger.yHeadRot += deltaRotation
+        clampRotation(passenger)
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {
@@ -882,8 +884,6 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
             SynchedEntityData.defineId(CanoeEntity::class.java, EntityDataSerializers.INT)
         private val DATA_ID_DAMAGE: EntityDataAccessor<Float> =
             SynchedEntityData.defineId(CanoeEntity::class.java, EntityDataSerializers.FLOAT)
-        private val DATA_ID_TYPE: EntityDataAccessor<Int> =
-            SynchedEntityData.defineId(CanoeEntity::class.java, EntityDataSerializers.INT)
         private val DATA_ID_PADDLE_LEFT: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(CanoeEntity::class.java, EntityDataSerializers.BOOLEAN)
         private val DATA_ID_PADDLE_RIGHT: EntityDataAccessor<Boolean> =
