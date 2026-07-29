@@ -934,6 +934,10 @@ open class RaftEntity(
         }
     }
 
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(FSItems.RAFT.get())
+    }
+
     enum class Status {
         IN_WATER,
         UNDER_WATER,

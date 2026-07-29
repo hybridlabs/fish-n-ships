@@ -246,4 +246,8 @@ open class SupplyRaftEntity(
         this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
     }
     //#endregion
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(FSItems.SUPPLY_RAFT.get())
+    }
 }

@@ -862,7 +862,7 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
     }
 
     override fun getPickResult(): ItemStack? {
-        return ItemStack(Items.OAK_BOAT)
+        return ItemStack(FSItems.CANOE.get())
     }
 
     init {

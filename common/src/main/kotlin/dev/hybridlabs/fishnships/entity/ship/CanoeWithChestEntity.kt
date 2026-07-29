@@ -205,4 +205,8 @@ open class CanoeWithChestEntity(entityType: EntityType<out CanoeWithChestEntity>
         this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
     }
     //#endregion
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(FSItems.CANOE_WITH_CHEST.get())
+    }
 }

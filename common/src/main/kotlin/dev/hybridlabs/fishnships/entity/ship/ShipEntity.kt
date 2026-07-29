@@ -1017,6 +1017,10 @@ open class ShipEntity(
         val TRAWL_OFF_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.trawl_off")
     }
 
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(FSItems.SHIP.get())
+    }
+
     enum class Status {
         IN_WATER,
         UNDER_WATER,
