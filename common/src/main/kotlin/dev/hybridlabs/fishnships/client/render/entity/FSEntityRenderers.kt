@@ -1,5 +1,6 @@
 package dev.hybridlabs.fishnships.client.render.entity
 
+import dev.hybridlabs.fishnships.client.render.entity.misc.SailboatEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithDoubleChestEntityRenderer
@@ -16,6 +17,12 @@ object FSEntityRenderers {
         ClientServices.RENDERER.registerEntityRenderer(
             FSEntityTypes.SHIP,
             ::ShipEntityRenderer
+        )
+
+    val SAILBOAT =
+        ClientServices.RENDERER.registerEntityRenderer(
+            FSEntityTypes.SAILBOAT,
+            ::SailboatEntityRenderer
         )
 
     val CANOE =

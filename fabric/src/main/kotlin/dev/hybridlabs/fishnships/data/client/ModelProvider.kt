@@ -15,6 +15,7 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
         generator.generateFlatItem(FSItems.SHIP.get(), ModelTemplates.FLAT_ITEM)
         generator.generateFlatItem(FSItems.ICEBREAKER.get(), ModelTemplates.FLAT_ITEM)
         generator.generateFlatItem(FSItems.TRAWLING_NET.get(), ModelTemplates.FLAT_ITEM)
+        generator.generateFlatItem(FSItems.SAILBOAT.get(), ModelTemplates.FLAT_ITEM)
         generator.generateFlatItem(FSItems.CANOE.get(), ModelTemplates.FLAT_ITEM)
         generator.generateFlatItem(FSItems.CANOE_WITH_CHEST.get(), ModelTemplates.FLAT_ITEM)
         generator.generateFlatItem(FSItems.CANOE_WITH_DOUBLE_CHEST.get(), ModelTemplates.FLAT_ITEM)

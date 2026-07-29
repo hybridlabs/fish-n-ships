@@ -22,6 +22,7 @@ object  FSItemGroups {
             entries.accept(FSItems.SHIP.get())
             entries.accept(FSItems.TRAWLING_NET.get())
             entries.accept(FSItems.ICEBREAKER.get())
+            entries.accept(FSItems.SAILBOAT.get())
             entries.accept(FSItems.CANOE.get())
             entries.accept(FSItems.CANOE_WITH_CHEST.get())
             entries.accept(FSItems.CANOE_WITH_DOUBLE_CHEST.get())
