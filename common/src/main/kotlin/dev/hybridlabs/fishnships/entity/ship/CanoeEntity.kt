@@ -826,7 +826,7 @@ open class CanoeEntity(entityType: EntityType<out CanoeEntity?>, level: Level) :
 
             this.yRot += this.deltaRotation
             if (this.inputUp) {
-                f += 0.04f
+                f += 0.038f
             }
 
             if (this.inputDown) {
