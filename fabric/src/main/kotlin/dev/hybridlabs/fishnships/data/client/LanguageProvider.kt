@@ -3,6 +3,7 @@ package dev.hybridlabs.fishnships.data.client
 import dev.hybridlabs.fishnships.data.FSDataGenerator.filterFishNShips
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.item.FSItemGroups
+import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.sound.FSSoundEvents
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
@@ -27,7 +28,17 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
         ).forEach { (soundEvent, translation) ->
             builder.add(Util.makeDescriptionId("subtitles", soundEvent.get().location), translation)
         }
-
+        mapOf(
+            FSItems.SHIP.get() to "Ship",
+            FSItems.SAILBOAT.get() to "Sailboat",
+            FSItems.CANOE.get() to "Canoe",
+            FSItems.CANOE_WITH_CHEST.get() to "Canoe With Chest",
+            FSItems.CANOE_WITH_DOUBLE_CHEST.get() to "Canoe With Double Chest",
+            FSItems.RAFT.get() to "Raft",
+            FSItems.SUPPLY_RAFT.get() to "Supply Raft",
+        ).forEach { (item, translation) ->
+            builder.add(item, translation)
+        }
     }
 
     private fun generateEntities(builder: TranslationBuilder) {

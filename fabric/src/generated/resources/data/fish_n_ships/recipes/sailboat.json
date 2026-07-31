@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "tag": "minecraft:banners"
+    },
+    "W": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    " B ",
+    "WWW"
+  ],
+  "result": {
+    "item": "fish_n_ships:sailboat"
+  },
+  "show_notification": true
+}
