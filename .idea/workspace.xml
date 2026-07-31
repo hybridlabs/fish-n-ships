@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Recipes">
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Set up packets to detect movement on the server side.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/platform/services/PlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/platform/services/PlatformHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +62,24 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="fish_n_ships" type="f1a62948:ProjectNode" />
+                <item name="forge" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="fish_n_ships" type="f1a62948:ProjectNode" />
+                <item name="forge" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="fish_n_ships" type="f1a62948:ProjectNode" />
+                <item name="forge" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="mod development" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -85,6 +103,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -115,44 +134,47 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Datagen.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Fabric Client (:fabric).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Fabric Server (:fabric).executor&quot;: &quot;Run&quot;,
-    &quot;Application.forge - Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.forge - Data.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build fish-n-ships.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build hybrid-birds.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds [build].executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.hybrid-birds [runDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:neoforge [build].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/animations/entity/sailboat&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Datagen.executor": "Run",
+    "Application.Fabric Client (:fabric).executor": "Run",
+    "Application.Fabric Server (:fabric).executor": "Run",
+    "Application.forge - Client.executor": "Run",
+    "Application.forge - Data.executor": "Run",
+    "Gradle.Build fish-n-ships.executor": "Run",
+    "Gradle.Build hybrid-birds.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.fish-n-ships [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Debug",
+    "Gradle.fish-n-ships [:forge:runClient].executor": "Run",
+    "Gradle.fish-n-ships [:forge:runData].executor": "Run",
+    "Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.fish-n-ships:fabric [build].executor": "Run",
+    "Gradle.fish-n-ships:forge [copyDatagen].executor": "Run",
+    "Gradle.hybrid-birds [build].executor": "Debug",
+    "Gradle.hybrid-birds [runDatagen].executor": "Run",
+    "Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:fabric [build].executor": "Run",
+    "Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:forge [build].executor": "Run",
+    "Gradle.hybrid-birds:forge [copyDatagen].executor": "Run",
+    "Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:neoforge [build].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/animations/entity/sailboat",
+    "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\sailboat" />
@@ -172,11 +194,11 @@
       <recent name="dev.hybridlabs.birds" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="dev.hybridlabs.fishnships" />
+      <recent name="dev.hybridlabs.fishnships.network" />
+      <recent name="dev.hybridlabs.fishnships.packet" />
       <recent name="dev.hybridlabs.fishnships.world.inventory" />
       <recent name="dev.hybridlabs.fishnships.item" />
-      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
-      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc" />
-      <recent name="dev.hybridlabs.fishnships.client.model.entity.misc" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="dev.hybridlabs.fishnships.entity.ship" />
@@ -192,7 +214,7 @@
       <recent name="dev.hybridlabs.birds.mixin" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Fabric Client (:fabric)">
+  <component name="RunManager" selected="Gradle.fish-n-ships [:forge:runClient]">
     <configuration name="Datagen" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="net.fabricmc.devlaunchinjector.Main" />
       <module name="hybrid-birds.fabric.main" />
@@ -271,6 +293,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="fish-n-ships [:forge:runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":forge:runClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="fish-n-ships [:forge:runData]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":forge:runData" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="fish-n-ships [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -293,54 +359,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="fish-n-ships [runDatagen]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="runDatagen" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="fish-n-ships:fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="fish-n-ships:forge [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/forge" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
@@ -389,24 +411,21 @@
       <item itemvalue="Application.forge - Client" />
       <item itemvalue="Application.forge - Data" />
       <item itemvalue="Application.forge - Server" />
-      <item itemvalue="Application.Data Generation" />
       <item itemvalue="Application.Fabric Client (:fabric)" />
       <item itemvalue="Application.Fabric Server (:fabric)" />
-      <item itemvalue="Application.Minecraft Client" />
-      <item itemvalue="Application.Minecraft Server" />
+      <item itemvalue="Gradle.fish-n-ships [:forge:runClient]" />
+      <item itemvalue="Gradle.fish-n-ships [:forge:runData]" />
       <item itemvalue="Gradle.fish-n-ships [build]" />
-      <item itemvalue="Gradle.fish-n-ships [runDatagen]" />
       <item itemvalue="Gradle.fish-n-ships:fabric [build]" />
-      <item itemvalue="Gradle.fish-n-ships:forge [build]" />
       <item itemvalue="Gradle.fish-n-ships:forge [copyDatagen]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.fish-n-ships [:forge:runClient]" />
+        <item itemvalue="Gradle.fish-n-ships [:forge:runData]" />
         <item itemvalue="Gradle.fish-n-ships:fabric [build]" />
         <item itemvalue="Gradle.fish-n-ships:forge [copyDatagen]" />
         <item itemvalue="Gradle.fish-n-ships [build]" />
-        <item itemvalue="Gradle.fish-n-ships:forge [build]" />
-        <item itemvalue="Gradle.fish-n-ships [runDatagen]" />
       </list>
     </recent_temporary>
   </component>
@@ -418,38 +437,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00154" summary="Fixed bird spawning on neoforge">
-      <option name="closed" value="true" />
-      <created>1782607613993</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1782607613993</updated>
-    </task>
-    <task id="LOCAL-00155" summary="Removed chicks, they were kinda broken">
-      <option name="closed" value="true" />
-      <created>1782648334197</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1782648334197</updated>
-    </task>
-    <task id="LOCAL-00156" summary="Fixed rooster offspring">
-      <option name="closed" value="true" />
-      <created>1782648622338</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1782648622338</updated>
-    </task>
-    <task id="LOCAL-00157" summary="Spawn egg textures, credit to L2">
-      <option name="closed" value="true" />
-      <created>1782648647619</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1782648647619</updated>
     </task>
     <task id="LOCAL-00158" summary="Spawn egg textures, credit to L2">
       <option name="closed" value="true" />
@@ -811,7 +798,39 @@
       <option name="project" value="LOCAL" />
       <updated>1785460672575</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <task id="LOCAL-00203" summary="Must use packet to set trawling because you can't set entity data on the client.">
+      <option name="closed" value="true" />
+      <created>1785480843587</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1785480843587</updated>
+    </task>
+    <task id="LOCAL-00204" summary="Must use packet to set trawling because you can't set entity data on the client.">
+      <option name="closed" value="true" />
+      <created>1785484644436</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1785484644436</updated>
+    </task>
+    <task id="LOCAL-00205" summary="Can now trawl into the net slots in the ship inventory.">
+      <option name="closed" value="true" />
+      <created>1785484675401</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1785484675401</updated>
+    </task>
+    <task id="LOCAL-00206" summary="Set up packets to detect movement on the server side.">
+      <option name="closed" value="true" />
+      <created>1785514268742</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1785514268743</updated>
+    </task>
+    <option name="localTasksCounter" value="207" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -827,9 +846,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed enum issue" />
-    <MESSAGE value="Initial commit" />
-    <MESSAGE value="Got them working" />
     <MESSAGE value="Started adding icebreaker and trawling net" />
     <MESSAGE value="Icebreaker functionality" />
     <MESSAGE value="More work" />
@@ -852,6 +868,32 @@
     <MESSAGE value="Sailboat item texture" />
     <MESSAGE value="Raft item textures" />
     <MESSAGE value="Recipes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Recipes" />
+    <MESSAGE value="Must use packet to set trawling because you can't set entity data on the client." />
+    <MESSAGE value="Can now trawl into the net slots in the ship inventory." />
+    <MESSAGE value="Set up packets to detect movement on the server side." />
+    <option name="LAST_COMMIT_MESSAGE" value="Set up packets to detect movement on the server side." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt</url>
+          <line>192</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/common/build/moddev/artifacts/vanilla-1.20.1-merged.jar!/net/minecraft/world/entity/vehicle/Boat.java</url>
+          <line>879</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="xOld" language="kotlin" />
+        <watch expression="x" language="kotlin" />
+        <watch expression="xo" language="kotlin" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

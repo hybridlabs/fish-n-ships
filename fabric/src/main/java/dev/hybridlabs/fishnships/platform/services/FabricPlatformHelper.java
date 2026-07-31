@@ -1,10 +1,8 @@
 package dev.hybridlabs.fishnships.platform.services;
 
 import dev.hybridlabs.fishnships.CommonClass;
-import dev.hybridlabs.fishnships.network.FSNetworking;
 import dev.hybridlabs.fishnships.packet.C2SPackets;
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
-
 import dev.hybridlabs.fishnships.utils.FSSpawnGroup;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -16,11 +14,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.Heightmap;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,19 +44,11 @@ public class FabricPlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public <T extends Mob> Supplier<SpawnEggItem> registerSpawnEggItem(
-            @NotNull String name,
-            Supplier<EntityType<T>> entityType,
-            int backgroundColor,
-            int highlightColor) {
-        return CommonClass.ITEMS.register(
-                name,
-                () ->
-                        new SpawnEggItem(
-                                entityType.get(),
-                                backgroundColor,
-                                highlightColor,
-                                new Item.Properties()));
+    public <T extends Mob> Supplier<SpawnEggItem> registerSpawnEggItem(@NotNull String name,
+                                                                       Supplier<EntityType<T>> entityType,
+                                                                       int backgroundColor, int highlightColor) {
+        return CommonClass.ITEMS.register(name, () -> new SpawnEggItem(entityType.get(), backgroundColor,
+                highlightColor, new Item.Properties()));
     }
 
     @Override
@@ -69,20 +57,16 @@ public class FabricPlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public <T extends Mob> void registerSpawnPlacement(
-            RegistryObject<EntityType<T>> entityType,
-            SpawnPlacements.Type decoratorType,
-            Heightmap.Types heightMapType,
-            SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
-        SpawnPlacements.register(
-                entityType.get(), decoratorType, heightMapType, decoratorPredicate);
+    public <T extends Mob> void registerSpawnPlacement(RegistryObject<EntityType<T>> entityType,
+                                                       SpawnPlacements.Type decoratorType,
+                                                       Heightmap.Types heightMapType,
+                                                       SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
+        SpawnPlacements.register(entityType.get(), decoratorType, heightMapType, decoratorPredicate);
     }
 
     @Override
-    public <T extends LivingEntity> void registerAttributes(
-            @NotNull String id,
-            EntityType<T> entityType,
-            Callable<AttributeSupplier.Builder> attributeContainer) {
+    public <T extends LivingEntity> void registerAttributes(@NotNull String id, EntityType<T> entityType,
+                                                            Callable<AttributeSupplier.Builder> attributeContainer) {
         try {
             FabricDefaultAttributeRegistry.register(entityType, attributeContainer.call());
         } catch (Exception e) {
@@ -108,4 +92,12 @@ public class FabricPlatformHelper implements PlatformHelper {
             ClientPlayNetworking.send(packetId, packetData);
     }
 
+    @Override
+    public void sendMovementToServer(boolean moving) {
+        FriendlyByteBuf packetData = PacketByteBufs.create();
+        packetData.writeBoolean(moving);
+        ResourceLocation packetId = C2SPackets.INSTANCE.getSHIP_MOVEMENT_PACKET_ID();
+        if (ClientPlayNetworking.canSend(packetId))
+            ClientPlayNetworking.send(packetId, packetData);
+    }
 }

@@ -103,6 +103,7 @@ open class ShipEntity(
     private val trawlingInterval = 20
     private val trawlingChance = 0.4
     private val trawlingSlots = 3..14
+    private var moving = false
 
     init {
         noCulling = true
@@ -250,9 +251,12 @@ open class ShipEntity(
         return entityData.get(IS_TRAWLING)
     }
 
-    // This always returns false on the server?
-    fun isMoving(): Boolean {
-        return (x != xOld || z != zOld)
+    fun didMove(): Boolean {
+        return this.deltaMovement.horizontalDistanceSqr() > 0.01
+    }
+
+    fun setMoving(moving:Boolean){
+        this.moving= moving
     }
 
     fun canTrawl(): Boolean {
@@ -260,7 +264,7 @@ open class ShipEntity(
                 isTrawling() &&
                 isLit() &&
                 !getAvailableTrawlSlots().isEmpty() &&
-                //isMoving()  &&
+                moving &&
                 controllingPassenger is Player
     }
 
@@ -406,6 +410,9 @@ open class ShipEntity(
             this.deltaMovement = Vec3.ZERO
         }
         this.move(MoverType.SELF, this.deltaMovement)
+        if (level().isClientSide){
+            Services.PLATFORM.sendMovementToServer(didMove())
+        }
 
         tickTrawling()
 

@@ -13,5 +13,12 @@ object FSNetworking {
                 vehicle.setTrawling(buf.readBoolean())
             }
         }
+
+        ServerPlayNetworking.registerGlobalReceiver(C2SPackets.SHIP_MOVEMENT_PACKET_ID) { _, client, _, buf, _ ->
+            val vehicle = client.controlledVehicle
+            if (vehicle != null && vehicle is ShipEntity) {
+                vehicle.setMoving(buf.readBoolean())
+            }
+        }
     }
 }

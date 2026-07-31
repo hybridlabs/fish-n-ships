@@ -10,6 +10,7 @@ import dev.hybridlabs.fishnships.sound.FSSoundEvents
 import dev.hybridlabs.fishnships.tag.FSBiomeTags
 import dev.hybridlabs.fishnships.tag.FSItemTags
 import dev.hybridlabs.fishnships.utils.FSSpawnGroup
+import dev.hybridlabs.fishnships.world.inventory.FSMenuTypes
 import net.minecraft.world.entity.MobCategory
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent
 import net.minecraftforge.fml.common.Mod
@@ -37,6 +38,7 @@ object FishNShipsForge {
         createSpawnGroups()
         FSSoundEvents
         FSEntityTypes
+        FSMenuTypes
 
         FSBlocks
         FSItems
@@ -45,7 +47,9 @@ object FishNShipsForge {
         FSBiomeTags
         FSItemTags
 
+
         MOD_BUS.addListener(::registerSpawnPlacements)
+        FSNetworking.registerPackets()
 
         runForDist(
             clientTarget = {
