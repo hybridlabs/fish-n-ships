@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec
 import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.loot.FSLootTables
+import dev.hybridlabs.fishnships.platform.Services
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.minecraft.core.BlockPos
@@ -138,7 +139,7 @@ open class ShipEntity(
         this.entityData.define(SAIL_COLOR, FlagColor.NONE.id)
         this.entityData.define(IS_BURNING, false)
         this.entityData.define(HAS_TRAWLING_NET, false)
-        this.entityData.define(IS_TRAWLING, true)
+        this.entityData.define(IS_TRAWLING, false)
         this.entityData.define(HAS_ICEBREAKER, false)
     }
 
@@ -242,7 +243,7 @@ open class ShipEntity(
 
     fun setTrawling(value: Boolean) {
         Constants.LOG.info("Set trawling: {}", value)
-        this.entityData.set(IS_TRAWLING, value, true)
+        this.entityData.set(IS_TRAWLING, value);
     }
 
     // This always returns the default value on the server?
@@ -252,12 +253,12 @@ open class ShipEntity(
 
     // This always returns false on the server?
     fun isMoving(): Boolean {
-        val horizontalMovement = Vec2(deltaMovement.x.toFloat(), deltaMovement.z.toFloat())
-        return horizontalMovement.length() >= 0.01
+        return (x!=xOld || z != zOld)
     }
 
     fun canTrawl(): Boolean {
         Constants.LOG.info("Trawling: {}", isTrawling())
+        Constants.LOG.info("Has Net: {}", hasTrawlingNet())
         Constants.LOG.info("Moving: {}", isMoving())
         return hasTrawlingNet() &&
                 isTrawling() &&
@@ -386,7 +387,6 @@ open class ShipEntity(
 
         this.tickLerp()
 
-        tickTrawling()
         if (this.isControlledByLocalInstance) {
             if (this.firstPassenger !is Player) {
                 setPropellerState(left = false, right = false)
@@ -405,10 +405,12 @@ open class ShipEntity(
                 )
             }
 
-            this.move(MoverType.SELF, this.deltaMovement)
         } else {
             this.deltaMovement = Vec3.ZERO
         }
+        this.move(MoverType.SELF, this.deltaMovement)
+        tickTrawling()
+
 
         this.checkInsideBlocks()
 
@@ -683,7 +685,7 @@ open class ShipEntity(
             }
 
             if (inputJumping && !lastJumpInput) {
-                setTrawling(!isTrawling())
+                Services.PLATFORM.sendTrawlingToServer(id,!isTrawling())
             }
 
             lastJumpInput = inputJumping

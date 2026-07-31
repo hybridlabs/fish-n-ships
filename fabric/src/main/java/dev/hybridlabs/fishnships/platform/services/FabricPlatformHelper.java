@@ -1,15 +1,22 @@
 package dev.hybridlabs.fishnships.platform.services;
 
 import dev.hybridlabs.fishnships.CommonClass;
+import dev.hybridlabs.fishnships.network.FSNetworking;
+import dev.hybridlabs.fishnships.packet.C2SPackets;
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
 
 import dev.hybridlabs.fishnships.utils.FSSpawnGroup;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -91,4 +98,14 @@ public class FabricPlatformHelper implements PlatformHelper {
     public BlockBehaviour.Properties getBlockSettings() {
         return FabricBlockSettings.create();
     }
+
+    @Override
+    public void sendTrawlingToServer(boolean enabled) {
+        FriendlyByteBuf packetData = PacketByteBufs.create();
+        packetData.writeBoolean(enabled);
+        ResourceLocation packetId = C2SPackets.INSTANCE.getTRAWLING_PACKET_ID();
+        if (ClientPlayNetworking.canSend(packetId))
+            ClientPlayNetworking.send(packetId, packetData);
+    }
+
 }

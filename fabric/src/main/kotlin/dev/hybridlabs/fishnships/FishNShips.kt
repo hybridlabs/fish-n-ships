@@ -8,6 +8,7 @@ import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.entity.SpawnRestrictionRegistry
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.fishnships.network.FSNetworking
 import dev.hybridlabs.fishnships.sound.FSSoundEvents
 import dev.hybridlabs.fishnships.tag.FSBiomeTags
 import dev.hybridlabs.fishnships.tag.FSItemTags
@@ -45,6 +46,7 @@ object FishNShips : ModInitializer {
 
         initializeConfig(configFile, configHandler)
         registerBiomeModifications(configHandler.config)
+        FSNetworking.registerNetworking()
 	}
 
 

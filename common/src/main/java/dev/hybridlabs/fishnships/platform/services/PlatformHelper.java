@@ -70,4 +70,7 @@ public interface PlatformHelper {
             Callable<AttributeSupplier.Builder> attributeContainer);
 
     MobCategory getHybridMobCategoryByName(String name);
+
+    void sendTrawlingToServer(boolean enabled);
+
 }
