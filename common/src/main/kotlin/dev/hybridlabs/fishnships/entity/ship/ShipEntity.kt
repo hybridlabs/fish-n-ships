@@ -63,6 +63,7 @@ import software.bernie.geckolib.core.animation.RawAnimation
 import software.bernie.geckolib.util.GeckoLibUtil
 import java.util.function.IntFunction
 import kotlin.math.max
+import kotlin.math.min
 
 open class ShipEntity(
     type: EntityType<out ShipEntity>,
@@ -243,7 +244,7 @@ open class ShipEntity(
     }
 
     fun setTrawling(value: Boolean) {
-        Constants.LOG.info("Set trawling: {}", value)
+        Constants.LOG.debug("Set trawling: {}", value)
         this.entityData.set(IS_TRAWLING, value)
     }
 
@@ -431,7 +432,7 @@ open class ShipEntity(
             || random.nextFloat() > trawlingChance
 
         ) return
-        Constants.LOG.info("Successfully trawled…")
+
         val loottable: LootTable? = server?.lootData?.getLootTable(FSLootTables.TRAWLING)
 
         if (loottable != null) {
@@ -442,12 +443,26 @@ open class ShipEntity(
             val loot: ObjectArrayList<ItemStack> = loottable.getRandomItems(
                 lootParamsBuilder.create(LootContextParamSets.CHEST), this.lootTableSeed
             )
-            val slots = getAvailableTrawlSlots()
+            val openSlots = getAvailableTrawlSlots()
+            val occupiedSlots = getOccupiedTrawlSlots()
             loot.forEach {
-                if (slots.isEmpty()) return
-                val slot = slots.first()
-                slots.remove(slot)
+                for (slot in occupiedSlots){
+                    val existingStack = itemStacks[slot]
+                    if (existingStack.count < existingStack.maxStackSize){
+                        if(existingStack.item == it.item){
+                            val capacity = existingStack.maxStackSize - existingStack.count
+                            val moveCount = min(it.count,capacity)
+                            it.shrink(moveCount)
+                            existingStack.grow(moveCount)
+                            if (it.isEmpty) return@forEach
+                        }
+                    }
+                }
+                if (openSlots.isEmpty()) return
+                val slot = openSlots.first()
+                openSlots.remove(slot)
                 itemStacks[slot] = it
+                occupiedSlots.add(slot)
             }
         }
     }
@@ -459,6 +474,15 @@ open class ShipEntity(
                 availableSlots.add(slot)
         }
         return availableSlots
+    }
+
+    private fun getOccupiedTrawlSlots(): MutableList<Int> {
+        val occupiedSlots = ArrayList<Int>()
+        for (slot in trawlingSlots) {
+            if (!itemStacks[slot].isEmpty)
+                occupiedSlots.add(slot)
+        }
+        return occupiedSlots
     }
 
     private fun tickLerp() {
@@ -748,7 +772,7 @@ open class ShipEntity(
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
-        if (source.entity != null && this.hasPassenger(source.entity)) {
+        if (source.entity != null && this.hasPassenger(source.entity!!)) {
             return false
         }
 
