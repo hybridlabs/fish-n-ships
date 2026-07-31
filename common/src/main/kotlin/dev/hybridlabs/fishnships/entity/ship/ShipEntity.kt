@@ -9,6 +9,8 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.core.NonNullList
+import net.minecraft.core.particles.BlockParticleOption
+import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
@@ -17,6 +19,7 @@ import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.sounds.SoundSource
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
@@ -290,6 +293,28 @@ open class ShipEntity(
 
                     val state = level().getBlockState(pos)
                     if (state.`is`(Blocks.ICE) || state.`is`(Blocks.FROSTED_ICE)) {
+
+                        if (!level().isClientSide) {
+                            (level() as ServerLevel).sendParticles(
+                                BlockParticleOption(ParticleTypes.BLOCK, state),
+                                pos.x + 0.5,
+                                pos.y + 0.5,
+                                pos.z + 0.5,
+                                20,          // particle count
+                                0.3, 0.3, 0.3,
+                                0.05
+                            )
+
+                            level().playSound(
+                                null,
+                                pos,
+                                state.soundType.breakSound,
+                                SoundSource.BLOCKS,
+                                1.0f,
+                                0.9f + random.nextFloat() * 0.2f
+                            )
+                        }
+
                         if (level().dimensionType().ultraWarm()) {
                             level().removeBlock(pos, false)
                         } else {
