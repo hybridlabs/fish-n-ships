@@ -4,26 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Removed useless imports">
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SupplyRaftEntityModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SupplyRaftEntityRenderer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SupplyRaftEntity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/SupplyRaftItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/FSMenuScreens.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/FSMenuScreens.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/RaftScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/SupplyRaftScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/FSEntityRenderers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/FSEntityRenderers.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/CanoeEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/CanoeEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/RaftEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/RaftEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItemGroups.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItemGroups.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItems.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItems.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/FSMenuTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/FSMenuTypes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/RaftMenu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/SupplyRaftMenu.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/raft/raft.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/raft/raft.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/raft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/gui/container/raft_6row.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/gui/container/supply_raft_6row.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/ModelProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/ModelProvider.kt" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Recipes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,51 +115,51 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Datagen.executor": "Run",
-    "Application.Fabric Client (:fabric).executor": "Run",
-    "Application.Fabric Server (:fabric).executor": "Run",
-    "Application.forge - Client.executor": "Run",
-    "Application.forge - Data.executor": "Run",
-    "Gradle.Build fish-n-ships.executor": "Run",
-    "Gradle.Build hybrid-birds.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
-    "Gradle.fish-n-ships:fabric [build].executor": "Run",
-    "Gradle.fish-n-ships:forge [copyDatagen].executor": "Run",
-    "Gradle.hybrid-birds [build].executor": "Debug",
-    "Gradle.hybrid-birds [runDatagen].executor": "Run",
-    "Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
-    "Gradle.hybrid-birds:fabric [build].executor": "Run",
-    "Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor": "Run",
-    "Gradle.hybrid-birds:forge [build].executor": "Run",
-    "Gradle.hybrid-birds:forge [copyDatagen].executor": "Run",
-    "Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor": "Run",
-    "Gradle.hybrid-birds:neoforge [build].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships",
-    "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Datagen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Fabric Client (:fabric).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Fabric Server (:fabric).executor&quot;: &quot;Run&quot;,
+    &quot;Application.forge - Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.forge - Data.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build fish-n-ships.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build hybrid-birds.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.fish-n-ships:fabric [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.fish-n-ships:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds [build].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.hybrid-birds [runDatagen].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:fabric [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:forge [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hybrid-birds:neoforge [build].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/animations/entity/sailboat&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\sailboat" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\textures\gui" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client\render\entity" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client\model\entity" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client" />
-      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\world\inventory" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\geo\entity\canoe" />
@@ -188,11 +172,11 @@
       <recent name="dev.hybridlabs.birds" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="dev.hybridlabs.fishnships.client.model.entity.misc" />
-      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc" />
+      <recent name="dev.hybridlabs.fishnships.world.inventory" />
       <recent name="dev.hybridlabs.fishnships.item" />
-      <recent name="dev.hybridlabs.fishnships.entity.ship" />
-      <recent name="dev.hybridlabs.fishnships.client.gui.screen" />
+      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
+      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc" />
+      <recent name="dev.hybridlabs.fishnships.client.model.entity.misc" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="dev.hybridlabs.fishnships.entity.ship" />
@@ -434,78 +418,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00145" summary="Fixed config on Fabric">
-      <option name="closed" value="true" />
-      <created>1782593048690</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1782593048690</updated>
-    </task>
-    <task id="LOCAL-00146" summary="Ran datagen">
-      <option name="closed" value="true" />
-      <created>1782593309352</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1782593309352</updated>
-    </task>
-    <task id="LOCAL-00147" summary="Cleanup">
-      <option name="closed" value="true" />
-      <created>1782593339515</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1782593339515</updated>
-    </task>
-    <task id="LOCAL-00148" summary="Tweaked biome spawns">
-      <option name="closed" value="true" />
-      <created>1782593595490</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1782593595490</updated>
-    </task>
-    <task id="LOCAL-00149" summary="Enum hell fix">
-      <option name="closed" value="true" />
-      <created>1782595276667</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1782595276667</updated>
-    </task>
-    <task id="LOCAL-00150" summary="Added Puffin meat &amp; fixed cooked egg recipes">
-      <option name="closed" value="true" />
-      <created>1782595499403</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1782595499403</updated>
-    </task>
-    <task id="LOCAL-00151" summary="Cleanup imports">
-      <option name="closed" value="true" />
-      <created>1782595631808</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1782595631808</updated>
-    </task>
-    <task id="LOCAL-00152" summary="Tweaked item group">
-      <option name="closed" value="true" />
-      <created>1782596455805</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1782596455805</updated>
-    </task>
-    <task id="LOCAL-00153" summary="Fixed neoforge rendering crash">
-      <option name="closed" value="true" />
-      <created>1782596471418</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1782596471418</updated>
     </task>
     <task id="LOCAL-00154" summary="Fixed bird spawning on neoforge">
       <option name="closed" value="true" />
@@ -827,7 +739,79 @@
       <option name="project" value="LOCAL" />
       <updated>1785203227445</updated>
     </task>
-    <option name="localTasksCounter" value="194" />
+    <task id="LOCAL-00194" summary="Sailboat">
+      <option name="closed" value="true" />
+      <created>1785288484653</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1785288484653</updated>
+    </task>
+    <task id="LOCAL-00195" summary="Pick items">
+      <option name="closed" value="true" />
+      <created>1785288502907</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1785288502907</updated>
+    </task>
+    <task id="LOCAL-00196" summary="Canoe item textures by @Ragno">
+      <option name="closed" value="true" />
+      <created>1785288515943</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1785288515943</updated>
+    </task>
+    <task id="LOCAL-00197" summary="Supply raft item model">
+      <option name="closed" value="true" />
+      <created>1785288530271</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1785288530271</updated>
+    </task>
+    <task id="LOCAL-00198" summary="Got the paddles working finally">
+      <option name="closed" value="true" />
+      <created>1785421798775</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1785421798775</updated>
+    </task>
+    <task id="LOCAL-00199" summary="Made canoes slightly slower than normal boats">
+      <option name="closed" value="true" />
+      <created>1785422846496</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1785422846496</updated>
+    </task>
+    <task id="LOCAL-00200" summary="Sailboat item texture">
+      <option name="closed" value="true" />
+      <created>1785425920415</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1785425920415</updated>
+    </task>
+    <task id="LOCAL-00201" summary="Raft item textures">
+      <option name="closed" value="true" />
+      <created>1785426184004</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1785426184004</updated>
+    </task>
+    <task id="LOCAL-00202" summary="Recipes">
+      <option name="closed" value="true" />
+      <created>1785460672575</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1785460672575</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -843,15 +827,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix turkey speed" />
-    <MESSAGE value="Parity" />
-    <MESSAGE value="Datagen" />
-    <MESSAGE value="Itemgroups" />
-    <MESSAGE value="Trying to get the eggs working" />
-    <MESSAGE value="Mixins not loading on neoforge" />
-    <MESSAGE value="Accesswidener" />
-    <MESSAGE value="Missing puffin texture" />
-    <MESSAGE value="1.2.1" />
     <MESSAGE value="Fixed enum issue" />
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Got them working" />
@@ -868,6 +843,15 @@
     <MESSAGE value="Rafts, mostly working, still needing tweaks" />
     <MESSAGE value="An actually massive amount of progress" />
     <MESSAGE value="Removed useless imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed useless imports" />
+    <MESSAGE value="Sailboat" />
+    <MESSAGE value="Pick items" />
+    <MESSAGE value="Canoe item textures by @Ragno" />
+    <MESSAGE value="Supply raft item model" />
+    <MESSAGE value="Got the paddles working finally" />
+    <MESSAGE value="Made canoes slightly slower than normal boats" />
+    <MESSAGE value="Sailboat item texture" />
+    <MESSAGE value="Raft item textures" />
+    <MESSAGE value="Recipes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Recipes" />
   </component>
 </project>

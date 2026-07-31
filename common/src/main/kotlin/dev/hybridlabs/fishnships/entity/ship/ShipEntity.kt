@@ -387,7 +387,6 @@ open class ShipEntity(
 
         this.checkInsideBlocks()
 
-
         if (!level().isClientSide && hasIceBreaker()) {
             breakIce()
         }

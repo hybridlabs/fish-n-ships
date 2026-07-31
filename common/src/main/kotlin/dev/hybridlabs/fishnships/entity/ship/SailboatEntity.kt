@@ -2,9 +2,6 @@ package dev.hybridlabs.fishnships.entity.ship
 
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity.Companion.TRAWL_OFF_ANIMATION
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity.Companion.TRAWL_ON_ANIMATION
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.BlockUtil
 import net.minecraft.core.BlockPos
@@ -205,14 +202,14 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
         }
     }
 
-    private fun getCanoeItem(): ItemStack {
-        val stack = ItemStack(FSItems.CANOE.get())
+    private fun getSailboatItem(): ItemStack {
+        val stack = ItemStack(FSItems.SAILBOAT.get())
 
         return stack
     }
 
     protected open fun destroy(damageSource: DamageSource) {
-        val stack = getCanoeItem()
+        val stack = getSailboatItem()
         this.spawnAtLocation(stack)
     }
 
@@ -307,17 +304,17 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
 
         super.tick()
         this.tickLerp()
-        if (this.isControlledByLocalInstance) {
+        if (isControlledByLocalInstance) {
+            floatSailboat()
 
-            this.floatCanoe()
-            if (this.level().isClientSide) {
-                this.controlCanoe()
+            if (level().isClientSide) {
+                controlSailboat()
             }
-
-            this.move(MoverType.SELF, this.deltaMovement)
         } else {
-            this.deltaMovement = Vec3.ZERO
+            floatSailboat()
         }
+
+        move(MoverType.SELF, deltaMovement)
 
         this.tickBubbleColumn()
 
@@ -406,10 +403,10 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
     }
 
     private fun getStatus(): Status {
-        val canoeStatus = this.isUnderwater
-        if (canoeStatus != null) {
+        val sailboatStatus = this.isUnderwater
+        if (sailboatStatus != null) {
             this.waterLevel = this.boundingBox.maxY
-            return canoeStatus
+            return sailboatStatus
         } else if (this.checkInWater()) {
             return Status.IN_WATER
         } else {
@@ -564,7 +561,7 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
             return if (flag) Status.UNDER_WATER else null
         }
 
-    private fun floatCanoe() {
+    private fun floatSailboat() {
         val d0 = -0.04
         var d1 = if (this.isNoGravity) 0.0 else -0.04
         var d2 = 0.0
@@ -606,10 +603,17 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
                 this.setDeltaMovement(vec31.x, (vec31.y + d2 * 0.06153846016296973) * 0.75, vec31.z)
             }
         }
-    }
 
-    protected open val singlePassengerXOffset: Float
-        get() = 0.0f
+        if (isSailDown()) {
+            val sailSpeed = 0.04
+
+            deltaMovement = deltaMovement.add(
+                (-Mth.sin(yRot * Mth.DEG_TO_RAD) * sailSpeed),
+                0.0,
+                (Mth.cos(yRot * Mth.DEG_TO_RAD) * sailSpeed)
+            )
+        }
+    }
 
     fun hasEnoughSpaceFor(entity: Entity): Boolean {
         return entity.bbWidth < this.bbWidth
@@ -741,18 +745,8 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
 
     private var bubbleTime: Int
         get() = this.entityData.get(DATA_ID_BUBBLE_TIME) as Int
-        private set(bubbleTime) {
+        set(bubbleTime) {
             this.entityData.set(DATA_ID_BUBBLE_TIME, bubbleTime)
-        }
-
-    fun getBubbleAngle(partialTicks: Float): Float {
-        return Mth.lerp(partialTicks, this.bubbleAngleO, this.bubbleAngle)
-    }
-
-    var hurtDir: Int
-        get() = this.entityData.get(DATA_ID_HURTDIR) as Int
-        set(hurtDirection) {
-            this.entityData.set(DATA_ID_HURTDIR, hurtDirection)
         }
 
     override fun canAddPassenger(passenger: Entity): Boolean {
@@ -769,7 +763,7 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
         return livingentity1
     }
 
-    private fun controlCanoe() {
+    private fun controlSailboat() {
         if (this.isVehicle) {
             var f = 0.0f
             if (this.inputLeft) {
@@ -788,10 +782,6 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
 
             if (inputJumping && !lastJumpInput) {
                 setSailDown(!isSailDown())
-            }
-
-            if (isSailDown()) {
-                f += 0.04f
             }
 
             lastJumpInput = inputJumping
@@ -848,9 +838,6 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
 
         val SAIL_UP_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.sail_up")
         val SAIL_DOWN_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.sail_down")
-
-        private const val TIME_TO_EJECT = 60
-        const val BUBBLE_TIME: Int = 60
 
         fun canVehicleCollide(vehicle: Entity, entity: Entity): Boolean {
             return (entity.canBeCollidedWith() || entity.isPushable) && !vehicle.isPassengerOfSameVehicle(entity)
