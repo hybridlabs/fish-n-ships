@@ -49,7 +49,6 @@ import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.AABB
-import net.minecraft.world.phys.Vec2
 import net.minecraft.world.phys.Vec3
 import net.minecraft.world.phys.shapes.BooleanOp
 import net.minecraft.world.phys.shapes.Shapes
@@ -103,6 +102,7 @@ open class ShipEntity(
     private val subEntities: Array<ShipCabinPart> = arrayOf(body, cabin)
     private val trawlingInterval = 20
     private val trawlingChance = 0.4
+    private val trawlingSlots = 3..14
 
     init {
         noCulling = true
@@ -243,26 +243,23 @@ open class ShipEntity(
 
     fun setTrawling(value: Boolean) {
         Constants.LOG.info("Set trawling: {}", value)
-        this.entityData.set(IS_TRAWLING, value);
+        this.entityData.set(IS_TRAWLING, value)
     }
 
-    // This always returns the default value on the server?
     fun isTrawling(): Boolean {
         return entityData.get(IS_TRAWLING)
     }
 
     // This always returns false on the server?
     fun isMoving(): Boolean {
-        return (x!=xOld || z != zOld)
+        return (x != xOld || z != zOld)
     }
 
     fun canTrawl(): Boolean {
-        Constants.LOG.info("Trawling: {}", isTrawling())
-        Constants.LOG.info("Has Net: {}", hasTrawlingNet())
-        Constants.LOG.info("Moving: {}", isMoving())
         return hasTrawlingNet() &&
                 isTrawling() &&
                 isLit() &&
+                !getAvailableTrawlSlots().isEmpty() &&
                 //isMoving()  &&
                 controllingPassenger is Player
     }
@@ -409,6 +406,7 @@ open class ShipEntity(
             this.deltaMovement = Vec3.ZERO
         }
         this.move(MoverType.SELF, this.deltaMovement)
+
         tickTrawling()
 
 
@@ -437,8 +435,23 @@ open class ShipEntity(
             val loot: ObjectArrayList<ItemStack> = loottable.getRandomItems(
                 lootParamsBuilder.create(LootContextParamSets.CHEST), this.lootTableSeed
             )
-            Constants.LOG.info(loot.toString())
+            val slots = getAvailableTrawlSlots()
+            loot.forEach {
+                if (slots.isEmpty()) return
+                val slot = slots.first()
+                slots.remove(slot)
+                itemStacks[slot] = it
+            }
         }
+    }
+
+    private fun getAvailableTrawlSlots(): MutableList<Int> {
+        val availableSlots = ArrayList<Int>()
+        for (slot in trawlingSlots) {
+            if (itemStacks[slot].isEmpty)
+                availableSlots.add(slot)
+        }
+        return availableSlots
     }
 
     private fun tickLerp() {
@@ -685,7 +698,7 @@ open class ShipEntity(
             }
 
             if (inputJumping && !lastJumpInput) {
-                Services.PLATFORM.sendTrawlingToServer(id,!isTrawling())
+                Services.PLATFORM.sendTrawlingToServer(!isTrawling())
             }
 
             lastJumpInput = inputJumping
