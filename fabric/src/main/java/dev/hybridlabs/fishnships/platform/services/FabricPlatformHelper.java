@@ -1,6 +1,8 @@
 package dev.hybridlabs.fishnships.platform.services;
 
 import dev.hybridlabs.fishnships.CommonClass;
+import dev.hybridlabs.fishnships.Constants;
+import dev.hybridlabs.fishnships.entity.ship.SailboatEntity;
 import dev.hybridlabs.fishnships.packet.C2SPackets;
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
 import dev.hybridlabs.fishnships.utils.FSSpawnGroup;
@@ -97,6 +99,15 @@ public class FabricPlatformHelper implements PlatformHelper {
         FriendlyByteBuf packetData = PacketByteBufs.create();
         packetData.writeBoolean(moving);
         ResourceLocation packetId = C2SPackets.INSTANCE.getSHIP_MOVEMENT_PACKET_ID();
+        if (ClientPlayNetworking.canSend(packetId))
+            ClientPlayNetworking.send(packetId, packetData);
+    }
+    
+    @Override
+    public void changeSailState(SailboatEntity sailBoat) {
+        FriendlyByteBuf packetData = PacketByteBufs.create();
+        packetData.writeUUID(sailBoat.getUUID());
+        ResourceLocation packetId = C2SPackets.INSTANCE.getCHANGE_SAIL_STATE_PACKET_IT();
         if (ClientPlayNetworking.canSend(packetId))
             ClientPlayNetworking.send(packetId, packetData);
     }

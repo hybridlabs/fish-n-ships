@@ -2,7 +2,9 @@ package dev.hybridlabs.fishnships.entity.ship
 
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
+import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.fishnships.platform.Services
 import net.minecraft.BlockUtil
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
@@ -46,7 +48,6 @@ import kotlin.math.sin
 open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Level) : Entity(entityType, level),
     GeoEntity {
     private val animCache = GeckoLibUtil.createInstanceCache(this)
-    private var invFriction = 0f
     private var outOfControlTicks = 0f
     var deltaRotation = 0f
     private var lerpSteps = 0
@@ -123,7 +124,7 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
     }
 
     fun setSailDown(value: Boolean) {
-        this.entityData.set(IS_SAIL_DOWN, value, true)
+        this.entityData.set(IS_SAIL_DOWN, value)
     }
 
     // This always returns the default value on the server?
@@ -304,15 +305,12 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
 
         super.tick()
         this.tickLerp()
-        if (isControlledByLocalInstance) {
-            floatSailboat()
 
-            if (level().isClientSide) {
-                controlSailboat()
-            }
-        } else {
-            floatSailboat()
+        floatSailboat()
+        if (isControlledByLocalInstance && level().isClientSide) {
+            controlSailboat()
         }
+        moveWithSailDown()
 
         move(MoverType.SELF, deltaMovement)
 
@@ -562,55 +560,62 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
         }
 
     private fun floatSailboat() {
-        val d0 = -0.04
-        var d1 = if (this.isNoGravity) 0.0 else -0.04
-        var d2 = 0.0
-        this.invFriction = 0.05f
+        val gravity = 0.04
+        var vspeed: Double = if (this.isNoGravity) 0.0 else -gravity
+        var buoyancy = 0.0
+        var invFriction = 0.05f
         if (this.oldStatus == Status.IN_AIR && this.status != Status.IN_AIR && this.status != Status.ON_LAND) {
             this.waterLevel = this.getY(1.0)
-            this.setPos(this.x, (this.waterLevelAbove - this.bbHeight).toDouble() + 0.101, this.z)
-            this.deltaMovement = this.deltaMovement.multiply(1.0, 0.0, 1.0)
-            this.lastYd = 0.0
+            val targetY: Double = this.waterLevelAbove - this.bbHeight + 0.101
+            if (this.level().noCollision(this, this.boundingBox.move(0.0, targetY - this.getY(), 0.0))) {
+                this.setPos(this.x, targetY, this.z)
+                this.deltaMovement = this.deltaMovement.multiply(1.0, 0.0, 1.0)
+                this.lastYd = 0.0
+            }
+
             this.status = Status.IN_WATER
         } else {
             if (this.status == Status.IN_WATER) {
-                d2 = (this.waterLevel - this.y) / this.bbHeight.toDouble()
-                this.invFriction = 0.9f
+                buoyancy = (this.waterLevel - this.y) / this.bbHeight
+                invFriction = 0.9f
             } else if (this.status == Status.UNDER_FLOWING_WATER) {
-                d1 = -7.0E-4
-                this.invFriction = 0.9f
+                vspeed = -7.0E-4
+                invFriction = 0.9f
             } else if (this.status == Status.UNDER_WATER) {
-                d2 = 0.01
-                this.invFriction = 0.45f
+                buoyancy = 0.01
+                invFriction = 0.45f
             } else if (this.status == Status.IN_AIR) {
-                this.invFriction = 0.9f
+                invFriction = 0.9f
             } else if (this.status == Status.ON_LAND) {
-                this.invFriction = this.landFriction
+                invFriction = this.landFriction
                 if (this.getControllingPassenger() is Player) {
                     this.landFriction /= 2.0f
                 }
             }
 
-            val vec3 = this.deltaMovement
-            this.setDeltaMovement(
-                vec3.x * this.invFriction.toDouble(),
-                vec3.y + d1,
-                vec3.z * this.invFriction.toDouble()
-            )
-            this.deltaRotation *= this.invFriction
-            if (d2 > 0.0) {
-                val vec31 = this.deltaMovement
-                this.setDeltaMovement(vec31.x, (vec31.y + d2 * 0.06153846016296973) * 0.75, vec31.z)
+            val movement = this.deltaMovement
+            this.setDeltaMovement(movement.x * invFriction, movement.y + vspeed, movement.z * invFriction)
+            this.deltaRotation *= invFriction
+            if (buoyancy > 0.0) {
+                val deltaMovement = this.deltaMovement
+                this.setDeltaMovement(
+                    deltaMovement.x,
+                    (deltaMovement.y + buoyancy * (gravity / 0.65)) * 0.75,
+                    deltaMovement.z
+                )
             }
         }
+    }
 
+    fun moveWithSailDown() {
+        Constants.LOG.info("${if (level().isClientSide) "client" else "server"}.moveWithSailDown() -- isSailDown: ${isSailDown()}, yRot: $yRot")
         if (isSailDown()) {
-            val sailSpeed = 0.04
+            val sailSpeed = 0.03
 
-            deltaMovement = deltaMovement.add(
-                (-Mth.sin(yRot * Mth.DEG_TO_RAD) * sailSpeed),
-                0.0,
-                (Mth.cos(yRot * Mth.DEG_TO_RAD) * sailSpeed)
+            setDeltaMovement(
+                deltaMovement.x + (-Mth.sin(yRot * Mth.DEG_TO_RAD) * sailSpeed),
+                deltaMovement.y,
+                deltaMovement.z + (Mth.cos(yRot * Mth.DEG_TO_RAD) * sailSpeed)
             )
         }
     }
@@ -757,10 +762,10 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
         get() = 3
 
     override fun getControllingPassenger(): LivingEntity? {
-        val entity = this.firstPassenger
-        val livingentity1: LivingEntity? = entity as? LivingEntity
+        val passenger = this.firstPassenger
+        val passengerLivingEntitiy: LivingEntity? = passenger as? LivingEntity
 
-        return livingentity1
+        return passengerLivingEntitiy
     }
 
     private fun controlSailboat() {
@@ -781,7 +786,7 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
             }
 
             if (inputJumping && !lastJumpInput) {
-                setSailDown(!isSailDown())
+                Services.PLATFORM.changeSailState(this)
             }
 
             lastJumpInput = inputJumping
