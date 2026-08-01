@@ -36,6 +36,8 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
             FSItems.CANOE_WITH_DOUBLE_CHEST.get() to "Canoe With Double Chest",
             FSItems.RAFT.get() to "Raft",
             FSItems.SUPPLY_RAFT.get() to "Supply Raft",
+            FSItems.TRAWLING_NET.get() to "Trawling Net",
+            FSItems.ICEBREAKER.get() to "Icebreaker",
         ).forEach { (item, translation) ->
             builder.add(item, translation)
         }
