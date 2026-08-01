@@ -44,6 +44,7 @@ import net.minecraft.world.level.block.IceBlock
 import net.minecraft.world.level.block.WaterlilyBlock
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import net.minecraft.world.level.gameevent.GameEvent
+import net.minecraft.world.level.storage.loot.BuiltInLootTables
 import net.minecraft.world.level.storage.loot.LootParams
 import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
@@ -101,8 +102,8 @@ open class ShipEntity(
     private val body: ShipCabinPart = ShipCabinPart(this, "body", 5.0f, 2.0f)
     private val cabin: ShipCabinPart = ShipCabinPart(this, "cabin", 2.0f, 3.0f)
     private val subEntities: Array<ShipCabinPart> = arrayOf(body, cabin)
-    private val trawlingInterval = 20
-    private val trawlingChance = 0.4
+    private val trawlingInterval = 100
+    private val trawlingChance = 0.5
     private val trawlingSlots = 3..14
     private var moving = false
 
@@ -433,7 +434,7 @@ open class ShipEntity(
 
         ) return
 
-        val loottable: LootTable? = server?.lootData?.getLootTable(FSLootTables.TRAWLING)
+        val loottable: LootTable? = server?.lootData?.getLootTable(BuiltInLootTables.FISHING)
 
         if (loottable != null) {
             val lootParamsBuilder = LootParams.Builder(this.level() as ServerLevel).withParameter<Vec3?>(
