@@ -141,7 +141,6 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Lev
     }
 
     fun moveWithSailDown() {
-        Constants.LOG.info("${if (level().isClientSide) "client" else "server"}.moveWithSailDown() -- isSailDown: ${isSailDown()}, yRot: $yRot")
         if (isSailDown()) {
             val sailSpeed = 0.03
 
