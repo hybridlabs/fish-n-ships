@@ -2,7 +2,6 @@ package dev.hybridlabs.fishnships.entity.ship
 
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
-import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
 import net.minecraft.core.BlockPos
@@ -16,11 +15,7 @@ import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.entity.Pose
-import net.minecraft.world.entity.VariantHolder
+import net.minecraft.world.entity.*
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.ItemStack
@@ -239,9 +234,9 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Lev
 
     override fun getControllingPassenger(): LivingEntity? {
         val passenger = this.firstPassenger
-        val passengerLivingEntitiy: LivingEntity? = passenger as? LivingEntity
+        val passengerLivingEntity: LivingEntity? = passenger as? LivingEntity
 
-        return passengerLivingEntitiy
+        return passengerLivingEntity
     }
 
     private fun controlSailboat() {
@@ -323,8 +318,6 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Lev
         WARPED(Blocks.WARPED_PLANKS, "warped");
 
         override fun getSerializedName(): String = key
-
-        fun getName(): String = key
 
         override fun toString(): String = key
 
