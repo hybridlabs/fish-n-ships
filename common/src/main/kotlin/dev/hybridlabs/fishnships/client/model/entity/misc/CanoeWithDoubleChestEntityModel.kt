@@ -24,7 +24,7 @@ class CanoeWithDoubleChestEntityModel<T : CanoeWithDoubleChestEntity>() :
     }
 
     override fun getTextureResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("textures/entity/canoe/canoe_with_double_chest.png")
+        return CommonClass.locate("textures/entity/canoe/oak_canoe_with_double_chest.png")
     }
 
     override fun getAnimationResource(animatable: T): ResourceLocation {
@@ -78,5 +78,28 @@ class CanoeWithDoubleChestEntityModel<T : CanoeWithDoubleChestEntity>() :
             paddle.rotY = Math.toRadians(90.0).toFloat() - yAnim
             paddle.rotZ = Math.toRadians(165.0).toFloat()
         }
+    }
+
+    companion object {
+        private val OAK_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/oak_canoe_with_double_chest.png")
+        private val SPRUCE_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/spruce_canoe_with_double_chest.png")
+        private val BIRCH_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/birch_canoe_with_double_chest.png")
+        private val JUNGLE_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/jungle_canoe_with_double_chest.png")
+        private val ACACIA_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/acacia_canoe_with_double_chest.png")
+        private val CHERRY_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/cherry_canoe_with_double_chest.png")
+        private val DARK_OAK_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/dark_oak_canoe_with_double_chest.png")
+        private val MANGROVE_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/mangrove_canoe_with_double_chest.png")
+        private val CRIMSON_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/crimson_canoe_with_double_chest.png")
+        private val WARPED_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/warped_canoe_with_double_chest.png")
     }
 }

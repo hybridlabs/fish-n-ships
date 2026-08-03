@@ -5,6 +5,7 @@ import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithDoubleChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.RaftEntityRenderer
+import dev.hybridlabs.fishnships.client.render.entity.misc.SailboatWithChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.ShipEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.SupplyRaftEntityRenderer
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
@@ -23,6 +24,12 @@ object FSEntityRenderers {
         ClientServices.RENDERER.registerEntityRenderer(
             FSEntityTypes.SAILBOAT,
             ::SailboatEntityRenderer
+        )
+
+    val SAILBOAT_WITH_CHEST =
+        ClientServices.RENDERER.registerEntityRenderer(
+            FSEntityTypes.SAILBOAT_WITH_CHEST,
+            ::SailboatWithChestEntityRenderer
         )
 
     val CANOE =

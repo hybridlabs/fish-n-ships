@@ -75,7 +75,7 @@ open class CanoeWithChestEntity(entityType: EntityType<out CanoeWithChestEntity>
     }
 
     private fun getCanoeWithChestItem(): ItemStack {
-        val stack = ItemStack(FSItems.CANOE_WITH_CHEST.get())
+        val stack = ItemStack(FSItems.OAK_CANOE_WITH_CHEST.get())
 
         return stack
     }
@@ -207,6 +207,6 @@ open class CanoeWithChestEntity(entityType: EntityType<out CanoeWithChestEntity>
     //#endregion
 
     override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.CANOE_WITH_CHEST.get())
+        return ItemStack(FSItems.OAK_CANOE_WITH_CHEST.get())
     }
 }

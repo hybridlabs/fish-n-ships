@@ -23,7 +23,18 @@ class CanoeEntityModel<T : CanoeEntity>() :
     }
 
     override fun getTextureResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("textures/entity/canoe/canoe.png")
+        return when (animatable.variant) {
+            CanoeEntity.Type.OAK -> OAK_TEXTURE
+            CanoeEntity.Type.SPRUCE -> SPRUCE_TEXTURE
+            CanoeEntity.Type.BIRCH -> BIRCH_TEXTURE
+            CanoeEntity.Type.JUNGLE -> JUNGLE_TEXTURE
+            CanoeEntity.Type.ACACIA -> ACACIA_TEXTURE
+            CanoeEntity.Type.CHERRY -> CHERRY_TEXTURE
+            CanoeEntity.Type.DARK_OAK -> DARK_OAK_TEXTURE
+            CanoeEntity.Type.MANGROVE -> MANGROVE_TEXTURE
+            CanoeEntity.Type.CRIMSON -> CRIMSON_TEXTURE
+            CanoeEntity.Type.WARPED -> WARPED_TEXTURE
+        }
     }
 
     override fun getAnimationResource(animatable: T): ResourceLocation {
@@ -77,5 +88,28 @@ class CanoeEntityModel<T : CanoeEntity>() :
             paddle.rotY = Math.toRadians(90.0).toFloat() - yAnim
             paddle.rotZ = Math.toRadians(165.0).toFloat()
         }
+    }
+
+    companion object {
+        private val OAK_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/oak_canoe.png")
+        private val SPRUCE_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/spruce_canoe.png")
+        private val BIRCH_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/birch_canoe.png")
+        private val JUNGLE_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/jungle_canoe.png")
+        private val ACACIA_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/acacia_canoe.png")
+        private val CHERRY_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/cherry_canoe.png")
+        private val DARK_OAK_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/dark_oak_canoe.png")
+        private val MANGROVE_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/mangrove_canoe.png")
+        private val CRIMSON_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/crimson_canoe.png")
+        private val WARPED_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/warped_canoe.png")
     }
 }

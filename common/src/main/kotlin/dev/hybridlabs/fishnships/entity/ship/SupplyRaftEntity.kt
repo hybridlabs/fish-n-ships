@@ -32,10 +32,6 @@ open class SupplyRaftEntity(
     private var raftLootTable: ResourceLocation? = null
     private var raftLootTableSeed: Long = 0
 
-    init {
-        noCulling = true
-    }
-
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
         if (!isAlive) {
             return InteractionResult.PASS
@@ -248,6 +244,6 @@ open class SupplyRaftEntity(
     //#endregion
 
     override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.SUPPLY_RAFT.get())
+        return ItemStack(FSItems.OAK_SUPPLY_RAFT.get())
     }
 }

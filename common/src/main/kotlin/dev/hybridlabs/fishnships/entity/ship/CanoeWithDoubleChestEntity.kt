@@ -3,10 +3,6 @@ package dev.hybridlabs.fishnships.entity.ship
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.world.inventory.CanoeWithDoubleChestMenu
 import net.minecraft.core.NonNullList
-import net.minecraft.nbt.CompoundTag
-import net.minecraft.network.syncher.EntityDataAccessor
-import net.minecraft.network.syncher.EntityDataSerializers
-import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
@@ -73,7 +69,7 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
     }
 
     private fun getCanoeWithDoubleChestItem(): ItemStack {
-        val stack = ItemStack(FSItems.CANOE_WITH_DOUBLE_CHEST.get())
+        val stack = ItemStack(FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get())
 
         return stack
     }
@@ -205,6 +201,6 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
     //#endregion
 
     override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.CANOE_WITH_DOUBLE_CHEST.get())
+        return ItemStack(FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get())
     }
 }
