@@ -15,7 +15,10 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.HitResult
 
-class SailboatItem(properties: Properties) : Item(properties) {
+class SailboatItem(
+    private val variant: SailboatEntity.Type,
+    properties: Properties
+) : Item(properties) {
 
     override fun use(level: Level, player: Player, hand: InteractionHand): InteractionResultHolder<ItemStack?> {
         val itemstack = player.getItemInHand(hand)
@@ -41,21 +44,23 @@ class SailboatItem(properties: Properties) : Item(properties) {
             }
 
             if (hitresult.type == HitResult.Type.BLOCK) {
-                val sailboat: SailboatEntity = this.getSailboat(level, hitresult)
+                val sailboat = getSailboat(level, hitresult)
+                sailboat.variant = variant
                 sailboat.yRot = player.yRot
+
                 if (!level.noCollision(sailboat, sailboat.boundingBox)) {
-                    return InteractionResultHolder.fail<ItemStack?>(itemstack)
+                    return InteractionResultHolder.fail(itemstack)
                 } else {
                     if (!level.isClientSide) {
                         level.addFreshEntity(sailboat)
-                        level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.getLocation())
+                        level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.location)
                         if (!player.abilities.instabuild) {
                             itemstack.shrink(1)
                         }
                     }
 
                     player.awardStat(Stats.ITEM_USED.get(this))
-                    return InteractionResultHolder.sidedSuccess<ItemStack?>(itemstack, level.isClientSide())
+                    return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide())
                 }
             } else {
                 return InteractionResultHolder.pass<ItemStack?>(itemstack)

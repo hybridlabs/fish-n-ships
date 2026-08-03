@@ -1,6 +1,7 @@
 package dev.hybridlabs.fishnships.item
 
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
+import dev.hybridlabs.fishnships.entity.ship.SailboatEntity
 import dev.hybridlabs.fishnships.entity.ship.SailboatWithChestEntity
 import net.minecraft.stats.Stats
 import net.minecraft.world.InteractionHand
@@ -15,7 +16,10 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.HitResult
 
-class SailboatWithChestItem(properties: Properties) : Item(properties) {
+class SailboatWithChestItem(
+    private val variant: SailboatEntity.Type,
+    properties: Properties
+) : Item(properties) {
 
     override fun use(level: Level, player: Player, hand: InteractionHand): InteractionResultHolder<ItemStack?> {
         val itemstack = player.getItemInHand(hand)
@@ -41,21 +45,23 @@ class SailboatWithChestItem(properties: Properties) : Item(properties) {
             }
 
             if (hitresult.type == HitResult.Type.BLOCK) {
-                val sailboat: SailboatWithChestEntity = this.getSailboatWithChest(level, hitresult)
+                val sailboat = getSailboat(level, hitresult)
+                sailboat.variant = variant
                 sailboat.yRot = player.yRot
+
                 if (!level.noCollision(sailboat, sailboat.boundingBox)) {
-                    return InteractionResultHolder.fail<ItemStack?>(itemstack)
+                    return InteractionResultHolder.fail(itemstack)
                 } else {
                     if (!level.isClientSide) {
                         level.addFreshEntity(sailboat)
-                        level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.getLocation())
+                        level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.location)
                         if (!player.abilities.instabuild) {
                             itemstack.shrink(1)
                         }
                     }
 
                     player.awardStat(Stats.ITEM_USED.get(this))
-                    return InteractionResultHolder.sidedSuccess<ItemStack?>(itemstack, level.isClientSide())
+                    return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide())
                 }
             } else {
                 return InteractionResultHolder.pass<ItemStack?>(itemstack)
@@ -63,7 +69,7 @@ class SailboatWithChestItem(properties: Properties) : Item(properties) {
         }
     }
 
-    private fun getSailboatWithChest(level: Level, hitResult: HitResult): SailboatWithChestEntity {
+    private fun getSailboat(level: Level, hitResult: HitResult): SailboatWithChestEntity {
         val sailboat = FSEntityTypes.SAILBOAT_WITH_CHEST.get().create(level)
             ?: throw IllegalStateException("Failed to create sailboat")
 

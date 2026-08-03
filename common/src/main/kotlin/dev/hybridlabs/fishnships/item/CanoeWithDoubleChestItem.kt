@@ -15,7 +15,10 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.HitResult
 
-class CanoeWithDoubleChestItem(properties: Properties) : Item(properties) {
+class CanoeWithDoubleChestItem(
+    private val variant: CanoeEntity.Type,
+    properties: Properties
+) : Item(properties) {
 
     override fun use(level: Level, player: Player, hand: InteractionHand): InteractionResultHolder<ItemStack?> {
         val itemstack = player.getItemInHand(hand)
@@ -41,21 +44,23 @@ class CanoeWithDoubleChestItem(properties: Properties) : Item(properties) {
             }
 
             if (hitresult.type == HitResult.Type.BLOCK) {
-                val canoe: CanoeEntity = this.getCanoe(level, hitresult)
+                val canoe = getCanoe(level, hitresult)
+                canoe.variant = variant
                 canoe.yRot = player.yRot
+
                 if (!level.noCollision(canoe, canoe.boundingBox)) {
-                    return InteractionResultHolder.fail<ItemStack?>(itemstack)
+                    return InteractionResultHolder.fail(itemstack)
                 } else {
                     if (!level.isClientSide) {
                         level.addFreshEntity(canoe)
-                        level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.getLocation())
+                        level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.location)
                         if (!player.abilities.instabuild) {
                             itemstack.shrink(1)
                         }
                     }
 
                     player.awardStat(Stats.ITEM_USED.get(this))
-                    return InteractionResultHolder.sidedSuccess<ItemStack?>(itemstack, level.isClientSide())
+                    return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide())
                 }
             } else {
                 return InteractionResultHolder.pass<ItemStack?>(itemstack)

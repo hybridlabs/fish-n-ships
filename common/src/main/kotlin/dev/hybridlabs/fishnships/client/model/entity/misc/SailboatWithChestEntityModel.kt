@@ -1,6 +1,7 @@
 package dev.hybridlabs.fishnships.client.model.entity.misc
 
 import dev.hybridlabs.fishnships.CommonClass
+import dev.hybridlabs.fishnships.entity.ship.SailboatEntity
 import dev.hybridlabs.fishnships.entity.ship.SailboatWithChestEntity
 import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
@@ -22,7 +23,18 @@ class SailboatWithChestEntityModel<T : SailboatWithChestEntity>() :
     }
 
     override fun getTextureResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("textures/entity/sailboat/sailboat_with_chest.png")
+        return when (animatable.variant) {
+            SailboatEntity.Type.OAK -> OAK_TEXTURE
+            SailboatEntity.Type.SPRUCE -> SPRUCE_TEXTURE
+            SailboatEntity.Type.BIRCH -> BIRCH_TEXTURE
+            SailboatEntity.Type.JUNGLE -> JUNGLE_TEXTURE
+            SailboatEntity.Type.ACACIA -> ACACIA_TEXTURE
+            SailboatEntity.Type.CHERRY -> CHERRY_TEXTURE
+            SailboatEntity.Type.DARK_OAK -> DARK_OAK_TEXTURE
+            SailboatEntity.Type.MANGROVE -> MANGROVE_TEXTURE
+            SailboatEntity.Type.CRIMSON -> CRIMSON_TEXTURE
+            SailboatEntity.Type.WARPED -> WARPED_TEXTURE
+        }
     }
 
     override fun getAnimationResource(animatable: T): ResourceLocation {
@@ -39,5 +51,28 @@ class SailboatWithChestEntityModel<T : SailboatWithChestEntity>() :
 
         val yaw = Mth.rotLerp(deltaTime, animatable.yRotO, animatable.yRot)
         body.rotY = -yaw * Mth.DEG_TO_RAD
+    }
+
+    companion object {
+        private val OAK_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/oak_sailboat_with_chest.png")
+        private val SPRUCE_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/spruce_sailboat_with_chest.png")
+        private val BIRCH_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/birch_sailboat_with_chest.png")
+        private val JUNGLE_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/jungle_sailboat_with_chest.png")
+        private val ACACIA_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/acacia_sailboat_with_chest.png")
+        private val CHERRY_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/cherry_sailboat_with_chest.png")
+        private val DARK_OAK_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/dark_oak_sailboat_with_chest.png")
+        private val MANGROVE_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/mangrove_sailboat_with_chest.png")
+        private val CRIMSON_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/crimson_sailboat_with_chest.png")
+        private val WARPED_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/warped_sailboat_with_chest.png")
     }
 }

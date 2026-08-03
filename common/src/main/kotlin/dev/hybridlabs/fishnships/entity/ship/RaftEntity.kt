@@ -7,9 +7,14 @@ import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.NbtUtils
 import net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket
+import net.minecraft.network.syncher.EntityDataAccessor
+import net.minecraft.network.syncher.EntityDataSerializers
+import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.tags.FluidTags
+import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
+import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
@@ -18,6 +23,7 @@ import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.MoverType
 import net.minecraft.world.entity.Pose
+import net.minecraft.world.entity.VariantHolder
 import net.minecraft.world.entity.decoration.HangingEntity
 import net.minecraft.world.entity.decoration.LeashFenceKnotEntity
 import net.minecraft.world.entity.monster.Enemy
@@ -27,6 +33,8 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
@@ -36,7 +44,9 @@ open class RaftEntity(
     type: EntityType<out RaftEntity>,
     world: Level,
 ) :
-    BaseBoatEntity(type, world), GeoEntity {
+    BaseBoatEntity(type, world),
+    VariantHolder<RaftEntity.Type>,
+    GeoEntity {
     private var leashHolder: Entity? = null
     private var delayedLeashHolderId = 0
     private var leashInfoTag: CompoundTag? = null
@@ -44,7 +54,7 @@ open class RaftEntity(
     init {
         noCulling = true
     }
-
+    
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
         if (!isAlive) {
             return InteractionResult.PASS
@@ -209,6 +219,11 @@ open class RaftEntity(
         this.dropLeash(broadcastPacket = false, dropLeash = false)
     }
 
+    override fun defineSynchedData() {
+        super.defineSynchedData()
+        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
+    }
+
     override fun addAdditionalSaveData(tag: CompoundTag) {
         tag.putFloat("Damage", getDamage())
 
@@ -228,6 +243,8 @@ open class RaftEntity(
         } else if (this.leashInfoTag != null) {
             tag.put("Leash", this.leashInfoTag!!.copy())
         }
+
+        tag.putString("Type", this.variant.getSerializedName())
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
@@ -235,6 +252,10 @@ open class RaftEntity(
 
         if (tag.contains("Leash", 10)) {
             this.leashInfoTag = tag.getCompound("Leash")
+        }
+
+        if (tag.contains("Type", 8)) {
+            this.variant = Type.byName(tag.getString("Type"))
         }
     }
 
@@ -441,5 +462,46 @@ open class RaftEntity(
 
     override fun getPickResult(): ItemStack? {
         return ItemStack(FSItems.OAK_RAFT.get())
+    }
+
+    companion object {
+        private val DATA_ID_TYPE: EntityDataAccessor<Int> =
+            SynchedEntityData.defineId(RaftEntity::class.java, EntityDataSerializers.INT)
+    }
+
+    override fun setVariant(variant: Type) {
+        this.entityData.set(DATA_ID_TYPE, variant.ordinal)
+    }
+
+    override fun getVariant(): Type {
+        return Type.byId(this.entityData.get(DATA_ID_TYPE) as Int)
+    }
+
+    enum class Type(
+        val planks: Block,
+        private val key: String,
+    ) : StringRepresentable {
+        OAK(Blocks.OAK_PLANKS, "oak"),
+        SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
+        BIRCH(Blocks.BIRCH_PLANKS, "birch"),
+        JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
+        ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
+        CHERRY(Blocks.CHERRY_PLANKS, "cherry"),
+        DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
+        MANGROVE(Blocks.MANGROVE_PLANKS, "mangrove"),
+        CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
+        WARPED(Blocks.WARPED_PLANKS, "warped");
+
+        override fun getSerializedName(): String = key
+
+        override fun toString(): String = key
+
+        companion object {
+            val CODEC = StringRepresentable.fromEnum(::values)
+            private val BY_ID = ByIdMap.continuous({ it.ordinal }, entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)
+
+            fun byId(id: Int) = BY_ID.apply(id)
+            fun byName(key: String) = CODEC.byName(key, OAK)
+        }
     }
 }

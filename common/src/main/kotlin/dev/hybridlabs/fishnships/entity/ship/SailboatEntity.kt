@@ -6,10 +6,13 @@ import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
 import net.minecraft.core.BlockPos
+import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
+import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
+import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
@@ -17,11 +20,14 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.Pose
+import net.minecraft.world.entity.VariantHolder
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
@@ -31,7 +37,10 @@ import software.bernie.geckolib.core.animation.AnimationController.AnimationStat
 import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.core.animation.RawAnimation
 
-open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Level) : BaseBoatEntity(entityType, level),
+open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Level
+) :
+    BaseBoatEntity(entityType, level),
+    VariantHolder<SailboatEntity.Type>,
     GeoEntity {
     private var inputLeft = false
     private var inputRight = false
@@ -54,7 +63,20 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
 
     override fun defineSynchedData() {
         super.defineSynchedData()
+        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
         this.entityData.define(IS_SAIL_DOWN, false)
+    }
+
+    override fun addAdditionalSaveData(tag: CompoundTag) {
+        super.addAdditionalSaveData(tag)
+        tag.putString("Type", this.variant.getSerializedName())
+    }
+
+    override fun readAdditionalSaveData(tag: CompoundTag) {
+        super.readAdditionalSaveData(tag)
+        if (tag.contains("Type", 8)) {
+            this.variant = Type.byName(tag.getString("Type"))
+        }
     }
 
     fun setSailDown(value: Boolean) {
@@ -269,10 +291,50 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity?>, level: Le
     }
 
     companion object {
+        private val DATA_ID_TYPE: EntityDataAccessor<Int> =
+            SynchedEntityData.defineId(SailboatEntity::class.java, EntityDataSerializers.INT)
         private val IS_SAIL_DOWN: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(SailboatEntity::class.java, EntityDataSerializers.BOOLEAN)
 
         val SAIL_UP_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.sail_up")
         val SAIL_DOWN_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.sail_down")
+    }
+
+    override fun setVariant(variant: Type) {
+        this.entityData.set(DATA_ID_TYPE, variant.ordinal)
+    }
+
+    override fun getVariant(): Type {
+        return Type.byId(this.entityData.get(DATA_ID_TYPE) as Int)
+    }
+
+    enum class Type(
+        val planks: Block,
+        private val key: String,
+    ) : StringRepresentable {
+        OAK(Blocks.OAK_PLANKS, "oak"),
+        SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
+        BIRCH(Blocks.BIRCH_PLANKS, "birch"),
+        JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
+        ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
+        CHERRY(Blocks.CHERRY_PLANKS, "cherry"),
+        DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
+        MANGROVE(Blocks.MANGROVE_PLANKS, "mangrove"),
+        CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
+        WARPED(Blocks.WARPED_PLANKS, "warped");
+
+        override fun getSerializedName(): String = key
+
+        fun getName(): String = key
+
+        override fun toString(): String = key
+
+        companion object {
+            val CODEC = StringRepresentable.fromEnum(::values)
+            private val BY_ID = ByIdMap.continuous({ it.ordinal }, entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)
+
+            fun byId(id: Int) = BY_ID.apply(id)
+            fun byName(key: String) = CODEC.byName(key, OAK)
+        }
     }
 }

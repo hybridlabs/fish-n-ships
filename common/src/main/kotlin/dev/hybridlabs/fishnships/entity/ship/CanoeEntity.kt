@@ -52,20 +52,20 @@ open class CanoeEntity(
 
     override fun defineSynchedData() {
         super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal);
+        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
         this.entityData.define(DATA_ID_PADDLE_LEFT, false)
         this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-        tag.putString("Type", this.getVariant().getSerializedName())
+        tag.putString("Type", this.variant.getSerializedName())
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         super.readAdditionalSaveData(tag)
         if (tag.contains("Type", 8)) {
-            this.setVariant(Type.byName(tag.getString("Type")))
+            this.variant = Type.byName(tag.getString("Type"))
         }
     }
 
@@ -401,8 +401,6 @@ open class CanoeEntity(
         WARPED(Blocks.WARPED_PLANKS, "warped");
 
         override fun getSerializedName(): String = key
-
-        fun getName(): String = key
 
         override fun toString(): String = key
 

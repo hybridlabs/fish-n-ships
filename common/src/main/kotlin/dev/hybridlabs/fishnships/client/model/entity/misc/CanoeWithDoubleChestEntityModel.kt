@@ -24,7 +24,18 @@ class CanoeWithDoubleChestEntityModel<T : CanoeWithDoubleChestEntity>() :
     }
 
     override fun getTextureResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("textures/entity/canoe/oak_canoe_with_double_chest.png")
+        return when (animatable.variant) {
+            CanoeEntity.Type.OAK -> OAK_TEXTURE
+            CanoeEntity.Type.SPRUCE -> SPRUCE_TEXTURE
+            CanoeEntity.Type.BIRCH -> BIRCH_TEXTURE
+            CanoeEntity.Type.JUNGLE -> JUNGLE_TEXTURE
+            CanoeEntity.Type.ACACIA -> ACACIA_TEXTURE
+            CanoeEntity.Type.CHERRY -> CHERRY_TEXTURE
+            CanoeEntity.Type.DARK_OAK -> DARK_OAK_TEXTURE
+            CanoeEntity.Type.MANGROVE -> MANGROVE_TEXTURE
+            CanoeEntity.Type.CRIMSON -> CRIMSON_TEXTURE
+            CanoeEntity.Type.WARPED -> WARPED_TEXTURE
+        }
     }
 
     override fun getAnimationResource(animatable: T): ResourceLocation {
