@@ -29,6 +29,7 @@ import net.minecraft.world.entity.decoration.LeashFenceKnotEntity
 import net.minecraft.world.entity.monster.Enemy
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
@@ -450,18 +451,31 @@ open class RaftEntity(
     override val maxPassengers: Int
         get() = 4
 
-    fun getRaftItem(): ItemStack {
-        val stack = ItemStack(FSItems.OAK_RAFT.get())
-        return stack
+    open fun getRaftItem(): Item {
+        val item: Item
+        when (this.variant.ordinal) {
+            1 -> item = FSItems.SPRUCE_RAFT.get()
+            2 -> item = FSItems.BIRCH_RAFT.get()
+            3 -> item = FSItems.JUNGLE_RAFT.get()
+            4 -> item = FSItems.ACACIA_RAFT.get()
+            5 -> item = FSItems.CHERRY_RAFT.get()
+            6 -> item = FSItems.DARK_OAK_RAFT.get()
+            7 -> item = FSItems.MANGROVE_RAFT.get()
+            8 -> item = FSItems.CRIMSON_RAFT.get()
+            9 -> item = FSItems.WARPED_RAFT.get()
+            else -> item = FSItems.OAK_RAFT.get()
+        }
+
+        return item
     }
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getRaftItem())
+    }   
 
     protected open fun destroy(damageSource: DamageSource) {
         val stack = getRaftItem()
         this.spawnAtLocation(stack)
-    }
-
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.OAK_RAFT.get())
     }
 
     companion object {

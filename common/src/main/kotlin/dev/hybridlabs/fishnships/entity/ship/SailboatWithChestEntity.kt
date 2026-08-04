@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
@@ -75,10 +76,26 @@ open class SailboatWithChestEntity(entityType: EntityType<out SailboatWithChestE
         }
     }
 
-    fun getSailboatWithChestItem(): ItemStack {
-        val stack = ItemStack(FSItems.OAK_SAILBOAT_WITH_CHEST.get())
+    override fun getSailboatItem(): Item {
+        val item: Item
+        when (this.variant.ordinal) {
+            1 -> item = FSItems.SPRUCE_SAILBOAT_WITH_CHEST.get()
+            2 -> item = FSItems.BIRCH_SAILBOAT_WITH_CHEST.get()
+            3 -> item = FSItems.JUNGLE_SAILBOAT_WITH_CHEST.get()
+            4 -> item = FSItems.ACACIA_SAILBOAT_WITH_CHEST.get()
+            5 -> item = FSItems.CHERRY_SAILBOAT_WITH_CHEST.get()
+            6 -> item = FSItems.DARK_OAK_SAILBOAT_WITH_CHEST.get()
+            7 -> item = FSItems.MANGROVE_SAILBOAT_WITH_CHEST.get()
+            8 -> item = FSItems.CRIMSON_SAILBOAT_WITH_CHEST.get()
+            9 -> item = FSItems.WARPED_SAILBOAT_WITH_CHEST.get()
+            else -> item = FSItems.OAK_SAILBOAT_WITH_CHEST.get()
+        }
 
-        return stack
+        return item
+    }
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getSailboatItem())
     }
 
     //#region Container
@@ -97,7 +114,7 @@ open class SailboatWithChestEntity(entityType: EntityType<out SailboatWithChestE
     }
 
     override fun destroy(damageSource: DamageSource) {
-        val stack = getSailboatWithChestItem()
+        val stack = getSailboatItem()
         this.spawnAtLocation(stack)
         this.chestVehicleDestroyed(damageSource, this.level(), this)
     }
@@ -194,8 +211,4 @@ open class SailboatWithChestEntity(entityType: EntityType<out SailboatWithChestE
         this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
     }
     //#endregion
-
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.OAK_SAILBOAT_WITH_CHEST.get())
-    }
 }

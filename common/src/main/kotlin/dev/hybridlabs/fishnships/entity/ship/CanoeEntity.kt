@@ -112,10 +112,14 @@ open class CanoeEntity(
             7 -> item = FSItems.MANGROVE_CANOE.get()
             8 -> item = FSItems.CRIMSON_CANOE.get()
             9 -> item = FSItems.WARPED_CANOE.get()
-            else -> item = Items.OAK_BOAT
+            else -> item = FSItems.OAK_CANOE.get()
         }
 
         return item
+    }
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getCanoeItem())
     }
 
     protected open fun destroy(damageSource: DamageSource) {
@@ -362,10 +366,6 @@ open class CanoeEntity(
         this.inputRight = inputRight
         this.inputUp = inputUp
         this.inputDown = inputDown
-    }
-
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.OAK_CANOE.get())
     }
 
     companion object {

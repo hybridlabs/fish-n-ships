@@ -16,8 +16,10 @@ import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
+import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
@@ -32,7 +34,8 @@ import software.bernie.geckolib.core.animation.AnimationController.AnimationStat
 import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.core.animation.RawAnimation
 
-open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Level
+open class SailboatEntity(
+    entityType: EntityType<out SailboatEntity>, level: Level,
 ) :
     BaseBoatEntity(entityType, level),
     VariantHolder<SailboatEntity.Type>,
@@ -83,7 +86,7 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Lev
     }
 
     override fun getPassengersRidingOffset(): Double {
-        return 0.3
+        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -113,10 +116,26 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Lev
         }
     }
 
-    private fun getSailboatItem(): ItemStack {
-        val stack = ItemStack(FSItems.OAK_SAILBOAT.get())
+    open fun getSailboatItem(): Item {
+        val item: Item
+        when (this.variant.ordinal) {
+            1 -> item = FSItems.SPRUCE_SAILBOAT.get()
+            2 -> item = FSItems.BIRCH_SAILBOAT.get()
+            3 -> item = FSItems.JUNGLE_SAILBOAT.get()
+            4 -> item = FSItems.ACACIA_SAILBOAT.get()
+            5 -> item = FSItems.CHERRY_SAILBOAT.get()
+            6 -> item = FSItems.DARK_OAK_SAILBOAT.get()
+            7 -> item = FSItems.MANGROVE_SAILBOAT.get()
+            8 -> item = FSItems.CRIMSON_SAILBOAT.get()
+            9 -> item = FSItems.WARPED_SAILBOAT.get()
+            else -> item = FSItems.OAK_SAILBOAT.get()
+        }
 
-        return stack
+        return item
+    }
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getSailboatItem())
     }
 
     protected open fun destroy(damageSource: DamageSource) {
@@ -148,32 +167,47 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Lev
     }
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
+        if (this.hasPassenger(passenger)) {
+            var f = 0.2f
+            val f1 =
+                ((if (this.isRemoved) 0.01 else this.passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+            if (this.passengers.size > 1) {
+                val i = this.passengers.indexOf(passenger)
+                f = if (i == 0) {
+                    0.2f
+                } else {
+                    -0.6f
+                }
+
+                if (passenger is Animal) {
+                    f += 0.2f
+                }
+            }
+
+            val vec3 = (Vec3(
+                f.toDouble(),
+                0.0,
+                0.0
+            )).yRot(-this.yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+            callback.accept(passenger, this.x + vec3.x, this.y + f1.toDouble(), this.z + vec3.z)
+            passenger.yRot += this.deltaRotation
+            passenger.yHeadRot += this.deltaRotation
+            this.clampRotation(passenger)
+            if (passenger is Animal && this.passengers.size == this.maxPassengers) {
+                val j = if (passenger.id % 2 == 0) 90 else 270
+                passenger.setYBodyRot(passenger.yBodyRot + j.toFloat())
+                passenger.setYHeadRot(passenger.getYHeadRot() + j.toFloat())
+            }
         }
+    }
 
-        val yOffset =
-            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-
-        val xOffset = when (passengers.indexOf(passenger)) {
-            0 -> -0.25
-            1 -> -0.9
-            2 -> 0.65
-            else -> 0.0
-        }
-
-        val offset = Vec3(xOffset, 0.0, 0.0)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
-
-        callback.accept(
-            passenger,
-            x + offset.x,
-            y + yOffset,
-            z + offset.z
-        )
-
-        passenger.yRot += deltaRotation
-        passenger.yHeadRot += deltaRotation
+    protected fun clampRotation(entityToUpdate: Entity) {
+        entityToUpdate.setYBodyRot(this.yRot)
+        val f = Mth.wrapDegrees(entityToUpdate.yRot - this.yRot)
+        val f1 = Mth.clamp(f, -105.0f, 105.0f)
+        entityToUpdate.yRotO += f1 - f
+        entityToUpdate.yRot = entityToUpdate.yRot + f1 - f
+        entityToUpdate.yHeadRot = entityToUpdate.yRot
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {
@@ -278,10 +312,6 @@ open class SailboatEntity(entityType: EntityType<out SailboatEntity>, level: Lev
         this.inputLeft = inputLeft
         this.inputRight = inputRight
         this.inputJumping = inputJumping
-    }
-
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.OAK_SAILBOAT.get())
     }
 
     companion object {

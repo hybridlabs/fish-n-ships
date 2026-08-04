@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
@@ -123,10 +124,26 @@ open class SupplyRaftEntity(
     override val maxPassengers: Int
         get() = 0
 
-    fun getSupplyRaftItem(): ItemStack {
-        val stack = ItemStack(FSItems.SHIP.get())
+    override fun getRaftItem(): Item {
+        val item: Item
+        when (this.variant.ordinal) {
+            1 -> item = FSItems.SPRUCE_SUPPLY_RAFT.get()
+            2 -> item = FSItems.BIRCH_SUPPLY_RAFT.get()
+            3 -> item = FSItems.JUNGLE_SUPPLY_RAFT.get()
+            4 -> item = FSItems.ACACIA_SUPPLY_RAFT.get()
+            5 -> item = FSItems.CHERRY_SUPPLY_RAFT.get()
+            6 -> item = FSItems.DARK_OAK_SUPPLY_RAFT.get()
+            7 -> item = FSItems.MANGROVE_SUPPLY_RAFT.get()
+            8 -> item = FSItems.CRIMSON_SUPPLY_RAFT.get()
+            9 -> item = FSItems.WARPED_SUPPLY_RAFT.get()
+            else -> item = FSItems.OAK_SUPPLY_RAFT.get()
+        }
 
-        return stack
+        return item
+    }
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getRaftItem())
     }
 
     //#region Container
@@ -145,7 +162,7 @@ open class SupplyRaftEntity(
     }
 
     override fun destroy(damageSource: DamageSource) {
-        val stack = getSupplyRaftItem()
+        val stack = getRaftItem()
         this.spawnAtLocation(stack)
         this.chestVehicleDestroyed(damageSource, this.level(), this)
     }
@@ -242,8 +259,4 @@ open class SupplyRaftEntity(
         this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
     }
     //#endregion
-
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.OAK_SUPPLY_RAFT.get())
-    }
 }

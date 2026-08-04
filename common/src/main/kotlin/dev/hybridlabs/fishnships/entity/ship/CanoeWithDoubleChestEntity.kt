@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
+import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
@@ -68,10 +69,26 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
         }
     }
 
-    private fun getCanoeWithDoubleChestItem(): ItemStack {
-        val stack = ItemStack(FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get())
+    override fun getCanoeItem(): Item {
+        val item: Item
+        when (this.variant.ordinal) {
+            1 -> item = FSItems.SPRUCE_CANOE_WITH_DOUBLE_CHEST.get()
+            2 -> item = FSItems.BIRCH_CANOE_WITH_DOUBLE_CHEST.get()
+            3 -> item = FSItems.JUNGLE_CANOE_WITH_DOUBLE_CHEST.get()
+            4 -> item = FSItems.ACACIA_CANOE_WITH_DOUBLE_CHEST.get()
+            5 -> item = FSItems.CHERRY_CANOE_WITH_DOUBLE_CHEST.get()
+            6 -> item = FSItems.DARK_OAK_CANOE_WITH_DOUBLE_CHEST.get()
+            7 -> item = FSItems.MANGROVE_CANOE_WITH_DOUBLE_CHEST.get()
+            8 -> item = FSItems.CRIMSON_CANOE_WITH_DOUBLE_CHEST.get()
+            9 -> item = FSItems.WARPED_CANOE_WITH_DOUBLE_CHEST.get()
+            else -> item = FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get()
+        }
 
-        return stack
+        return item
+    }
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getCanoeItem())
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -102,7 +119,7 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
     }
 
     override fun destroy(damageSource: DamageSource) {
-        val stack = getCanoeWithDoubleChestItem()
+        val stack = getCanoeItem()
         this.spawnAtLocation(stack)
         this.chestVehicleDestroyed(damageSource, this.level(), this)
     }
@@ -199,8 +216,4 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
         this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
     }
     //#endregion
-
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get())
-    }
 }
