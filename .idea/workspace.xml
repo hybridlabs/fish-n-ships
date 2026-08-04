@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Added trawling net item texture">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/java/dev/hybridlabs/fishnships/platform/ForgePlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/dev/hybridlabs/fishnships/platform/ForgePlatformHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/fish_n_ships.forge.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/fish_n_ships.forge.mixins.json" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Cleanup">
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +213,7 @@
       <recent name="dev.hybridlabs.birds.mixin" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.forge - Data">
+  <component name="RunManager" selected="Application.forge - Client">
     <configuration name="Datagen" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="net.fabricmc.devlaunchinjector.Main" />
       <module name="hybrid-birds.fabric.main" />
@@ -443,30 +439,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00174" summary="1.2.1">
-      <option name="closed" value="true" />
-      <created>1782743935604</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1782743935604</updated>
-    </task>
-    <task id="LOCAL-00175" summary="Fixed enum issue">
-      <option name="closed" value="true" />
-      <created>1782850826855</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1782850826856</updated>
-    </task>
-    <task id="LOCAL-00176" summary="Initial commit">
-      <option name="closed" value="true" />
-      <created>1784556545297</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1784556545297</updated>
     </task>
     <task id="LOCAL-00177" summary="Got them working">
       <option name="closed" value="true" />
@@ -836,7 +808,31 @@
       <option name="project" value="LOCAL" />
       <updated>1785865723517</updated>
     </task>
-    <option name="localTasksCounter" value="223" />
+    <task id="LOCAL-00223" summary="Got forge working">
+      <option name="closed" value="true" />
+      <created>1785866641521</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1785866641521</updated>
+    </task>
+    <task id="LOCAL-00224" summary="Ship GUI texture update">
+      <option name="closed" value="true" />
+      <created>1785867839427</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1785867839427</updated>
+    </task>
+    <task id="LOCAL-00225" summary="Cleanup">
+      <option name="closed" value="true" />
+      <created>1785867864900</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1785867864900</updated>
+    </task>
+    <option name="localTasksCounter" value="226" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -852,9 +848,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Sailboat" />
-    <MESSAGE value="Pick items" />
-    <MESSAGE value="Canoe item textures by @Ragno" />
     <MESSAGE value="Supply raft item model" />
     <MESSAGE value="Got the paddles working finally" />
     <MESSAGE value="Made canoes slightly slower than normal boats" />
@@ -877,7 +870,10 @@
     <MESSAGE value="Added crimson and warped boats, also changed directory name" />
     <MESSAGE value="Fixed paddle positions on custom boat entities" />
     <MESSAGE value="Added trawling net item texture" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added trawling net item texture" />
+    <MESSAGE value="Got forge working" />
+    <MESSAGE value="Ship GUI texture update" />
+    <MESSAGE value="Cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
