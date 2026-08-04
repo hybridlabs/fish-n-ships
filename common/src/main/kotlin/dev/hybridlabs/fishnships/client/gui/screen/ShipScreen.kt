@@ -45,8 +45,8 @@ class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
             val litProgress = this.menu.getLitProgress()
             guiGraphics.blit(
                 SHIP_BACKGROUND,
-                leftDrawPos + 48,
-                topDrawPos + 58 - litProgress,
+                leftDrawPos + 30,
+                topDrawPos + 60 - litProgress,
                 198,
                 12 - litProgress,
                 14,
