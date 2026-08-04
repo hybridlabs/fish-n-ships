@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_acacia_canoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "fish_n_ships:acacia_canoe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fish_n_ships:acacia_canoe_with_chest"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_acacia_canoe",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fish_n_ships:acacia_canoe_with_chest"
+    ]
+  },
+  "sends_telemetry_event": false
+}

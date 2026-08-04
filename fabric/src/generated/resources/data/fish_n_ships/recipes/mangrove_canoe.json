@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:wooden_shovel"
+    },
+    "W": {
+      "item": "minecraft:mangrove_planks"
+    }
+  },
+  "pattern": [
+    "WSW",
+    "WWW"
+  ],
+  "result": {
+    "item": "fish_n_ships:mangrove_canoe"
+  },
+  "show_notification": true
+}

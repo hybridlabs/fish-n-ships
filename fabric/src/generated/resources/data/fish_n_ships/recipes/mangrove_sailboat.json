@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:banners"
+    },
+    "W": {
+      "item": "minecraft:mangrove_planks"
+    }
+  },
+  "pattern": [
+    "WBW",
+    "WWW"
+  ],
+  "result": {
+    "item": "fish_n_ships:mangrove_sailboat"
+  },
+  "show_notification": true
+}
