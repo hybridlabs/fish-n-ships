@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Cleanup">
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Fix fire texture in ship gui">
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/SpawnRestrictionRegistry.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,22 +442,6 @@
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
     </task>
-    <task id="LOCAL-00177" summary="Got them working">
-      <option name="closed" value="true" />
-      <created>1784596475953</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1784596475954</updated>
-    </task>
-    <task id="LOCAL-00178" summary="Started adding icebreaker and trawling net">
-      <option name="closed" value="true" />
-      <created>1784635535049</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1784635535049</updated>
-    </task>
     <task id="LOCAL-00179" summary="Icebreaker functionality">
       <option name="closed" value="true" />
       <created>1784640955047</created>
@@ -832,7 +818,23 @@
       <option name="project" value="LOCAL" />
       <updated>1785867864900</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="Fixed passenger count for chest boats">
+      <option name="closed" value="true" />
+      <created>1785868321329</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1785868321329</updated>
+    </task>
+    <task id="LOCAL-00227" summary="Fix fire texture in ship gui">
+      <option name="closed" value="true" />
+      <created>1785871933883</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1785871933883</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -848,8 +850,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Supply raft item model" />
-    <MESSAGE value="Got the paddles working finally" />
     <MESSAGE value="Made canoes slightly slower than normal boats" />
     <MESSAGE value="Sailboat item texture" />
     <MESSAGE value="Raft item textures" />
@@ -873,7 +873,9 @@
     <MESSAGE value="Got forge working" />
     <MESSAGE value="Ship GUI texture update" />
     <MESSAGE value="Cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
+    <MESSAGE value="Fixed passenger count for chest boats" />
+    <MESSAGE value="Fix fire texture in ship gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix fire texture in ship gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

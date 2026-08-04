@@ -5,7 +5,6 @@ import dev.hybridlabs.fishnships.client.gui.screen.FSMenuScreens
 import dev.hybridlabs.fishnships.client.render.entity.FSEntityRenderers
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.entity.ForgeSpawnGroupRegistry
-import dev.hybridlabs.fishnships.entity.SpawnRestrictionRegistry
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.sound.FSSoundEvents
@@ -14,7 +13,6 @@ import dev.hybridlabs.fishnships.tag.FSItemTags
 import dev.hybridlabs.fishnships.utils.FSSpawnGroup
 import dev.hybridlabs.fishnships.world.inventory.FSMenuTypes
 import net.minecraft.world.entity.MobCategory
-import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
@@ -51,8 +49,6 @@ object FishNShipsForge {
 
         FSNetworking.registerPackets()
 
-        MOD_BUS.addListener(::registerSpawnPlacements)
-
         runForDist(
             clientTarget = {
                 FSEntityRenderers
@@ -76,10 +72,6 @@ object FishNShipsForge {
                 it.immediateDespawnRange
             )
         }
-    }
-
-    private fun registerSpawnPlacements(event: SpawnPlacementRegisterEvent) {
-        SpawnRestrictionRegistry.registerSpawnRestrictions()
     }
 
     /**

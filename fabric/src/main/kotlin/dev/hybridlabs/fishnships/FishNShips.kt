@@ -5,7 +5,6 @@ import dev.hybridlabs.fishnships.block.FSBlocks
 import dev.hybridlabs.fishnships.config.FSConfig
 import dev.hybridlabs.fishnships.config.FSConfigHandler
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
-import dev.hybridlabs.fishnships.entity.SpawnRestrictionRegistry
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.network.FSNetworking
@@ -41,8 +40,6 @@ object FishNShips : ModInitializer {
         FSItemTags
 
         FSMenuTypes
-
-        SpawnRestrictionRegistry
 
         initializeConfig(configFile, configHandler)
         registerBiomeModifications(configHandler.config)
