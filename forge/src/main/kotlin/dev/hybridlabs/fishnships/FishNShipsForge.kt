@@ -1,5 +1,6 @@
 package dev.hybridlabs.fishnships
 import dev.hybridlabs.fishnships.block.FSBlocks
+import dev.hybridlabs.fishnships.client.gui.screen.FSMenuScreens
 import dev.hybridlabs.fishnships.client.render.entity.FSEntityRenderers
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.entity.ForgeSpawnGroupRegistry
@@ -47,9 +48,9 @@ object FishNShipsForge {
         FSBiomeTags
         FSItemTags
 
+        FSNetworking.registerPackets()
 
         MOD_BUS.addListener(::registerSpawnPlacements)
-        FSNetworking.registerPackets()
 
         runForDist(
             clientTarget = {
@@ -87,6 +88,8 @@ object FishNShipsForge {
      */
     private fun onClientSetup(event: FMLClientSetupEvent) {
         LOGGER.info("Initializing client...")
+
+        FSMenuScreens
     }
 
     /**

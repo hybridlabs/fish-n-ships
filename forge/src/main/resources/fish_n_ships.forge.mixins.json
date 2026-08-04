@@ -5,8 +5,11 @@
     "refmap": "fish_n_ships.refmap.json",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
+      "ServerGamePacketListenerImplMixin"
     ],
     "client": [
+      "client.CameraMixin",
+      "client.LocalPlayerMixin"
     ],
     "server": [
     ],

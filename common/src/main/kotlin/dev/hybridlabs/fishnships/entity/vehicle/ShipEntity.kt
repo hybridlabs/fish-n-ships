@@ -5,7 +5,6 @@ import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
-import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.core.particles.BlockParticleOption
@@ -18,6 +17,7 @@ import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
@@ -42,7 +42,6 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.level.storage.loot.BuiltInLootTables
 import net.minecraft.world.level.storage.loot.LootParams
-import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.Vec3
@@ -359,7 +358,6 @@ open class ShipEntity(
 
         tickTrawling()
 
-
         this.checkInsideBlocks()
 
         if (!level().isClientSide && hasIceBreaker()) {
@@ -372,40 +370,57 @@ open class ShipEntity(
             || (level().gameTime.toInt() % trawlingInterval) != 0
             || !canTrawl()
             || random.nextFloat() > trawlingChance
-
         ) return
 
-        val loottable: LootTable? = server?.lootData?.getLootTable(BuiltInLootTables.FISHING)
+        val lootTable = server?.lootData?.getLootTable(BuiltInLootTables.FISHING) ?: return
 
-        if (loottable != null) {
-            val lootParamsBuilder = LootParams.Builder(this.level() as ServerLevel).withParameter<Vec3?>(
-                LootContextParams.ORIGIN,
-                this.position()
-            )
-            val loot: ObjectArrayList<ItemStack> = loottable.getRandomItems(
-                lootParamsBuilder.create(LootContextParamSets.CHEST), this.lootTableSeed
-            )
-            val openSlots = getAvailableTrawlSlots()
-            val occupiedSlots = getOccupiedTrawlSlots()
-            loot.forEach {
-                for (slot in occupiedSlots){
-                    val existingStack = itemStacks[slot]
-                    if (existingStack.count < existingStack.maxStackSize){
-                        if(existingStack.item == it.item){
-                            val capacity = existingStack.maxStackSize - existingStack.count
-                            val moveCount = min(it.count,capacity)
-                            it.shrink(moveCount)
-                            existingStack.grow(moveCount)
-                            if (it.isEmpty) return@forEach
-                        }
+        val lootParamsBuilder = LootParams.Builder(level() as ServerLevel)
+            .withParameter(LootContextParams.ORIGIN, position())
+
+        val loot = lootTable.getRandomItems(
+            lootParamsBuilder.create(LootContextParamSets.CHEST),
+            lootTableSeed
+        )
+
+        val openSlots = getAvailableTrawlSlots()
+        val occupiedSlots = getOccupiedTrawlSlots()
+
+        var trawlSuccess = false
+
+        loot.forEach {
+            for (slot in occupiedSlots) {
+                val existingStack = itemStacks[slot]
+                if (existingStack.item == it.item && existingStack.count < existingStack.maxStackSize) {
+                    val capacity = existingStack.maxStackSize - existingStack.count
+                    val moveCount = min(it.count, capacity)
+                    it.shrink(moveCount)
+                    existingStack.grow(moveCount)
+
+                    if (moveCount > 0) {
+                        trawlSuccess = true
                     }
+
+                    if (it.isEmpty) return@forEach
                 }
-                if (openSlots.isEmpty()) return
-                val slot = openSlots.first()
-                openSlots.remove(slot)
-                itemStacks[slot] = it
-                occupiedSlots.add(slot)
             }
+
+            if (openSlots.isEmpty()) return@forEach
+
+            val slot = openSlots.removeFirst()
+            itemStacks[slot] = it
+            occupiedSlots.add(slot)
+            trawlSuccess = true
+        }
+
+        if (trawlSuccess) {
+            level().playSound(
+                null,
+                blockPosition(),
+                SoundEvents.FISHING_BOBBER_SPLASH,
+                SoundSource.AMBIENT,
+                0.8f,
+                0.9f + random.nextFloat() * 0.2f
+            )
         }
     }
 
@@ -439,16 +454,16 @@ open class ShipEntity(
             }
 
             if (this.inputRight != this.inputLeft && !this.inputUp && !this.inputDown) {
-                f += 0.005f
+                f += 0.0025f
             }
 
             this.yRot += this.deltaRotation
             if (this.inputUp) {
-                f += 0.04f
+                f += 0.025f
             }
 
             if (this.inputDown) {
-                f -= 0.005f
+                f -= 0.0025f
             }
 
             if (inputJumping && !lastJumpInput) {

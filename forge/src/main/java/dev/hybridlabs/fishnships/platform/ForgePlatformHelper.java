@@ -3,6 +3,7 @@ package dev.hybridlabs.fishnships.platform;
 import dev.hybridlabs.fishnships.CommonClass;
 import dev.hybridlabs.fishnships.Constants;
 import dev.hybridlabs.fishnships.FSNetworking;
+import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
 import dev.hybridlabs.fishnships.platform.services.PlatformHelper;
 import net.minecraft.world.entity.*;
@@ -97,13 +98,15 @@ public class ForgePlatformHelper implements PlatformHelper {
     @Override
     public void sendTrawlingToServer(boolean enabled) {
         FSNetworking.INSTANCE.sendTrawlingPacket(enabled);
-
     }
 
     @Override
     public void sendMovementToServer(boolean moving) {
         FSNetworking.INSTANCE.sendMovingPacket(moving);
     }
+
+    @Override
+    public void changeSailState(SailboatEntity sailBoat) {}
 
     @Override
     public BlockBehaviour.Properties getBlockSettings() {
