@@ -12,12 +12,12 @@ import net.minecraft.resources.ResourceLocation
 import software.bernie.geckolib.cache.`object`.BakedGeoModel
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer
 
-class ShipFlagEntityLayer<T: ShipEntity>(
+class ShipGlassEntityLayer<T: ShipEntity>(
     renderer: ShipEntityRenderer<T>
 ): GeoRenderLayer<T>(renderer) {
 
-    private fun getFlagTexture(animatable: T): ResourceLocation {
-        return (geoModel as ShipEntityModel).getFlagTextureResource(animatable)
+    private fun getGlassTexture(): ResourceLocation {
+        return (geoModel as ShipEntityModel).getGlassTextureResource()
     }
 
     override fun render(
@@ -31,12 +31,11 @@ class ShipFlagEntityLayer<T: ShipEntity>(
         packedLight: Int,
         packedOverlay: Int
     ) {
-        val flagTexture = getFlagTexture(animatable)
-        val flagRenderType = RenderType.entityTranslucent(flagTexture)
-        if (animatable.getFlagColor() == ShipEntity.FlagColor.NONE) return
+        val glassTexture = getGlassTexture()
+        val glassRenderType = RenderType.entityTranslucentCull(glassTexture)
 
-        getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, flagRenderType,
-            bufferSource.getBuffer(flagRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
+        getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, glassRenderType,
+            bufferSource.getBuffer(glassRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
             1f, 1f, 1f, 1f)
     }
 }

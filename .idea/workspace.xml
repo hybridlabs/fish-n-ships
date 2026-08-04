@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Sailboats work on forge now">
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/tools/icebreaker.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/tools/trawling_net.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/ship.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipes/icebreaker.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipes/ship.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipes/trawling_net.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/minecraft/tags/items/boats.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/minecraft/tags/items/chest_boats.json" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Finished ship model and texture">
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipGlassEntityLayer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/glass.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/boat.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/ship.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/ship.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/trawling_net.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/trawling_net.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/tag/ItemTagProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/tag/ItemTagProvider.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,18 +197,18 @@
       <recent name="dev.hybridlabs.birds" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
       <recent name="dev.hybridlabs.fishnships.item" />
       <recent name="dev.hybridlabs.fishnships.client.model.entity.misc" />
       <recent name="dev.hybridlabs.fishnships.client.render.entity.misc" />
       <recent name="dev.hybridlabs.fishnships.entity.ship" />
-      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
       <recent name="dev.hybridlabs.fishnships.network" />
       <recent name="dev.hybridlabs.fishnships.entity.ship" />
       <recent name="dev.hybridlabs.birds" />
       <recent name="dev.hybridlabs.birds.entity.ai.goal.control" />
-      <recent name="dev.hybridlabs.birds.entity.ai.goal" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="dev.hybridlabs.fishnships.mixin.client" />
@@ -452,38 +443,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00182" summary="Icebreaker functionality">
-      <option name="closed" value="true" />
-      <created>1784641794848</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1784641794848</updated>
-    </task>
-    <task id="LOCAL-00183" summary="More work">
-      <option name="closed" value="true" />
-      <created>1784657442098</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1784657442099</updated>
-    </task>
-    <task id="LOCAL-00184" summary="1.0.0">
-      <option name="closed" value="true" />
-      <created>1784668213129</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1784668213130</updated>
-    </task>
-    <task id="LOCAL-00185" summary="Asset work">
-      <option name="closed" value="true" />
-      <created>1784668226998</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1784668226998</updated>
     </task>
     <task id="LOCAL-00186" summary="Asset work">
       <option name="closed" value="true" />
@@ -845,7 +804,39 @@
       <option name="project" value="LOCAL" />
       <updated>1785876287405</updated>
     </task>
-    <option name="localTasksCounter" value="231" />
+    <task id="LOCAL-00231" summary="Item tags">
+      <option name="closed" value="true" />
+      <created>1785886450747</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1785886450747</updated>
+    </task>
+    <task id="LOCAL-00232" summary="Recipes for ship, trawling net, icebreaker">
+      <option name="closed" value="true" />
+      <created>1785886471224</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1785886471224</updated>
+    </task>
+    <task id="LOCAL-00233" summary="Removed unused texture">
+      <option name="closed" value="true" />
+      <created>1785886485961</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1785886485961</updated>
+    </task>
+    <task id="LOCAL-00234" summary="Finished ship model and texture">
+      <option name="closed" value="true" />
+      <created>1785886501264</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1785886501264</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -861,10 +852,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Recipes" />
-    <MESSAGE value="Must use packet to set trawling because you can't set entity data on the client." />
-    <MESSAGE value="Can now trawl into the net slots in the ship inventory." />
-    <MESSAGE value="Set up packets to detect movement on the server side." />
     <MESSAGE value="Use vanilla fishing loot table" />
     <MESSAGE value="Missing lang entries" />
     <MESSAGE value="Started working on boat variants and created BaseBoatEntity" />
@@ -886,7 +873,11 @@
     <MESSAGE value="Removed unused SpawnRestrictionRegistry" />
     <MESSAGE value="Trying to get sailboats working on forge but I dont understand packets" />
     <MESSAGE value="Sailboats work on forge now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sailboats work on forge now" />
+    <MESSAGE value="Item tags" />
+    <MESSAGE value="Recipes for ship, trawling net, icebreaker" />
+    <MESSAGE value="Removed unused texture" />
+    <MESSAGE value="Finished ship model and texture" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished ship model and texture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
