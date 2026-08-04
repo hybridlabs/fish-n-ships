@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "I I",
+    "IBI",
+    " B "
+  ],
+  "result": {
+    "item": "fish_n_ships:icebreaker"
+  },
+  "show_notification": true
+}

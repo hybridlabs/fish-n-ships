@@ -4,6 +4,7 @@ import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
+import net.minecraft.advancements.critereon.InventoryChangeTrigger
 import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapedRecipeBuilder
@@ -30,6 +31,37 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
 
         offerBoatRecipes(exporter, boatTypeMap)
         offerBoatChestUpgradeRecipes(exporter, boatTypeMap, chestBoatTypeMap)
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FSItems.TRAWLING_NET.get())
+            .pattern("S S")
+            .pattern("I I")
+            .pattern("WWW")
+            .define('S', Items.STRING)
+            .define('I', Items.IRON_INGOT)
+            .define('W', ItemTags.WOOL)
+            .unlockedBy("has_iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
+            .save(exporter)
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FSItems.ICEBREAKER.get())
+            .pattern("I I")
+            .pattern("IBI")
+            .pattern(" B ")
+            .define('B', Items.IRON_BLOCK)
+            .define('I', Items.IRON_INGOT)
+            .unlockedBy("has_iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
+            .save(exporter)
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, FSItems.SHIP.get())
+            .pattern("CCC")
+            .pattern("WFW")
+            .pattern("IBI")
+            .define('C', Items.COPPER_INGOT)
+            .define('I', Items.IRON_INGOT)
+            .define('F', Items.BLAST_FURNACE)
+            .define('W', ItemTags.PLANKS)
+            .define('B', ItemTags.CHEST_BOATS)
+            .unlockedBy("has_iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
+            .save(exporter)
     }
     
     //#region Boat Maps
