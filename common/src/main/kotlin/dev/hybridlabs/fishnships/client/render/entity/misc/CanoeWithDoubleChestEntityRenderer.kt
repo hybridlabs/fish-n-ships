@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.client.render.entity.misc
 
 import dev.hybridlabs.fishnships.client.model.entity.misc.CanoeWithDoubleChestEntityModel
-import dev.hybridlabs.fishnships.client.render.entity.misc.layer.CanoeWithDoubleChestWaterpatchEntityLayer
+import dev.hybridlabs.fishnships.client.render.entity.misc.layer.WaterPatchEntityLayer
 import dev.hybridlabs.fishnships.entity.ship.CanoeWithDoubleChestEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import software.bernie.geckolib.renderer.GeoEntityRenderer
@@ -11,7 +11,7 @@ class CanoeWithDoubleChestEntityRenderer<T : CanoeWithDoubleChestEntity>(
 ) : GeoEntityRenderer<T>(context, CanoeWithDoubleChestEntityModel()) {
 
     init {
-        addRenderLayer(CanoeWithDoubleChestWaterpatchEntityLayer(this))
+        addRenderLayer(WaterPatchEntityLayer(this))
         this.shadowRadius = 0.3f
     }
 

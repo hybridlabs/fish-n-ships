@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.client.render.entity.misc
 
 import dev.hybridlabs.fishnships.client.model.entity.misc.SailboatEntityModel
-import dev.hybridlabs.fishnships.client.render.entity.misc.layer.SailboatWaterpatchEntityLayer
+import dev.hybridlabs.fishnships.client.render.entity.misc.layer.WaterPatchEntityLayer
 import dev.hybridlabs.fishnships.entity.ship.SailboatEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import software.bernie.geckolib.renderer.GeoEntityRenderer
@@ -11,7 +11,7 @@ class SailboatEntityRenderer<T : SailboatEntity>(
 ) : GeoEntityRenderer<T>(context, SailboatEntityModel()) {
 
     init {
-        addRenderLayer(SailboatWaterpatchEntityLayer(this))
+        addRenderLayer(WaterPatchEntityLayer(this))
         this.shadowRadius = 0.3f
     }
 
