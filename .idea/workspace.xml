@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Trying to get sailboats working on forge but I dont understand packets">
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/java/dev/hybridlabs/fishnships/platform/ForgePlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/dev/hybridlabs/fishnships/platform/ForgePlatformHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Sailboats work on forge now">
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/tools/icebreaker.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/tools/trawling_net.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/ship.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipes/icebreaker.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipes/ship.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipes/trawling_net.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/minecraft/tags/items/boats.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/minecraft/tags/items/chest_boats.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/ship/ship.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/boat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/ship.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/ship.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/trawling_net.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/ship/trawling_net.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/tag/ItemTagProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/tag/ItemTagProvider.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -443,14 +453,6 @@
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
     </task>
-    <task id="LOCAL-00181" summary="Icebreaker functionality">
-      <option name="closed" value="true" />
-      <created>1784641784206</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1784641784206</updated>
-    </task>
     <task id="LOCAL-00182" summary="Icebreaker functionality">
       <option name="closed" value="true" />
       <created>1784641794848</created>
@@ -835,7 +837,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785875469064</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="Sailboats work on forge now">
+      <option name="closed" value="true" />
+      <created>1785876287405</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1785876287405</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -851,7 +861,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Raft item textures" />
     <MESSAGE value="Recipes" />
     <MESSAGE value="Must use packet to set trawling because you can't set entity data on the client." />
     <MESSAGE value="Can now trawl into the net slots in the ship inventory." />
@@ -876,7 +885,8 @@
     <MESSAGE value="Fix fire texture in ship gui" />
     <MESSAGE value="Removed unused SpawnRestrictionRegistry" />
     <MESSAGE value="Trying to get sailboats working on forge but I dont understand packets" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to get sailboats working on forge but I dont understand packets" />
+    <MESSAGE value="Sailboats work on forge now" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sailboats work on forge now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
