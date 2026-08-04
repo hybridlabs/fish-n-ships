@@ -1,4 +1,5 @@
 package dev.hybridlabs.fishnships
+
 import dev.hybridlabs.fishnships.block.FSBlocks
 import dev.hybridlabs.fishnships.client.gui.screen.FSMenuScreens
 import dev.hybridlabs.fishnships.client.render.entity.FSEntityRenderers
