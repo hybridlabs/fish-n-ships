@@ -1,4 +1,4 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
@@ -16,7 +16,6 @@ import net.minecraft.world.inventory.ChestMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent

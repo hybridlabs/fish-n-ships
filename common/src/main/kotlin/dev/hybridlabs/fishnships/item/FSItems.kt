@@ -3,9 +3,10 @@
 package dev.hybridlabs.fishnships.item
 
 import dev.hybridlabs.fishnships.CommonClass
-import dev.hybridlabs.fishnships.entity.ship.CanoeEntity
-import dev.hybridlabs.fishnships.entity.ship.RaftEntity
-import dev.hybridlabs.fishnships.entity.ship.SailboatEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CanoeEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CustomBoatEntity
+import dev.hybridlabs.fishnships.entity.vehicle.RaftEntity
+import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject
 import net.minecraft.world.item.Item
 import java.util.function.Supplier
@@ -28,8 +29,8 @@ object FSItems {
     val CHERRY_RAFT = register("cherry_raft") { RaftItem(RaftEntity.Type.CHERRY,Item.Properties().stacksTo(1))}
     val CHERRY_SUPPLY_RAFT = register("cherry_supply_raft") { SupplyRaftItem(RaftEntity.Type.CHERRY,Item.Properties().stacksTo(1))}
 
-    val WARPED_BOAT = register("warped_boat") { SailboatItem(SailboatEntity.Type.WARPED,Item.Properties().stacksTo(1))}
-    val WARPED_BOAT_WITH_CHEST = register("warped_boat_with_chest") { SailboatItem(SailboatEntity.Type.WARPED,Item.Properties().stacksTo(1))}
+    val WARPED_BOAT = register("warped_boat") { CustomBoatItem(CustomBoatEntity.Type.WARPED,Item.Properties().stacksTo(1))}
+    val WARPED_BOAT_WITH_CHEST = register("warped_boat_with_chest") { CustomBoatWithChestItem(CustomBoatEntity.Type.WARPED,Item.Properties().stacksTo(1))}
     val WARPED_SAILBOAT = register("warped_sailboat") { SailboatItem(SailboatEntity.Type.WARPED,Item.Properties().stacksTo(1))}
     val WARPED_SAILBOAT_WITH_CHEST = register("warped_sailboat_with_chest") { SailboatWithChestItem(SailboatEntity.Type.WARPED,Item.Properties().stacksTo(1))}
     val WARPED_CANOE = register("warped_canoe") { CanoeItem(CanoeEntity.Type.WARPED,Item.Properties().stacksTo(1))}
@@ -38,8 +39,8 @@ object FSItems {
     val WARPED_RAFT = register("warped_raft") { RaftItem(RaftEntity.Type.WARPED,Item.Properties().stacksTo(1))}
     val WARPED_SUPPLY_RAFT = register("warped_supply_raft") { SupplyRaftItem(RaftEntity.Type.WARPED,Item.Properties().stacksTo(1))}
 
-    val CRIMSON_BOAT = register("crimson_boat") { SailboatItem(SailboatEntity.Type.CRIMSON,Item.Properties().stacksTo(1))}
-    val CRIMSON_BOAT_WITH_CHEST = register("crimson_boat_with_chest") { SailboatItem(SailboatEntity.Type.CRIMSON,Item.Properties().stacksTo(1))}
+    val CRIMSON_BOAT = register("crimson_boat") { CustomBoatItem(CustomBoatEntity.Type.CRIMSON,Item.Properties().stacksTo(1))}
+    val CRIMSON_BOAT_WITH_CHEST = register("crimson_boat_with_chest") { CustomBoatWithChestItem(CustomBoatEntity.Type.CRIMSON,Item.Properties().stacksTo(1))}
     val CRIMSON_SAILBOAT = register("crimson_sailboat") { SailboatItem(SailboatEntity.Type.CRIMSON,Item.Properties().stacksTo(1))}
     val CRIMSON_SAILBOAT_WITH_CHEST = register("crimson_sailboat_with_chest") { SailboatWithChestItem(SailboatEntity.Type.CRIMSON,Item.Properties().stacksTo(1))}
     val CRIMSON_CANOE = register("crimson_canoe") { CanoeItem(CanoeEntity.Type.CRIMSON,Item.Properties().stacksTo(1))}

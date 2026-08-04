@@ -1,13 +1,12 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
+import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.entity.HasCustomInventoryScreen
+import net.minecraft.world.entity.*
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
@@ -19,76 +18,36 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
-import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 
-open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDoubleChestEntity>, level: Level) :
-    CanoeEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
+open class CustomChestBoatEntity(
+    entityType: EntityType<out CustomChestBoatEntity?>, level: Level,
+) :
+    CustomBoatEntity(entityType, level),
+    HasCustomInventoryScreen,
+    ContainerEntity,
     GeoEntity {
-    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(54, ItemStack.EMPTY)
-    private var canoeLootTable: ResourceLocation? = null
-    private var canoeLootTableSeed: Long = 0
+    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
+    private var chestBoatLootTable: ResourceLocation? = null
+    private var chestBoatLootTableSeed: Long = 0
 
-    override val maxPassengers: Int
-        get() = 1
-
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
-        }
-
-        val yOffset =
-            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-
-        val offset = Vec3(0.5, 0.0, 0.0)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
-
-        callback.accept(
-            passenger,
-            x + offset.x,
-            y + yOffset,
-            z + offset.z
-        )
-
-        passenger.yRot += deltaRotation
-        passenger.yHeadRot += deltaRotation
-        clampRotation(passenger)
+    override fun defineSynchedData() {
+        super.defineSynchedData()
     }
 
-    //#region Container
-    private val dataAccess = object : ContainerData {
-        override fun get(index: Int): Int {
-            return 0
-        }
-
-        override fun set(index: Int, value: Int) {
-        }
-
-        override fun getCount(): Int {
-            return 2
-        }
+    override fun addAdditionalSaveData(tag: CompoundTag) {
+        super.addAdditionalSaveData(tag)
+        this.addChestVehicleSaveData(tag)
     }
 
-    override fun getCanoeItem(): Item {
-        val item: Item
-        when (this.variant.ordinal) {
-            1 -> item = FSItems.SPRUCE_CANOE_WITH_DOUBLE_CHEST.get()
-            2 -> item = FSItems.BIRCH_CANOE_WITH_DOUBLE_CHEST.get()
-            3 -> item = FSItems.JUNGLE_CANOE_WITH_DOUBLE_CHEST.get()
-            4 -> item = FSItems.ACACIA_CANOE_WITH_DOUBLE_CHEST.get()
-            5 -> item = FSItems.CHERRY_CANOE_WITH_DOUBLE_CHEST.get()
-            6 -> item = FSItems.DARK_OAK_CANOE_WITH_DOUBLE_CHEST.get()
-            7 -> item = FSItems.MANGROVE_CANOE_WITH_DOUBLE_CHEST.get()
-            8 -> item = FSItems.CRIMSON_CANOE_WITH_DOUBLE_CHEST.get()
-            9 -> item = FSItems.WARPED_CANOE_WITH_DOUBLE_CHEST.get()
-            else -> item = FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get()
-        }
-
-        return item
+    override fun readAdditionalSaveData(tag: CompoundTag) {
+        super.readAdditionalSaveData(tag)
+        setDamage(tag.getFloat("Damage"))
+        this.readChestVehicleSaveData(tag)
     }
 
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(this.getCanoeItem())
+    override fun getPassengersRidingOffset(): Double {
+        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -118,8 +77,37 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
         }
     }
 
+    override fun getBoatItem(): Item {
+        val item: Item
+        when (this.variant.ordinal) {
+            1 -> item = FSItems.WARPED_BOAT_WITH_CHEST.get()
+            else -> item = FSItems.CRIMSON_BOAT_WITH_CHEST.get()
+        }
+
+        return item
+    }
+
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getBoatItem())
+    }
+
+    //#region Container
+
+    private val dataAccess = object : ContainerData {
+        override fun get(index: Int): Int {
+            return 0
+        }
+
+        override fun set(index: Int, value: Int) {
+        }
+
+        override fun getCount(): Int {
+            return 2
+        }
+    }
+
     override fun destroy(damageSource: DamageSource) {
-        val stack = getCanoeItem()
+        val stack = getBoatItem()
         this.spawnAtLocation(stack)
         this.chestVehicleDestroyed(damageSource, this.level(), this)
     }
@@ -142,19 +130,19 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
     }
 
     override fun getLootTable(): ResourceLocation? {
-        return canoeLootTable
+        return chestBoatLootTable
     }
 
     override fun setLootTable(id: ResourceLocation?) {
-        canoeLootTable = id
+        chestBoatLootTable = id
     }
 
     override fun getLootTableSeed(): Long {
-        return canoeLootTableSeed
+        return chestBoatLootTableSeed
     }
 
     override fun setLootTableSeed(seed: Long) {
-        canoeLootTableSeed = seed
+        chestBoatLootTableSeed = seed
     }
 
     override fun getItemStacks(): NonNullList<ItemStack> {
@@ -166,7 +154,7 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
     }
 
     override fun getContainerSize(): Int {
-        return 54
+        return 66
     }
 
     override fun getItem(slot: Int): ItemStack {
@@ -204,7 +192,7 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
             return null
         } else {
             this.unpackLootTable(playerInventory.player)
-            return ChestMenu.sixRows(containerId, playerInventory, this)
+            return ChestMenu.threeRows(containerId, playerInventory, this)
         }
     }
 

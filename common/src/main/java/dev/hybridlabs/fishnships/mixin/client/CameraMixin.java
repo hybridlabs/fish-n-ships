@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity;
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity;
 import net.minecraft.client.Camera;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;

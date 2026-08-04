@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.item
 
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerLevel

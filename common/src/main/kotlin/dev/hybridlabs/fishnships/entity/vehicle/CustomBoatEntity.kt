@@ -1,14 +1,15 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.fishnships.platform.Services
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
+import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
+import net.minecraft.sounds.SoundEvent
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
@@ -17,6 +18,7 @@ import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
 import net.minecraft.world.entity.animal.Animal
+import net.minecraft.world.entity.animal.WaterAnimal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.Item
@@ -28,41 +30,31 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animation.AnimatableManager
-import software.bernie.geckolib.core.animation.AnimationController
-import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.RawAnimation
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
+import software.bernie.geckolib.util.GeckoLibUtil
 
-open class SailboatEntity(
-    entityType: EntityType<out SailboatEntity>, level: Level,
+open class CustomBoatEntity(
+    entityType: EntityType<out CustomBoatEntity?>, level: Level,
 ) :
     BaseBoatEntity(entityType, level),
-    VariantHolder<SailboatEntity.Type>,
+    VariantHolder<CustomBoatEntity.Type>,
     GeoEntity {
+    private val animCache = GeckoLibUtil.createInstanceCache(this)
+    private val paddlePositions: FloatArray = FloatArray(2)
     private var inputLeft = false
     private var inputRight = false
-    private var inputJumping = false
-    private var lastJumpInput = false
+    private var inputUp = false
+    private var inputDown = false
 
-    override fun registerControllers(controllers: AnimatableManager.ControllerRegistrar) {
-        super.registerControllers(controllers)
-        controllers.add(
-            AnimationController(
-                this, "Sailing",
-                AnimationStateHandler { state: AnimationState<SailboatEntity> ->
-                    if (this.isSailDown())
-                        return@AnimationStateHandler state.setAndContinue(SAIL_DOWN_ANIMATION)
-                    else return@AnimationStateHandler state.setAndContinue(SAIL_UP_ANIMATION)
-                }
-            )
-        )
+    override fun getAnimatableInstanceCache(): AnimatableInstanceCache? {
+        return animCache
     }
 
     override fun defineSynchedData() {
         super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
-        this.entityData.define(IS_SAIL_DOWN, false)
+        this.entityData.define(DATA_ID_TYPE, Type.CRIMSON.ordinal)
+        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
+        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -75,14 +67,6 @@ open class SailboatEntity(
         if (tag.contains("Type", 8)) {
             this.variant = Type.byName(tag.getString("Type"))
         }
-    }
-
-    fun setSailDown(value: Boolean) {
-        this.entityData.set(IS_SAIL_DOWN, value)
-    }
-
-    fun isSailDown(): Boolean {
-        return entityData.get(IS_SAIL_DOWN)
     }
 
     override fun getPassengersRidingOffset(): Double {
@@ -116,59 +100,115 @@ open class SailboatEntity(
         }
     }
 
-    open fun getSailboatItem(): Item {
+    open fun getBoatItem(): Item {
         val item: Item
         when (this.variant.ordinal) {
-            1 -> item = FSItems.SPRUCE_SAILBOAT.get()
-            2 -> item = FSItems.BIRCH_SAILBOAT.get()
-            3 -> item = FSItems.JUNGLE_SAILBOAT.get()
-            4 -> item = FSItems.ACACIA_SAILBOAT.get()
-            5 -> item = FSItems.CHERRY_SAILBOAT.get()
-            6 -> item = FSItems.DARK_OAK_SAILBOAT.get()
-            7 -> item = FSItems.MANGROVE_SAILBOAT.get()
-            8 -> item = FSItems.CRIMSON_SAILBOAT.get()
-            9 -> item = FSItems.WARPED_SAILBOAT.get()
-            else -> item = FSItems.OAK_SAILBOAT.get()
+            1 -> item = FSItems.WARPED_BOAT.get()
+            else -> item = FSItems.CRIMSON_BOAT.get()
         }
 
         return item
     }
 
     override fun getPickResult(): ItemStack? {
-        return ItemStack(this.getSailboatItem())
+        return ItemStack(this.getBoatItem())
     }
 
     protected open fun destroy(damageSource: DamageSource) {
-        val stack = getSailboatItem()
+        val stack = getBoatItem()
         this.spawnAtLocation(stack)
     }
 
     override fun tick() {
-
         super.tick()
 
-        if (isControlledByLocalInstance && level().isClientSide) {
-            controlSailboat()
+        if (this.isControlledByLocalInstance) {
+            if (this.firstPassenger !is Player) {
+                this.setPaddleState(left = false, right = false)
+            }
+
+            floatWaterVehicle()
+            if (this.level().isClientSide) {
+                this.controlBoat()
+                this.level()
+                    .sendPacketToServer(ServerboundPaddleBoatPacket(this.getPaddleState(0), this.getPaddleState(1)))
+            }
+
+            this.move(MoverType.SELF, this.deltaMovement)
+        } else {
+            this.deltaMovement = Vec3.ZERO
         }
 
-        moveWithSailDown()
+        for (i in 0..1) {
+            if (this.getPaddleState(i)) {
+                if (!this.isSilent && (this.paddlePositions[i] % (Math.PI.toFloat() * 2f)).toDouble() <= (Math.PI.toFloat() / 4f).toDouble() && ((this.paddlePositions[i] + (Math.PI.toFloat() / 8f)) % (Math.PI.toFloat() * 2f)).toDouble() >= (Math.PI.toFloat() / 4f).toDouble()) {
+                    val soundevent: SoundEvent? = this.paddleSound
+                    if (soundevent != null) {
+                        val vec3 = this.getViewVector(1.0f)
+                        val d0 = if (i == 1) -vec3.z else vec3.z
+                        val d1 = if (i == 1) vec3.x else -vec3.x
+                        this.level().playSound(
+                            null as Player?,
+                            this.x + d0,
+                            this.y,
+                            this.z + d1,
+                            soundevent,
+                            this.soundSource,
+                            1.0f,
+                            0.8f + 0.4f * this.random.nextFloat()
+                        )
+                    }
+                }
+
+                val var10000 = this.paddlePositions
+                var10000[i] += (Math.PI.toFloat() / 8f)
+            } else {
+                this.paddlePositions[i] = 0.0f
+            }
+        }
+
+        this.checkInsideBlocks()
+        val list = this.level()
+            .getEntities(this, this.boundingBox.inflate(0.2, -0.01, 0.2), EntitySelector.pushableBy(this))
+        if (!list.isEmpty()) {
+            val flag = !this.level().isClientSide && this.getControllingPassenger() !is Player
+
+            for (j in list.indices) {
+                val entity = list[j] as Entity
+                if (!entity.hasPassenger(this)) {
+                    if (flag && this.passengers.size < this.maxPassengers && !entity.isPassenger && this.hasEnoughSpaceFor(
+                            entity
+                        ) && entity is LivingEntity && (entity !is WaterAnimal) && (entity !is Player)
+                    ) {
+                        entity.startRiding(this)
+                    } else {
+                        this.push(entity)
+                    }
+                }
+            }
+        }
     }
 
-    fun moveWithSailDown() {
-        if (isSailDown()) {
-            val sailSpeed = 0.03
+    fun setPaddleState(left: Boolean, right: Boolean) {
+        this.entityData.set(DATA_ID_PADDLE_LEFT, left)
+        this.entityData.set(DATA_ID_PADDLE_RIGHT, right)
+    }
 
-            setDeltaMovement(
-                deltaMovement.x + (-Mth.sin(yRot * Mth.DEG_TO_RAD) * sailSpeed),
-                deltaMovement.y,
-                deltaMovement.z + (Mth.cos(yRot * Mth.DEG_TO_RAD) * sailSpeed)
-            )
-        }
+    fun getRowingTime(side: Int, limbSwing: Float): Float {
+        return if (this.getPaddleState(side)) Mth.clampedLerp(
+            this.paddlePositions[side] - (Math.PI.toFloat() / 8f),
+            this.paddlePositions[side],
+            limbSwing
+        ) else 0.0f
+    }
+
+    protected open fun getSinglePassengerXOffset(): Float {
+        return 0.0f
     }
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         if (this.hasPassenger(passenger)) {
-            var f = 0.2f
+            var f = this.getSinglePassengerXOffset()
             val f1 =
                 ((if (this.isRemoved) 0.01 else this.passengersRidingOffset) + passenger.myRidingOffset).toFloat()
             if (this.passengers.size > 1) {
@@ -199,15 +239,6 @@ open class SailboatEntity(
                 passenger.setYHeadRot(passenger.getYHeadRot() + j.toFloat())
             }
         }
-    }
-
-    protected fun clampRotation(entityToUpdate: Entity) {
-        entityToUpdate.setYBodyRot(this.yRot)
-        val f = Mth.wrapDegrees(entityToUpdate.yRot - this.yRot)
-        val f1 = Mth.clamp(f, -105.0f, 105.0f)
-        entityToUpdate.yRotO += f1 - f
-        entityToUpdate.yRot = entityToUpdate.yRot + f1 - f
-        entityToUpdate.yHeadRot = entityToUpdate.yRot
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {
@@ -249,6 +280,19 @@ open class SailboatEntity(
         return super.getDismountLocationForPassenger(livingEntity)
     }
 
+    protected fun clampRotation(entityToUpdate: Entity) {
+        entityToUpdate.setYBodyRot(this.yRot)
+        val f = Mth.wrapDegrees(entityToUpdate.yRot - this.yRot)
+        val f1 = Mth.clamp(f, -105.0f, 105.0f)
+        entityToUpdate.yRotO += f1 - f
+        entityToUpdate.yRot = entityToUpdate.yRot + f1 - f
+        entityToUpdate.yHeadRot = entityToUpdate.yRot
+    }
+
+    override fun onPassengerTurned(entityToUpdate: Entity) {
+        this.clampRotation(entityToUpdate)
+    }
+
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
         return if (player.isSecondaryUseActive) {
             InteractionResult.PASS
@@ -263,17 +307,21 @@ open class SailboatEntity(
         }
     }
 
+    fun getPaddleState(side: Int): Boolean {
+        return this.entityData.get(if (side == 0) DATA_ID_PADDLE_LEFT else DATA_ID_PADDLE_RIGHT) as Boolean && this.getControllingPassenger() != null
+    }
+
     override val maxPassengers: Int
         get() = 2
 
     override fun getControllingPassenger(): LivingEntity? {
-        val passenger = this.firstPassenger
-        val passengerLivingEntity: LivingEntity? = passenger as? LivingEntity
+        val entity = this.firstPassenger
+        val livingentity1: LivingEntity? = entity as? LivingEntity
 
-        return passengerLivingEntity
+        return livingentity1
     }
 
-    private fun controlSailboat() {
+    private fun controlBoat() {
         if (this.isVehicle) {
             var f = 0.0f
             if (this.inputLeft) {
@@ -284,22 +332,27 @@ open class SailboatEntity(
                 ++this.deltaRotation
             }
 
-            this.yRot += this.deltaRotation
-
-            if (this.inputRight != this.inputLeft) {
+            if (this.inputRight != this.inputLeft && !this.inputUp && !this.inputDown) {
                 f += 0.005f
             }
 
-            if (inputJumping && !lastJumpInput) {
-                Services.PLATFORM.changeSailState(this)
+            this.yRot += this.deltaRotation
+            if (this.inputUp) {
+                f += 0.038f
             }
 
-            lastJumpInput = inputJumping
+            if (this.inputDown) {
+                f -= 0.005f
+            }
 
             this.deltaMovement = this.deltaMovement.add(
                 (Mth.sin(-this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble(),
                 0.0,
                 (Mth.cos(this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble()
+            )
+            this.setPaddleState(
+                this.inputRight && !this.inputLeft || this.inputUp,
+                this.inputLeft && !this.inputRight || this.inputUp
             )
         }
     }
@@ -307,21 +360,22 @@ open class SailboatEntity(
     fun setInput(
         inputLeft: Boolean,
         inputRight: Boolean,
-        inputJumping: Boolean,
+        inputUp: Boolean,
+        inputDown: Boolean,
     ) {
         this.inputLeft = inputLeft
         this.inputRight = inputRight
-        this.inputJumping = inputJumping
+        this.inputUp = inputUp
+        this.inputDown = inputDown
     }
 
     companion object {
         private val DATA_ID_TYPE: EntityDataAccessor<Int> =
-            SynchedEntityData.defineId(SailboatEntity::class.java, EntityDataSerializers.INT)
-        private val IS_SAIL_DOWN: EntityDataAccessor<Boolean> =
-            SynchedEntityData.defineId(SailboatEntity::class.java, EntityDataSerializers.BOOLEAN)
-
-        val SAIL_UP_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.sail_up")
-        val SAIL_DOWN_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.sail_down")
+            SynchedEntityData.defineId(CustomBoatEntity::class.java, EntityDataSerializers.INT)
+        private val DATA_ID_PADDLE_LEFT: EntityDataAccessor<Boolean> =
+            SynchedEntityData.defineId(CustomBoatEntity::class.java, EntityDataSerializers.BOOLEAN)
+        private val DATA_ID_PADDLE_RIGHT: EntityDataAccessor<Boolean> =
+            SynchedEntityData.defineId(CustomBoatEntity::class.java, EntityDataSerializers.BOOLEAN)
     }
 
     override fun setVariant(variant: Type) {
@@ -336,14 +390,6 @@ open class SailboatEntity(
         val planks: Block,
         private val key: String,
     ) : StringRepresentable {
-        OAK(Blocks.OAK_PLANKS, "oak"),
-        SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
-        BIRCH(Blocks.BIRCH_PLANKS, "birch"),
-        JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
-        ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
-        CHERRY(Blocks.CHERRY_PLANKS, "cherry"),
-        DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
-        MANGROVE(Blocks.MANGROVE_PLANKS, "mangrove"),
         CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
         WARPED(Blocks.WARPED_PLANKS, "warped");
 
@@ -356,7 +402,7 @@ open class SailboatEntity(
             private val BY_ID = ByIdMap.continuous({ it.ordinal }, entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)
 
             fun byId(id: Int) = BY_ID.apply(id)
-            fun byName(key: String) = CODEC.byName(key, OAK)
+            fun byName(key: String) = CODEC.byName(key, CRIMSON)
         }
     }
 }

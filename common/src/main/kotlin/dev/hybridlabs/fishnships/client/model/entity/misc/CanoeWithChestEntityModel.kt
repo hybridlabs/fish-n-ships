@@ -1,8 +1,8 @@
 package dev.hybridlabs.fishnships.client.model.entity.misc
 
 import dev.hybridlabs.fishnships.CommonClass
-import dev.hybridlabs.fishnships.entity.ship.CanoeEntity
-import dev.hybridlabs.fishnships.entity.ship.CanoeWithChestEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CanoeEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CanoeWithChestEntity
 import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation

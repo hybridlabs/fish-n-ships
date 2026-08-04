@@ -3,7 +3,7 @@ package dev.hybridlabs.fishnships.client.render.entity.misc
 import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import dev.hybridlabs.fishnships.client.model.entity.misc.RaftEntityModel
-import dev.hybridlabs.fishnships.entity.ship.RaftEntity
+import dev.hybridlabs.fishnships.entity.vehicle.RaftEntity
 import net.minecraft.client.renderer.LightTexture
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType

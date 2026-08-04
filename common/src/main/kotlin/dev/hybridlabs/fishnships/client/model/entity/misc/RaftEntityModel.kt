@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.client.model.entity.misc
 
 import dev.hybridlabs.fishnships.CommonClass
-import dev.hybridlabs.fishnships.entity.ship.RaftEntity
+import dev.hybridlabs.fishnships.entity.vehicle.RaftEntity
 import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation

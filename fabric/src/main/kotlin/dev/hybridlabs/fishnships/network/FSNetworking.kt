@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.network
 
-import dev.hybridlabs.fishnships.entity.ship.SailboatEntity
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity
+import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 import dev.hybridlabs.fishnships.packet.C2SPackets
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 

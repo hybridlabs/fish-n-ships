@@ -1,4 +1,4 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import net.minecraft.BlockUtil
 import net.minecraft.core.BlockPos

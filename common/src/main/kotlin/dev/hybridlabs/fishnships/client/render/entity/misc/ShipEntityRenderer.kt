@@ -4,7 +4,7 @@ import dev.hybridlabs.fishnships.client.model.entity.misc.ShipEntityModel
 import dev.hybridlabs.fishnships.client.render.entity.misc.layer.ShipFlagEntityLayer
 import dev.hybridlabs.fishnships.client.render.entity.misc.layer.ShipIcebreakerEntityLayer
 import dev.hybridlabs.fishnships.client.render.entity.misc.layer.ShipTrawlingNetEntityLayer
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import software.bernie.geckolib.renderer.GeoEntityRenderer
 

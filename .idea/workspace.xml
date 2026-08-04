@@ -4,66 +4,66 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Finished all variants in code, now just textures remaining">
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/acacia_canoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/acacia_canoe_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/acacia_canoe_with_double_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/cherry_canoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/cherry_canoe_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/cherry_canoe_with_double_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/crimson_canoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/crimson_canoe_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/crimson_canoe_with_double_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/dark_oak_canoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/dark_oak_canoe_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/dark_oak_canoe_with_double_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/jungle_canoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/jungle_canoe_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/jungle_canoe_with_double_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/mangrove_canoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/mangrove_canoe_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/mangrove_canoe_with_double_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/warped_canoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/warped_canoe_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/warped_canoe_with_double_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/acacia_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/acacia_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/birch_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/birch_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/cherry_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/cherry_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/crimson_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/crimson_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/dark_oak_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/dark_oak_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/jungle_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/jungle_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/mangrove_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/mangrove_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/warped_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/warped_supply_raft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/acacia_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/acacia_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/birch_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/birch_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/cherry_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/cherry_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/crimson_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/crimson_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/dark_oak_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/dark_oak_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/jungle_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/jungle_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/mangrove_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/mangrove_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/spruce_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/spruce_sailboat_with_chest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/warped_sailboat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/warped_sailboat_with_chest.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/oak_supply_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/oak_supply_raft.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/oak_sailboat.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/sailboat_with_chest.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/oak_sailboat_with_chest.png" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Replaced excess menu types with vanilla chest menus">
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CustomBoatEntityModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CustomChestBoatEntityModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CustomBoatEntityRenderer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CustomBoatWithChestEntityRenderer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomBoatEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CustomBoatItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CustomBoatWithChestItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/animations/entity/boat/boat.animation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/ServerGamePacketListenerImplMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/ServerGamePacketListenerImplMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/client/CameraMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/client/CameraMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/client/LocalPlayerMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/client/LocalPlayerMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/platform/services/PlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/platform/services/PlatformHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithDoubleChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithDoubleChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/RaftEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/RaftEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatWithChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatWithChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SupplyRaftEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SupplyRaftEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/FSEntityRenderers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/FSEntityRenderers.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CanoeEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CanoeEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CanoeWithChestEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CanoeWithChestEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CanoeWithDoubleChestEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/CanoeWithDoubleChestEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/RaftEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/RaftEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SailboatEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SailboatEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SailboatWithChestEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SailboatWithChestEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/ShipEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/ShipEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SupplyRaftEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SupplyRaftEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipFlagEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipFlagEntityLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipIcebreakerEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipIcebreakerEntityLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipTrawlingNetEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipTrawlingNetEntityLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/BaseBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/BaseBoatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/CanoeEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/CanoeWithChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/CanoeWithDoubleChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithDoubleChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/RaftEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/RaftEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SailboatWithChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatWithChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipCabinPart.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipCabinPart.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/ship/SupplyRaftEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SupplyRaftEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CanoeItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CanoeItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CanoeWithChestItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CanoeWithChestItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CanoeWithDoubleChestItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/CanoeWithDoubleChestItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItems.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItems.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/RaftItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/RaftItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/SailboatItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/SailboatItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/SailboatWithChestItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/SailboatWithChestItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/ShipItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/ShipItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/SupplyRaftItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/SupplyRaftItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FSNetworking.kt" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FSNetworking.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,54 +190,54 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Datagen.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Fabric Client (:fabric).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Fabric Server (:fabric).executor&quot;: &quot;Run&quot;,
-    &quot;Application.forge - Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.forge - Data.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build fish-n-ships.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build hybrid-birds.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.fish-n-ships [:forge:runClient].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships [:forge:runData].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds [build].executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.hybrid-birds [runDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:neoforge [build].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/animations/entity/sailboat&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Datagen.executor": "Run",
+    "Application.Fabric Client (:fabric).executor": "Run",
+    "Application.Fabric Server (:fabric).executor": "Run",
+    "Application.forge - Client.executor": "Run",
+    "Application.forge - Data.executor": "Run",
+    "Gradle.Build fish-n-ships.executor": "Run",
+    "Gradle.Build hybrid-birds.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.fish-n-ships [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Debug",
+    "Gradle.fish-n-ships [:forge:runClient].executor": "Run",
+    "Gradle.fish-n-ships [:forge:runData].executor": "Run",
+    "Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.fish-n-ships:fabric [build].executor": "Run",
+    "Gradle.fish-n-ships:forge [copyDatagen].executor": "Run",
+    "Gradle.hybrid-birds [build].executor": "Debug",
+    "Gradle.hybrid-birds [runDatagen].executor": "Run",
+    "Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:fabric [build].executor": "Run",
+    "Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:forge [build].executor": "Run",
+    "Gradle.hybrid-birds:forge [copyDatagen].executor": "Run",
+    "Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:neoforge [build].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/animations/entity/boat",
+    "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\boat" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\sailboat" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\textures\gui" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client\render\entity" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client\model\entity" />
-      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\geo\entity\canoe" />
@@ -252,9 +252,9 @@
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="dev.hybridlabs.fishnships.item" />
       <recent name="dev.hybridlabs.fishnships.client.model.entity.misc" />
-      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
       <recent name="dev.hybridlabs.fishnships.client.render.entity.misc" />
-      <recent name="dev.hybridlabs.fishnships.world.inventory" />
+      <recent name="dev.hybridlabs.fishnships.entity.ship" />
+      <recent name="dev.hybridlabs.fishnships.client.render.entity.misc.layer" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="dev.hybridlabs.fishnships.entity.ship" />
@@ -496,70 +496,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00162" summary="Fixed turkey speed">
-      <option name="closed" value="true" />
-      <created>1782649647310</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1782649647310</updated>
-    </task>
-    <task id="LOCAL-00163" summary="Added subtitles">
-      <option name="closed" value="true" />
-      <created>1782652350067</created>
-      <option name="number" value="00163" />
-      <option name="presentableId" value="LOCAL-00163" />
-      <option name="project" value="LOCAL" />
-      <updated>1782652350067</updated>
-    </task>
-    <task id="LOCAL-00164" summary="Fix turkey speed">
-      <option name="closed" value="true" />
-      <created>1782652783773</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1782652783773</updated>
-    </task>
-    <task id="LOCAL-00165" summary="Parity">
-      <option name="closed" value="true" />
-      <created>1782652805109</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1782652805109</updated>
-    </task>
-    <task id="LOCAL-00166" summary="Parity">
-      <option name="closed" value="true" />
-      <created>1782652818055</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1782652818055</updated>
-    </task>
-    <task id="LOCAL-00167" summary="Datagen">
-      <option name="closed" value="true" />
-      <created>1782653782074</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1782653782074</updated>
-    </task>
-    <task id="LOCAL-00168" summary="Itemgroups">
-      <option name="closed" value="true" />
-      <created>1782653815623</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1782653815623</updated>
-    </task>
-    <task id="LOCAL-00169" summary="Trying to get the eggs working">
-      <option name="closed" value="true" />
-      <created>1782655944029</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1782655944029</updated>
     </task>
     <task id="LOCAL-00170" summary="Mixins not loading on neoforge">
       <option name="closed" value="true" />
@@ -889,7 +825,71 @@
       <option name="project" value="LOCAL" />
       <updated>1785724480202</updated>
     </task>
-    <option name="localTasksCounter" value="211" />
+    <task id="LOCAL-00211" summary="Removed log spam">
+      <option name="closed" value="true" />
+      <created>1785755627195</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1785755627195</updated>
+    </task>
+    <task id="LOCAL-00212" summary="Finished adding all variants">
+      <option name="closed" value="true" />
+      <created>1785755649421</created>
+      <option name="number" value="00212" />
+      <option name="presentableId" value="LOCAL-00212" />
+      <option name="project" value="LOCAL" />
+      <updated>1785755649421</updated>
+    </task>
+    <task id="LOCAL-00213" summary="Finished adding all variants">
+      <option name="closed" value="true" />
+      <created>1785755992456</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1785755992456</updated>
+    </task>
+    <task id="LOCAL-00214" summary="Fixed imports and typo">
+      <option name="closed" value="true" />
+      <created>1785756065713</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1785756065713</updated>
+    </task>
+    <task id="LOCAL-00215" summary="Fixed pickItem and fixed Sailboat passenger positioning">
+      <option name="closed" value="true" />
+      <created>1785822084651</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1785822084652</updated>
+    </task>
+    <task id="LOCAL-00216" summary="Optimized waterpatch renderers">
+      <option name="closed" value="true" />
+      <created>1785824332868</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1785824332868</updated>
+    </task>
+    <task id="LOCAL-00217" summary="Replaced excess menu types with vanilla chest menus">
+      <option name="closed" value="true" />
+      <created>1785824373532</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1785824373532</updated>
+    </task>
+    <task id="LOCAL-00218" summary="Replaced excess menu types with vanilla chest menus">
+      <option name="closed" value="true" />
+      <created>1785824455365</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1785824455365</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -905,12 +905,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Asset" />
-    <MESSAGE value="Asset work" />
-    <MESSAGE value="Added trawling net assets" />
-    <MESSAGE value="Menu screen stuff" />
-    <MESSAGE value="Trying to do multipart" />
-    <MESSAGE value="Updated GUI texture and did some other stuff" />
     <MESSAGE value="Rafts, mostly working, still needing tweaks" />
     <MESSAGE value="An actually massive amount of progress" />
     <MESSAGE value="Removed useless imports" />
@@ -930,7 +924,13 @@
     <MESSAGE value="Missing lang entries" />
     <MESSAGE value="Started working on boat variants and created BaseBoatEntity" />
     <MESSAGE value="Finished all variants in code, now just textures remaining" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished all variants in code, now just textures remaining" />
+    <MESSAGE value="Removed log spam" />
+    <MESSAGE value="Finished adding all variants" />
+    <MESSAGE value="Fixed imports and typo" />
+    <MESSAGE value="Fixed pickItem and fixed Sailboat passenger positioning" />
+    <MESSAGE value="Optimized waterpatch renderers" />
+    <MESSAGE value="Replaced excess menu types with vanilla chest menus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Replaced excess menu types with vanilla chest menus" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

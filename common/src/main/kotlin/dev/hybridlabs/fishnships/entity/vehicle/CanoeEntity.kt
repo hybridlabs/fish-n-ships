@@ -1,4 +1,4 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
@@ -22,7 +22,6 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block

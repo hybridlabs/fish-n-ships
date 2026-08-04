@@ -1,8 +1,7 @@
 package dev.hybridlabs.fishnships.platform.services;
 
 import dev.hybridlabs.fishnships.CommonClass;
-import dev.hybridlabs.fishnships.Constants;
-import dev.hybridlabs.fishnships.entity.ship.SailboatEntity;
+import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
 import dev.hybridlabs.fishnships.packet.C2SPackets;
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
 import dev.hybridlabs.fishnships.utils.FSSpawnGroup;

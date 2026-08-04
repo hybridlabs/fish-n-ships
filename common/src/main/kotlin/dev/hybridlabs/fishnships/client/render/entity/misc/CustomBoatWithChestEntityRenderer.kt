@@ -1,14 +1,14 @@
 package dev.hybridlabs.fishnships.client.render.entity.misc
 
-import dev.hybridlabs.fishnships.client.model.entity.misc.SailboatWithChestEntityModel
+import dev.hybridlabs.fishnships.client.model.entity.misc.CustomChestBoatEntityModel
 import dev.hybridlabs.fishnships.client.render.entity.misc.layer.WaterPatchEntityLayer
-import dev.hybridlabs.fishnships.entity.vehicle.SailboatWithChestEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CustomChestBoatEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import software.bernie.geckolib.renderer.GeoEntityRenderer
 
-class SailboatWithChestEntityRenderer<T : SailboatWithChestEntity>(
+class CustomBoatWithChestEntityRenderer<T : CustomChestBoatEntity>(
     context: EntityRendererProvider.Context,
-) : GeoEntityRenderer<T>(context, SailboatWithChestEntityModel()) {
+) : GeoEntityRenderer<T>(context, CustomChestBoatEntityModel()) {
 
     init {
         addRenderLayer(WaterPatchEntityLayer(this))

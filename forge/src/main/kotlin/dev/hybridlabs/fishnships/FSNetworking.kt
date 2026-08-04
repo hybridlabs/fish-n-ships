@@ -1,6 +1,6 @@
 package dev.hybridlabs.fishnships
 
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.network.protocol.game.ServerPacketListener
 import net.minecraftforge.network.NetworkEvent

@@ -2,7 +2,7 @@ package dev.hybridlabs.fishnships.client.render.entity.misc
 
 import dev.hybridlabs.fishnships.client.model.entity.misc.CanoeEntityModel
 import dev.hybridlabs.fishnships.client.render.entity.misc.layer.WaterPatchEntityLayer
-import dev.hybridlabs.fishnships.entity.ship.CanoeEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CanoeEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import software.bernie.geckolib.renderer.GeoEntityRenderer
 

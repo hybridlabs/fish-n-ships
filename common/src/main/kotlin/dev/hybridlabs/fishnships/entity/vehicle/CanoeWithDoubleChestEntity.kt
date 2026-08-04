@@ -1,89 +1,94 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.fishnships.world.inventory.SupplyRaftMenu
 import net.minecraft.core.NonNullList
-import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
-import net.minecraft.world.InteractionHand
-import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.*
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.EntityType
+import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
+import net.minecraft.world.inventory.ChestMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
+import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 
-open class SupplyRaftEntity(
-    type: EntityType<out SupplyRaftEntity>,
-    world: Level,
-) :
-    RaftEntity(type, world), HasCustomInventoryScreen, ContainerEntity,
+open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDoubleChestEntity>, level: Level) :
+    CanoeEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
-    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
-    private var raftLootTable: ResourceLocation? = null
-    private var raftLootTableSeed: Long = 0
+    private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(54, ItemStack.EMPTY)
+    private var canoeLootTable: ResourceLocation? = null
+    private var canoeLootTableSeed: Long = 0
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-        if (!isAlive) {
-            return InteractionResult.PASS
+    override val maxPassengers: Int
+        get() = 1
+
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        if (!hasPassenger(passenger)) {
+            return
         }
 
-        if (getLeashHolder() === player) {
-            dropLeash(true, !player.abilities.instabuild)
-            gameEvent(GameEvent.ENTITY_INTERACT, player)
-            return InteractionResult.sidedSuccess(level().isClientSide)
-        }
+        val yOffset =
+            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
 
-        val result = checkAndHandleImportantInteractions(player, hand)
-        if (result.consumesAction()) {
-            gameEvent(GameEvent.ENTITY_INTERACT, player)
-            return result
-        }
+        val offset = Vec3(0.5, 0.0, 0.0)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
 
-        if (player.isSecondaryUseActive) {
-            val containerResult = interactWithContainerVehicle(player)
-            if (containerResult.consumesAction()) {
-                gameEvent(GameEvent.CONTAINER_OPEN, player)
-            }
-            return containerResult
-        }
+        callback.accept(
+            passenger,
+            x + offset.x,
+            y + yOffset,
+            z + offset.z
+        )
 
-        return InteractionResult.PASS
+        passenger.yRot += deltaRotation
+        passenger.yHeadRot += deltaRotation
+        clampRotation(passenger)
     }
 
-    private fun checkAndHandleImportantInteractions(player: Player, hand: InteractionHand): InteractionResult {
-        val itemstack = player.getItemInHand(hand)
-        if (itemstack.`is`(Items.LEAD) && this.canBeLeashed(player)) {
-            this.setLeashedTo(player, true)
-            itemstack.shrink(1)
-            return InteractionResult.sidedSuccess(this.level().isClientSide)
+    //#region Container
+    private val dataAccess = object : ContainerData {
+        override fun get(index: Int): Int {
+            return 0
         }
-        return InteractionResult.PASS
+
+        override fun set(index: Int, value: Int) {
+        }
+
+        override fun getCount(): Int {
+            return 2
+        }
     }
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
+    override fun getCanoeItem(): Item {
+        val item: Item
+        when (this.variant.ordinal) {
+            1 -> item = FSItems.SPRUCE_CANOE_WITH_DOUBLE_CHEST.get()
+            2 -> item = FSItems.BIRCH_CANOE_WITH_DOUBLE_CHEST.get()
+            3 -> item = FSItems.JUNGLE_CANOE_WITH_DOUBLE_CHEST.get()
+            4 -> item = FSItems.ACACIA_CANOE_WITH_DOUBLE_CHEST.get()
+            5 -> item = FSItems.CHERRY_CANOE_WITH_DOUBLE_CHEST.get()
+            6 -> item = FSItems.DARK_OAK_CANOE_WITH_DOUBLE_CHEST.get()
+            7 -> item = FSItems.MANGROVE_CANOE_WITH_DOUBLE_CHEST.get()
+            8 -> item = FSItems.CRIMSON_CANOE_WITH_DOUBLE_CHEST.get()
+            9 -> item = FSItems.WARPED_CANOE_WITH_DOUBLE_CHEST.get()
+            else -> item = FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get()
+        }
+
+        return item
     }
 
-    override fun addAdditionalSaveData(tag: CompoundTag) {
-        super.addAdditionalSaveData(tag)
-        this.addChestVehicleSaveData(tag)
-    }
-
-    override fun readAdditionalSaveData(tag: CompoundTag) {
-        super.readAdditionalSaveData(tag)
-        setDamage(tag.getFloat("Damage"))
-        this.readChestVehicleSaveData(tag)
+    override fun getPickResult(): ItemStack? {
+        return ItemStack(this.getCanoeItem())
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -113,56 +118,8 @@ open class SupplyRaftEntity(
         }
     }
 
-    override fun isPickable(): Boolean {
-        return !this.isRemoved
-    }
-
-    override fun canAddPassenger(passenger: Entity): Boolean {
-        return false
-    }
-
-    override val maxPassengers: Int
-        get() = 0
-
-    override fun getRaftItem(): Item {
-        val item: Item
-        when (this.variant.ordinal) {
-            1 -> item = FSItems.SPRUCE_SUPPLY_RAFT.get()
-            2 -> item = FSItems.BIRCH_SUPPLY_RAFT.get()
-            3 -> item = FSItems.JUNGLE_SUPPLY_RAFT.get()
-            4 -> item = FSItems.ACACIA_SUPPLY_RAFT.get()
-            5 -> item = FSItems.CHERRY_SUPPLY_RAFT.get()
-            6 -> item = FSItems.DARK_OAK_SUPPLY_RAFT.get()
-            7 -> item = FSItems.MANGROVE_SUPPLY_RAFT.get()
-            8 -> item = FSItems.CRIMSON_SUPPLY_RAFT.get()
-            9 -> item = FSItems.WARPED_SUPPLY_RAFT.get()
-            else -> item = FSItems.OAK_SUPPLY_RAFT.get()
-        }
-
-        return item
-    }
-
-    override fun getPickResult(): ItemStack? {
-        return ItemStack(this.getRaftItem())
-    }
-
-    //#region Container
-
-    private val dataAccess = object : ContainerData {
-        override fun get(index: Int): Int {
-            return 0
-        }
-
-        override fun set(index: Int, value: Int) {
-        }
-
-        override fun getCount(): Int {
-            return 2
-        }
-    }
-
     override fun destroy(damageSource: DamageSource) {
-        val stack = getRaftItem()
+        val stack = getCanoeItem()
         this.spawnAtLocation(stack)
         this.chestVehicleDestroyed(damageSource, this.level(), this)
     }
@@ -185,19 +142,19 @@ open class SupplyRaftEntity(
     }
 
     override fun getLootTable(): ResourceLocation? {
-        return raftLootTable
+        return canoeLootTable
     }
 
     override fun setLootTable(id: ResourceLocation?) {
-        raftLootTable = id
+        canoeLootTable = id
     }
 
     override fun getLootTableSeed(): Long {
-        return raftLootTableSeed
+        return canoeLootTableSeed
     }
 
     override fun setLootTableSeed(seed: Long) {
-        raftLootTableSeed = seed
+        canoeLootTableSeed = seed
     }
 
     override fun getItemStacks(): NonNullList<ItemStack> {
@@ -209,7 +166,7 @@ open class SupplyRaftEntity(
     }
 
     override fun getContainerSize(): Int {
-        return 66
+        return 54
     }
 
     override fun getItem(slot: Int): ItemStack {
@@ -247,7 +204,7 @@ open class SupplyRaftEntity(
             return null
         } else {
             this.unpackLootTable(playerInventory.player)
-            return SupplyRaftMenu.sixRows(containerId, playerInventory, this)
+            return ChestMenu.sixRows(containerId, playerInventory, this)
         }
     }
 

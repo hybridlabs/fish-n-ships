@@ -2,7 +2,7 @@ package dev.hybridlabs.fishnships.client.render.entity.misc
 
 import dev.hybridlabs.fishnships.client.model.entity.misc.SailboatEntityModel
 import dev.hybridlabs.fishnships.client.render.entity.misc.layer.WaterPatchEntityLayer
-import dev.hybridlabs.fishnships.entity.ship.SailboatEntity
+import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
 import software.bernie.geckolib.renderer.GeoEntityRenderer
 

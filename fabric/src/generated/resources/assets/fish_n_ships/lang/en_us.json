@@ -1,4 +1,6 @@
 {
+  "entity.fish_n_ships.boat": "Boat",
+  "entity.fish_n_ships.boat_with_chest": "Boat With Chest",
   "entity.fish_n_ships.canoe": "Canoe",
   "entity.fish_n_ships.canoe_with_chest": "Canoe With Chest",
   "entity.fish_n_ships.canoe_with_double_chest": "Canoe With Double Chest",
@@ -21,6 +23,8 @@
   "item.fish_n_ships.birch_sailboat": "Birch Sailboat",
   "item.fish_n_ships.birch_sailboat_with_chest": "Birch Sailboat With Chest",
   "item.fish_n_ships.birch_supply_raft": "Birch Supply Raft",
+  "item.fish_n_ships.boat_spawn_egg": "Boat Spawn Egg",
+  "item.fish_n_ships.boat_with_chest_spawn_egg": "Boat With Chest Spawn Egg",
   "item.fish_n_ships.canoe_spawn_egg": "Canoe Spawn Egg",
   "item.fish_n_ships.canoe_with_chest_spawn_egg": "Canoe With Chest Spawn Egg",
   "item.fish_n_ships.canoe_with_double_chest_spawn_egg": "Canoe With Double Chest Spawn Egg",

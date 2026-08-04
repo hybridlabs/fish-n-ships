@@ -1,6 +1,6 @@
 package dev.hybridlabs.fishnships.platform.services;
 
-import dev.hybridlabs.fishnships.entity.ship.SailboatEntity;
+import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;

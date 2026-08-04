@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack
 import com.mojang.blaze3d.vertex.VertexConsumer
 import dev.hybridlabs.fishnships.client.render.entity.misc.ShipEntityRenderer
 import dev.hybridlabs.fishnships.client.model.entity.misc.ShipEntityModel
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.texture.OverlayTexture

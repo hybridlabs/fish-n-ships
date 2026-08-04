@@ -1,4 +1,4 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator

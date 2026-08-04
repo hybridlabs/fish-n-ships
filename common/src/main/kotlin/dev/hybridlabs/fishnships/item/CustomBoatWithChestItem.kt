@@ -1,8 +1,7 @@
 package dev.hybridlabs.fishnships.item
 
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
-import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity
-import dev.hybridlabs.fishnships.entity.vehicle.SailboatWithChestEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CustomBoatEntity
 import net.minecraft.stats.Stats
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
@@ -16,8 +15,8 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.HitResult
 
-class SailboatWithChestItem(
-    private val variant: SailboatEntity.Type,
+class CustomBoatWithChestItem(
+    private val variant: CustomBoatEntity.Type,
     properties: Properties
 ) : Item(properties) {
 
@@ -45,15 +44,15 @@ class SailboatWithChestItem(
             }
 
             if (hitresult.type == HitResult.Type.BLOCK) {
-                val sailboat = getSailboat(level, hitresult)
-                sailboat.variant = variant
-                sailboat.yRot = player.yRot
+                val boat = getCustomBoat(level, hitresult)
+                boat.variant = variant
+                boat.yRot = player.yRot
 
-                if (!level.noCollision(sailboat, sailboat.boundingBox)) {
+                if (!level.noCollision(boat, boat.boundingBox)) {
                     return InteractionResultHolder.fail(itemstack)
                 } else {
                     if (!level.isClientSide) {
-                        level.addFreshEntity(sailboat)
+                        level.addFreshEntity(boat)
                         level.gameEvent(player, GameEvent.ENTITY_PLACE, hitresult.location)
                         if (!player.abilities.instabuild) {
                             itemstack.shrink(1)
@@ -69,17 +68,17 @@ class SailboatWithChestItem(
         }
     }
 
-    private fun getSailboat(level: Level, hitResult: HitResult): SailboatWithChestEntity {
-        val sailboat = FSEntityTypes.SAILBOAT_WITH_CHEST.get().create(level)
-            ?: throw IllegalStateException("Failed to create sailboat")
+    private fun getCustomBoat(level: Level, hitResult: HitResult): CustomBoatEntity {
+        val boat = FSEntityTypes.CUSTOM_CHEST_BOAT.get().create(level)
+            ?: throw IllegalStateException("Failed to create canoe")
 
-        sailboat.setPos(
+        boat.setPos(
             hitResult.location.x,
             hitResult.location.y,
             hitResult.location.z
         )
 
-        return sailboat
+        return boat
     }
 
     companion object {

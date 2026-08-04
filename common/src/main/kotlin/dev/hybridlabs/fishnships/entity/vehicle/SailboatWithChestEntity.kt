@@ -1,4 +1,4 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList

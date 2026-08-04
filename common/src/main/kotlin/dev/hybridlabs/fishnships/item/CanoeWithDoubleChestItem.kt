@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.item
 
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
-import dev.hybridlabs.fishnships.entity.ship.CanoeEntity
+import dev.hybridlabs.fishnships.entity.vehicle.CanoeEntity
 import net.minecraft.stats.Stats
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder

@@ -1,6 +1,6 @@
 package dev.hybridlabs.fishnships.mixin;
 
-import dev.hybridlabs.fishnships.entity.ship.ShipEntity;
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity;
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;

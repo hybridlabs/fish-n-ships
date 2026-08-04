@@ -1,4 +1,4 @@
-package dev.hybridlabs.fishnships.entity.ship
+package dev.hybridlabs.fishnships.entity.vehicle
 
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
