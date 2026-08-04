@@ -1,7 +1,6 @@
 package dev.hybridlabs.fishnships.entity.ship
 
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.fishnships.world.inventory.CanoeWithDoubleChestMenu
 import net.minecraft.core.NonNullList
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
@@ -13,6 +12,7 @@ import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
+import net.minecraft.world.inventory.ChestMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
@@ -204,7 +204,7 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
             return null
         } else {
             this.unpackLootTable(playerInventory.player)
-            return CanoeWithDoubleChestMenu.sixRows(containerId, playerInventory, this)
+            return ChestMenu.sixRows(containerId, playerInventory, this)
         }
     }
 

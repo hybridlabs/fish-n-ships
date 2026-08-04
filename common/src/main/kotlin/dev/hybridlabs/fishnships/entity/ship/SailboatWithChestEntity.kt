@@ -1,20 +1,18 @@
 package dev.hybridlabs.fishnships.entity.ship
 
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.fishnships.world.inventory.SailboatWithChestMenu
-import dev.hybridlabs.fishnships.world.inventory.SupplyRaftMenu
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
+import net.minecraft.world.inventory.ChestMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
@@ -23,7 +21,8 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import software.bernie.geckolib.animatable.GeoEntity
 
-open class SailboatWithChestEntity(entityType: EntityType<out SailboatWithChestEntity?>, level: Level
+open class SailboatWithChestEntity(
+    entityType: EntityType<out SailboatWithChestEntity?>, level: Level,
 ) :
     SailboatEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
@@ -199,7 +198,7 @@ open class SailboatWithChestEntity(entityType: EntityType<out SailboatWithChestE
             return null
         } else {
             this.unpackLootTable(playerInventory.player)
-            return SailboatWithChestMenu.threeRows(containerId, playerInventory, this)
+            return ChestMenu.threeRows(containerId, playerInventory, this)
         }
     }
 
