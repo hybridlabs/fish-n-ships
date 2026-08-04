@@ -7,12 +7,12 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_warped_stem": {
+    "has_warped_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:warped_stem"
+              "minecraft:warped_planks"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_warped_stem",
+      "has_warped_planks",
       "has_the_recipe"
     ]
   ],

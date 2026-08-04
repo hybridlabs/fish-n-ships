@@ -34,13 +34,13 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     
     //#region Boat Maps
     private val boatTypeMap = mapOf(
-        Blocks.CRIMSON_STEM to FSItems.CRIMSON_BOAT,
-        Blocks.WARPED_STEM to FSItems.WARPED_BOAT,
+        Blocks.CRIMSON_PLANKS to FSItems.CRIMSON_BOAT,
+        Blocks.WARPED_PLANKS to FSItems.WARPED_BOAT,
     )
     
     private val chestBoatTypeMap = mapOf(
-        Blocks.CRIMSON_STEM to FSItems.CRIMSON_BOAT_WITH_CHEST,
-        Blocks.WARPED_STEM to FSItems.WARPED_BOAT_WITH_CHEST,
+        Blocks.CRIMSON_PLANKS to FSItems.CRIMSON_BOAT_WITH_CHEST,
+        Blocks.WARPED_PLANKS to FSItems.WARPED_BOAT_WITH_CHEST,
     )
 
     private fun offerBoatRecipes(
