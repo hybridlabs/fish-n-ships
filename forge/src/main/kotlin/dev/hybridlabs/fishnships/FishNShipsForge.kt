@@ -7,6 +7,7 @@ import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.entity.ForgeSpawnGroupRegistry
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.fishnships.network.FSNetworking
 import dev.hybridlabs.fishnships.sound.FSSoundEvents
 import dev.hybridlabs.fishnships.tag.FSBiomeTags
 import dev.hybridlabs.fishnships.tag.FSItemTags

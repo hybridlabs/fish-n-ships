@@ -1,32 +1,16 @@
 package dev.hybridlabs.fishnships.platform;
 
-import dev.hybridlabs.fishnships.CommonClass;
 import dev.hybridlabs.fishnships.Constants;
-import dev.hybridlabs.fishnships.FSNetworking;
+import dev.hybridlabs.fishnships.network.FSNetworking;
 import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
-import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
 import dev.hybridlabs.fishnships.platform.services.PlatformHelper;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.javafmlmod.FMLModContainer;
 import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.fml.loading.FMLPaths;
-import org.jetbrains.annotations.NotNull;
 import thedarkcolour.kotlinforforge.KotlinModContainer;
-
-import java.nio.file.Path;
-import java.util.concurrent.Callable;
-import java.util.function.Supplier;
 
 public class ForgePlatformHelper implements PlatformHelper {
 
@@ -60,42 +44,6 @@ public class ForgePlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public <T extends Mob> Supplier<SpawnEggItem> registerSpawnEggItem(@NotNull String name,
-                                                                       Supplier<EntityType<T>> entityType,
-                                                                       int backgroundColor, int highlightColor) {
-        return CommonClass.ITEMS.register(name, () -> new ForgeSpawnEggItem(entityType, backgroundColor,
-                highlightColor, new Item.Properties()));
-    }
-
-    @Override
-    public Path getConfigDir() {
-        return FMLPaths.CONFIGDIR.get();
-    }
-
-    @Override
-    public <T extends Mob> void registerSpawnPlacement(RegistryObject<EntityType<T>> entityType,
-                                                       SpawnPlacements.Type decoratorType,
-                                                       Heightmap.Types heightMapType,
-                                                       SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
-
-        var handler = new SpawnPlacementRegistrationHandler<T>(entityType, decoratorType, heightMapType,
-                decoratorPredicate);
-        ForgePlatformHelper.getEventBus().addListener(handler::handleEvent);
-    }
-
-    @Override
-    public <T extends LivingEntity> void registerAttributes(@NotNull String id, EntityType<T> entityType,
-                                                            Callable<AttributeSupplier.Builder> attributeContainer) {
-        var handler = new AttributeRegistrationHandler(id, entityType, attributeContainer);
-        ForgePlatformHelper.getEventBus().addListener(handler::handleEvent);
-    }
-
-    @Override
-    public MobCategory getHybridMobCategoryByName(String name) {
-        return MobCategory.valueOf(name);
-    }
-
-    @Override
     public void sendTrawlingToServer(boolean enabled) {
         FSNetworking.INSTANCE.sendTrawlingPacket(enabled);
     }
@@ -106,33 +54,7 @@ public class ForgePlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public void changeSailState(SailboatEntity sailBoat) {}
-
-    @Override
-    public BlockBehaviour.Properties getBlockSettings() {
-        return BlockBehaviour.Properties.of();
-    }
-
-    private record SpawnPlacementRegistrationHandler<T extends LivingEntity>(RegistryObject<EntityType<T>> type,
-                                                                             SpawnPlacements.Type decoratorType,
-                                                                             Heightmap.Types heightMapType,
-                                                                             SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
-
-        private void handleEvent(SpawnPlacementRegisterEvent event) {
-            event.register(type.get(), decoratorType, heightMapType, decoratorPredicate,
-                    SpawnPlacementRegisterEvent.Operation.REPLACE);
-        }
-    }
-
-    private record AttributeRegistrationHandler(String id, EntityType<? extends LivingEntity> type,
-                                                Callable<AttributeSupplier.Builder> supplier) {
-
-        private void handleEvent(EntityAttributeCreationEvent event) {
-            try {
-                event.put(type, supplier.call().build());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
+    public void changeSailState(SailboatEntity sailBoat) {
+        FSNetworking.INSTANCE.sendSailingPacket(sailBoat.isSailDown());
     }
 }

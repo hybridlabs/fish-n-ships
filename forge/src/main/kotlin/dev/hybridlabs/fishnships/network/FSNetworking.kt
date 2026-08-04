@@ -1,5 +1,7 @@
-package dev.hybridlabs.fishnships
+package dev.hybridlabs.fishnships.network
 
+import dev.hybridlabs.fishnships.CommonClass
+import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity
 import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.network.protocol.game.ServerPacketListener
@@ -31,10 +33,20 @@ object FSNetworking {
             { obj: MovingPacket?, buffer: FriendlyByteBuf? -> obj!!.encoder(buffer!!) },
             { buffer: FriendlyByteBuf? -> MovingPacket(buffer!!) },
             { obj: MovingPacket?, ctx: Supplier<NetworkEvent.Context?>? -> obj!!.handle(ctx!!) })
+        CHANNEL.registerMessage(
+            messageId++,
+            SailingPacket::class.java,
+            { obj: SailingPacket?, buffer: FriendlyByteBuf? -> obj!!.encoder(buffer!!) },
+            { buffer: FriendlyByteBuf? -> SailingPacket(buffer!!) },
+            { obj: SailingPacket?, ctx: Supplier<NetworkEvent.Context?>? -> obj!!.handle(ctx!!) })
     }
 
     fun sendTrawlingPacket(trawling: Boolean) {
         CHANNEL.sendToServer(TrawlingPacket(trawling))
+    }
+
+    fun sendSailingPacket(sailing: Boolean) {
+        CHANNEL.sendToServer(SailingPacket(sailing))
     }
 
     fun sendMovingPacket(trawling: Boolean) {
@@ -48,6 +60,11 @@ object FSNetworking {
 
     fun handle(msg: TrawlingPacket, ctx: Supplier<NetworkEvent.Context?>) {
         ctx.get()!!.enqueueWork { handleTrawlingPacket(msg, ctx) }
+        ctx.get()!!.packetHandled = true
+    }
+
+    fun handle(msg: SailingPacket, ctx: Supplier<NetworkEvent.Context?>) {
+        ctx.get()!!.enqueueWork { handleSailingPacket(msg, ctx) }
         ctx.get()!!.packetHandled = true
     }
 
@@ -77,6 +94,19 @@ object FSNetworking {
         }
     }
 
+    fun handleSailingPacket(packet: SailingPacket, ctx: Supplier<NetworkEvent.Context?>) {
+        val listener = ctx.get()!!.networkManager.packetListener
+        if (listener is ServerPacketListener) {
+            ctx.get()!!.enqueueWork {
+                val sender = ctx.get()!!.sender
+                val vehicle = sender!!.controlledVehicle
+                if (vehicle != null && vehicle is SailboatEntity) {
+                    vehicle.setSailDown(packet.sailing)
+                }
+            }
+        }
+    }
+
     class TrawlingPacket {
         var trawling: Boolean = false
 
@@ -90,6 +120,27 @@ object FSNetworking {
 
         fun encoder(buffer: FriendlyByteBuf) {
             buffer.writeBoolean(trawling)
+        }
+
+        fun handle(ctx: Supplier<NetworkEvent.Context?>) {
+            ctx.get()!!.enqueueWork { handle(this, ctx) }
+            ctx.get()!!.packetHandled = true
+        }
+    }
+
+    class SailingPacket {
+        var sailing: Boolean = false
+
+        constructor(sailing: Boolean) {
+            this.sailing = sailing
+        }
+
+        constructor(buffer: FriendlyByteBuf) {
+            this.sailing = buffer.readBoolean()
+        }
+
+        fun encoder(buffer: FriendlyByteBuf) {
+            buffer.writeBoolean(sailing)
         }
 
         fun handle(ctx: Supplier<NetworkEvent.Context?>) {
