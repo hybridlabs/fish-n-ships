@@ -609,18 +609,8 @@ abstract class BaseBoatEntity(
             SynchedEntityData.defineId(BaseBoatEntity::class.java, EntityDataSerializers.INT)
         private val DATA_ID_DAMAGE: EntityDataAccessor<Float> =
             SynchedEntityData.defineId(BaseBoatEntity::class.java, EntityDataSerializers.FLOAT)
-        private val DATA_ID_PADDLE_LEFT: EntityDataAccessor<Boolean> =
-            SynchedEntityData.defineId(BaseBoatEntity::class.java, EntityDataSerializers.BOOLEAN)
-        private val DATA_ID_PADDLE_RIGHT: EntityDataAccessor<Boolean> =
-            SynchedEntityData.defineId(BaseBoatEntity::class.java, EntityDataSerializers.BOOLEAN)
         private val DATA_ID_BUBBLE_TIME: EntityDataAccessor<Int> =
             SynchedEntityData.defineId(BaseBoatEntity::class.java, EntityDataSerializers.INT)
-        const val PADDLE_LEFT: Int = 0
-        const val PADDLE_RIGHT: Int = 1
-        private const val TIME_TO_EJECT = 60
-        private const val PADDLE_SPEED = (Math.PI.toFloat() / 8f)
-        const val PADDLE_SOUND_TIME: Double = (Math.PI.toFloat() / 4f).toDouble()
-        const val BUBBLE_TIME: Int = 60
 
         fun canVehicleCollide(vehicle: Entity, entity: Entity): Boolean {
             return (entity.canBeCollidedWith() || entity.isPushable) && !vehicle.isPassengerOfSameVehicle(entity)

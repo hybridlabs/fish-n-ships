@@ -86,33 +86,6 @@ open class SupplyRaftEntity(
         this.readChestVehicleSaveData(tag)
     }
 
-    override fun hurt(source: DamageSource, amount: Float): Boolean {
-        if (source.entity != null && this.hasPassenger(source.entity)) {
-            return false
-        }
-
-        if (this.isInvulnerableTo(source)) {
-            return false
-        } else if (!this.level().isClientSide && !this.isRemoved) {
-            this.setHurtTime(10)
-            this.setDamage(this.getDamage() + amount * 10.0f)
-            this.markHurt()
-            this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity)
-            val flag = source.entity is Player && (source.entity as Player).abilities.instabuild
-            if (flag || this.getDamage() > 90.0f) {
-                if (!flag && this.level().gameRules.getBoolean(GameRules.RULE_DOENTITYDROPS)) {
-                    this.destroy(source)
-                }
-
-                this.discard()
-            }
-
-            return true
-        } else {
-            return true
-        }
-    }
-
     override fun isPickable(): Boolean {
         return !this.isRemoved
     }

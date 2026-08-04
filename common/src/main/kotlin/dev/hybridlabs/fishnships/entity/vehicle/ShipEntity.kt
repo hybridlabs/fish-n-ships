@@ -522,7 +522,7 @@ open class ShipEntity(
             this.markHurt()
             this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity)
             val flag = source.entity is Player && (source.entity as Player).abilities.instabuild
-            if (flag || this.getDamage() > 90.0f) {
+            if (flag || this.getDamage() > 100.0f) {
                 if (!flag && this.level().gameRules.getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                     this.destroy(source)
                 }
