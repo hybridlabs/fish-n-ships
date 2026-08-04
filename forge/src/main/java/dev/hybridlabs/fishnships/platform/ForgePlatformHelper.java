@@ -55,6 +55,6 @@ public class ForgePlatformHelper implements PlatformHelper {
 
     @Override
     public void changeSailState(SailboatEntity sailBoat) {
-        FSNetworking.INSTANCE.sendSailingPacket(sailBoat.isSailDown());
+        FSNetworking.INSTANCE.sendSailingPacket(sailBoat.getUUID());
     }
 }

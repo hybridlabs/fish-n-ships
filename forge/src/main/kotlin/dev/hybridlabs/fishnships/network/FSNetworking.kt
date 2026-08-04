@@ -8,7 +8,9 @@ import net.minecraft.network.protocol.game.ServerPacketListener
 import net.minecraftforge.network.NetworkEvent
 import net.minecraftforge.network.NetworkRegistry
 import net.minecraftforge.network.simple.SimpleChannel
+import java.util.*
 import java.util.function.Supplier
+
 
 object FSNetworking {
     private const val PROTOCOL_VERSION = "1"
@@ -45,12 +47,12 @@ object FSNetworking {
         CHANNEL.sendToServer(TrawlingPacket(trawling))
     }
 
-    fun sendSailingPacket(sailing: Boolean) {
-        CHANNEL.sendToServer(SailingPacket(sailing))
+    fun sendSailingPacket(uuid: UUID) {
+        CHANNEL.sendToServer(SailingPacket(uuid))
     }
 
-    fun sendMovingPacket(trawling: Boolean) {
-        CHANNEL.sendToServer(MovingPacket(trawling))
+    fun sendMovingPacket(moving: Boolean) {
+        CHANNEL.sendToServer(MovingPacket(moving))
     }
 
     fun handle(msg: MovingPacket, ctx: Supplier<NetworkEvent.Context?>) {
@@ -95,15 +97,11 @@ object FSNetworking {
     }
 
     fun handleSailingPacket(packet: SailingPacket, ctx: Supplier<NetworkEvent.Context?>) {
-        val listener = ctx.get()!!.networkManager.packetListener
-        if (listener is ServerPacketListener) {
-            ctx.get()!!.enqueueWork {
-                val sender = ctx.get()!!.sender
-                val vehicle = sender!!.controlledVehicle
-                if (vehicle != null && vehicle is SailboatEntity) {
-                    vehicle.setSailDown(packet.sailing)
-                }
-            }
+        val sender = ctx.get()!!.sender ?: return
+        val vehicle = sender.controlledVehicle
+
+        if (vehicle is SailboatEntity && vehicle.uuid == packet.uuid) {
+            vehicle.setSailDown(!vehicle.isSailDown())
         }
     }
 
@@ -129,18 +127,18 @@ object FSNetworking {
     }
 
     class SailingPacket {
-        var sailing: Boolean = false
+        val uuid: UUID
 
-        constructor(sailing: Boolean) {
-            this.sailing = sailing
+        constructor(uuid: UUID) {
+            this.uuid = uuid
         }
 
-        constructor(buffer: FriendlyByteBuf) {
-            this.sailing = buffer.readBoolean()
+        constructor(buf: FriendlyByteBuf) {
+            uuid = buf.readUUID()
         }
 
-        fun encoder(buffer: FriendlyByteBuf) {
-            buffer.writeBoolean(sailing)
+        fun encoder(buf: FriendlyByteBuf) {
+            buf.writeUUID(uuid)
         }
 
         fun handle(ctx: Supplier<NetworkEvent.Context?>) {

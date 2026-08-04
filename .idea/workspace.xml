@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Removed unused SpawnRestrictionRegistry">
-      <change afterPath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/platform/services/PlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/platform/services/PlatformHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/ConfigHelper.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/config/EntitySpawnConfig.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/config/EntitySpawnConfigGenerator.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/config/FSConfig.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/config/FSConfigHandler.kt" beforeDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Trying to get sailboats working on forge but I dont understand packets">
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricPlatformHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forge/src/main/java/dev/hybridlabs/fishnships/platform/ForgePlatformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/java/dev/hybridlabs/fishnships/platform/ForgePlatformHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/datagen/DataGenerators.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FSNetworking.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -452,14 +443,6 @@
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
     </task>
-    <task id="LOCAL-00180" summary="Icebreaker functionality">
-      <option name="closed" value="true" />
-      <created>1784641349031</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1784641349031</updated>
-    </task>
     <task id="LOCAL-00181" summary="Icebreaker functionality">
       <option name="closed" value="true" />
       <created>1784641784206</created>
@@ -844,7 +827,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785873416940</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="Trying to get sailboats working on forge but I dont understand packets">
+      <option name="closed" value="true" />
+      <created>1785875469064</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1785875469064</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -860,7 +851,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Sailboat item texture" />
     <MESSAGE value="Raft item textures" />
     <MESSAGE value="Recipes" />
     <MESSAGE value="Must use packet to set trawling because you can't set entity data on the client." />
@@ -885,7 +875,8 @@
     <MESSAGE value="Fixed passenger count for chest boats" />
     <MESSAGE value="Fix fire texture in ship gui" />
     <MESSAGE value="Removed unused SpawnRestrictionRegistry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused SpawnRestrictionRegistry" />
+    <MESSAGE value="Trying to get sailboats working on forge but I dont understand packets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to get sailboats working on forge but I dont understand packets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

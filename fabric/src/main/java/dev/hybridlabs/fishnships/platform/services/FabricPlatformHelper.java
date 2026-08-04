@@ -1,29 +1,13 @@
 package dev.hybridlabs.fishnships.platform.services;
 
-import dev.hybridlabs.fishnships.CommonClass;
 import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
 import dev.hybridlabs.fishnships.packet.C2SPackets;
-import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
-import dev.hybridlabs.fishnships.utils.FSSpawnGroup;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.levelgen.Heightmap;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.nio.file.Path;
-import java.util.concurrent.Callable;
-import java.util.function.Supplier;
 
 public class FabricPlatformHelper implements PlatformHelper {
 
@@ -42,46 +26,6 @@ public class FabricPlatformHelper implements PlatformHelper {
     public boolean isDevelopmentEnvironment() {
 
         return FabricLoader.getInstance().isDevelopmentEnvironment();
-    }
-
-    @Override
-    public <T extends Mob> Supplier<SpawnEggItem> registerSpawnEggItem(@NotNull String name,
-                                                                       Supplier<EntityType<T>> entityType,
-                                                                       int backgroundColor, int highlightColor) {
-        return CommonClass.ITEMS.register(name, () -> new SpawnEggItem(entityType.get(), backgroundColor,
-                highlightColor, new Item.Properties()));
-    }
-
-    @Override
-    public Path getConfigDir() {
-        return FabricLoader.getInstance().getConfigDir();
-    }
-
-    @Override
-    public <T extends Mob> void registerSpawnPlacement(RegistryObject<EntityType<T>> entityType,
-                                                       SpawnPlacements.Type decoratorType,
-                                                       Heightmap.Types heightMapType,
-                                                       SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
-        SpawnPlacements.register(entityType.get(), decoratorType, heightMapType, decoratorPredicate);
-    }
-
-    @Override
-    public <T extends LivingEntity> void registerAttributes(@NotNull String id, EntityType<T> entityType,
-                                                            Callable<AttributeSupplier.Builder> attributeContainer) {
-        try {
-            FabricDefaultAttributeRegistry.register(entityType, attributeContainer.call());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public @Nullable MobCategory getHybridMobCategoryByName(String name) {
-        return FSSpawnGroup.byName(name);
-    }
-
-    public BlockBehaviour.Properties getBlockSettings() {
-        return FabricBlockSettings.create();
     }
 
     @Override
