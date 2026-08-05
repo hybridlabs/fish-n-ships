@@ -1,19 +1,13 @@
 package dev.hybridlabs.fishnships
 
-import dev.hybridlabs.fishnships.block.FSBlocks
 import dev.hybridlabs.fishnships.client.gui.screen.FSMenuScreens
 import dev.hybridlabs.fishnships.client.render.entity.FSEntityRenderers
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
-import dev.hybridlabs.fishnships.entity.ForgeSpawnGroupRegistry
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.network.FSNetworking
-import dev.hybridlabs.fishnships.sound.FSSoundEvents
-import dev.hybridlabs.fishnships.tag.FSBiomeTags
 import dev.hybridlabs.fishnships.tag.FSItemTags
-import dev.hybridlabs.fishnships.utils.FSSpawnGroup
 import dev.hybridlabs.fishnships.world.inventory.FSMenuTypes
-import net.minecraft.world.entity.MobCategory
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
@@ -35,17 +29,12 @@ object FishNShipsForge {
     init {
         CommonClass.init()
 
-        ForgeSpawnGroupRegistry.createFishNShipsSpawnGroups()
-        createSpawnGroups()
-        FSSoundEvents
         FSEntityTypes
         FSMenuTypes
 
-        FSBlocks
         FSItems
         FSItemGroups
 
-        FSBiomeTags
         FSItemTags
 
         FSNetworking.registerPackets()
@@ -59,20 +48,6 @@ object FishNShipsForge {
                 MOD_BUS.addListener(FishNShipsForge::onServerSetup)
             }
         )
-    }
-
-    private fun createSpawnGroups() {
-        // Extend the MobCategory enum with our spawn groups
-        FSSpawnGroup.entries.toTypedArray().forEach {
-            MobCategory.create(
-                it.name,
-                it.name,
-                it.spawnCap,
-                it.peaceful,
-                it.rare,
-                it.immediateDespawnRange
-            )
-        }
     }
 
     /**

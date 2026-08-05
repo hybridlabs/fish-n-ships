@@ -524,8 +524,6 @@ open class ShipEntity(
         val stack = ItemStack(FSItems.SHIP.get())
         val tag = stack.orCreateTag
 
-        tag.putInt("FlagColor", ship.getFlagColor().id)
-
         return stack
     }
 

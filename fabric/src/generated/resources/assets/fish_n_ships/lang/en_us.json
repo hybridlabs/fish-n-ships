@@ -96,8 +96,5 @@
   "item.fish_n_ships.warped_sailboat": "Warped Sailboat",
   "item.fish_n_ships.warped_sailboat_with_chest": "Warped Sailboat With Chest",
   "item.fish_n_ships.warped_supply_raft": "Warped Supply Raft",
-  "itemGroup.fish_n_ships.main": "Fish N Ships",
-  "subtitles.fish_n_ships.entity.albatross.ambient": "Albatross squawks",
-  "subtitles.fish_n_ships.entity.albatross.die": "Albatross dies",
-  "subtitles.fish_n_ships.entity.albatross.hurt": "Albatross hurts"
+  "itemGroup.fish_n_ships.main": "Fish N Ships"
 }
