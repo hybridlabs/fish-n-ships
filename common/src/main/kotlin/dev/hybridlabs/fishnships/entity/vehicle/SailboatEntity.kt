@@ -30,6 +30,8 @@ import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 import software.bernie.geckolib.animation.AnimatableManager
 import software.bernie.geckolib.animation.AnimationController
+import software.bernie.geckolib.animation.AnimationController.AnimationStateHandler
+import software.bernie.geckolib.animation.AnimationState
 import software.bernie.geckolib.animation.RawAnimation
 
 open class SailboatEntity(
@@ -48,7 +50,7 @@ open class SailboatEntity(
         controllers.add(
             AnimationController(
                 this, "Sailing",
-                AnimationController.AnimationStateHandler { state: AnimationState<SailboatEntity> ->
+                AnimationStateHandler { state: AnimationState<SailboatEntity> ->
                     if (this.isSailDown())
                         return@AnimationStateHandler state.setAndContinue(SAIL_DOWN_ANIMATION)
                     else return@AnimationStateHandler state.setAndContinue(SAIL_UP_ANIMATION)
