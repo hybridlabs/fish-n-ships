@@ -267,7 +267,7 @@ open class ShipEntity(
                                 pos,
                                 state.soundType.breakSound,
                                 SoundSource.BLOCKS,
-                                1.0f,
+                                0.5f,
                                 0.9f + random.nextFloat() * 0.2f
                             )
                         }
@@ -417,8 +417,8 @@ open class ShipEntity(
                 null,
                 blockPosition(),
                 SoundEvents.FISHING_BOBBER_SPLASH,
-                SoundSource.AMBIENT,
-                0.8f,
+                SoundSource.BLOCKS,
+                0.5f,
                 0.9f + random.nextFloat() * 0.2f
             )
         }
