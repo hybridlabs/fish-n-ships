@@ -2,6 +2,7 @@ package dev.hybridlabs.fishnships.client.gui.screen
 
 import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
+import net.minecraft.ChatFormatting
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.network.chat.Component
@@ -9,7 +10,10 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.player.Inventory
 
 class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
-    AbstractContainerScreen<ShipMenu>(menu, playerInventory, title) {
+    AbstractContainerScreen<ShipMenu>(
+        menu, playerInventory,
+        title.copy().withStyle(ChatFormatting.WHITE)
+    ) {
     private val shipRows: Int = menu.rowCount
 
     init {
