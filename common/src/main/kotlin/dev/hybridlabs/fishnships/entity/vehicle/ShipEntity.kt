@@ -354,7 +354,7 @@ open class ShipEntity(
             || random.nextFloat() > trawlingChance
         ) return
 
-        val lootTable = server?.lootData?.getLootTable(BuiltInLootTables.FISHING) ?: return
+        val lootTable = server?.reloadableRegistries()?.getLootTable(BuiltInLootTables.FISHING) ?: return
 
         val lootParamsBuilder = LootParams.Builder(level() as ServerLevel)
             .withParameter(LootContextParams.ORIGIN, position())
