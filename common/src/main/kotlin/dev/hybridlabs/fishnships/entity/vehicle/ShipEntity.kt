@@ -110,7 +110,6 @@ open class ShipEntity(
         super.defineSynchedData()
         this.entityData.define(DATA_ID_RIGHT_PROPELLER, false)
         this.entityData.define(DATA_ID_LEFT_PROPELLER, false)
-        this.entityData.define(SAIL_COLOR, FlagColor.NONE.id)
         this.entityData.define(IS_BURNING, false)
         this.entityData.define(HAS_TRAWLING_NET, false)
         this.entityData.define(IS_TRAWLING, false)
@@ -119,7 +118,6 @@ open class ShipEntity(
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-        tag.putString("FlagColor", this.getFlagColor().serializedName)
         tag.putInt("BurnTime", this.litTime)
         this.addChestVehicleSaveData(tag)
         tag.putBoolean("HasIceBreaker", this.hasIceBreaker())
@@ -130,25 +128,11 @@ open class ShipEntity(
         setHasTrawlingNet(tag.getBoolean("HasTrawlingNet"))
         setHasIceBreaker(tag.getBoolean("HasIceBreaker"))
 
-        if (tag.contains("FlagColor", 8)) {
-            val colorName = tag.getString("FlagColor")
-            val color = FlagColor.entries.firstOrNull { it.serializedName == colorName } ?: FlagColor.NONE
-            setFlagColor(color)
-        }
-
         this.litTime = tag.getInt("BurnTime")
         setLit(litTime > 0)
         this.readChestVehicleSaveData(tag)
     }
     //#endregion
-
-    open fun getFlagColor(): FlagColor {
-        return FlagColor.byId(entityData.get(SAIL_COLOR))
-    }
-
-    open fun setFlagColor(flagColor: FlagColor) {
-        entityData.set(SAIL_COLOR, flagColor.id)
-    }
 
     override fun getEyeHeight(pose: Pose, size: EntityDimensions): Float {
         return size.height * 0.5f
@@ -735,9 +719,6 @@ open class ShipEntity(
         private val DATA_ID_LEFT_PROPELLER: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(ShipEntity::class.java, EntityDataSerializers.BOOLEAN)
 
-        private val SAIL_COLOR: EntityDataAccessor<Int> =
-            SynchedEntityData.defineId(ShipEntity::class.java, EntityDataSerializers.INT)
-
         private val IS_BURNING: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(ShipEntity::class.java, EntityDataSerializers.BOOLEAN)
 
@@ -756,65 +737,5 @@ open class ShipEntity(
 
     override fun getPickResult(): ItemStack? {
         return ItemStack(FSItems.SHIP.get())
-    }
-
-    enum class FlagColor(val id: Int, val key: String) : StringRepresentable {
-        NONE(0, ""),
-        WHITE(1, "white"),
-        ORANGE(2, "orange"),
-        MAGENTA(3, "magenta"),
-        LIGHT_BLUE(4, "light_blue"),
-        YELLOW(5, "yellow"),
-        LIME(6, "lime"),
-        PINK(7, "pink"),
-        GRAY(8, "gray"),
-        LIGHT_GRAY(9, "light_gray"),
-        CYAN(10, "cyan"),
-        PURPLE(11, "purple"),
-        BLUE(12, "blue"),
-        BROWN(13, "brown"),
-        GREEN(14, "green"),
-        RED(15, "red"),
-        BLACK(16, "black");
-
-        override fun getSerializedName(): String {
-            return this.key
-        }
-
-        companion object {
-            val CODEC: Codec<FlagColor> =
-                StringRepresentable.fromEnum { entries.toTypedArray() }
-
-            val BY_ID: IntFunction<FlagColor> = ByIdMap.continuous(
-                { color -> color.id },
-                entries.toTypedArray(),
-                ByIdMap.OutOfBoundsStrategy.WRAP
-            )
-
-            fun byId(id: Int): FlagColor {
-                return BY_ID.apply(id)
-            }
-
-            fun fromDye(dye: DyeColor): FlagColor {
-                return when (dye) {
-                    DyeColor.WHITE -> WHITE
-                    DyeColor.ORANGE -> ORANGE
-                    DyeColor.MAGENTA -> MAGENTA
-                    DyeColor.LIGHT_BLUE -> LIGHT_BLUE
-                    DyeColor.YELLOW -> YELLOW
-                    DyeColor.LIME -> LIME
-                    DyeColor.PINK -> PINK
-                    DyeColor.GRAY -> GRAY
-                    DyeColor.LIGHT_GRAY -> LIGHT_GRAY
-                    DyeColor.CYAN -> CYAN
-                    DyeColor.PURPLE -> PURPLE
-                    DyeColor.BLUE -> BLUE
-                    DyeColor.BROWN -> BROWN
-                    DyeColor.GREEN -> GREEN
-                    DyeColor.RED -> RED
-                    DyeColor.BLACK -> BLACK
-                }
-            }
-        }
     }
 }

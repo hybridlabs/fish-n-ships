@@ -25,20 +25,6 @@ import kotlin.text.uppercase
 
 class ShipItem(properties: Properties) : Item(properties) {
 
-    override fun appendHoverText(
-        stack: ItemStack,
-        level: Level?,
-        lines: MutableList<Component>,
-        context: TooltipFlag
-    ) {
-        val tag = stack.tag ?: return
-
-        if (tag.contains("SailColor")) {
-            val color = ShipEntity.FlagColor.byId(tag.getInt("FlagColor"))
-            lines.add(Component.translatable("tooltip.hybrid_aquatic.ship.flag", color.name.uppercase()))
-        }
-    }
-
     override fun useOn(context: UseOnContext): InteractionResult {
         val level = context.level
 
@@ -76,15 +62,6 @@ class ShipItem(properties: Properties) : Item(properties) {
         return InteractionResult.CONSUME
     }
 
-    private fun applyShipData(entity: ShipEntity, stack: ItemStack) {
-        val tag = stack.tag ?: return
-
-        if (tag.contains("FlagColor")) {
-            val flagColorId = tag.getInt("FlagColor")
-            entity.setFlagColor(ShipEntity.FlagColor.byId(flagColorId))
-        }
-    }
-
     override fun use(level: Level, player: Player, hand: InteractionHand): InteractionResultHolder<ItemStack> {
         val stack = player.getItemInHand(hand)
         val hit = getPlayerPOVHitResult(level, player, ClipContext.Fluid.SOURCE_ONLY)
@@ -115,12 +92,6 @@ class ShipItem(properties: Properties) : Item(properties) {
 
         if (entity == null) {
             return InteractionResultHolder.pass(stack)
-        }
-
-        stack.tag?.let { tag ->
-            if (tag.contains("FlagColor")) {
-                entity.setFlagColor(ShipEntity.FlagColor.byId(tag.getInt("FlagColor")))
-            }
         }
 
         if (!player.abilities.instabuild) {
