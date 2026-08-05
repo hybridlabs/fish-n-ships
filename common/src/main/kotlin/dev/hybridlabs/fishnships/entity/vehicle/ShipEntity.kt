@@ -15,7 +15,7 @@ import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.ResourceKey
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
@@ -42,15 +42,16 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.level.storage.loot.BuiltInLootTables
 import net.minecraft.world.level.storage.loot.LootParams
+import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animation.AnimatableManager
-import software.bernie.geckolib.core.animation.AnimationController
-import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.RawAnimation
+import software.bernie.geckolib.animation.AnimatableManager
+import software.bernie.geckolib.animation.AnimationController
+import software.bernie.geckolib.animation.AnimationController.AnimationStateHandler
+import software.bernie.geckolib.animation.AnimationState
+import software.bernie.geckolib.animation.RawAnimation
 import java.util.function.IntFunction
 import kotlin.math.min
 
@@ -61,7 +62,7 @@ open class ShipEntity(
     BaseBoatEntity(type, world), PlayerRideable, HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(42, ItemStack.EMPTY)
-    private var shipLootTable: ResourceLocation? = null
+    private var shipLootTable: ResourceKey<LootTable>? = null
     private var shipLootTableSeed: Long = 0
     private var inputLeft = false
     private var inputRight = false
@@ -106,22 +107,21 @@ open class ShipEntity(
     }
 
     //#region Data
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-        this.entityData.define(DATA_ID_RIGHT_PROPELLER, false)
-        this.entityData.define(DATA_ID_LEFT_PROPELLER, false)
-        this.entityData.define(SAIL_COLOR, FlagColor.NONE.id)
-        this.entityData.define(IS_BURNING, false)
-        this.entityData.define(HAS_TRAWLING_NET, false)
-        this.entityData.define(IS_TRAWLING, false)
-        this.entityData.define(HAS_ICEBREAKER, false)
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
+        builder.define(DATA_ID_RIGHT_PROPELLER, false)
+        builder.define(DATA_ID_LEFT_PROPELLER, false)
+        builder.define(SAIL_COLOR, FlagColor.NONE.id)
+        builder.define(IS_BURNING, false)
+        builder.define(HAS_TRAWLING_NET, false)
+        builder.define(IS_TRAWLING, false)
+        builder.define(HAS_ICEBREAKER, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-        tag.putString("FlagColor", this.getFlagColor().serializedName)
         tag.putInt("BurnTime", this.litTime)
-        this.addChestVehicleSaveData(tag)
+        this.addChestVehicleSaveData(tag, this.registryAccess())
         tag.putBoolean("HasIceBreaker", this.hasIceBreaker())
         tag.putBoolean("HasTrawlingNet", this.hasTrawlingNet())
     }
@@ -130,29 +130,11 @@ open class ShipEntity(
         setHasTrawlingNet(tag.getBoolean("HasTrawlingNet"))
         setHasIceBreaker(tag.getBoolean("HasIceBreaker"))
 
-        if (tag.contains("FlagColor", 8)) {
-            val colorName = tag.getString("FlagColor")
-            val color = FlagColor.entries.firstOrNull { it.serializedName == colorName } ?: FlagColor.NONE
-            setFlagColor(color)
-        }
-
         this.litTime = tag.getInt("BurnTime")
         setLit(litTime > 0)
-        this.readChestVehicleSaveData(tag)
+        this.readChestVehicleSaveData(tag, this.registryAccess())
     }
     //#endregion
-
-    open fun getFlagColor(): FlagColor {
-        return FlagColor.byId(entityData.get(SAIL_COLOR))
-    }
-
-    open fun setFlagColor(flagColor: FlagColor) {
-        entityData.set(SAIL_COLOR, flagColor.id)
-    }
-
-    override fun getEyeHeight(pose: Pose, size: EntityDimensions): Float {
-        return size.height * 0.5f
-    }
 
     open fun getBurnDuration(fuel: ItemStack): Int {
         return if (fuel.isEmpty) 0
@@ -538,9 +520,6 @@ open class ShipEntity(
 
     fun getShipItem(ship: ShipEntity): ItemStack {
         val stack = ItemStack(FSItems.SHIP.get())
-        val tag = stack.orCreateTag
-
-        tag.putInt("FlagColor", ship.getFlagColor().id)
 
         return stack
     }
@@ -557,10 +536,6 @@ open class ShipEntity(
                 }
             )
         )
-    }
-
-    override fun getPassengersRidingOffset(): Double {
-        return 1.5
     }
 
     protected fun clampRotation(entityToUpdate: Entity) {
@@ -633,12 +608,12 @@ open class ShipEntity(
         }
     }
 
-    override fun getLootTable(): ResourceLocation? {
+    override fun getLootTable(): ResourceKey<LootTable>? {
         return shipLootTable
     }
 
-    override fun setLootTable(id: ResourceLocation?) {
-        shipLootTable = id
+    override fun setLootTable(id: ResourceKey<LootTable>?) {
+        if (id != null) shipLootTable = id
     }
 
     override fun getLootTableSeed(): Long {

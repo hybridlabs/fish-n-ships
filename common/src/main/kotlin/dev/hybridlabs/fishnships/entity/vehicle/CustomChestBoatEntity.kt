@@ -3,7 +3,8 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.network.syncher.SynchedEntityData
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.EntityType
@@ -18,6 +19,7 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
+import net.minecraft.world.level.storage.loot.LootTable
 import software.bernie.geckolib.animatable.GeoEntity
 
 open class CustomChestBoatEntity(
@@ -28,30 +30,25 @@ open class CustomChestBoatEntity(
     ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
-    private var chestBoatLootTable: ResourceLocation? = null
+    private var chestBoatLootTable: ResourceKey<LootTable>? = null
     private var chestBoatLootTableSeed: Long = 0
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-        this.addChestVehicleSaveData(tag)
+        this.addChestVehicleSaveData(tag, this.registryAccess())
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         super.readAdditionalSaveData(tag)
-        setDamage(tag.getFloat("Damage"))
-        this.readChestVehicleSaveData(tag)
+        this.readChestVehicleSaveData(tag, this.registryAccess())
     }
 
     override val maxPassengers: Int
         get() = 1
-
-    override fun getPassengersRidingOffset(): Double {
-        return -0.1
-    }
 
     override fun getBoatItem(): Item {
         val item: Item
@@ -105,12 +102,12 @@ open class CustomChestBoatEntity(
         }
     }
 
-    override fun getLootTable(): ResourceLocation? {
+    override fun getLootTable(): ResourceKey<LootTable>? {
         return chestBoatLootTable
     }
 
-    override fun setLootTable(id: ResourceLocation?) {
-        chestBoatLootTable = id
+    override fun setLootTable(id: ResourceKey<LootTable>?) {
+        if (id != null) chestBoatLootTable = id
     }
 
     override fun getLootTableSeed(): Long {

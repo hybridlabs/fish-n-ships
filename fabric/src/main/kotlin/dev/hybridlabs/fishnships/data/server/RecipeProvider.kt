@@ -5,8 +5,9 @@ import dev.hybridlabs.fishnships.platform.registration.RegistryObject
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.advancements.critereon.InventoryChangeTrigger
-import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.core.HolderLookup
 import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.tags.ItemTags
@@ -14,10 +15,11 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import java.util.function.Consumer
+import java.util.concurrent.CompletableFuture
 
-class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
-    override fun buildRecipes(exporter: Consumer<FinishedRecipe>) {
+class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
+    FabricRecipeProvider(output, lookupProvider) {
+    override fun buildRecipes(exporter: RecipeOutput) {
 
         offerCanoeRecipes(exporter, canoeTypeMap)
         offerCanoeChestUpgradeRecipes(exporter, canoeTypeMap, chestCanoeTypeMap)
@@ -76,7 +78,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerBoatRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, boatType) in map) {
@@ -93,7 +95,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerBoatChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         boatMap: Map<Block, RegistryObject<out Item>>,
         chestBoatMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -156,7 +158,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerCanoeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, canoeType) in map) {
@@ -174,7 +176,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerCanoeChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         canoeMap: Map<Block, RegistryObject<out Item>>,
         chestCanoeMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -196,7 +198,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerCanoeDoubleChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         canoeMap: Map<Block, RegistryObject<out Item>>,
         chestCanoeMap: Map<Block, RegistryObject<out Item>>,
         doubleChestCanoeMap: Map<Block, RegistryObject<out Item>>,
@@ -268,7 +270,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerSailboatRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, sailboatType) in map) {
@@ -286,7 +288,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerSailboatChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         sailboatMap: Map<Block, RegistryObject<out Item>>,
         chestsailboatMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -336,7 +338,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerRaftRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, raftType) in map) {
@@ -352,7 +354,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerSupplyRaftUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         raftMap: Map<Block, RegistryObject<out Item>>,
         supplyRaftMap: Map<Block, RegistryObject<out Item>>,
     ) {

@@ -4,11 +4,73 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Added mod icon and fixed credits and links">
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/fish_n_ships.png" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Adjusted trawling sound">
+      <change afterPath="$PROJECT_DIR$/fabric/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neoforge/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neoforge/src/main/resources/neoforge.mods.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/groovy/multiloader-common.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/groovy/multiloader-common.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/CommonClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/CommonClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/client/CameraMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/mixin/client/CameraMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/dev/hybridlabs/fishnships/utils/FSSpawnGroup.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/ShipScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/ShipScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/FSMenuTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/FSMenuTypes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/ShipMenu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/ShipMenu.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/SupplyRaftScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/SupplyRaftScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithDoubleChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithDoubleChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CustomBoatEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CustomBoatEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CustomChestBoatEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CustomChestBoatEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/RaftEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/RaftEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatWithChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatWithChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/ShipEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SupplyRaftEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SupplyRaftEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/RaftEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/RaftEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SupplyRaftEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/SupplyRaftEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipGlassEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipGlassEntityLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipIcebreakerEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipIcebreakerEntityLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipTrawlingNetEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/ShipTrawlingNetEntityLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/WaterPatchEntityLayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/layer/WaterPatchEntityLayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/BaseBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/BaseBoatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithDoubleChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithDoubleChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomBoatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/RaftEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/RaftEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatWithChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatWithChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipCabinPart.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipCabinPart.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SupplyRaftEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SupplyRaftEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/ShipItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/ShipItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/loot/FSLootTables.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/loot/FSLootTables.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/sound/FSSoundEvents.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/tag/FSBiomeTags.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/tag/FSItemTags.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/META-INF/accesstransformer.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/FabricRegistrationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/platform/services/FabricRegistrationFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/data/builder/FabricSoundsProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/data/builder/SoundTypeBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/dev/hybridlabs/fishnships/data/builder/SoundTypeBuilderImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/FishNShips.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/FSDataGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/FSDataGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/SoundProvider.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/loot/EntityTypeLootTableProvider.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/loot/GenericLootTableProvider.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/tag/BiomeTagProvider.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.registration.RegistrationProvider$Factory" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.registration.RegistrationProvider$Factory" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/fish_n_ships.accesswidener" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/fish_n_ships.accesswidener" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,24 +110,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="fish_n_ships" type="f1a62948:ProjectNode" />
-                <item name="fabric" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="fish_n_ships" type="f1a62948:ProjectNode" />
-                <item name="fabric" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="fish_n_ships" type="f1a62948:ProjectNode" />
-                <item name="fabric" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="fish_n_ships" type="f1a62948:ProjectNode" />
                 <item name="forge" type="2d1252cf:ModuleNode" />
               </path>
               <path>
@@ -73,13 +117,6 @@
                 <item name="fish_n_ships" type="f1a62948:ProjectNode" />
                 <item name="forge" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="fish_n_ships" type="f1a62948:ProjectNode" />
-                <item name="forge" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="mod development" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -100,7 +137,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="1.21-Multiloader" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -152,6 +189,7 @@
     "Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
     "Gradle.fish-n-ships:fabric [build].executor": "Run",
     "Gradle.fish-n-ships:forge [:forge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.fish-n-ships:forge [build].executor": "Run",
     "Gradle.fish-n-ships:forge [copyDatagen].executor": "Run",
     "Gradle.hybrid-birds [build].executor": "Debug",
     "Gradle.hybrid-birds [runDatagen].executor": "Run",
@@ -166,10 +204,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "1.21.1",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources",
+    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/neoforge/src/main/resources",
     "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -179,11 +217,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\neoforge\src\main\resources" />
+      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\neoforge" />
+      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\fabric" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\boat" />
-      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\sailboat" />
-      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\textures\gui" />
-      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client\render\entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships" />
@@ -228,9 +266,9 @@
     </configuration>
     <configuration name="NeoForge Client (:neoforge)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="net.neoforged.devlaunch.Main" />
-      <module name="hybrid-birds.neoforge.main" />
-      <option name="PROGRAM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\moddev\\clientRunProgramArgs.txt" />
-      <option name="VM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\moddev\\clientRunVmArgs.txt -Dfml.modFolders=hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\classes\\java\\main;hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\classes\\kotlin\\main;hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\resources\\main" />
+      <module name="fish_n_ships.neoforge.main" />
+      <option name="PROGRAM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\moddev\\clientRunProgramArgs.txt" />
+      <option name="VM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\moddev\\clientRunVmArgs.txt -Dfml.modFolders=fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\classes\\java\\main;fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\classes\\kotlin\\main;fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\resources\\main" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/neoforge/run" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -238,9 +276,9 @@
     </configuration>
     <configuration name="NeoForge Data (:neoforge)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="net.neoforged.devlaunch.Main" />
-      <module name="hybrid-birds.neoforge.main" />
-      <option name="PROGRAM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\moddev\\dataRunProgramArgs.txt" />
-      <option name="VM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\moddev\\dataRunVmArgs.txt -Dfml.modFolders=hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\classes\\java\\main;hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\classes\\kotlin\\main;hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\resources\\main" />
+      <module name="fish_n_ships.neoforge.main" />
+      <option name="PROGRAM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\moddev\\dataRunProgramArgs.txt" />
+      <option name="VM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\moddev\\dataRunVmArgs.txt -Dfml.modFolders=fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\classes\\java\\main;fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\classes\\kotlin\\main;fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\resources\\main" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/neoforge/run" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -248,9 +286,9 @@
     </configuration>
     <configuration name="NeoForge Server (:neoforge)" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="net.neoforged.devlaunch.Main" />
-      <module name="hybrid-birds.neoforge.main" />
-      <option name="PROGRAM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\moddev\\serverRunProgramArgs.txt" />
-      <option name="VM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\moddev\\serverRunVmArgs.txt -Dfml.modFolders=hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\classes\\java\\main;hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\classes\\kotlin\\main;hybrid_birds%%C:\\Users\\LENVO\\Documents\\GitHub\\hybrid-birds\\neoforge\\build\\resources\\main" />
+      <module name="fish_n_ships.neoforge.main" />
+      <option name="PROGRAM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\moddev\\serverRunProgramArgs.txt" />
+      <option name="VM_PARAMETERS" value="@C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\moddev\\serverRunVmArgs.txt -Dfml.modFolders=fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\classes\\java\\main;fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\classes\\kotlin\\main;fish_n_ships%%C:\\Users\\LENVO\\Documents\\GitHub\\fish-n-ships\\neoforge\\build\\resources\\main" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/neoforge/run" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -339,10 +377,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="fish-n-ships [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="fish-n-ships:fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
@@ -361,12 +399,12 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="fish-n-ships:fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="fish-n-ships:forge [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/forge" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -406,6 +444,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Fabric Data Generation (:fabric)" />
       <item itemvalue="Application.Datagen" />
       <item itemvalue="Application.NeoForge Client (:neoforge)" />
       <item itemvalue="Application.NeoForge Data (:neoforge)" />
@@ -418,19 +457,19 @@
       <item itemvalue="Application.Fabric Server (:fabric)" />
       <item itemvalue="Application.Minecraft Client" />
       <item itemvalue="Application.Minecraft Server" />
+      <item itemvalue="Gradle.fish-n-ships:forge [build]" />
       <item itemvalue="Gradle.fish-n-ships [:forge:runClient]" />
       <item itemvalue="Gradle.fish-n-ships [:forge:runData]" />
-      <item itemvalue="Gradle.fish-n-ships [build]" />
       <item itemvalue="Gradle.fish-n-ships:fabric [build]" />
       <item itemvalue="Gradle.fish-n-ships:forge [copyDatagen]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.fish-n-ships:fabric [build]" />
+        <item itemvalue="Gradle.fish-n-ships:forge [build]" />
         <item itemvalue="Gradle.fish-n-ships [:forge:runClient]" />
         <item itemvalue="Gradle.fish-n-ships [:forge:runData]" />
         <item itemvalue="Gradle.fish-n-ships:forge [copyDatagen]" />
-        <item itemvalue="Gradle.fish-n-ships [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -442,38 +481,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00191" summary="Rafts, mostly working, still needing tweaks">
-      <option name="closed" value="true" />
-      <created>1785178584338</created>
-      <option name="number" value="00191" />
-      <option name="presentableId" value="LOCAL-00191" />
-      <option name="project" value="LOCAL" />
-      <updated>1785178584339</updated>
-    </task>
-    <task id="LOCAL-00192" summary="An actually massive amount of progress">
-      <option name="closed" value="true" />
-      <created>1785202394031</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1785202394031</updated>
-    </task>
-    <task id="LOCAL-00193" summary="Removed useless imports">
-      <option name="closed" value="true" />
-      <created>1785203227445</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1785203227445</updated>
-    </task>
-    <task id="LOCAL-00194" summary="Sailboat">
-      <option name="closed" value="true" />
-      <created>1785288484653</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1785288484653</updated>
     </task>
     <task id="LOCAL-00195" summary="Pick items">
       <option name="closed" value="true" />
@@ -835,7 +842,39 @@
       <option name="project" value="LOCAL" />
       <updated>1785893675412</updated>
     </task>
-    <option name="localTasksCounter" value="240" />
+    <task id="LOCAL-00240" summary="Added mod icon and fixed credits and links">
+      <option name="closed" value="true" />
+      <created>1785894485368</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1785894485368</updated>
+    </task>
+    <task id="LOCAL-00241" summary="Removed unused menu types">
+      <option name="closed" value="true" />
+      <created>1785894499221</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1785894499221</updated>
+    </task>
+    <task id="LOCAL-00242" summary="Fixed ship GUI being cut off">
+      <option name="closed" value="true" />
+      <created>1785895014878</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1785895014878</updated>
+    </task>
+    <task id="LOCAL-00243" summary="Adjusted trawling sound">
+      <option name="closed" value="true" />
+      <created>1785895052198</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1785895052198</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -851,9 +890,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Removed log spam" />
-    <MESSAGE value="Finished adding all variants" />
-    <MESSAGE value="Fixed imports and typo" />
     <MESSAGE value="Fixed pickItem and fixed Sailboat passenger positioning" />
     <MESSAGE value="Optimized waterpatch renderers" />
     <MESSAGE value="Replaced excess menu types with vanilla chest menus" />
@@ -876,7 +912,10 @@
     <MESSAGE value="Fixed vehicle healths" />
     <MESSAGE value="Cleanup imports" />
     <MESSAGE value="Added mod icon and fixed credits and links" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added mod icon and fixed credits and links" />
+    <MESSAGE value="Removed unused menu types" />
+    <MESSAGE value="Fixed ship GUI being cut off" />
+    <MESSAGE value="Adjusted trawling sound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted trawling sound" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

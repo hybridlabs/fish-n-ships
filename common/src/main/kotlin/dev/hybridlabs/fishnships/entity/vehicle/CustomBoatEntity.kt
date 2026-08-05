@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.sounds.SoundEvent
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
@@ -30,7 +31,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.util.GeckoLibUtil
 
 open class CustomBoatEntity(
@@ -50,11 +51,11 @@ open class CustomBoatEntity(
         return animCache
     }
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.CRIMSON.ordinal)
-        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
-        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
+        builder.define(DATA_ID_TYPE, Type.CRIMSON.ordinal)
+        builder.define(DATA_ID_PADDLE_LEFT, false)
+        builder.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -67,10 +68,6 @@ open class CustomBoatEntity(
         if (tag.contains("Type", 8)) {
             this.variant = Type.byName(tag.getString("Type"))
         }
-    }
-
-    override fun getPassengersRidingOffset(): Double {
-        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -207,36 +204,15 @@ open class CustomBoatEntity(
     }
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (this.hasPassenger(passenger)) {
-            var f = this.getSinglePassengerXOffset()
-            val f1 =
-                ((if (this.isRemoved) 0.01 else this.passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-            if (this.passengers.size > 1) {
-                val i = this.passengers.indexOf(passenger)
-                f = if (i == 0) {
-                    0.2f
-                } else {
-                    -0.6f
-                }
-
-                if (passenger is Animal) {
-                    f += 0.2f
-                }
-            }
-
-            val vec3 = (Vec3(
-                f.toDouble(),
-                0.0,
-                0.0
-            )).yRot(-this.yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
-            callback.accept(passenger, this.x + vec3.x, this.y + f1.toDouble(), this.z + vec3.z)
+        super.positionRider(passenger, callback)
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += this.deltaRotation
             passenger.yHeadRot += this.deltaRotation
             this.clampRotation(passenger)
             if (passenger is Animal && this.passengers.size == this.maxPassengers) {
-                val j = if (passenger.id % 2 == 0) 90 else 270
-                passenger.setYBodyRot(passenger.yBodyRot + j.toFloat())
-                passenger.setYHeadRot(passenger.getYHeadRot() + j.toFloat())
+                val i = if (passenger.id % 2 == 0) 90 else 270
+                passenger.setYBodyRot(passenger.yBodyRot + i.toFloat())
+                passenger.setYHeadRot(passenger.getYHeadRot() + i.toFloat())
             }
         }
     }

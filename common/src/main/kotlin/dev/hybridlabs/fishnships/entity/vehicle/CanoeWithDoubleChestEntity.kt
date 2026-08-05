@@ -2,7 +2,8 @@ package dev.hybridlabs.fishnships.entity.vehicle
 
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
@@ -18,6 +19,7 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
+import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 
@@ -25,8 +27,18 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
     CanoeEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(54, ItemStack.EMPTY)
-    private var canoeLootTable: ResourceLocation? = null
+    private var canoeLootTable: ResourceKey<LootTable>? = null
     private var canoeLootTableSeed: Long = 0
+
+    override fun addAdditionalSaveData(tag: CompoundTag) {
+        super.addAdditionalSaveData(tag)
+        this.addChestVehicleSaveData(tag, this.registryAccess())
+    }
+
+    override fun readAdditionalSaveData(tag: CompoundTag) {
+        super.readAdditionalSaveData(tag)
+        this.readChestVehicleSaveData(tag, this.registryAccess())
+    }
 
     override val maxPassengers: Int
         get() = 1
@@ -37,7 +49,7 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
         }
 
         val yOffset =
-            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+            ((if (isRemoved) 0.01 else -0.1) + passenger.myRidingOffset).toFloat()
 
         val offset = Vec3(0.5, 0.0, 0.0)
             .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
@@ -113,12 +125,12 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
         }
     }
 
-    override fun getLootTable(): ResourceLocation? {
+    override fun getLootTable(): ResourceKey<LootTable>? {
         return canoeLootTable
     }
 
-    override fun setLootTable(id: ResourceLocation?) {
-        canoeLootTable = id
+    override fun setLootTable(id: ResourceKey<LootTable>?) {
+        if (id != null) canoeLootTable = id
     }
 
     override fun getLootTableSeed(): Long {

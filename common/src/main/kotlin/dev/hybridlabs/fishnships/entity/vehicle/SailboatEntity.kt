@@ -28,11 +28,9 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animation.AnimatableManager
-import software.bernie.geckolib.core.animation.AnimationController
-import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.RawAnimation
+import software.bernie.geckolib.animation.AnimatableManager
+import software.bernie.geckolib.animation.AnimationController
+import software.bernie.geckolib.animation.RawAnimation
 
 open class SailboatEntity(
     entityType: EntityType<out SailboatEntity>, level: Level,
@@ -50,7 +48,7 @@ open class SailboatEntity(
         controllers.add(
             AnimationController(
                 this, "Sailing",
-                AnimationStateHandler { state: AnimationState<SailboatEntity> ->
+                AnimationController.AnimationStateHandler { state: AnimationState<SailboatEntity> ->
                     if (this.isSailDown())
                         return@AnimationStateHandler state.setAndContinue(SAIL_DOWN_ANIMATION)
                     else return@AnimationStateHandler state.setAndContinue(SAIL_UP_ANIMATION)
@@ -59,10 +57,10 @@ open class SailboatEntity(
         )
     }
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
-        this.entityData.define(IS_SAIL_DOWN, false)
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
+        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
+        builder.define(IS_SAIL_DOWN, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -83,10 +81,6 @@ open class SailboatEntity(
 
     fun isSailDown(): Boolean {
         return entityData.get(IS_SAIL_DOWN)
-    }
-
-    override fun getPassengersRidingOffset(): Double {
-        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {

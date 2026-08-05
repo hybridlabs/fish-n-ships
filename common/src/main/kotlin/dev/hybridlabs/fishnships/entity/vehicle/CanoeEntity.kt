@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.util.GeckoLibUtil
 
 open class CanoeEntity(
@@ -49,11 +49,11 @@ open class CanoeEntity(
         return animCache
     }
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
-        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
-        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
+        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
+        builder.define(DATA_ID_PADDLE_LEFT, false)
+        builder.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -66,10 +66,6 @@ open class CanoeEntity(
         if (tag.contains("Type", 8)) {
             this.variant = Type.byName(tag.getString("Type"))
         }
-    }
-
-    override fun getPassengersRidingOffset(): Double {
-        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -215,7 +211,7 @@ open class CanoeEntity(
         }
 
         val yOffset =
-            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+            ((if (isRemoved) 0.01 else -0.1) + passenger.myRidingOffset).toFloat()
 
         val xOffset = when (passengers.indexOf(passenger)) {
             0 -> -0.25
