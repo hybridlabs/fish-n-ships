@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
@@ -16,6 +17,7 @@ import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
+import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.Item
@@ -144,9 +146,6 @@ open class RaftEntity(
             return
         }
 
-        val yOffset =
-            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-
         val (xOffset, zOffset) = when (passengers.size) {
             1 -> when (passengers.indexOf(passenger)) {
                 0 -> 0.0 to 0.0
@@ -181,13 +180,21 @@ open class RaftEntity(
         callback.accept(
             passenger,
             x + offset.x,
-            y + yOffset,
+            y,
             z + offset.z
         )
 
-        passenger.yRot += deltaRotation
-        passenger.yHeadRot += deltaRotation
-        clampRotation(passenger)
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.yRot += deltaRotation
+            passenger.yHeadRot += deltaRotation
+            clampRotation(passenger)
+
+            if (passenger is Animal && passengers.size == maxPassengers) {
+                val rotation = if (passenger.id % 2 == 0) 90f else 270f
+                passenger.yBodyRot += rotation
+                passenger.yHeadRot += rotation
+            }
+        }
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {

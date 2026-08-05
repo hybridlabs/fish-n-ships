@@ -199,10 +199,6 @@ open class CustomBoatEntity(
         ) else 0.0f
     }
 
-    protected open fun getSinglePassengerXOffset(): Float {
-        return 0.0f
-    }
-
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         super.positionRider(passenger, callback)
         if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {

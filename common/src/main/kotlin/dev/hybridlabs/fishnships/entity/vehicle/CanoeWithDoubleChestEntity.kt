@@ -4,11 +4,13 @@ import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceKey
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
+import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
@@ -48,22 +50,27 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
             return
         }
 
-        val yOffset =
-            ((if (isRemoved) 0.01 else -0.1) + passenger.myRidingOffset).toFloat()
-
         val offset = Vec3(0.5, 0.0, 0.0)
             .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
 
         callback.accept(
             passenger,
             x + offset.x,
-            y + yOffset,
+            y,
             z + offset.z
         )
 
-        passenger.yRot += deltaRotation
-        passenger.yHeadRot += deltaRotation
-        clampRotation(passenger)
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.yRot += deltaRotation
+            passenger.yHeadRot += deltaRotation
+            clampRotation(passenger)
+
+            if (passenger is Animal && passengers.size == maxPassengers) {
+                val rotation = if (passenger.id % 2 == 0) 90f else 270f
+                passenger.yBodyRot += rotation
+                passenger.yHeadRot += rotation
+            }
+        }
     }
 
     //#region Container

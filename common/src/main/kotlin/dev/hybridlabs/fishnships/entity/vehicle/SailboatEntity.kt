@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
@@ -163,36 +164,44 @@ open class SailboatEntity(
     }
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (this.hasPassenger(passenger)) {
-            var f = 0.2f
-            val f1 =
-                ((if (this.isRemoved) 0.01 else this.passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-            if (this.passengers.size > 1) {
-                val i = this.passengers.indexOf(passenger)
-                f = if (i == 0) {
-                    0.2f
-                } else {
-                    -0.6f
-                }
+        if (!hasPassenger(passenger)) {
+            return
+        }
 
-                if (passenger is Animal) {
-                    f += 0.2f
-                }
+        var f = 0.2f
+
+        if (passengers.size > 1) {
+            val i = passengers.indexOf(passenger)
+            f = if (i == 0) {
+                0.2f
+            } else {
+                -0.6f
             }
 
-            val vec3 = (Vec3(
-                f.toDouble(),
-                0.0,
-                0.0
-            )).yRot(-this.yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
-            callback.accept(passenger, this.x + vec3.x, this.y + f1.toDouble(), this.z + vec3.z)
-            passenger.yRot += this.deltaRotation
-            passenger.yHeadRot += this.deltaRotation
-            this.clampRotation(passenger)
-            if (passenger is Animal && this.passengers.size == this.maxPassengers) {
-                val j = if (passenger.id % 2 == 0) 90 else 270
-                passenger.setYBodyRot(passenger.yBodyRot + j.toFloat())
-                passenger.setYHeadRot(passenger.getYHeadRot() + j.toFloat())
+            if (passenger is Animal) {
+                f += 0.2f
+            }
+        }
+
+        val vec3 = Vec3(f.toDouble(), 0.0, 0.0)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+
+        callback.accept(
+            passenger,
+            x + vec3.x,
+            y,
+            z + vec3.z
+        )
+
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.yRot += deltaRotation
+            passenger.yHeadRot += deltaRotation
+            clampRotation(passenger)
+
+            if (passenger is Animal && passengers.size == maxPassengers) {
+                val rotation = if (passenger.id % 2 == 0) 90f else 270f
+                passenger.setYBodyRot(passenger.yBodyRot + rotation)
+                passenger.setYHeadRot(passenger.yHeadRot + rotation)
             }
         }
     }

@@ -569,7 +569,7 @@ open class ShipEntity(
             callback.accept(
                 passenger,
                 this.x,
-                this.y + this.passengersRidingOffset + passenger.myRidingOffset,
+                this.y + 1.5 + 1.0,
                 this.z
             )
         }
