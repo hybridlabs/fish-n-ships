@@ -226,7 +226,7 @@ open class RaftEntity(
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
-        tag.putFloat("Damage", getDamage())
+        super.addAdditionalSaveData(tag)
 
         if (this.leashHolder != null) {
             val compoundtag2 = CompoundTag()
@@ -249,7 +249,7 @@ open class RaftEntity(
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
-        setDamage(tag.getFloat("Damage"))
+        super.readAdditionalSaveData(tag)
 
         if (tag.contains("Leash", 10)) {
             this.leashInfoTag = tag.getCompound("Leash")

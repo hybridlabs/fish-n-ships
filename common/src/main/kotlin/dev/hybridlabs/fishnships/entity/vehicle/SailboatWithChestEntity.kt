@@ -32,10 +32,6 @@ open class SailboatWithChestEntity(
     override val maxPassengers: Int
         get() = 1
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-    }
-
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
         this.addChestVehicleSaveData(tag)
@@ -43,7 +39,6 @@ open class SailboatWithChestEntity(
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         super.readAdditionalSaveData(tag)
-        setDamage(tag.getFloat("Damage"))
         this.readChestVehicleSaveData(tag)
     }
 

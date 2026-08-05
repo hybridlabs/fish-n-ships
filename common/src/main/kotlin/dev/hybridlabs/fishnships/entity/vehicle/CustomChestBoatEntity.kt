@@ -31,10 +31,6 @@ open class CustomChestBoatEntity(
     private var chestBoatLootTable: ResourceLocation? = null
     private var chestBoatLootTableSeed: Long = 0
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-    }
-
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
         this.addChestVehicleSaveData(tag)

@@ -2,6 +2,7 @@ package dev.hybridlabs.fishnships.entity.vehicle
 
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
+import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
 import net.minecraft.world.damagesource.DamageSource
@@ -27,6 +28,16 @@ open class CanoeWithChestEntity(entityType: EntityType<out CanoeWithChestEntity>
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(27, ItemStack.EMPTY)
     private var canoeLootTable: ResourceLocation? = null
     private var canoeLootTableSeed: Long = 0
+
+    override fun addAdditionalSaveData(tag: CompoundTag) {
+        super.addAdditionalSaveData(tag)
+        this.addChestVehicleSaveData(tag)
+    }
+
+    override fun readAdditionalSaveData(tag: CompoundTag) {
+        super.readAdditionalSaveData(tag)
+        this.readChestVehicleSaveData(tag)
+    }
 
     override val maxPassengers: Int
         get() = 2
