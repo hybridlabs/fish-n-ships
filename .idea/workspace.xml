@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Cleanup imports">
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/fish_n_ships.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Added mod icon and fixed credits and links">
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/fish_n_ships.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/ShipScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/gui/screen/ShipScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/FSMenuTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/FSMenuTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/ShipMenu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/world/inventory/ShipMenu.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +169,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/animations/entity/boat",
+    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources",
     "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -178,11 +179,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\boat" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\animations\entity\sailboat" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships\textures\gui" />
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client\render\entity" />
-      <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\kotlin\dev\hybridlabs\fishnships\client\model\entity" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\common\src\main\resources\assets\fish_n_ships" />
@@ -441,22 +442,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00189" summary="Trying to do multipart">
-      <option name="closed" value="true" />
-      <created>1784716195126</created>
-      <option name="number" value="00189" />
-      <option name="presentableId" value="LOCAL-00189" />
-      <option name="project" value="LOCAL" />
-      <updated>1784716195126</updated>
-    </task>
-    <task id="LOCAL-00190" summary="Updated GUI texture and did some other stuff">
-      <option name="closed" value="true" />
-      <created>1784894519721</created>
-      <option name="number" value="00190" />
-      <option name="presentableId" value="LOCAL-00190" />
-      <option name="project" value="LOCAL" />
-      <updated>1784894519721</updated>
     </task>
     <task id="LOCAL-00191" summary="Rafts, mostly working, still needing tweaks">
       <option name="closed" value="true" />
@@ -834,7 +819,23 @@
       <option name="project" value="LOCAL" />
       <updated>1785887985316</updated>
     </task>
-    <option name="localTasksCounter" value="238" />
+    <task id="LOCAL-00238" summary="Added mod icon and fixed credits and links">
+      <option name="closed" value="true" />
+      <created>1785893641250</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1785893641250</updated>
+    </task>
+    <task id="LOCAL-00239" summary="Added mod icon and fixed credits and links">
+      <option name="closed" value="true" />
+      <created>1785893675412</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1785893675412</updated>
+    </task>
+    <option name="localTasksCounter" value="240" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -850,7 +851,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished all variants in code, now just textures remaining" />
     <MESSAGE value="Removed log spam" />
     <MESSAGE value="Finished adding all variants" />
     <MESSAGE value="Fixed imports and typo" />
@@ -875,7 +875,8 @@
     <MESSAGE value="Fixed water transparency issue in the ship" />
     <MESSAGE value="Fixed vehicle healths" />
     <MESSAGE value="Cleanup imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup imports" />
+    <MESSAGE value="Added mod icon and fixed credits and links" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added mod icon and fixed credits and links" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
