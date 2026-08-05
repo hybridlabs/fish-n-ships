@@ -9,7 +9,6 @@ import java.util.function.Supplier
 object FSMenuTypes {
 
     val SHIP_MENU_3ROW = register("ship_3row", ShipMenu.Companion::threeRows)
-    val SHIP_MENU_2ROW = register("ship_2row", ShipMenu.Companion::twoRows)
 
     val SUPPLY_RAFT_MENU_6ROW = register("supply_raft_6row", SupplyRaftMenu.Companion::sixRows)
 

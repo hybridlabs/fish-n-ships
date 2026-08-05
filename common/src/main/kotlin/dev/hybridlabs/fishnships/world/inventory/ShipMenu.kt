@@ -151,28 +151,6 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
         private const val LEFT_PIXEL_TO_SLOT = 11
         private const val TOP_OFFSET = 54
 
-        fun twoRows(containerId: Int, playerInventory: Inventory, container: Container, containerData: ContainerData): ShipMenu {
-            return ShipMenu(
-                FSMenuTypes.SHIP_MENU_2ROW.get(),
-                containerId,
-                playerInventory,
-                container,
-                2,
-                containerData
-            )
-        }
-
-        fun twoRows(containerId: Int, playerInventory: Inventory): ShipMenu {
-            return ShipMenu(
-                FSMenuTypes.SHIP_MENU_2ROW.get(),
-                containerId,
-                playerInventory,
-                SimpleContainer(SLOTS_PER_ROW * 2 + 15),
-                2,
-                SimpleContainerData(2)
-            )
-        }
-
         fun threeRows(containerId: Int, playerInventory: Inventory): ShipMenu {
             return ShipMenu(
                 FSMenuTypes.SHIP_MENU_3ROW.get(),
