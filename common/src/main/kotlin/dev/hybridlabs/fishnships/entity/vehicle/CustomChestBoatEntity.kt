@@ -82,6 +82,10 @@ open class CustomChestBoatEntity(
         this.readChestVehicleSaveData(tag, this.registryAccess())
     }
 
+    override fun getSinglePassengerXOffset(): Float {
+        return 0.15f
+    }
+
     override val maxPassengers: Int
         get() = 1
 

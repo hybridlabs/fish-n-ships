@@ -207,11 +207,11 @@ open class CanoeEntity(
         ) else 0.0f
     }
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
-        }
-
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
         val xOffset = when (passengers.indexOf(passenger)) {
             0 -> -0.25
             1 -> -0.9
@@ -219,15 +219,14 @@ open class CanoeEntity(
             else -> 0.0
         }
 
-        val offset = Vec3(xOffset, 0.0, 0.0)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+        val yOffset = dimensions.height() / 3.0
 
-        callback.accept(
-            passenger,
-            x + offset.x,
-            y,
-            z + offset.z
-        )
+        return Vec3(0.0, yOffset, xOffset)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f))
+    }
+
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        super.positionRider(passenger, callback)
 
         if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation

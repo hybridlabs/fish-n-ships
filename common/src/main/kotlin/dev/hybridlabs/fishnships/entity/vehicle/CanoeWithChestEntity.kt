@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.EntityDimensions
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.animal.Animal
@@ -80,26 +81,25 @@ open class CanoeWithChestEntity(entityType: EntityType<out CanoeWithChestEntity>
     override val maxPassengers: Int
         get() = 2
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
-        }
-
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
         val xOffset = when (passengers.indexOf(passenger)) {
             0 -> -0.35
             1 -> 0.65
             else -> 0.0
         }
 
-        val offset = Vec3(xOffset, 0.0, 0.0)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+        val yOffset = dimensions.height() / 3.0
 
-        callback.accept(
-            passenger,
-            x + offset.x,
-            y,
-            z + offset.z
-        )
+        return Vec3(0.0, yOffset, xOffset)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f))
+    }
+
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        super.positionRider(passenger, callback)
 
         if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation

@@ -163,35 +163,34 @@ open class SailboatEntity(
         }
     }
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
-        }
-
-        var f = 0.2f
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
+        var f = 0.2
 
         if (passengers.size > 1) {
-            val i = passengers.indexOf(passenger)
-            f = if (i == 0) {
-                0.2f
+            f = if (passengers.indexOf(passenger) == 0) {
+                0.2
             } else {
-                -0.6f
+                -0.6
             }
 
             if (passenger is Animal) {
-                f += 0.2f
+                f += 0.2
             }
         }
 
-        val vec3 = Vec3(f.toDouble(), 0.0, 0.0)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+        return Vec3(
+            f,
+            dimensions.height() / 3.0,
+            0.0
+        ).yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+    }
 
-        callback.accept(
-            passenger,
-            x + vec3.x,
-            y,
-            z + vec3.z
-        )
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        super.positionRider(passenger, callback)
 
         if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation
@@ -200,8 +199,8 @@ open class SailboatEntity(
 
             if (passenger is Animal && passengers.size == maxPassengers) {
                 val rotation = if (passenger.id % 2 == 0) 90f else 270f
-                passenger.setYBodyRot(passenger.yBodyRot + rotation)
-                passenger.setYHeadRot(passenger.yHeadRot + rotation)
+                passenger.yBodyRot += rotation
+                passenger.yHeadRot += rotation
             }
         }
     }

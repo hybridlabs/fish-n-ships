@@ -119,11 +119,11 @@ open class RaftEntity(
         }
     }
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
-        }
-
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
         val (xOffset, zOffset) = when (passengers.size) {
             1 -> when (passengers.indexOf(passenger)) {
                 0 -> 0.0 to 0.0
@@ -152,15 +152,15 @@ open class RaftEntity(
             }
         }
 
-        val offset = Vec3(xOffset, 0.0, zOffset)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+        return Vec3(
+            xOffset,
+            dimensions.height() / 3.0,
+            zOffset
+        ).yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+    }
 
-        callback.accept(
-            passenger,
-            x + offset.x,
-            y,
-            z + offset.z
-        )
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        super.positionRider(passenger, callback)
 
         if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation

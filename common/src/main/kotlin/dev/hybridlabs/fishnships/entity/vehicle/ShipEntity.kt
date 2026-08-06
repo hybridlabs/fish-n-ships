@@ -81,6 +81,39 @@ open class ShipEntity(
     private val trawlingSlots = 3..14
     private var moving = false
 
+    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+        if (!isAlive) {
+            return InteractionResult.PASS
+        }
+
+        val result = super.interact(player, hand)
+        if (result != InteractionResult.PASS) {
+            return result
+        }
+
+        if (player.isSecondaryUseActive) {
+            val containerResult = interactWithContainerVehicle(player)
+            if (containerResult.consumesAction()) {
+                gameEvent(GameEvent.CONTAINER_OPEN, player)
+            }
+            return containerResult
+        }
+
+        return if (outOfControlTicks < 60.0f) {
+            if (!level().isClientSide) {
+                if (player.startRiding(this)) {
+                    InteractionResult.CONSUME
+                } else {
+                    InteractionResult.PASS
+                }
+            } else {
+                InteractionResult.SUCCESS
+            }
+        } else {
+            InteractionResult.PASS
+        }
+    }
+
     init {
         noCulling = true
     }
@@ -551,15 +584,20 @@ open class ShipEntity(
         this.clampRotation(entityToUpdate)
     }
 
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
+        return Vec3(
+            0.0,
+            1.5 + dimensions.height() / 3.0,
+            0.0
+        )
+    }
+
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (this.hasPassenger(passenger)) {
-            callback.accept(
-                passenger,
-                this.x,
-                this.y + 1.5 + 1.0,
-                this.z
-            )
-        }
+        super.positionRider(passenger, callback)
     }
 
     override fun canAddPassenger(passenger: Entity): Boolean {
