@@ -18,7 +18,7 @@
     "WWW"
   ],
   "result": {
-    "item": "fish_n_ships:trawling_net"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "fish_n_ships:trawling_net"
+  }
 }

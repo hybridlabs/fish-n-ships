@@ -14,7 +14,7 @@
     "WWW"
   ],
   "result": {
-    "item": "fish_n_ships:jungle_sailboat"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "fish_n_ships:jungle_sailboat"
+  }
 }

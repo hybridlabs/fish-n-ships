@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crimson_boat": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fish_n_ships:crimson_boat"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fish_n_ships:crimson_boat_with_chest"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_crimson_boat"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fish_n_ships:crimson_boat_with_chest"
+    ]
+  }
+}
