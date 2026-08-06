@@ -4,10 +4,195 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Partially ran datagen and manually fixed the rest for now">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/server/RecipeProvider.kt" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Help">
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/sounds.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/tools/icebreaker.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/tools/icebreaker.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/tools/trawling_net.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/tools/trawling_net.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/acacia_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/acacia_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/birch_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/birch_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/cherry_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/cherry_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_boat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_boat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_boat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_boat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/crimson_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/crimson_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/dark_oak_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/dark_oak_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/jungle_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/jungle_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/mangrove_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/mangrove_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/oak_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/oak_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/ship.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/ship.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/spruce_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/spruce_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_boat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_boat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_boat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_boat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_canoe_with_double_chest_from_canoe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancements/recipes/transportation/warped_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/advancement/recipes/transportation/warped_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/acacia_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/birch_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/cherry_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_boat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_boat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_boat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_boat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/crimson_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/dark_oak_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/icebreaker.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/icebreaker.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/jungle_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/mangrove_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/oak_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/ship.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/ship.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/spruce_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/trawling_net.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/trawling_net.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_boat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_boat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_boat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_boat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe_with_double_chest_from_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe_with_double_chest_from_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe_with_double_chest_from_chest_canoe.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_canoe_with_double_chest_from_chest_canoe.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_sailboat.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_sailboat.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_sailboat_with_chest.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_sailboat_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_supply_raft.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/data/fish_n_ships/recipe/warped_supply_raft.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/minecraft/tags/items/boats.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/data/minecraft/tags/items/chest_boats.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,50 +284,50 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Datagen.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Fabric Client (:fabric).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Fabric Server (:fabric).executor&quot;: &quot;Run&quot;,
-    &quot;Application.forge - Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.forge - Data.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build fish-n-ships.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build hybrid-birds.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.fish-n-ships [:forge:runClient].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships [:forge:runData].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:forge [:forge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:forge [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.fish-n-ships:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds [build].executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.hybrid-birds [runDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:forge [copyDatagen].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.hybrid-birds:neoforge [build].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;1.21.1&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/fish-n-ships/neoforge/src/main/resources/META-INF/services&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Datagen.executor": "Run",
+    "Application.Fabric Client (:fabric).executor": "Run",
+    "Application.Fabric Server (:fabric).executor": "Run",
+    "Application.forge - Client.executor": "Run",
+    "Application.forge - Data.executor": "Run",
+    "Gradle.Build fish-n-ships.executor": "Run",
+    "Gradle.Build hybrid-birds.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.fish-n-ships [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Debug",
+    "Gradle.fish-n-ships [:forge:runClient].executor": "Run",
+    "Gradle.fish-n-ships [:forge:runData].executor": "Run",
+    "Gradle.fish-n-ships:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.fish-n-ships:fabric [build].executor": "Run",
+    "Gradle.fish-n-ships:forge [:forge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.fish-n-ships:forge [build].executor": "Run",
+    "Gradle.fish-n-ships:forge [copyDatagen].executor": "Run",
+    "Gradle.fish-n-ships:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds [build].executor": "Debug",
+    "Gradle.hybrid-birds [runDatagen].executor": "Run",
+    "Gradle.hybrid-birds:fabric [:fabric:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:fabric [build].executor": "Run",
+    "Gradle.hybrid-birds:forge [:forge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:forge [build].executor": "Run",
+    "Gradle.hybrid-birds:forge [copyDatagen].executor": "Run",
+    "Gradle.hybrid-birds:neoforge [:neoforge:net.neoforged.devlaunch.Main.main()].executor": "Run",
+    "Gradle.hybrid-birds:neoforge [build].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Merging 1.21.1",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/LENVO/Documents/GitHub/fish-n-ships/neoforge/src/main/resources/META-INF/services",
+    "onboarding.tips.debug.path": "C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\LENVO\Documents\GitHub\fish-n-ships\neoforge\src\main\resources\META-INF\services" />
@@ -409,14 +594,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00202" summary="Recipes">
-      <option name="closed" value="true" />
-      <created>1785460672575</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1785460672575</updated>
     </task>
     <task id="LOCAL-00203" summary="Must use packet to set trawling because you can't set entity data on the client.">
       <option name="closed" value="true" />
@@ -802,7 +979,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786005654778</updated>
     </task>
-    <option name="localTasksCounter" value="251" />
+    <task id="LOCAL-00251" summary="Help">
+      <option name="closed" value="true" />
+      <created>1786007005265</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1786007005265</updated>
+    </task>
+    <option name="localTasksCounter" value="252" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -818,7 +1003,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Ship GUI texture update" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Fixed passenger count for chest boats" />
     <MESSAGE value="Fix fire texture in ship gui" />
@@ -843,7 +1027,8 @@
     <MESSAGE value="Tweaked ship item" />
     <MESSAGE value="Fixed passenger positions for all vehicles" />
     <MESSAGE value="Partially ran datagen and manually fixed the rest for now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Partially ran datagen and manually fixed the rest for now" />
+    <MESSAGE value="Help" />
+    <option name="LAST_COMMIT_MESSAGE" value="Help" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
