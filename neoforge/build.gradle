@@ -21,7 +21,6 @@ neoForge {
         main.kotlin.srcDirs = ['src/main/java', 'src/main/kotlin']
     }
 
-
     runs {
         configureEach {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
