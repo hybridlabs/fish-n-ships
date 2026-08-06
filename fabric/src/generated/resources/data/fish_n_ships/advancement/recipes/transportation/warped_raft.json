@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fish_n_ships:warped_raft"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warped_stem": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:warped_stem"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_warped_stem"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fish_n_ships:warped_raft"
+    ]
+  }
+}

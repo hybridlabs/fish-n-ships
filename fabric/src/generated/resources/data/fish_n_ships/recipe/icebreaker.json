@@ -15,7 +15,7 @@
     " B "
   ],
   "result": {
-    "item": "fish_n_ships:icebreaker"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "fish_n_ships:icebreaker"
+  }
 }
