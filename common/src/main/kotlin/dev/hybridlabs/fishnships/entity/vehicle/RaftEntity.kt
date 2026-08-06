@@ -43,28 +43,6 @@ open class RaftEntity(
     init {
         noCulling = true
     }
-    
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-        if (!isAlive) {
-            return InteractionResult.PASS
-        }
-
-        return if (player.isSecondaryUseActive) {
-            InteractionResult.PASS
-        } else if (outOfControlTicks < 60.0f) {
-            if (!level().isClientSide) {
-                if (player.startRiding(this)) {
-                    InteractionResult.CONSUME
-                } else {
-                    InteractionResult.PASS
-                }
-            } else {
-                InteractionResult.SUCCESS
-            }
-        } else {
-            InteractionResult.PASS
-        }
-    }
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {
         super.defineSynchedData(builder)

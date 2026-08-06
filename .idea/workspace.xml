@@ -4,26 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Got fabric launching&#10;Need to fix leashing and passenger offsets">
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/java/dev/hybridlabs/fishnships/platform/services/ForgeClientPlatformHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/java/dev/hybridlabs/fishnships/platform/services/ForgePlatformHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/java/dev/hybridlabs/fishnships/platform/services/ForgeRegistrationFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/kotlin/dev/hybridlabs/fishnships/network/MovingPacket.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/kotlin/dev/hybridlabs/fishnships/network/SailingPacket.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/kotlin/dev/hybridlabs/fishnships/network/TrawlingPacket.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.registration.RegistrationProvider$Factory" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.services.ClientPlatformHelper" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neoforge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.services.PlatformHelper" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/FishNShipsForge.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/entity/ForgeSpawnGroupRegistry.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" beforeDir="false" afterPath="$PROJECT_DIR$/neoforge/src/main/kotlin/dev/hybridlabs/fishnships/network/FSNetworking.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.registration.RegistrationProvider$Factory" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.registration.RegistrationProvider$Factory" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.services.ClientPlatformHelper" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.services.ClientPlatformHelper" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.services.PlatformHelper" beforeDir="false" afterPath="$PROJECT_DIR$/forge/src/main/resources/META-INF/services/dev.hybridlabs.fishnships.platform.services.PlatformHelper" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forge/src/main/resources/fish_n_ships.forge.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/neoforge/src/main/resources/fish_n_ships.forge.mixins.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neoforge/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/neoforge/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neoforge/src/main/resources/neoforge.mods.toml" beforeDir="false" afterPath="$PROJECT_DIR$/neoforge/src/main/resources/META-INF/neoforge.mods.toml" afterDir="false" />
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Working on neo">
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/BaseBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/BaseBoatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithDoubleChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CanoeWithDoubleChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomBoatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/CustomChestBoatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/RaftEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/RaftEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatWithChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SailboatWithChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/ShipEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SupplyRaftEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/SupplyRaftEntity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -437,14 +429,6 @@
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
     </task>
-    <task id="LOCAL-00197" summary="Supply raft item model">
-      <option name="closed" value="true" />
-      <created>1785288530271</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1785288530271</updated>
-    </task>
     <task id="LOCAL-00198" summary="Got the paddles working finally">
       <option name="closed" value="true" />
       <created>1785421798775</created>
@@ -829,7 +813,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785964819739</updated>
     </task>
-    <option name="localTasksCounter" value="246" />
+    <task id="LOCAL-00246" summary="Working on neo">
+      <option name="closed" value="true" />
+      <created>1785989005665</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1785989005665</updated>
+    </task>
+    <option name="localTasksCounter" value="247" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -845,7 +837,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Replaced excess menu types with vanilla chest menus" />
     <MESSAGE value="Added crimson and warped boats, also changed directory name" />
     <MESSAGE value="Fixed paddle positions on custom boat entities" />
     <MESSAGE value="Added trawling net item texture" />
@@ -870,7 +861,8 @@
     <MESSAGE value="Adjusted trawling sound" />
     <MESSAGE value="Started work on 1.21.1" />
     <MESSAGE value="Got fabric launching&#10;Need to fix leashing and passenger offsets" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got fabric launching&#10;Need to fix leashing and passenger offsets" />
+    <MESSAGE value="Working on neo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on neo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

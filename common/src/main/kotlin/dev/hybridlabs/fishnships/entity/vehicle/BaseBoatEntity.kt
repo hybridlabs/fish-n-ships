@@ -12,6 +12,8 @@ import net.minecraft.sounds.SoundEvent
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.Mth
+import net.minecraft.world.InteractionHand
+import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.*
 import net.minecraft.world.entity.animal.WaterAnimal
 import net.minecraft.world.entity.player.Player
@@ -157,6 +159,23 @@ abstract class BaseBoatEntity(
 
     override fun isPushable(): Boolean {
         return true
+    }
+
+    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+        val interactionresult = super.interact(player, hand)
+        return if (interactionresult != InteractionResult.PASS) {
+            interactionresult
+        } else if (player.isSecondaryUseActive) {
+            InteractionResult.PASS
+        } else if (this.outOfControlTicks < 60.0f) {
+            if (!this.level().isClientSide) {
+                if (player.startRiding(this)) InteractionResult.CONSUME else InteractionResult.PASS
+            } else {
+                InteractionResult.SUCCESS
+            }
+        } else {
+            InteractionResult.PASS
+        }
     }
 
     override fun onAboveBubbleCol(downwards: Boolean) {

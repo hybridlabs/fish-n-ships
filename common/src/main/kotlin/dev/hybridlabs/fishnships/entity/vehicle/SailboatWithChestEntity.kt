@@ -7,6 +7,8 @@ import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
+import net.minecraft.world.InteractionHand
+import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
@@ -31,6 +33,39 @@ open class SailboatWithChestEntity(
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(27, ItemStack.EMPTY)
     private var sailboatLootTable: ResourceKey<LootTable>? = null
     private var sailboatLootTableSeed: Long = 0
+
+    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+        if (!isAlive) {
+            return InteractionResult.PASS
+        }
+
+        val result = super.interact(player, hand)
+        if (result != InteractionResult.PASS) {
+            return result
+        }
+
+        if (player.isSecondaryUseActive) {
+            val containerResult = interactWithContainerVehicle(player)
+            if (containerResult.consumesAction()) {
+                gameEvent(GameEvent.CONTAINER_OPEN, player)
+            }
+            return containerResult
+        }
+
+        return if (outOfControlTicks < 60.0f) {
+            if (!level().isClientSide) {
+                if (player.startRiding(this)) {
+                    InteractionResult.CONSUME
+                } else {
+                    InteractionResult.PASS
+                }
+            } else {
+                InteractionResult.SUCCESS
+            }
+        } else {
+            InteractionResult.PASS
+        }
+    }
 
     override val maxPassengers: Int
         get() = 1

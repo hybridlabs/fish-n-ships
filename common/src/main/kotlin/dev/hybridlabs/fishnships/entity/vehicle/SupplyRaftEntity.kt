@@ -40,15 +40,17 @@ open class SupplyRaftEntity(
             return InteractionResult.PASS
         }
 
-        if (player.isSecondaryUseActive) {
-            val containerResult = interactWithContainerVehicle(player)
-            if (containerResult.consumesAction()) {
-                gameEvent(GameEvent.CONTAINER_OPEN, player)
-            }
-            return containerResult
+        val result = super.interact(player, hand)
+        if (result != InteractionResult.PASS) {
+            return result
         }
 
-        return InteractionResult.PASS
+        val containerResult = interactWithContainerVehicle(player)
+        if (containerResult.consumesAction()) {
+            gameEvent(GameEvent.CONTAINER_OPEN, player)
+        }
+
+        return containerResult
     }
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {

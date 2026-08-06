@@ -254,20 +254,6 @@ open class SailboatEntity(
         return super.getDismountLocationForPassenger(livingEntity)
     }
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-        return if (player.isSecondaryUseActive) {
-            InteractionResult.PASS
-        } else if (this.outOfControlTicks < 60.0f) {
-            if (!this.level().isClientSide) {
-                if (player.startRiding(this)) InteractionResult.CONSUME else InteractionResult.PASS
-            } else {
-                InteractionResult.SUCCESS
-            }
-        } else {
-            InteractionResult.PASS
-        }
-    }
-
     override val maxPassengers: Int
         get() = 2
 

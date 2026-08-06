@@ -294,20 +294,6 @@ open class CanoeEntity(
         this.clampRotation(entityToUpdate)
     }
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-        return if (player.isSecondaryUseActive) {
-            InteractionResult.PASS
-        } else if (this.outOfControlTicks < 60.0f) {
-            if (!this.level().isClientSide) {
-                if (player.startRiding(this)) InteractionResult.CONSUME else InteractionResult.PASS
-            } else {
-                InteractionResult.SUCCESS
-            }
-        } else {
-            InteractionResult.PASS
-        }
-    }
-
     fun getPaddleState(side: Int): Boolean {
         return this.entityData.get(if (side == 0) DATA_ID_PADDLE_LEFT else DATA_ID_PADDLE_RIGHT) as Boolean && this.getControllingPassenger() != null
     }

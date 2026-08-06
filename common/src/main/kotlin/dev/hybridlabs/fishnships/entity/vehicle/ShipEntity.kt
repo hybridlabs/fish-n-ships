@@ -551,19 +551,6 @@ open class ShipEntity(
         this.clampRotation(entityToUpdate)
     }
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-
-        return if (player.isSecondaryUseActive) {
-            InteractionResult.PASS
-        } else if (this.isVehicle) {
-            InteractionResult.PASS
-        } else if (!this.level().isClientSide) {
-            if (player.startRiding(this)) InteractionResult.CONSUME else InteractionResult.PASS
-        } else {
-            InteractionResult.SUCCESS
-        }
-    }
-
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         if (this.hasPassenger(passenger)) {
             callback.accept(
