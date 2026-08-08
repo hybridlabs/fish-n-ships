@@ -6,6 +6,8 @@ import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithChestEntityR
 import dev.hybridlabs.fishnships.client.render.entity.misc.CanoeWithDoubleChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.CustomBoatEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.CustomBoatWithChestEntityRenderer
+import dev.hybridlabs.fishnships.client.render.entity.misc.DinghyEntityRenderer
+import dev.hybridlabs.fishnships.client.render.entity.misc.DinghyWithDoubleChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.RaftEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.SailboatWithChestEntityRenderer
 import dev.hybridlabs.fishnships.client.render.entity.misc.ShipEntityRenderer
@@ -74,5 +76,17 @@ object FSEntityRenderers {
         ClientServices.RENDERER.registerEntityRenderer(
             FSEntityTypes.SUPPLY_RAFT,
             ::SupplyRaftEntityRenderer
+        )
+
+    val DINGHY =
+        ClientServices.RENDERER.registerEntityRenderer(
+            FSEntityTypes.DINGHY,
+            ::DinghyEntityRenderer
+        )
+
+    val DINGHY_WITH_DOUBLE_CHEST =
+        ClientServices.RENDERER.registerEntityRenderer(
+            FSEntityTypes.DINGHY_WITH_DOUBLE_CHEST,
+            ::DinghyWithDoubleChestEntityRenderer
         )
 }
