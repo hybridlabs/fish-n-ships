@@ -30,7 +30,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.OAK_RAFT.get() to "Oak Raft",
             FSItems.OAK_SUPPLY_RAFT.get() to "Oak Supply Raft",
             FSItems.OAK_DINGHY.get() to "Oak Dinghy",
-            FSItems.OAK_DINGHY_WITH_DOUBLE_CHEST.get() to "Oak Dinghy With Double Chest",
+            FSItems.OAK_DINGHY_WITH_CHEST.get() to "Oak Dinghy With Chest",
 
             FSItems.SPRUCE_SAILBOAT.get() to "Spruce Sailboat",
             FSItems.SPRUCE_SAILBOAT_WITH_CHEST.get() to "Spruce Sailboat With Chest",
@@ -40,7 +40,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.SPRUCE_RAFT.get() to "Spruce Raft",
             FSItems.SPRUCE_SUPPLY_RAFT.get() to "Spruce Supply Raft",
             FSItems.SPRUCE_DINGHY.get() to "Spruce Dinghy",
-            FSItems.SPRUCE_DINGHY_WITH_DOUBLE_CHEST.get() to "Spruce Dinghy With Double Chest",
+            FSItems.SPRUCE_DINGHY_WITH_CHEST.get() to "Spruce Dinghy With Chest",
 
             FSItems.BIRCH_SAILBOAT.get() to "Birch Sailboat",
             FSItems.BIRCH_SAILBOAT_WITH_CHEST.get() to "Birch Sailboat With Chest",
@@ -50,7 +50,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.BIRCH_RAFT.get() to "Birch Raft",
             FSItems.BIRCH_SUPPLY_RAFT.get() to "Birch Supply Raft",
             FSItems.BIRCH_DINGHY.get() to "Birch Dinghy",
-            FSItems.BIRCH_DINGHY_WITH_DOUBLE_CHEST.get() to "Birch Dinghy With Double Chest",
+            FSItems.BIRCH_DINGHY_WITH_CHEST.get() to "Birch Dinghy With Chest",
 
             FSItems.JUNGLE_SAILBOAT.get() to "Jungle Sailboat",
             FSItems.JUNGLE_SAILBOAT_WITH_CHEST.get() to "Jungle Sailboat With Chest",
@@ -60,7 +60,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.JUNGLE_RAFT.get() to "Jungle Raft",
             FSItems.JUNGLE_SUPPLY_RAFT.get() to "Jungle Supply Raft",
             FSItems.JUNGLE_DINGHY.get() to "Jungle Dinghy",
-            FSItems.JUNGLE_DINGHY_WITH_DOUBLE_CHEST.get() to "Jungle Dinghy With Double Chest",
+            FSItems.JUNGLE_DINGHY_WITH_CHEST.get() to "Jungle Dinghy With Chest",
 
             FSItems.ACACIA_SAILBOAT.get() to "Acacia Sailboat",
             FSItems.ACACIA_SAILBOAT_WITH_CHEST.get() to "Acacia Sailboat With Chest",
@@ -70,7 +70,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.ACACIA_RAFT.get() to "Acacia Raft",
             FSItems.ACACIA_SUPPLY_RAFT.get() to "Acacia Supply Raft",
             FSItems.ACACIA_DINGHY.get() to "Acacia Dinghy",
-            FSItems.ACACIA_DINGHY_WITH_DOUBLE_CHEST.get() to "Acacia Dinghy With Double Chest",
+            FSItems.ACACIA_DINGHY_WITH_CHEST.get() to "Acacia Dinghy With Chest",
 
             FSItems.CHERRY_SAILBOAT.get() to "Cherry Sailboat",
             FSItems.CHERRY_SAILBOAT_WITH_CHEST.get() to "Cherry Sailboat With Chest",
@@ -80,7 +80,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.CHERRY_RAFT.get() to "Cherry Raft",
             FSItems.CHERRY_SUPPLY_RAFT.get() to "Cherry Supply Raft",
             FSItems.CHERRY_DINGHY.get() to "Cherry Dinghy",
-            FSItems.CHERRY_DINGHY_WITH_DOUBLE_CHEST.get() to "Cherry Dinghy With Double Chest",
+            FSItems.CHERRY_DINGHY_WITH_CHEST.get() to "Cherry Dinghy With Chest",
 
             FSItems.DARK_OAK_SAILBOAT.get() to "Dark Oak Sailboat",
             FSItems.DARK_OAK_SAILBOAT_WITH_CHEST.get() to "Dark Oak Sailboat With Chest",
@@ -90,7 +90,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.DARK_OAK_RAFT.get() to "Dark Oak Raft",
             FSItems.DARK_OAK_SUPPLY_RAFT.get() to "Dark Oak Supply Raft",
             FSItems.DARK_OAK_DINGHY.get() to "Dark Oak Dinghy",
-            FSItems.DARK_OAK_DINGHY_WITH_DOUBLE_CHEST.get() to "Dark Oak Dinghy With Double Chest",
+            FSItems.DARK_OAK_DINGHY_WITH_CHEST.get() to "Dark Oak Dinghy With Chest",
 
             FSItems.MANGROVE_SAILBOAT.get() to "Mangrove Sailboat",
             FSItems.MANGROVE_SAILBOAT_WITH_CHEST.get() to "Mangrove Sailboat With Chest",
@@ -100,7 +100,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.MANGROVE_RAFT.get() to "Mangrove Raft",
             FSItems.MANGROVE_SUPPLY_RAFT.get() to "Mangrove Supply Raft",
             FSItems.MANGROVE_DINGHY.get() to "Mangrove Dinghy",
-            FSItems.MANGROVE_DINGHY_WITH_DOUBLE_CHEST.get() to "Mangrove Dinghy With Double Chest",
+            FSItems.MANGROVE_DINGHY_WITH_CHEST.get() to "Mangrove Dinghy With Chest",
 
             FSItems.CRIMSON_BOAT.get() to "Crimson Boat",
             FSItems.CRIMSON_BOAT_WITH_CHEST.get() to "Crimson Boat With Chest",
@@ -112,7 +112,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.CRIMSON_RAFT.get() to "Crimson Raft",
             FSItems.CRIMSON_SUPPLY_RAFT.get() to "Crimson Supply Raft",
             FSItems.CRIMSON_DINGHY.get() to "Crimson Dinghy",
-            FSItems.CRIMSON_DINGHY_WITH_DOUBLE_CHEST.get() to "Crimson Dinghy With Double Chest",
+            FSItems.CRIMSON_DINGHY_WITH_CHEST.get() to "Crimson Dinghy With Chest",
 
             FSItems.WARPED_BOAT.get() to "Warped Boat",
             FSItems.WARPED_BOAT_WITH_CHEST.get() to "Warped Boat With Chest",
@@ -124,7 +124,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.WARPED_RAFT.get() to "Warped Raft",
             FSItems.WARPED_SUPPLY_RAFT.get() to "Warped Supply Raft",
             FSItems.WARPED_DINGHY.get() to "Warped Dinghy",
-            FSItems.WARPED_DINGHY_WITH_DOUBLE_CHEST.get() to "Warped Dinghy With Double Chest",
+            FSItems.WARPED_DINGHY_WITH_CHEST.get() to "Warped Dinghy With Chest",
             
             FSItems.TRAWLING_NET.get() to "Trawling Net",
             FSItems.ICEBREAKER.get() to "Icebreaker",
@@ -146,7 +146,7 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSEntityTypes.CANOE_WITH_CHEST.get() to "Canoe With Chest",
             FSEntityTypes.CANOE_WITH_DOUBLE_CHEST.get() to "Canoe With Double Chest",
             FSEntityTypes.DINGHY.get() to "Dinghy",
-            FSEntityTypes.DINGHY_WITH_DOUBLE_CHEST.get() to "Dinghy With Double Chest",
+            FSEntityTypes.DINGHY_WITH_CHEST.get() to "Dinghy With Chest",
             FSEntityTypes.RAFT.get() to "Raft",
             FSEntityTypes.SUPPLY_RAFT.get() to "Supply Raft",
         )

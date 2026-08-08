@@ -5,14 +5,150 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Dingle">
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/DinghyEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/DinghyEntityModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/DinghyWithDoubleChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/DinghyWithDoubleChestEntityModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/DinghyEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/DinghyEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/alt_dinghy_with_chest.geo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/acacia_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_acacia_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_birch_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_cherry_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_crimson_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_dark_oak_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_jungle_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_mangrove_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_spruce_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_warped_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/birch_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/cherry_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/crimson_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/dark_oak_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/jungle_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/mangrove_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/spruce_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/warped_dinghy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/acacia_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/birch_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/cherry_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/crimson_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/dark_oak_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/jungle_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/mangrove_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/oak_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/spruce_dinghy_with_chest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/warped_dinghy_with_chest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithDoubleChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/CanoeWithDoubleChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/DinghyWithDoubleChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/DinghyWithChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatWithChestEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SailboatWithChestEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SupplyRaftEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/model/entity/misc/SupplyRaftEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/FSEntityRenderers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/FSEntityRenderers.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/DinghyWithDoubleChestEntityRenderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/client/render/entity/misc/DinghyWithChestEntityRenderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/FSEntityTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/DinghyWithDoubleChestEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/entity/vehicle/DinghyWithChestEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/DinghyWithDoubleChestItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/DinghyWithChestItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItems.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/dev/hybridlabs/fishnships/item/FSItems.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/boat/boat.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/boat/boat.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/canoe/canoe.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/canoe/canoe.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/canoe/canoe_with_chest.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/canoe/canoe_with_chest.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/canoe/canoe_with_double_chest.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/canoe/canoe_with_double_chest.geo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/alt_dinghy.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/alt_dinghy.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/alt_dinghy_with_chest.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/alt_dinghy_with_double_chest.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/dinghy_with_chest.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/dinghy_with_double_chest.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_oak_dinghy_with_chest.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_oak_dinghy_with_double_chest.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/oak_dinghy_with_chest.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/oak_dinghy_with_double_chest.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/alt_dinghy_with_double_chest.geo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/dinghy.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/dinghy.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/dinghy_with_double_chest.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/dinghy/dinghy_with_chest.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/raft/raft.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/raft/raft.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/raft/supply_raft.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/raft/supply_raft.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/sailboat/sailboat.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/geo/entity/sailboat/sailboat.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/boat/crimson_boat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/boat/crimson_boat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/boat/crimson_boat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/boat/warped_boat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/boat/warped_boat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/boat/warped_boat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/acacia_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/acacia_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/acacia_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/acacia_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/birch_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/birch_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/birch_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/birch_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/cherry_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/cherry_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/cherry_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/cherry_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/crimson_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/crimson_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/crimson_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/crimson_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/dark_oak_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/dark_oak_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/dark_oak_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/dark_oak_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/jungle_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/jungle_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/jungle_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/jungle_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/mangrove_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/mangrove_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/mangrove_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/mangrove_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/oak_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/oak_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/oak_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/oak_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/spruce_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/spruce_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/spruce_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/spruce_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/warped_canoe.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/warped_canoe.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/warped_canoe_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/canoe/warped_canoe_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_oak_dinghy.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_oak_dinghy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/alt_oak_dinghy_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/oak_dinghy.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/oak_dinghy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/dinghy/oak_dinghy_with_double_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/acacia_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/acacia_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/acacia_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/birch_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/birch_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/birch_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/cherry_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/cherry_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/cherry_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/crimson_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/crimson_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/crimson_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/dark_oak_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/dark_oak_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/dark_oak_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/jungle_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/jungle_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/jungle_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/mangrove_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/mangrove_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/mangrove_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/oak_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/oak_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/oak_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/spruce_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/spruce_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/spruce_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/warped_raft.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/warped_raft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/raft/warped_supply_raft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/acacia_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/acacia_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/acacia_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/birch_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/birch_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/birch_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/cherry_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/cherry_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/cherry_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/crimson_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/crimson_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/crimson_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/dark_oak_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/dark_oak_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/dark_oak_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/jungle_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/jungle_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/jungle_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/mangrove_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/mangrove_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/mangrove_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/oak_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/oak_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/oak_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/spruce_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/spruce_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/spruce_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/warped_sailboat.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/warped_sailboat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/assets/fish_n_ships/textures/entity/sailboat/warped_sailboat_with_chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/lang/en_us.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/lang/en_us.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/acacia_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/birch_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/cherry_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/crimson_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/dark_oak_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/jungle_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/mangrove_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/oak_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/spruce_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/generated/resources/assets/fish_n_ships/models/item/warped_dinghy_with_double_chest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/LanguageProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/ModelProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/dev/hybridlabs/fishnships/data/client/ModelProvider.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -434,14 +570,6 @@
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
     </task>
-    <task id="LOCAL-00206" summary="Set up packets to detect movement on the server side.">
-      <option name="closed" value="true" />
-      <created>1785514268742</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
-      <option name="project" value="LOCAL" />
-      <updated>1785514268743</updated>
-    </task>
     <task id="LOCAL-00207" summary="Use vanilla fishing loot table">
       <option name="closed" value="true" />
       <created>1785542702336</created>
@@ -826,7 +954,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786173628205</updated>
     </task>
-    <option name="localTasksCounter" value="255" />
+    <task id="LOCAL-00255" summary="Dingle">
+      <option name="closed" value="true" />
+      <created>1786197876467</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1786197876467</updated>
+    </task>
+    <option name="localTasksCounter" value="256" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

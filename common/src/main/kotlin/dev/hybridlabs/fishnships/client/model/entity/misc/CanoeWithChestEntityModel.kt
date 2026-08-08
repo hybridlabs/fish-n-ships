@@ -93,24 +93,24 @@ class CanoeWithChestEntityModel<T : CanoeWithChestEntity>() :
 
     companion object {
         private val OAK_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/oak_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/oak_canoe.png")
         private val SPRUCE_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/spruce_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/spruce_canoe.png")
         private val BIRCH_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/birch_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/birch_canoe.png")
         private val JUNGLE_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/jungle_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/jungle_canoe.png")
         private val ACACIA_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/acacia_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/acacia_canoe.png")
         private val CHERRY_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/cherry_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/cherry_canoe.png")
         private val DARK_OAK_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/dark_oak_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/dark_oak_canoe.png")
         private val MANGROVE_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/mangrove_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/mangrove_canoe.png")
         private val CRIMSON_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/crimson_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/crimson_canoe.png")
         private val WARPED_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/warped_canoe_with_chest.png")
+            CommonClass.locate("textures/entity/canoe/warped_canoe.png")
     }
 }
