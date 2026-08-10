@@ -31,7 +31,7 @@ neoForge {
         }
         data {
             data()
-            programArguments.addAll '--mod', 'fantastic_fishery', '--all',
+            programArguments.addAll '--mod', 'fish_n_ships', '--all',
                     '--output', file('src/generated/resources/').getAbsolutePath(),
                     '--existing', file('src/main/resources/').getAbsolutePath(),
                     '--existing', file("../fabric/src/generated/resources").getAbsolutePath()
