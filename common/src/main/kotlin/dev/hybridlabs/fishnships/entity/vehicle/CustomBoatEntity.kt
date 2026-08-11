@@ -3,6 +3,7 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.hapi.entity.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
@@ -14,8 +15,6 @@ import net.minecraft.tags.EntityTypeTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
-import net.minecraft.world.InteractionHand
-import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
 import net.minecraft.world.entity.animal.Animal

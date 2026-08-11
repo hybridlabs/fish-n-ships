@@ -93,22 +93,6 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
         ).yRot(-yRot * (Math.PI.toFloat() / 180f))
     }
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        super.positionRider(passenger, callback)
-
-        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
-            passenger.yRot += deltaRotation
-            passenger.yHeadRot += deltaRotation
-            clampRotation(passenger)
-
-            if (passenger is Animal && passengers.size == maxPassengers) {
-                val rotation = if (passenger.id % 2 == 0) 90f else 270f
-                passenger.yBodyRot += rotation
-                passenger.yHeadRot += rotation
-            }
-        }
-    }
-
     //#region Container
     private val dataAccess = object : ContainerData {
         override fun get(index: Int): Int {

@@ -5,6 +5,7 @@ import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
+import dev.hybridlabs.hapi.entity.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.core.particles.BlockParticleOption
@@ -19,6 +20,7 @@ import net.minecraft.resources.ResourceKey
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
@@ -27,6 +29,7 @@ import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
+import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
@@ -598,6 +601,18 @@ open class ShipEntity(
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         super.positionRider(passenger, callback)
+
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.yRot += deltaRotation
+            passenger.yHeadRot += deltaRotation
+            clampRotation(passenger)
+
+            if (passenger is Animal && passengers.size == maxPassengers) {
+                val rotation = if (passenger.id % 2 == 0) 90f else 270f
+                passenger.yBodyRot += rotation
+                passenger.yHeadRot += rotation
+            }
+        }
     }
 
     override fun canAddPassenger(passenger: Entity): Boolean {
