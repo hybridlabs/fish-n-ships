@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Vastly reduced the amount of textures needed in the mod">
+    <list default="true" id="1cf0640a-f09c-4941-9482-b29fb0af1904" name="Changes" comment="Fixed misnamed thing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neoforge/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/neoforge/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,9 +156,9 @@
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/fish-n-ships/common/src/main/resources/assets/fish_n_ships/animations/entity/dinghy&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/LENVO/Documents/GitHub/hybrid-birds/neoforge/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.45057473&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
 }</component>
@@ -427,14 +428,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1756371887741</updated>
-    </task>
-    <task id="LOCAL-00208" summary="Missing lang entries">
-      <option name="closed" value="true" />
-      <created>1785543306487</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
-      <option name="project" value="LOCAL" />
-      <updated>1785543306487</updated>
     </task>
     <task id="LOCAL-00209" summary="Started working on boat variants and created BaseBoatEntity">
       <option name="closed" value="true" />
@@ -820,7 +813,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786224357865</updated>
     </task>
-    <option name="localTasksCounter" value="257" />
+    <task id="LOCAL-00257" summary="Fixed misnamed thing">
+      <option name="closed" value="true" />
+      <created>1786348218838</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1786348218838</updated>
+    </task>
+    <option name="localTasksCounter" value="258" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -836,7 +837,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Removed unused SpawnRestrictionRegistry" />
     <MESSAGE value="Trying to get sailboats working on forge but I dont understand packets" />
     <MESSAGE value="Sailboats work on forge now" />
     <MESSAGE value="Item tags" />
@@ -861,7 +861,8 @@
     <MESSAGE value="Reran datagen cause Im dumb" />
     <MESSAGE value="Dingle" />
     <MESSAGE value="Vastly reduced the amount of textures needed in the mod" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vastly reduced the amount of textures needed in the mod" />
+    <MESSAGE value="Fixed misnamed thing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed misnamed thing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
