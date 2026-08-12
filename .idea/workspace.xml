@@ -412,17 +412,17 @@
       <item itemvalue="Application.forge - Client" />
       <item itemvalue="Application.forge - Data" />
       <item itemvalue="Application.forge - Server" />
+      <item itemvalue="Gradle.fish-n-ships [:forge:runClient]" />
+      <item itemvalue="Gradle.fish-n-ships [:forge:runData]" />
+      <item itemvalue="Gradle.fish-n-ships:fabric [build]" />
+      <item itemvalue="Gradle.fish-n-ships:forge [build]" />
+      <item itemvalue="Gradle.fish-n-ships:neoforge [build]" />
       <item itemvalue="Application.Data Generation" />
       <item itemvalue="Application.Fabric Client (:fabric)" />
       <item itemvalue="Application.Fabric Data Generation (:fabric)" />
       <item itemvalue="Application.Fabric Server (:fabric)" />
       <item itemvalue="Application.Minecraft Client" />
       <item itemvalue="Application.Minecraft Server" />
-      <item itemvalue="Gradle.fish-n-ships:neoforge [build]" />
-      <item itemvalue="Gradle.fish-n-ships [:forge:runClient]" />
-      <item itemvalue="Gradle.fish-n-ships [:forge:runData]" />
-      <item itemvalue="Gradle.fish-n-ships:fabric [build]" />
-      <item itemvalue="Gradle.fish-n-ships:forge [build]" />
     </list>
     <recent_temporary>
       <list>
