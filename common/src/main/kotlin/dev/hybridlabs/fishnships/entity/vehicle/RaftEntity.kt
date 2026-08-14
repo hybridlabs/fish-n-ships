@@ -3,7 +3,7 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.hapi.entity.vehicle.BaseBoatEntity
+import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.syncher.EntityDataAccessor

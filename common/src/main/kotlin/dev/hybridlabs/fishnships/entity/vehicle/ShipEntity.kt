@@ -5,7 +5,7 @@ import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
-import dev.hybridlabs.hapi.entity.vehicle.BaseBoatEntity
+import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.core.particles.BlockParticleOption
