@@ -298,19 +298,19 @@ open class RaftEntity(
     }
 
     enum class Type(
-        val planks: Block,
         private val key: String,
     ) : StringRepresentable {
-        OAK(Blocks.OAK_PLANKS, "oak"),
-        SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
-        BIRCH(Blocks.BIRCH_PLANKS, "birch"),
-        JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
-        ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
-        CHERRY(Blocks.CHERRY_PLANKS, "cherry"),
-        DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
-        MANGROVE(Blocks.MANGROVE_PLANKS, "mangrove"),
-        CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
-        WARPED(Blocks.WARPED_PLANKS, "warped");
+        OAK("oak"),
+        SPRUCE("spruce"),
+        BIRCH("birch"),
+        JUNGLE("jungle"),
+        ACACIA("acacia"),
+        CHERRY("cherry"),
+        DARK_OAK("dark_oak"),
+        MANGROVE("mangrove"),
+        CRIMSON("crimson"),
+        WARPED("warped"),
+        DRIFTWOOD("driftwood");
 
         override fun getSerializedName(): String = key
 

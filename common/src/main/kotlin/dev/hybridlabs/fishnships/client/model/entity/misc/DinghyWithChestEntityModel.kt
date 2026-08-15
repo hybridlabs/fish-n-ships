@@ -40,6 +40,7 @@ class DinghyWithChestEntityModel<T : DinghyWithChestEntity>() :
                 DinghyEntity.Type.MANGROVE -> ALT_MANGROVE_TEXTURE
                 DinghyEntity.Type.CRIMSON -> ALT_CRIMSON_TEXTURE
                 DinghyEntity.Type.WARPED -> ALT_WARPED_TEXTURE
+                DinghyEntity.Type.DRIFTWOOD -> ALT_DRIFTWOOD_TEXTURE
             }
         } else {
             when (animatable.variant) {
@@ -53,6 +54,7 @@ class DinghyWithChestEntityModel<T : DinghyWithChestEntity>() :
                 DinghyEntity.Type.MANGROVE -> MANGROVE_TEXTURE
                 DinghyEntity.Type.CRIMSON -> CRIMSON_TEXTURE
                 DinghyEntity.Type.WARPED -> WARPED_TEXTURE
+                DinghyEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
             }
         }
     }
@@ -136,6 +138,8 @@ class DinghyWithChestEntityModel<T : DinghyWithChestEntity>() :
             CommonClass.locate("textures/entity/dinghy/crimson_dinghy.png")
         private val WARPED_TEXTURE =
             CommonClass.locate("textures/entity/dinghy/warped_dinghy.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/dinghy/driftwood_dinghy.png")
 
         private val ALT_OAK_TEXTURE =
             CommonClass.locate("textures/entity/dinghy/alt_oak_dinghy.png")
@@ -157,5 +161,7 @@ class DinghyWithChestEntityModel<T : DinghyWithChestEntity>() :
             CommonClass.locate("textures/entity/dinghy/alt_crimson_dinghy.png")
         private val ALT_WARPED_TEXTURE =
             CommonClass.locate("textures/entity/dinghy/alt_warped_dinghy.png")
+        private val ALT_DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/dinghy/alt_driftwood_dinghy.png")
     }
 }

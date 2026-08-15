@@ -376,11 +376,11 @@ open class CustomBoatEntity(
     }
 
     enum class Type(
-        val planks: Block,
         private val key: String,
     ) : StringRepresentable {
-        CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
-        WARPED(Blocks.WARPED_PLANKS, "warped");
+        CRIMSON("crimson"),
+        WARPED("warped"),
+        DRIFTWOOD("driftwood");
 
         override fun getSerializedName(): String = key
 

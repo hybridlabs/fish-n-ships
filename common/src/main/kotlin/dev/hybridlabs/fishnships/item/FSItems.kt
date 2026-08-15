@@ -114,6 +114,18 @@ object FSItems {
     val DARK_OAK_DINGHY = register("dark_oak_dinghy") { DinghyItem(DinghyEntity.Type.DARK_OAK,Item.Properties().stacksTo(1))}
     val DARK_OAK_DINGHY_WITH_CHEST = register("dark_oak_dinghy_with_chest") { DinghyWithChestItem(DinghyEntity.Type.DARK_OAK,Item.Properties().stacksTo(1))}
 
+    val DRIFTWOOD_BOAT = register("driftwood_boat") { CustomBoatItem(CustomBoatEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_BOAT_WITH_CHEST = register("driftwood_boat_with_chest") { CustomBoatWithChestItem(CustomBoatEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_SAILBOAT = register("driftwood_sailboat") { SailboatItem(SailboatEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_SAILBOAT_WITH_CHEST = register("driftwood_sailboat_with_chest") { SailboatWithChestItem(SailboatEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_CANOE = register("driftwood_canoe") { CanoeItem(CanoeEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_CANOE_WITH_CHEST = register("driftwood_canoe_with_chest") { CanoeWithChestItem(CanoeEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST = register("driftwood_canoe_with_double_chest") { CanoeWithDoubleChestItem(CanoeEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_RAFT = register("driftwood_raft") { RaftItem(RaftEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_SUPPLY_RAFT = register("driftwood_supply_raft") { SupplyRaftItem(RaftEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_DINGHY = register("driftwood_dinghy") { DinghyItem(DinghyEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+    val DRIFTWOOD_DINGHY_WITH_CHEST = register("driftwood_dinghy_with_chest") { DinghyWithChestItem(DinghyEntity.Type.DRIFTWOOD,Item.Properties().stacksTo(1))}
+
     val ICEBREAKER = register("icebreaker") { Item(Item.Properties().stacksTo(1))}
     val SHIP = register("ship") { ShipItem(Item.Properties().stacksTo(1))}
     val TRAWLING_NET = register("trawling_net") { Item(Item.Properties().stacksTo(1))}

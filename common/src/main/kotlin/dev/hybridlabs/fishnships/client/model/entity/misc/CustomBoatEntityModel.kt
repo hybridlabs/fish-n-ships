@@ -26,6 +26,7 @@ class CustomBoatEntityModel<T : CustomBoatEntity>() :
         return when (animatable.variant) {
             CustomBoatEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             CustomBoatEntity.Type.WARPED -> WARPED_TEXTURE
+            CustomBoatEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -87,5 +88,7 @@ class CustomBoatEntityModel<T : CustomBoatEntity>() :
             CommonClass.locate("textures/entity/boat/crimson_boat.png")
         private val WARPED_TEXTURE =
             CommonClass.locate("textures/entity/boat/warped_boat.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/boat/driftwood_boat.png")
     }
 }

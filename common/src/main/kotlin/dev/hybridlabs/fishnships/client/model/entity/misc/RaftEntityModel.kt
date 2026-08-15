@@ -33,6 +33,7 @@ class RaftEntityModel<T : RaftEntity>() :
             RaftEntity.Type.MANGROVE -> MANGROVE_TEXTURE
             RaftEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             RaftEntity.Type.WARPED -> WARPED_TEXTURE
+            RaftEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -73,5 +74,7 @@ class RaftEntityModel<T : RaftEntity>() :
             CommonClass.locate("textures/entity/raft/crimson_raft.png")
         private val WARPED_TEXTURE =
             CommonClass.locate("textures/entity/raft/warped_raft.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/raft/driftwood_raft.png")
     }
 }

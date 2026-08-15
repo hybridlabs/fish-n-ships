@@ -121,6 +121,18 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
         FSItems.WARPED_DINGHY.get(),
         FSItems.WARPED_DINGHY_WITH_CHEST.get(),
             
+        FSItems.DRIFTWOOD_BOAT.get(),
+        FSItems.DRIFTWOOD_BOAT_WITH_CHEST.get(),
+        FSItems.DRIFTWOOD_SAILBOAT.get(),
+        FSItems.DRIFTWOOD_SAILBOAT_WITH_CHEST.get(),
+        FSItems.DRIFTWOOD_CANOE.get(),
+        FSItems.DRIFTWOOD_CANOE_WITH_CHEST.get(),
+        FSItems.DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST.get(),
+        FSItems.DRIFTWOOD_RAFT.get(),
+        FSItems.DRIFTWOOD_SUPPLY_RAFT.get(),
+        FSItems.DRIFTWOOD_DINGHY.get(),
+        FSItems.DRIFTWOOD_DINGHY_WITH_CHEST.get(),
+            
         ).forEach { item ->
             generator.generateFlatItem(item, ModelTemplates.FLAT_ITEM)
         }

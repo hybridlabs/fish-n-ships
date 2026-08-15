@@ -34,6 +34,7 @@ class SailboatWithChestEntityModel<T : SailboatWithChestEntity>() :
             SailboatEntity.Type.MANGROVE -> MANGROVE_TEXTURE
             SailboatEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             SailboatEntity.Type.WARPED -> WARPED_TEXTURE
+            SailboatEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -74,5 +75,7 @@ class SailboatWithChestEntityModel<T : SailboatWithChestEntity>() :
             CommonClass.locate("textures/entity/sailboat/crimson_sailboat.png")
         private val WARPED_TEXTURE =
             CommonClass.locate("textures/entity/sailboat/warped_sailboat.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/driftwood_sailboat.png")
     }
 }

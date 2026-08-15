@@ -34,6 +34,7 @@ class CanoeEntityModel<T : CanoeEntity>() :
             CanoeEntity.Type.MANGROVE -> MANGROVE_TEXTURE
             CanoeEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             CanoeEntity.Type.WARPED -> WARPED_TEXTURE
+            CanoeEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -111,5 +112,7 @@ class CanoeEntityModel<T : CanoeEntity>() :
             CommonClass.locate("textures/entity/canoe/crimson_canoe.png")
         private val WARPED_TEXTURE =
             CommonClass.locate("textures/entity/canoe/warped_canoe.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/driftwood_canoe.png")
     }
 }

@@ -125,6 +125,18 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
             FSItems.WARPED_SUPPLY_RAFT.get() to "Warped Supply Raft",
             FSItems.WARPED_DINGHY.get() to "Warped Dinghy",
             FSItems.WARPED_DINGHY_WITH_CHEST.get() to "Warped Dinghy With Chest",
+
+            FSItems.DRIFTWOOD_BOAT.get() to "Driftwood Boat",
+            FSItems.DRIFTWOOD_BOAT_WITH_CHEST.get() to "Driftwood Boat With Chest",
+            FSItems.DRIFTWOOD_SAILBOAT.get() to "Driftwood Sailboat",
+            FSItems.DRIFTWOOD_SAILBOAT_WITH_CHEST.get() to "Driftwood Sailboat With Chest",
+            FSItems.DRIFTWOOD_CANOE.get() to "Driftwood Canoe",
+            FSItems.DRIFTWOOD_CANOE_WITH_CHEST.get() to "Driftwood Canoe With Chest",
+            FSItems.DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST.get() to "Driftwood Canoe With Double Chest",
+            FSItems.DRIFTWOOD_RAFT.get() to "Driftwood Raft",
+            FSItems.DRIFTWOOD_SUPPLY_RAFT.get() to "Driftwood Supply Raft",
+            FSItems.DRIFTWOOD_DINGHY.get() to "Driftwood Dinghy",
+            FSItems.DRIFTWOOD_DINGHY_WITH_CHEST.get() to "Driftwood Dinghy With Chest",
             
             FSItems.TRAWLING_NET.get() to "Trawling Net",
             FSItems.ICEBREAKER.get() to "Icebreaker",
