@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "tag": "hapi:driftwood_planks"
+    }
+  },
+  "pattern": [
+    "W W",
+    "WWW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fish_n_ships:driftwood_boat"
+  }
+}

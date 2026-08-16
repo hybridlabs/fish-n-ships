@@ -6,6 +6,7 @@ import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.network.FSNetworking
+import dev.hybridlabs.fishnships.tag.FSItemTags
 import dev.hybridlabs.fishnships.world.inventory.FSMenuTypes
 import net.neoforged.fml.common.Mod
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
@@ -33,6 +34,8 @@ object FishNShipsForge {
 
         FSItems
         FSItemGroups
+
+        FSItemTags
 
         MOD_BUS.register(FSNetworking)
 
