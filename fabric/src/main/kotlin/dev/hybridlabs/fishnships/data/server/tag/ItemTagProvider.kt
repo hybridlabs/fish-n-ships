@@ -2,7 +2,6 @@ package dev.hybridlabs.fishnships.data.server.tag
 
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.tag.FSItemTags
-import dev.hybridlabs.hapi.tag.HAPIItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.core.HolderLookup
