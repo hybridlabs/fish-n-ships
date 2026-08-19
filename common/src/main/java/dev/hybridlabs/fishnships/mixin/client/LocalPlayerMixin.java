@@ -1,10 +1,7 @@
 package dev.hybridlabs.fishnships.mixin.client;
 
 import com.mojang.authlib.GameProfile;
-import dev.hybridlabs.fishnships.entity.vehicle.CanoeEntity;
-import dev.hybridlabs.fishnships.entity.vehicle.CustomBoatEntity;
-import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
-import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity;
+import dev.hybridlabs.fishnships.entity.vehicle.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -62,6 +59,19 @@ public abstract class LocalPlayerMixin extends AbstractClientPlayer {
         if (this.getControlledVehicle() instanceof CanoeEntity canoe) {
 
             canoe.setInput(
+                    this.input.left,
+                    this.input.right,
+                    this.input.up,
+                    this.input.down
+            );
+        }
+    }
+
+    @Inject(method = "rideTick", at = @At("TAIL"))
+    private void handleDinghyInput(CallbackInfo ci) {
+        if (this.getControlledVehicle() instanceof DinghyEntity dinghy) {
+
+            dinghy.setInput(
                     this.input.left,
                     this.input.right,
                     this.input.up,
