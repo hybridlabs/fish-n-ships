@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "minecraft:acacia_log"
+    }
+  },
+  "pattern": [
+    "LLL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "fish_n_ships:acacia_raft"
+  }
+}

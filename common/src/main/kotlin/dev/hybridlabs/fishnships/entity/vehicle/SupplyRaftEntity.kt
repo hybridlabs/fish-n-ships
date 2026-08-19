@@ -4,7 +4,8 @@ import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.world.inventory.SupplyRaftMenu
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.network.syncher.SynchedEntityData
+import net.minecraft.resources.ResourceKey
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
@@ -19,9 +20,9 @@ import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.item.Items
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
+import net.minecraft.world.level.storage.loot.LootTable
 import software.bernie.geckolib.animatable.GeoEntity
 
 open class SupplyRaftEntity(
@@ -31,7 +32,7 @@ open class SupplyRaftEntity(
     RaftEntity(type, world), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
-    private var raftLootTable: ResourceLocation? = null
+    private var raftLootTable: ResourceKey<LootTable>? = null
     private var raftLootTableSeed: Long = 0
 
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
@@ -39,52 +40,31 @@ open class SupplyRaftEntity(
             return InteractionResult.PASS
         }
 
-        if (getLeashHolder() === player) {
-            dropLeash(true, !player.abilities.instabuild)
-            gameEvent(GameEvent.ENTITY_INTERACT, player)
-            return InteractionResult.sidedSuccess(level().isClientSide)
-        }
-
-        val result = checkAndHandleImportantInteractions(player, hand)
-        if (result.consumesAction()) {
-            gameEvent(GameEvent.ENTITY_INTERACT, player)
+        val result = super.interact(player, hand)
+        if (result != InteractionResult.PASS) {
             return result
         }
 
-        if (player.isSecondaryUseActive) {
-            val containerResult = interactWithContainerVehicle(player)
-            if (containerResult.consumesAction()) {
-                gameEvent(GameEvent.CONTAINER_OPEN, player)
-            }
-            return containerResult
+        val containerResult = interactWithContainerVehicle(player)
+        if (containerResult.consumesAction()) {
+            gameEvent(GameEvent.CONTAINER_OPEN, player)
         }
 
-        return InteractionResult.PASS
+        return containerResult
     }
 
-    private fun checkAndHandleImportantInteractions(player: Player, hand: InteractionHand): InteractionResult {
-        val itemstack = player.getItemInHand(hand)
-        if (itemstack.`is`(Items.LEAD) && this.canBeLeashed(player)) {
-            this.setLeashedTo(player, true)
-            itemstack.shrink(1)
-            return InteractionResult.sidedSuccess(this.level().isClientSide)
-        }
-        return InteractionResult.PASS
-    }
-
-    override fun defineSynchedData() {
-        super.defineSynchedData()
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-        this.addChestVehicleSaveData(tag)
+        this.addChestVehicleSaveData(tag, this.registryAccess())
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         super.readAdditionalSaveData(tag)
-        setDamage(tag.getFloat("Damage"))
-        this.readChestVehicleSaveData(tag)
+        this.readChestVehicleSaveData(tag, this.registryAccess())
     }
 
     override fun isPickable(): Boolean {
@@ -158,12 +138,12 @@ open class SupplyRaftEntity(
         }
     }
 
-    override fun getLootTable(): ResourceLocation? {
+    override fun getLootTable(): ResourceKey<LootTable>? {
         return raftLootTable
     }
 
-    override fun setLootTable(id: ResourceLocation?) {
-        raftLootTable = id
+    override fun setLootTable(id: ResourceKey<LootTable>?) {
+        if (id != null) raftLootTable = id
     }
 
     override fun getLootTableSeed(): Long {

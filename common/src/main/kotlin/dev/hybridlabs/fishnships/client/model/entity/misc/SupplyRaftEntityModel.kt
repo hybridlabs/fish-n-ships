@@ -7,7 +7,7 @@ import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.Mth
-import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.animation.AnimationState
 import software.bernie.geckolib.model.GeoModel
 
 @Suppress("OVERRIDE_DEPRECATION")
@@ -34,6 +34,7 @@ class SupplyRaftEntityModel<T : SupplyRaftEntity>() :
             RaftEntity.Type.MANGROVE -> MANGROVE_TEXTURE
             RaftEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             RaftEntity.Type.WARPED -> WARPED_TEXTURE
+            RaftEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -55,24 +56,26 @@ class SupplyRaftEntityModel<T : SupplyRaftEntity>() :
 
     companion object {
         private val OAK_TEXTURE =
-            CommonClass.locate("textures/entity/raft/oak_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/oak_raft.png")
         private val SPRUCE_TEXTURE =
-            CommonClass.locate("textures/entity/raft/spruce_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/spruce_raft.png")
         private val BIRCH_TEXTURE =
-            CommonClass.locate("textures/entity/raft/birch_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/birch_raft.png")
         private val JUNGLE_TEXTURE =
-            CommonClass.locate("textures/entity/raft/jungle_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/jungle_raft.png")
         private val ACACIA_TEXTURE =
-            CommonClass.locate("textures/entity/raft/acacia_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/acacia_raft.png")
         private val CHERRY_TEXTURE =
-            CommonClass.locate("textures/entity/raft/cherry_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/cherry_raft.png")
         private val DARK_OAK_TEXTURE =
-            CommonClass.locate("textures/entity/raft/dark_oak_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/dark_oak_raft.png")
         private val MANGROVE_TEXTURE =
-            CommonClass.locate("textures/entity/raft/mangrove_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/mangrove_raft.png")
         private val CRIMSON_TEXTURE =
-            CommonClass.locate("textures/entity/raft/crimson_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/crimson_raft.png")
         private val WARPED_TEXTURE =
-            CommonClass.locate("textures/entity/raft/warped_supply_raft.png")
+            CommonClass.locate("textures/entity/raft/warped_raft.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/raft/driftwood_raft.png")
     }
 }

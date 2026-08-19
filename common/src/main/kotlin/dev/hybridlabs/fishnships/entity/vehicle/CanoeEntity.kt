@@ -3,6 +3,7 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
@@ -10,13 +11,13 @@ import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.sounds.SoundEvent
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
-import net.minecraft.world.InteractionHand
-import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
+import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.animal.WaterAnimal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
@@ -29,7 +30,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.util.GeckoLibUtil
 
 open class CanoeEntity(
@@ -49,11 +50,11 @@ open class CanoeEntity(
         return animCache
     }
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
-        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
-        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
+        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
+        builder.define(DATA_ID_PADDLE_LEFT, false)
+        builder.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -66,10 +67,6 @@ open class CanoeEntity(
         if (tag.contains("Type", 8)) {
             this.variant = Type.byName(tag.getString("Type"))
         }
-    }
-
-    override fun getPassengersRidingOffset(): Double {
-        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -209,14 +206,11 @@ open class CanoeEntity(
         ) else 0.0f
     }
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
-        }
-
-        val yOffset =
-            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
         val xOffset = when (passengers.indexOf(passenger)) {
             0 -> -0.25
             1 -> -0.9
@@ -224,19 +218,26 @@ open class CanoeEntity(
             else -> 0.0
         }
 
-        val offset = Vec3(xOffset, 0.0, 0.0)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+        val yOffset = dimensions.height() / 3.0
 
-        callback.accept(
-            passenger,
-            x + offset.x,
-            y + yOffset,
-            z + offset.z
-        )
+        return Vec3(0.0, yOffset, xOffset)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f))
+    }
 
-        passenger.yRot += deltaRotation
-        passenger.yHeadRot += deltaRotation
-        clampRotation(passenger)
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        super.positionRider(passenger, callback)
+
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.yRot += deltaRotation
+            passenger.yHeadRot += deltaRotation
+            clampRotation(passenger)
+
+            if (passenger is Animal && passengers.size == maxPassengers) {
+                val rotation = if (passenger.id % 2 == 0) 90f else 270f
+                passenger.yBodyRot += rotation
+                passenger.yHeadRot += rotation
+            }
+        }
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {
@@ -289,20 +290,6 @@ open class CanoeEntity(
 
     override fun onPassengerTurned(entityToUpdate: Entity) {
         this.clampRotation(entityToUpdate)
-    }
-
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-        return if (player.isSecondaryUseActive) {
-            InteractionResult.PASS
-        } else if (this.outOfControlTicks < 60.0f) {
-            if (!this.level().isClientSide) {
-                if (player.startRiding(this)) InteractionResult.CONSUME else InteractionResult.PASS
-            } else {
-                InteractionResult.SUCCESS
-            }
-        } else {
-            InteractionResult.PASS
-        }
     }
 
     fun getPaddleState(side: Int): Boolean {
@@ -385,19 +372,19 @@ open class CanoeEntity(
     }
 
     enum class Type(
-        val planks: Block,
         private val key: String,
     ) : StringRepresentable {
-        OAK(Blocks.OAK_PLANKS, "oak"),
-        SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
-        BIRCH(Blocks.BIRCH_PLANKS, "birch"),
-        JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
-        ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
-        CHERRY(Blocks.CHERRY_PLANKS, "cherry"),
-        DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
-        MANGROVE(Blocks.MANGROVE_PLANKS, "mangrove"),
-        CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
-        WARPED(Blocks.WARPED_PLANKS, "warped");
+        OAK("oak"),
+        SPRUCE("spruce"),
+        BIRCH("birch"),
+        JUNGLE("jungle"),
+        ACACIA("acacia"),
+        CHERRY("cherry"),
+        DARK_OAK("dark_oak"),
+        MANGROVE("mangrove"),
+        CRIMSON("crimson"),
+        WARPED("warped"),
+        DRIFTWOOD("driftwood");
 
         override fun getSerializedName(): String = key
 

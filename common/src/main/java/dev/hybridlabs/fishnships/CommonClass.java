@@ -7,8 +7,6 @@ import dev.hybridlabs.fishnships.platform.registration.RegistrationProvider;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -27,10 +25,6 @@ public class CommonClass {
             RegistrationProvider.get(BuiltInRegistries.BLOCK, MOD_ID);
     public static final RegistrationProvider<Item> ITEMS =
             RegistrationProvider.get(BuiltInRegistries.ITEM, MOD_ID);
-    public static final RegistrationProvider<SoundEvent> SOUND_EVENTS =
-            RegistrationProvider.get(BuiltInRegistries.SOUND_EVENT, MOD_ID);
-    public static final RegistrationProvider<MobEffect> MOB_EFFECTS =
-            RegistrationProvider.get(BuiltInRegistries.MOB_EFFECT, MOD_ID);
     public static final RegistrationProvider<EntityType<?>> ENTITY_TYPES =
             RegistrationProvider.get(BuiltInRegistries.ENTITY_TYPE, MOD_ID);
     public static final RegistrationProvider<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -51,6 +45,7 @@ public class CommonClass {
     }
 
     public static ResourceLocation locate(String path) {
-        return new ResourceLocation(MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
+
 }

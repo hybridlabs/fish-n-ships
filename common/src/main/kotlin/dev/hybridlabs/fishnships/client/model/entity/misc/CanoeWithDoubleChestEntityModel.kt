@@ -7,8 +7,8 @@ import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.Mth
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone
-import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.animation.AnimationState
+import software.bernie.geckolib.cache.`object`.GeoBone
 import software.bernie.geckolib.model.GeoModel
 
 @Suppress("OVERRIDE_DEPRECATION")
@@ -35,6 +35,7 @@ class CanoeWithDoubleChestEntityModel<T : CanoeWithDoubleChestEntity>() :
             CanoeEntity.Type.MANGROVE -> MANGROVE_TEXTURE
             CanoeEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             CanoeEntity.Type.WARPED -> WARPED_TEXTURE
+            CanoeEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -63,7 +64,7 @@ class CanoeWithDoubleChestEntityModel<T : CanoeWithDoubleChestEntity>() :
     private fun animatePaddle(
         canoe: CanoeEntity,
         side: Int,
-        paddle: CoreGeoBone,
+        paddle: GeoBone,
         partialTick: Float
     ) {
         val f = canoe.getRowingTime(side, partialTick) + Mth.PI
@@ -93,24 +94,26 @@ class CanoeWithDoubleChestEntityModel<T : CanoeWithDoubleChestEntity>() :
 
     companion object {
         private val OAK_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/oak_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/oak_canoe.png")
         private val SPRUCE_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/spruce_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/spruce_canoe.png")
         private val BIRCH_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/birch_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/birch_canoe.png")
         private val JUNGLE_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/jungle_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/jungle_canoe.png")
         private val ACACIA_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/acacia_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/acacia_canoe.png")
         private val CHERRY_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/cherry_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/cherry_canoe.png")
         private val DARK_OAK_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/dark_oak_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/dark_oak_canoe.png")
         private val MANGROVE_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/mangrove_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/mangrove_canoe.png")
         private val CRIMSON_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/crimson_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/crimson_canoe.png")
         private val WARPED_TEXTURE =
-            CommonClass.locate("textures/entity/canoe/warped_canoe_with_double_chest.png")
+            CommonClass.locate("textures/entity/canoe/warped_canoe.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/canoe/driftwood_canoe.png")
     }
 }

@@ -2,11 +2,13 @@ package dev.hybridlabs.fishnships.data.server
 
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject
+import dev.hybridlabs.fishnships.tag.FSItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.advancements.critereon.InventoryChangeTrigger
-import net.minecraft.data.recipes.FinishedRecipe
+import net.minecraft.core.HolderLookup
 import net.minecraft.data.recipes.RecipeCategory
+import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.tags.ItemTags
@@ -14,10 +16,11 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import java.util.function.Consumer
+import java.util.concurrent.CompletableFuture
 
-class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
-    override fun buildRecipes(exporter: Consumer<FinishedRecipe>) {
+class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
+    FabricRecipeProvider(output, lookupProvider) {
+    override fun buildRecipes(exporter: RecipeOutput) {
 
         offerCanoeRecipes(exporter, canoeTypeMap)
         offerCanoeChestUpgradeRecipes(exporter, canoeTypeMap, chestCanoeTypeMap)
@@ -31,6 +34,58 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
 
         offerBoatRecipes(exporter, boatTypeMap)
         offerBoatChestUpgradeRecipes(exporter, boatTypeMap, chestBoatTypeMap)
+
+
+        offerDriftwoodBoatRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_BOAT
+        )
+
+        offerDriftwoodBoatChestUpgradeRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_BOAT,
+            FSItems.DRIFTWOOD_BOAT_WITH_CHEST
+        )
+
+        offerDriftwoodCanoeRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_CANOE
+        )
+
+        offerDriftwoodCanoeChestUpgradeRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_CANOE,
+            FSItems.DRIFTWOOD_CANOE_WITH_CHEST
+        )
+
+        offerDriftwoodCanoeDoubleChestUpgradeRecipes(
+            exporter,
+            FSItems.DRIFTWOOD_CANOE,
+            FSItems.DRIFTWOOD_CANOE_WITH_CHEST,
+            FSItems.DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST
+        )
+
+        offerDriftwoodRaftRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_RAFT
+        )
+
+        offerDriftwoodRaftSupplyUpgradeRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_RAFT,
+            FSItems.DRIFTWOOD_SUPPLY_RAFT
+        )
+
+        offerDriftwoodSailboatRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_SAILBOAT
+        )
+
+        offerDriftwoodSailboatChestUpgradeRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_SAILBOAT,
+            FSItems.DRIFTWOOD_SAILBOAT_WITH_CHEST
+        )
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FSItems.TRAWLING_NET.get())
             .pattern("S S")
@@ -76,7 +131,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerBoatRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, boatType) in map) {
@@ -93,7 +148,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerBoatChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         boatMap: Map<Block, RegistryObject<out Item>>,
         chestBoatMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -156,7 +211,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerCanoeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, canoeType) in map) {
@@ -174,7 +229,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerCanoeChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         canoeMap: Map<Block, RegistryObject<out Item>>,
         chestCanoeMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -196,7 +251,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerCanoeDoubleChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         canoeMap: Map<Block, RegistryObject<out Item>>,
         chestCanoeMap: Map<Block, RegistryObject<out Item>>,
         doubleChestCanoeMap: Map<Block, RegistryObject<out Item>>,
@@ -268,7 +323,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerSailboatRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, sailboatType) in map) {
@@ -286,7 +341,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerSailboatChestUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         sailboatMap: Map<Block, RegistryObject<out Item>>,
         chestsailboatMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -336,7 +391,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     )
 
     private fun offerRaftRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, raftType) in map) {
@@ -352,7 +407,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
     }
 
     private fun offerSupplyRaftUpgradeRecipes(
-        exporter: Consumer<FinishedRecipe>,
+        exporter: RecipeOutput,
         raftMap: Map<Block, RegistryObject<out Item>>,
         supplyRaftMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -371,6 +426,192 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
                 )
                 .save(exporter)
         }
+    }
+
+    private fun offerDriftwoodBoatRecipe(
+        exporter: RecipeOutput,
+        boat: RegistryObject<out Item>,
+    ) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat.get(), 1)
+            .pattern("W W")
+            .pattern("WWW")
+            .define('W', FSItemTags.DRIFTWOOD_PLANKS)
+            .unlockedBy(
+                "has_driftwood_planks",
+                has(FSItemTags.DRIFTWOOD_PLANKS)
+            )
+            .save(exporter, "${getItemName(boat.get())}")
+    }
+
+    private fun offerDriftwoodBoatChestUpgradeRecipe(
+        exporter: RecipeOutput,
+        boat: RegistryObject<out Item>,
+        chestBoat: RegistryObject<out Item>,
+    ) {
+        ShapelessRecipeBuilder.shapeless(
+            RecipeCategory.TRANSPORTATION,
+            chestBoat.get()
+        )
+            .requires(boat.get())
+            .requires(Blocks.CHEST)
+            .unlockedBy(
+                "has_${getItemName(boat.get())}",
+                has(boat.get())
+            )
+            .save(
+                exporter,
+                "${getItemName(chestBoat.get())}"
+            )
+    }
+
+    private fun offerDriftwoodCanoeRecipe(
+        exporter: RecipeOutput,
+        canoe: RegistryObject<out Item>,
+    ) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, canoe.get(), 1)
+            .pattern("WSW")
+            .pattern("WWW")
+            .define('W', FSItemTags.DRIFTWOOD_PLANKS)
+            .define('S', Items.WOODEN_SHOVEL)
+            .unlockedBy(
+                "has_driftwood_planks",
+                has(FSItemTags.DRIFTWOOD_PLANKS)
+            )
+            .save(
+                exporter,
+                "${getItemName(canoe.get())}"
+            )
+    }
+
+    private fun offerDriftwoodCanoeChestUpgradeRecipe(
+        exporter: RecipeOutput,
+        canoe: RegistryObject<out Item>,
+        chestCanoe: RegistryObject<out Item>,
+    ) {
+        ShapelessRecipeBuilder.shapeless(
+            RecipeCategory.TRANSPORTATION,
+            chestCanoe.get()
+        )
+            .requires(canoe.get())
+            .requires(Blocks.CHEST)
+            .unlockedBy(
+                "has_${getItemName(canoe.get())}",
+                has(canoe.get())
+            )
+            .save(
+                exporter,
+                "${getItemName(chestCanoe.get())}"
+            )
+    }
+
+    private fun offerDriftwoodCanoeDoubleChestUpgradeRecipes(
+        exporter: RecipeOutput,
+        canoe: RegistryObject<out Item>,
+        chestCanoe: RegistryObject<out Item>,
+        doubleChestCanoe: RegistryObject<out Item>,
+    ) {
+        ShapelessRecipeBuilder.shapeless(
+            RecipeCategory.TRANSPORTATION,
+            doubleChestCanoe.get()
+        )
+            .requires(canoe.get())
+            .requires(Blocks.CHEST)
+            .requires(Blocks.CHEST)
+            .unlockedBy(
+                "has_${getItemName(canoe.get())}",
+                has(canoe.get())
+            )
+            .save(
+                exporter,
+                "${getItemName(doubleChestCanoe.get())}_from_canoe"
+            )
+
+        ShapelessRecipeBuilder.shapeless(
+            RecipeCategory.TRANSPORTATION,
+            doubleChestCanoe.get()
+        )
+            .requires(chestCanoe.get())
+            .requires(Blocks.CHEST)
+            .unlockedBy(
+                "has_${getItemName(chestCanoe.get())}",
+                has(chestCanoe.get())
+            )
+            .save(
+                exporter,
+                "${getItemName(doubleChestCanoe.get())}_from_canoe_with_chest"
+            )
+    }
+
+    private fun offerDriftwoodRaftRecipe(
+        exporter: RecipeOutput,
+        raft: RegistryObject<out Item>,
+    ) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, raft.get(), 1)
+            .pattern("WWW")
+            .define('W', FSItemTags.DRIFTWOOD_LOG)
+            .unlockedBy(
+                "has_driftwood_logs",
+                has(FSItemTags.DRIFTWOOD_LOG)
+            )
+            .save(exporter, "${getItemName(raft.get())}")
+    }
+
+    private fun offerDriftwoodRaftSupplyUpgradeRecipe(
+        exporter: RecipeOutput,
+        raft: RegistryObject<out Item>,
+        supplyRaft: RegistryObject<out Item>,
+    ) {
+        ShapelessRecipeBuilder.shapeless(
+            RecipeCategory.TRANSPORTATION,
+            supplyRaft.get()
+        )
+            .requires(raft.get())
+            .requires(Blocks.CHEST)
+            .unlockedBy(
+                "has_${getItemName(raft.get())}",
+                has(raft.get())
+            )
+            .save(
+                exporter,
+                "${getItemName(supplyRaft.get())}"
+            )
+    }
+
+    private fun offerDriftwoodSailboatRecipe(
+        exporter: RecipeOutput,
+        sailboat: RegistryObject<out Item>,
+    ) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, sailboat.get(), 1)
+            .pattern("WBW")
+            .pattern("WWW")
+            .define('W', FSItemTags.DRIFTWOOD_PLANKS)
+            .define('B', ItemTags.BANNERS)
+            .unlockedBy(
+                "has_driftwood_planks",
+                has(FSItemTags.DRIFTWOOD_PLANKS)
+            )
+            .save(exporter, "${getItemName(sailboat.get())}")
+    }
+
+    private fun offerDriftwoodSailboatChestUpgradeRecipe(
+        exporter: RecipeOutput,
+        sailboat: RegistryObject<out Item>,
+        chestSailboat: RegistryObject<out Item>,
+    ) {
+        ShapelessRecipeBuilder.shapeless(
+            RecipeCategory.TRANSPORTATION,
+            chestSailboat.get()
+        )
+            .requires(sailboat.get())
+            .requires(Blocks.CHEST)
+            .unlockedBy(
+                "has_${getItemName(sailboat.get())}",
+                has(sailboat.get())
+            )
+            .save(
+                exporter,
+                "${getItemName(chestSailboat.get())}"
+            )
     }
     //#endregion
 }

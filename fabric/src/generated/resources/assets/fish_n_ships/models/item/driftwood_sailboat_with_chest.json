@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "fish_n_ships:item/driftwood_sailboat_with_chest"
+  }
+}

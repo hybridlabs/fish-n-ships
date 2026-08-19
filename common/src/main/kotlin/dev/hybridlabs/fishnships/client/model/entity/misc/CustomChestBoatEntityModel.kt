@@ -7,8 +7,8 @@ import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.Mth
-import software.bernie.geckolib.core.animatable.model.CoreGeoBone
-import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.animation.AnimationState
+import software.bernie.geckolib.cache.`object`.GeoBone
 import software.bernie.geckolib.model.GeoModel
 
 @Suppress("OVERRIDE_DEPRECATION")
@@ -27,6 +27,7 @@ class CustomChestBoatEntityModel<T : CustomChestBoatEntity>() :
         return when (animatable.variant) {
             CustomBoatEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             CustomBoatEntity.Type.WARPED -> WARPED_TEXTURE
+            CustomBoatEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -55,7 +56,7 @@ class CustomChestBoatEntityModel<T : CustomChestBoatEntity>() :
     private fun animatePaddle(
         boat: CustomBoatEntity,
         side: Int,
-        paddle: CoreGeoBone,
+        paddle: GeoBone,
         partialTick: Float
     ) {
         val f = boat.getRowingTime(side, partialTick) + Mth.PI
@@ -85,8 +86,10 @@ class CustomChestBoatEntityModel<T : CustomChestBoatEntity>() :
 
     companion object {
         private val CRIMSON_TEXTURE =
-            CommonClass.locate("textures/entity/boat/crimson_boat_with_chest.png")
+            CommonClass.locate("textures/entity/boat/crimson_boat.png")
         private val WARPED_TEXTURE =
-            CommonClass.locate("textures/entity/boat/warped_boat_with_chest.png")
+            CommonClass.locate("textures/entity/boat/warped_boat.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/boat/driftwood_boat.png")
     }
 }

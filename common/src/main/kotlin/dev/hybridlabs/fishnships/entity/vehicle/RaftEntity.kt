@@ -3,30 +3,20 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.NbtUtils
-import net.minecraft.network.protocol.game.ClientboundSetEntityLinkPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
-import net.minecraft.server.level.ServerLevel
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.tags.FluidTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
-import net.minecraft.world.InteractionHand
-import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.entity.MoverType
-import net.minecraft.world.entity.Pose
-import net.minecraft.world.entity.VariantHolder
-import net.minecraft.world.entity.decoration.HangingEntity
-import net.minecraft.world.entity.decoration.LeashFenceKnotEntity
-import net.minecraft.world.entity.monster.Enemy
+import net.minecraft.world.entity.*
+import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.Item
@@ -48,212 +38,24 @@ open class RaftEntity(
     BaseBoatEntity(type, world),
     VariantHolder<RaftEntity.Type>,
     GeoEntity {
-    private var leashHolder: Entity? = null
-    private var delayedLeashHolderId = 0
-    private var leashInfoTag: CompoundTag? = null
 
     init {
         noCulling = true
     }
-    
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-        if (!isAlive) {
-            return InteractionResult.PASS
-        }
 
-        if (this.getLeashHolder() === player) {
-            this.dropLeash(true, !player.abilities.instabuild)
-            this.gameEvent(GameEvent.ENTITY_INTERACT, player)
-            return InteractionResult.sidedSuccess(level().isClientSide)
-        }
-
-        val result = checkAndHandleImportantInteractions(player, hand)
-        if (result.consumesAction()) {
-            this.gameEvent(GameEvent.ENTITY_INTERACT, player)
-            return result
-        }
-
-        return if (player.isSecondaryUseActive) {
-            InteractionResult.PASS
-        } else if (outOfControlTicks < 60.0f) {
-            if (!level().isClientSide) {
-                if (player.startRiding(this)) {
-                    InteractionResult.CONSUME
-                } else {
-                    InteractionResult.PASS
-                }
-            } else {
-                InteractionResult.SUCCESS
-            }
-        } else {
-            InteractionResult.PASS
-        }
-    }
-
-    private fun checkAndHandleImportantInteractions(player: Player, hand: InteractionHand): InteractionResult {
-        val itemstack = player.getItemInHand(hand)
-        if (itemstack.`is`(Items.LEAD) && this.canBeLeashed(player)) {
-            this.setLeashedTo(player, true)
-            itemstack.shrink(1)
-            return InteractionResult.sidedSuccess(this.level().isClientSide)
-        }
-        return InteractionResult.PASS
-    }
-
-    private fun restoreLeashFromSave() {
-        if (this.leashInfoTag != null && this.level() is ServerLevel) {
-            if (this.leashInfoTag!!.hasUUID("UUID")) {
-                val uuid = this.leashInfoTag!!.getUUID("UUID")
-                val entity = (this.level() as ServerLevel).getEntity(uuid)
-                if (entity != null) {
-                    this.setLeashedTo(entity, true)
-                    return
-                }
-            } else if (this.leashInfoTag!!.contains("X", 99) && this.leashInfoTag!!.contains(
-                    "Y",
-                    99
-                ) && this.leashInfoTag!!.contains("Z", 99)
-            ) {
-                val blockpos = NbtUtils.readBlockPos(this.leashInfoTag)
-                this.setLeashedTo(LeashFenceKnotEntity.getOrCreateKnot(this.level(), blockpos), true)
-                return
-            }
-
-            if (this.tickCount > 100) {
-                this.spawnAtLocation(Items.LEAD)
-                this.leashInfoTag = null
-            }
-        }
-    }
-
-    protected fun tickLeash() {
-        if (leashInfoTag != null) {
-            restoreLeashFromSave()
-        }
-
-        if (leashHolder != null && (!isAlive || !leashHolder!!.isAlive)) {
-            dropLeash(broadcastPacket = true, dropLeash = true)
-        }
-
-        val holder = getLeashHolder()
-        if (holder != null && holder.level() === level()) {
-            val distance = distanceTo(holder)
-
-            if (distance > 10.0f) {
-                dropLeash(true, dropLeash = true)
-            } else if (distance > 6.0f && shouldStayCloseToLeashHolder()) {
-                val direction = Vec3(
-                    holder.x - x,
-                    holder.y - y,
-                    holder.z - z
-                ).normalize()
-
-                val followSpeed = followLeashSpeed()
-
-                val targetVelocity = direction.scale(followSpeed)
-
-                deltaMovement = deltaMovement.lerp(
-                    Vec3(targetVelocity.x, deltaMovement.y, targetVelocity.z),
-                    0.15
-                )
-            }
-        }
-    }
-
-    protected open fun shouldStayCloseToLeashHolder(): Boolean {
-        return true
-    }
-
-    protected open fun followLeashSpeed(): Double {
-        return 1.0
-    }
-
-    fun dropLeash(broadcastPacket: Boolean, dropLeash: Boolean) {
-        if (this.leashHolder != null) {
-            this.leashHolder = null
-            this.leashInfoTag = null
-            if (!this.level().isClientSide && dropLeash) {
-                this.spawnAtLocation(Items.LEAD)
-            }
-
-            if (!this.level().isClientSide && broadcastPacket && this.level() is ServerLevel) {
-                (this.level() as ServerLevel).chunkSource
-                    .broadcast(this, ClientboundSetEntityLinkPacket(this, null as Entity?))
-            }
-        }
-    }
-
-    open fun canBeLeashed(player: Player?): Boolean {
-        return !this.isLeashed() && this !is Enemy
-    }
-
-    fun isLeashed(): Boolean {
-        return this.leashHolder != null
-    }
-
-    fun getLeashHolder(): Entity? {
-        if (this.leashHolder == null && this.delayedLeashHolderId != 0 && this.level().isClientSide) {
-            this.leashHolder = this.level().getEntity(this.delayedLeashHolderId)
-        }
-
-        return this.leashHolder
-    }
-
-    /**
-     * Sets the entity to be leashed to.
-     */
-    fun setLeashedTo(leashHolder: Entity?, broadcastPacket: Boolean) {
-        this.leashHolder = leashHolder
-        this.leashInfoTag = null
-        if (!this.level().isClientSide && broadcastPacket && this.level() is ServerLevel) {
-            (this.level() as ServerLevel).chunkSource
-                .broadcast(this, ClientboundSetEntityLinkPacket(this, this.leashHolder))
-        }
-
-        if (this.isPassenger) {
-            this.stopRiding()
-        }
-    }
-
-    fun setDelayedLeashHolderId(leashHolderID: Int) {
-        this.delayedLeashHolderId = leashHolderID
-        this.dropLeash(broadcastPacket = false, dropLeash = false)
-    }
-
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
+        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-
-        if (this.leashHolder != null) {
-            val compoundtag2 = CompoundTag()
-            if (this.leashHolder is LivingEntity) {
-                val uuid = this.leashHolder!!.getUUID()
-                compoundtag2.putUUID("UUID", uuid)
-            } else if (this.leashHolder is HangingEntity) {
-                val blockpos = (this.leashHolder as HangingEntity).getPos()
-                compoundtag2.putInt("X", blockpos.x)
-                compoundtag2.putInt("Y", blockpos.y)
-                compoundtag2.putInt("Z", blockpos.z)
-            }
-
-            tag.put("Leash", compoundtag2)
-        } else if (this.leashInfoTag != null) {
-            tag.put("Leash", this.leashInfoTag!!.copy())
-        }
 
         tag.putString("Type", this.variant.getSerializedName())
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         super.readAdditionalSaveData(tag)
-
-        if (tag.contains("Leash", 10)) {
-            this.leashInfoTag = tag.getCompound("Leash")
-        }
 
         if (tag.contains("Type", 8)) {
             this.variant = Type.byName(tag.getString("Type"))
@@ -301,7 +103,6 @@ open class RaftEntity(
 
     override fun tick() {
         super.tick()
-        this.tickLeash()
 
         this.move(MoverType.SELF, this.deltaMovement)
 
@@ -317,14 +118,11 @@ open class RaftEntity(
         }
     }
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (!hasPassenger(passenger)) {
-            return
-        }
-
-        val yOffset =
-            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
         val (xOffset, zOffset) = when (passengers.size) {
             1 -> when (passengers.indexOf(passenger)) {
                 0 -> 0.0 to 0.0
@@ -353,19 +151,27 @@ open class RaftEntity(
             }
         }
 
-        val offset = Vec3(xOffset, 0.0, zOffset)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+        return Vec3(
+            xOffset,
+            dimensions.height() / 3.0,
+            zOffset
+        ).yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+    }
 
-        callback.accept(
-            passenger,
-            x + offset.x,
-            y + yOffset,
-            z + offset.z
-        )
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        super.positionRider(passenger, callback)
 
-        passenger.yRot += deltaRotation
-        passenger.yHeadRot += deltaRotation
-        clampRotation(passenger)
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.yRot += deltaRotation
+            passenger.yHeadRot += deltaRotation
+            clampRotation(passenger)
+
+            if (passenger is Animal && passengers.size == maxPassengers) {
+                val rotation = if (passenger.id % 2 == 0) 90f else 270f
+                passenger.yBodyRot += rotation
+                passenger.yHeadRot += rotation
+            }
+        }
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {
@@ -492,19 +298,19 @@ open class RaftEntity(
     }
 
     enum class Type(
-        val planks: Block,
         private val key: String,
     ) : StringRepresentable {
-        OAK(Blocks.OAK_PLANKS, "oak"),
-        SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
-        BIRCH(Blocks.BIRCH_PLANKS, "birch"),
-        JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
-        ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
-        CHERRY(Blocks.CHERRY_PLANKS, "cherry"),
-        DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
-        MANGROVE(Blocks.MANGROVE_PLANKS, "mangrove"),
-        CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
-        WARPED(Blocks.WARPED_PLANKS, "warped");
+        OAK("oak"),
+        SPRUCE("spruce"),
+        BIRCH("birch"),
+        JUNGLE("jungle"),
+        ACACIA("acacia"),
+        CHERRY("cherry"),
+        DARK_OAK("dark_oak"),
+        MANGROVE("mangrove"),
+        CRIMSON("crimson"),
+        WARPED("warped"),
+        DRIFTWOOD("driftwood");
 
         override fun getSerializedName(): String = key
 

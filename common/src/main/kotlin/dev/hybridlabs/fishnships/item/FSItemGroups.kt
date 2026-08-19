@@ -4,6 +4,7 @@ package dev.hybridlabs.fishnships.item
 
 import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.CommonClass
+import dev.hybridlabs.fishnships.platform.Services
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.network.chat.Component
@@ -119,6 +120,18 @@ object  FSItemGroups {
             entries.accept(FSItems.WARPED_CANOE_WITH_DOUBLE_CHEST.get())
             entries.accept(FSItems.WARPED_RAFT.get())
             entries.accept(FSItems.WARPED_SUPPLY_RAFT.get())
+
+            //  if (Services.PLATFORM.isModLoaded("hybrid_aquatic")) {
+                entries.accept(FSItems.DRIFTWOOD_BOAT.get())
+                entries.accept(FSItems.DRIFTWOOD_BOAT_WITH_CHEST.get())
+                entries.accept(FSItems.DRIFTWOOD_SAILBOAT.get())
+                entries.accept(FSItems.DRIFTWOOD_SAILBOAT_WITH_CHEST.get())
+                entries.accept(FSItems.DRIFTWOOD_CANOE.get())
+                entries.accept(FSItems.DRIFTWOOD_CANOE_WITH_CHEST.get())
+                entries.accept(FSItems.DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST.get())
+                entries.accept(FSItems.DRIFTWOOD_RAFT.get())
+                entries.accept(FSItems.DRIFTWOOD_SUPPLY_RAFT.get())
+            //  }
 
             entries.accept(FSItems.SHIP.get())
             entries.accept(FSItems.TRAWLING_NET.get())

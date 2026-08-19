@@ -1,6 +1,7 @@
 package dev.hybridlabs.fishnships
 
 import dev.hybridlabs.fishnships.Constants.MOD_NAME
+import dev.hybridlabs.fishnships.block.FSBlocks
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
@@ -22,12 +23,13 @@ object FishNShips : ModInitializer {
 
         FSEntityTypes
 
+        FSBlocks
         FSItems
         FSItemGroups
 
-        FSItemTags
-
         FSMenuTypes
+
+        FSItemTags
 
         FSNetworking.registerNetworking()
 	}

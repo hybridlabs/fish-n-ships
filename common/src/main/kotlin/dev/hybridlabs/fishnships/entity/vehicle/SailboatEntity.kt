@@ -4,16 +4,16 @@ import com.google.common.collect.Lists
 import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
+import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
+import net.minecraft.tags.EntityTypeTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
-import net.minecraft.world.InteractionHand
-import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
 import net.minecraft.world.entity.animal.Animal
@@ -28,11 +28,11 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.core.animation.AnimatableManager
-import software.bernie.geckolib.core.animation.AnimationController
-import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.core.animation.AnimationState
-import software.bernie.geckolib.core.animation.RawAnimation
+import software.bernie.geckolib.animation.AnimatableManager
+import software.bernie.geckolib.animation.AnimationController
+import software.bernie.geckolib.animation.AnimationController.AnimationStateHandler
+import software.bernie.geckolib.animation.AnimationState
+import software.bernie.geckolib.animation.RawAnimation
 
 open class SailboatEntity(
     entityType: EntityType<out SailboatEntity>, level: Level,
@@ -59,10 +59,10 @@ open class SailboatEntity(
         )
     }
 
-    override fun defineSynchedData() {
-        super.defineSynchedData()
-        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
-        this.entityData.define(IS_SAIL_DOWN, false)
+    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
+        super.defineSynchedData(builder)
+        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
+        builder.define(IS_SAIL_DOWN, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -83,10 +83,6 @@ open class SailboatEntity(
 
     fun isSailDown(): Boolean {
         return entityData.get(IS_SAIL_DOWN)
-    }
-
-    override fun getPassengersRidingOffset(): Double {
-        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -166,37 +162,44 @@ open class SailboatEntity(
         }
     }
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        if (this.hasPassenger(passenger)) {
-            var f = 0.2f
-            val f1 =
-                ((if (this.isRemoved) 0.01 else this.passengersRidingOffset) + passenger.myRidingOffset).toFloat()
-            if (this.passengers.size > 1) {
-                val i = this.passengers.indexOf(passenger)
-                f = if (i == 0) {
-                    0.2f
-                } else {
-                    -0.6f
-                }
+    override fun getPassengerAttachmentPoint(
+        passenger: Entity,
+        dimensions: EntityDimensions,
+        partialTick: Float
+    ): Vec3 {
+        var f = 0.2
 
-                if (passenger is Animal) {
-                    f += 0.2f
-                }
+        if (passengers.size > 1) {
+            f = if (passengers.indexOf(passenger) == 0) {
+                0.2
+            } else {
+                -0.6
             }
 
-            val vec3 = (Vec3(
-                f.toDouble(),
-                0.0,
-                0.0
-            )).yRot(-this.yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
-            callback.accept(passenger, this.x + vec3.x, this.y + f1.toDouble(), this.z + vec3.z)
-            passenger.yRot += this.deltaRotation
-            passenger.yHeadRot += this.deltaRotation
-            this.clampRotation(passenger)
-            if (passenger is Animal && this.passengers.size == this.maxPassengers) {
-                val j = if (passenger.id % 2 == 0) 90 else 270
-                passenger.setYBodyRot(passenger.yBodyRot + j.toFloat())
-                passenger.setYHeadRot(passenger.getYHeadRot() + j.toFloat())
+            if (passenger is Animal) {
+                f += 0.2
+            }
+        }
+
+        return Vec3(
+            f,
+            dimensions.height() / 3.0,
+            0.0
+        ).yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+    }
+
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        super.positionRider(passenger, callback)
+
+        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+            passenger.yRot += deltaRotation
+            passenger.yHeadRot += deltaRotation
+            clampRotation(passenger)
+
+            if (passenger is Animal && passengers.size == maxPassengers) {
+                val rotation = if (passenger.id % 2 == 0) 90f else 270f
+                passenger.yBodyRot += rotation
+                passenger.yHeadRot += rotation
             }
         }
     }
@@ -247,20 +250,6 @@ open class SailboatEntity(
         }
 
         return super.getDismountLocationForPassenger(livingEntity)
-    }
-
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
-        return if (player.isSecondaryUseActive) {
-            InteractionResult.PASS
-        } else if (this.outOfControlTicks < 60.0f) {
-            if (!this.level().isClientSide) {
-                if (player.startRiding(this)) InteractionResult.CONSUME else InteractionResult.PASS
-            } else {
-                InteractionResult.SUCCESS
-            }
-        } else {
-            InteractionResult.PASS
-        }
     }
 
     override val maxPassengers: Int
@@ -333,19 +322,19 @@ open class SailboatEntity(
     }
 
     enum class Type(
-        val planks: Block,
         private val key: String,
     ) : StringRepresentable {
-        OAK(Blocks.OAK_PLANKS, "oak"),
-        SPRUCE(Blocks.SPRUCE_PLANKS, "spruce"),
-        BIRCH(Blocks.BIRCH_PLANKS, "birch"),
-        JUNGLE(Blocks.JUNGLE_PLANKS, "jungle"),
-        ACACIA(Blocks.ACACIA_PLANKS, "acacia"),
-        CHERRY(Blocks.CHERRY_PLANKS, "cherry"),
-        DARK_OAK(Blocks.DARK_OAK_PLANKS, "dark_oak"),
-        MANGROVE(Blocks.MANGROVE_PLANKS, "mangrove"),
-        CRIMSON(Blocks.CRIMSON_PLANKS, "crimson"),
-        WARPED(Blocks.WARPED_PLANKS, "warped");
+        OAK("oak"),
+        SPRUCE("spruce"),
+        BIRCH("birch"),
+        JUNGLE("jungle"),
+        ACACIA("acacia"),
+        CHERRY("cherry"),
+        DARK_OAK("dark_oak"),
+        MANGROVE("mangrove"),
+        CRIMSON("crimson"),
+        WARPED("warped"),
+        DRIFTWOOD("driftwood");
 
         override fun getSerializedName(): String = key
 

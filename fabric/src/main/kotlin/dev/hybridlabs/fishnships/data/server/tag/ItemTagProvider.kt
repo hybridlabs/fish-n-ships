@@ -1,9 +1,11 @@
 package dev.hybridlabs.fishnships.data.server.tag
 
 import dev.hybridlabs.fishnships.item.FSItems
+import dev.hybridlabs.fishnships.tag.FSItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.core.HolderLookup
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.ItemTags
 import java.util.concurrent.CompletableFuture
 
@@ -72,5 +74,14 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
         ).forEach { item ->
             getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(item)
         }
+
+        getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_LOG)
+            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_log"))
+
+        getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_PLANKS)
+            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_planks"))
+
+        getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_SLAB)
+            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_slab"))
     }
 }

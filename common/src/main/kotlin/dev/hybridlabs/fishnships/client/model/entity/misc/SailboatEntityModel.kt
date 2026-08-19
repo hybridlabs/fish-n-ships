@@ -6,7 +6,7 @@ import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.Mth
-import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.animation.AnimationState
 import software.bernie.geckolib.model.GeoModel
 
 @Suppress("OVERRIDE_DEPRECATION")
@@ -33,6 +33,7 @@ class SailboatEntityModel<T : SailboatEntity>() :
             SailboatEntity.Type.MANGROVE -> MANGROVE_TEXTURE
             SailboatEntity.Type.CRIMSON -> CRIMSON_TEXTURE
             SailboatEntity.Type.WARPED -> WARPED_TEXTURE
+            SailboatEntity.Type.DRIFTWOOD -> DRIFTWOOD_TEXTURE
         }
     }
 
@@ -73,5 +74,7 @@ class SailboatEntityModel<T : SailboatEntity>() :
             CommonClass.locate("textures/entity/sailboat/crimson_sailboat.png")
         private val WARPED_TEXTURE =
             CommonClass.locate("textures/entity/sailboat/warped_sailboat.png")
+        private val DRIFTWOOD_TEXTURE =
+            CommonClass.locate("textures/entity/sailboat/driftwood_sailboat.png")
     }
 }

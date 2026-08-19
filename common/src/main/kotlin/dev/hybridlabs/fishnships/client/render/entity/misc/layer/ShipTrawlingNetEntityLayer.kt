@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.resources.ResourceLocation
 import software.bernie.geckolib.cache.`object`.BakedGeoModel
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer
+import software.bernie.geckolib.util.Color
 
 class ShipTrawlingNetEntityLayer<T: ShipEntity>(
     renderer: ShipEntityRenderer<T>
@@ -24,9 +25,9 @@ class ShipTrawlingNetEntityLayer<T: ShipEntity>(
         poseStack: PoseStack,
         animatable: T,
         bakedModel: BakedGeoModel,
-        renderType: RenderType,
+        renderType: RenderType?,
         bufferSource: MultiBufferSource,
-        buffer: VertexConsumer,
+        buffer: VertexConsumer?,
         partialTick: Float,
         packedLight: Int,
         packedOverlay: Int
@@ -37,6 +38,7 @@ class ShipTrawlingNetEntityLayer<T: ShipEntity>(
 
         getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, trawlingNetRenderType,
             bufferSource.getBuffer(trawlingNetRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
-            1f, 1f, 1f, 1f)
+            Color.WHITE.argbInt
+        )
     }
 }
