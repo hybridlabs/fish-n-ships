@@ -71,6 +71,7 @@ repositories {
         name = "Geckolib"
         url  = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
     }
+
     mavenCentral()
     mavenLocal()
 }

@@ -2,7 +2,6 @@ package dev.hybridlabs.fishnships.item
 
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.entity.vehicle.DinghyEntity
-import dev.hybridlabs.fishnships.entity.vehicle.DinghyWithChestEntity
 import net.minecraft.stats.Stats
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
@@ -69,9 +68,9 @@ class DinghyWithChestItem(
         }
     }
 
-    private fun getDinghy(level: Level, hitResult: HitResult): DinghyWithChestEntity {
+    private fun getDinghy(level: Level, hitResult: HitResult): DinghyEntity {
         val dinghy = FSEntityTypes.DINGHY_WITH_CHEST.get().create(level)
-            ?: throw IllegalStateException("Failed to create canoe")
+            ?: throw IllegalStateException("Failed to create dinghy")
 
         dinghy.setPos(
             hitResult.location.x,
