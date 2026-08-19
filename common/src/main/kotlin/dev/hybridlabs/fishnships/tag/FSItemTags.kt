@@ -18,6 +18,6 @@ object FSItemTags {
     }
 
     private fun createConventional(id: String): TagKey<Item> {
-		return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", id))
+		return TagKey.create(Registries.ITEM, ResourceLocation("c", id))
     }
 }

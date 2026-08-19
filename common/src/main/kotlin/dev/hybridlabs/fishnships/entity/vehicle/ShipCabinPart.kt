@@ -23,7 +23,7 @@ class ShipCabinPart(parentMob: ShipEntity, name: String?, width: Float, height: 
         this.name = name
     }
 
-    override fun defineSynchedData(p0: SynchedEntityData.Builder) {
+    override fun defineSynchedData() {
     }
 
     override fun readAdditionalSaveData(compound: CompoundTag) {
@@ -60,7 +60,7 @@ class ShipCabinPart(parentMob: ShipEntity, name: String?, width: Float, height: 
         return this === entity || this.parentMob === entity
     }
 
-    override fun getAddEntityPacket(entity: ServerEntity): Packet<ClientGamePacketListener> {
+    override fun getAddEntityPacket(): Packet<ClientGamePacketListener> {
         throw UnsupportedOperationException()
     }
 

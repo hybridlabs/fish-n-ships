@@ -7,8 +7,8 @@ import net.minecraft.client.model.geom.PartNames
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.Mth
-import software.bernie.geckolib.animation.AnimationState
-import software.bernie.geckolib.cache.`object`.GeoBone
+import software.bernie.geckolib.core.animation.AnimationState
+import software.bernie.geckolib.core.animatable.model.CoreGeoBone
 import software.bernie.geckolib.model.GeoModel
 
 @Suppress("OVERRIDE_DEPRECATION")
@@ -64,7 +64,7 @@ class CanoeWithChestEntityModel<T : CanoeWithChestEntity>() :
     private fun animatePaddle(
         canoe: CanoeEntity,
         side: Int,
-        paddle: GeoBone,
+        paddle: CoreGeoBone,
         partialTick: Float
     ) {
         val f = canoe.getRowingTime(side, partialTick) + Mth.PI

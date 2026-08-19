@@ -12,16 +12,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerGamePacketListenerImpl.class)
 public class ServerGamePacketListenerImplMixin {
-	@Shadow
-	public ServerPlayer player;
-	
-	@Inject(
-			method = "handlePaddleBoat",
-			at = @At("TAIL")
-	)
-	private void test(ServerboundPaddleBoatPacket packet, CallbackInfo ci) {
-		if (player.getControlledVehicle() instanceof ShipEntity ship) {
-			ship.setPropellerState(packet.getLeft(), packet.getRight());
-		}
-	}
+    @Shadow
+    public ServerPlayer player;
+
+    @Inject(
+            method = "handlePaddleBoat",
+            at = @At("TAIL")
+    )
+    private void test(ServerboundPaddleBoatPacket packet, CallbackInfo ci) {
+        if (player.getControlledVehicle() instanceof ShipEntity ship) {
+            ship.setPropellerState(packet.getLeft(), packet.getRight());
+        }
+    }
 }

@@ -11,7 +11,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 // This class is part of the common project meaning it is shared between all supported loaders. Code
 //  written here can only  import and access the vanilla codebase, libraries used by vanilla, and
@@ -21,8 +20,6 @@ import net.minecraft.world.level.block.Block;
 public class CommonClass {
 
     // Create some static RegistrationProviders for reuse elsewhere.
-    public static final RegistrationProvider<Block> BLOCKS =
-            RegistrationProvider.get(BuiltInRegistries.BLOCK, MOD_ID);
     public static final RegistrationProvider<Item> ITEMS =
             RegistrationProvider.get(BuiltInRegistries.ITEM, MOD_ID);
     public static final RegistrationProvider<EntityType<?>> ENTITY_TYPES =
@@ -45,7 +42,6 @@ public class CommonClass {
     }
 
     public static ResourceLocation locate(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+        return new ResourceLocation(MOD_ID, path);
     }
-
 }

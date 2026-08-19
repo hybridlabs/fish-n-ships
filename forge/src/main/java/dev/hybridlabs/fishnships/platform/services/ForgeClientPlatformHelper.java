@@ -1,7 +1,6 @@
-package dev.hybridlabs.fishnships.platform;
+package dev.hybridlabs.fishnships.platform.services;
 
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
-import dev.hybridlabs.fishnships.platform.services.ClientPlatformHelper;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;

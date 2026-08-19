@@ -29,12 +29,10 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.util.GeckoLibUtil
 
 open class DinghyEntity(
@@ -54,12 +52,12 @@ open class DinghyEntity(
         return animCache
     }
 
-    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        super.defineSynchedData(builder)
-        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
-        builder.define(DATA_ID_ALTERNATE, false)
-        builder.define(DATA_ID_PADDLE_LEFT, false)
-        builder.define(DATA_ID_PADDLE_RIGHT, false)
+    override fun defineSynchedData() {
+        super.defineSynchedData()
+        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
+        this.entityData.define(DATA_ID_ALTERNATE, false)
+        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
+        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -141,7 +139,7 @@ open class DinghyEntity(
                 this.alternate = !this.alternate
 
                 if (!player.abilities.instabuild) {
-                    stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND)
+                    stack.hurtAndBreak(1, player) { it.broadcastBreakEvent(hand) }
                 }
 
                 playSound(SoundEvents.AXE_STRIP)
@@ -236,11 +234,14 @@ open class DinghyEntity(
         ) else 0.0f
     }
 
-    override fun getPassengerAttachmentPoint(
-        passenger: Entity,
-        dimensions: EntityDimensions,
-        partialTick: Float
-    ): Vec3 {
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        if (!hasPassenger(passenger)) {
+            return
+        }
+
+        val yOffset =
+            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+
         val xOffset = when (passengers.indexOf(passenger)) {
             0 -> -0.25
             1 -> -0.9
@@ -248,26 +249,19 @@ open class DinghyEntity(
             else -> 0.0
         }
 
-        val yOffset = dimensions.height() / 3.0
+        val offset = Vec3(xOffset, 0.0, 0.0)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
 
-        return Vec3(0.0, yOffset, xOffset)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f))
-    }
+        callback.accept(
+            passenger,
+            x + offset.x,
+            y + yOffset,
+            z + offset.z
+        )
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        super.positionRider(passenger, callback)
-
-        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
-            passenger.yRot += deltaRotation
-            passenger.yHeadRot += deltaRotation
-            clampRotation(passenger)
-
-            if (passenger is Animal && passengers.size == maxPassengers) {
-                val rotation = if (passenger.id % 2 == 0) 90f else 270f
-                passenger.yBodyRot += rotation
-                passenger.yHeadRot += rotation
-            }
-        }
+        passenger.yRot += deltaRotation
+        passenger.yHeadRot += deltaRotation
+        clampRotation(passenger)
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {

@@ -17,7 +17,6 @@ pluginManagement {
     }
     plugins {
         id("org.jetbrains.kotlin.jvm").version(kotlin_version)
-        id("fabric-loom").version(loom_version).apply(false)
     }
 }
 
@@ -29,4 +28,5 @@ plugins {
 rootProject.name = 'fish_n_ships'
 include("common")
 include("fabric")
-include("neoforge")
+include("forge")
+include 'fabric:src:client'

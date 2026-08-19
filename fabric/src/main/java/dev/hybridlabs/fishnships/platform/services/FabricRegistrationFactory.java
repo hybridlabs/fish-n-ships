@@ -1,6 +1,5 @@
 package dev.hybridlabs.fishnships.platform.services;
 
-import dev.hybridlabs.fishnships.CommonClass;
 import dev.hybridlabs.fishnships.platform.registration.RegistrationProvider;
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject;
 
@@ -57,7 +56,7 @@ public class FabricRegistrationFactory implements RegistrationProvider.Factory {
         @SuppressWarnings("unchecked")
         public <I extends T> RegistryObject<I> register(
                 String name, Supplier<? extends I> supplier) {
-            final var rl = CommonClass.locate(name);
+            final var rl = new ResourceLocation(modId, name);
             final var obj = Registry.register(registry, rl, supplier.get());
             final var ro =
                     new RegistryObject<I>() {

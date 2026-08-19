@@ -1,10 +1,10 @@
 package dev.hybridlabs.fishnships.entity.vehicle
 
-import com.mojang.serialization.Codec
 import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
+import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.core.particles.BlockParticleOption
@@ -19,9 +19,7 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
-import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
-import net.minecraft.util.StringRepresentable
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
@@ -32,7 +30,6 @@ import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.GameRules
 import net.minecraft.world.level.Level
@@ -51,7 +48,6 @@ import software.bernie.geckolib.core.animation.AnimationController
 import software.bernie.geckolib.core.animation.AnimationController.AnimationStateHandler
 import software.bernie.geckolib.core.animation.AnimationState
 import software.bernie.geckolib.core.animation.RawAnimation
-import java.util.function.IntFunction
 import kotlin.math.min
 
 open class ShipEntity(

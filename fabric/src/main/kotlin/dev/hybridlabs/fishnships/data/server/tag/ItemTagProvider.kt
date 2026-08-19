@@ -76,12 +76,12 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
         }
 
         getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_LOG)
-            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_log"))
+            .addOptional(ResourceLocation("hybrid_aquatic", "driftwood_log"))
 
         getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_PLANKS)
-            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_planks"))
+            .addOptional(ResourceLocation("hybrid_aquatic", "driftwood_planks"))
 
         getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_SLAB)
-            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_slab"))
+            .addOptional(ResourceLocation("hybrid_aquatic", "driftwood_slab"))
     }
 }

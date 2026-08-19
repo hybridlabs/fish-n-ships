@@ -2,35 +2,30 @@ package dev.hybridlabs.fishnships.network
 
 import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity
 import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
-import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry
+import dev.hybridlabs.fishnships.packet.C2SPackets
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 
 object FSNetworking {
 
-    init {
-        PayloadTypeRegistry.playC2S().register(TrawlingPayload.type, TrawlingPayload.CODEC)
-        PayloadTypeRegistry.playC2S().register(ShipMovementPayload.type, ShipMovementPayload.CODEC)
-        PayloadTypeRegistry.playC2S().register(ChangeSailStatePayload.type, ChangeSailStatePayload.CODEC)
-    }
-
     fun registerNetworking() {
-        ServerPlayNetworking.registerGlobalReceiver(TrawlingPayload.type) { payload, context ->
-            val vehicle = context.player().controlledVehicle
-            if (vehicle is ShipEntity) {
-                vehicle.setTrawling(payload.trawling)
+        ServerPlayNetworking.registerGlobalReceiver(C2SPackets.TRAWLING_PACKET_ID) { _, client, _, buf, _ ->
+            val vehicle = client.controlledVehicle
+            if (vehicle != null && vehicle is ShipEntity) {
+                vehicle.setTrawling(buf.readBoolean())
             }
         }
 
-        ServerPlayNetworking.registerGlobalReceiver(ShipMovementPayload.type) { payload, context ->
-            val vehicle = context.player().controlledVehicle
-            if (vehicle is ShipEntity) {
-                vehicle.setMoving(payload.moving)
+        ServerPlayNetworking.registerGlobalReceiver(C2SPackets.SHIP_MOVEMENT_PACKET_ID) { _, client, _, buf, _ ->
+            val vehicle = client.controlledVehicle
+            if (vehicle != null && vehicle is ShipEntity) {
+                vehicle.setMoving(buf.readBoolean())
             }
         }
 
-        ServerPlayNetworking.registerGlobalReceiver(ChangeSailStatePayload.type) { payload, context ->
-            val vehicle = context.player().controlledVehicle
-            if (vehicle is SailboatEntity && vehicle.uuid == payload.vehicleUuid) {
+        ServerPlayNetworking.registerGlobalReceiver(C2SPackets.CHANGE_SAIL_STATE_PACKET_IT) { _, serverPlayer, _, buf, _ ->
+            val vehicle = serverPlayer.controlledVehicle
+            val vehicleUUID = buf.readUUID()
+            if (vehicle != null && vehicle is SailboatEntity && vehicle.uuid == vehicleUUID) {
                 vehicle.setSailDown(!vehicle.isSailDown())
             }
         }

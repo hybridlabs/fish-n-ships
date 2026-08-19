@@ -3,13 +3,11 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.resources.ResourceKey
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityDimensions
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.player.Inventory
@@ -22,15 +20,13 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
-import net.minecraft.world.level.storage.loot.LootTable
-import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 
 open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntity>, level: Level) :
     DinghyEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(54, ItemStack.EMPTY)
-    private var dinghyLootTable: ResourceKey<LootTable>? = null
+    private var dinghyLootTable: ResourceLocation? = null
     private var dinghyLootTableSeed: Long = 0
 
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
@@ -68,27 +64,20 @@ open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntit
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-        this.addChestVehicleSaveData(tag, this.registryAccess())
+        this.addChestVehicleSaveData(tag)
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         super.readAdditionalSaveData(tag)
-        this.readChestVehicleSaveData(tag, this.registryAccess())
+        setDamage(tag.getFloat("Damage"))
+        this.readChestVehicleSaveData(tag)
     }
 
     override val maxPassengers: Int
         get() = 3
 
-    override fun getPassengerAttachmentPoint(
-        passenger: Entity,
-        dimensions: EntityDimensions,
-        partialTick: Float
-    ): Vec3 {
-        return Vec3(
-            0.0,
-            dimensions.height() / 3.0,
-            0.5
-        ).yRot(-yRot * (Math.PI.toFloat() / 180f))
+    override fun getPassengersRidingOffset(): Double {
+        return -0.1
     }
 
     //#region Container
@@ -150,11 +139,11 @@ open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntit
         }
     }
 
-    override fun getLootTable(): ResourceKey<LootTable>? {
+    override fun getLootTable(): ResourceLocation? {
         return dinghyLootTable
     }
 
-    override fun setLootTable(id: ResourceKey<LootTable>?) {
+    override fun setLootTable(id: ResourceLocation?) {
         if (id != null) dinghyLootTable = id
     }
 

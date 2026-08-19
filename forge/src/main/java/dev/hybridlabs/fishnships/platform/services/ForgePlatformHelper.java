@@ -3,17 +3,24 @@ package dev.hybridlabs.fishnships.platform.services;
 import dev.hybridlabs.fishnships.Constants;
 import dev.hybridlabs.fishnships.network.FSNetworking;
 import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.javafmlmod.FMLModContainer;
+import net.minecraftforge.fml.loading.FMLLoader;
+import thedarkcolour.kotlinforforge.KotlinModContainer;
 
 public class ForgePlatformHelper implements PlatformHelper {
 
     public static IEventBus getEventBus() {
-        final ModContainer cont =
-                ModList.get().getModContainerById(Constants.MOD_ID).orElseThrow();
-        return cont.getEventBus();
+        final ModContainer cont = ModList.get().getModContainerById(Constants.MOD_ID).orElseThrow();
+        if (cont instanceof FMLModContainer fmlModContainer) {
+            return fmlModContainer.getEventBus();
+        } else if (cont instanceof KotlinModContainer kotlinModContainer) {
+            return kotlinModContainer.getEventBus$kfflang();
+        } else {
+            throw new ClassCastException("The container of the mod " + Constants.MOD_ID + " is not a FML one!");
+        }
     }
 
     @Override

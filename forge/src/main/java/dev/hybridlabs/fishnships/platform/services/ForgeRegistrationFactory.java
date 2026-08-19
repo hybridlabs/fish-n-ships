@@ -7,8 +7,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.registries.DeferredRegister;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -44,16 +43,15 @@ public class ForgeRegistrationFactory implements RegistrationProvider.Factory {
 
         @Override
         @SuppressWarnings("unchecked")
-        public <I extends T>
-        RegistryObject<I> register(
+        public <I extends T> RegistryObject<I> register(
                 String name, Supplier<? extends I> supplier) {
-            final DeferredHolder<T, ? extends I> obj = registry.register(name, supplier);
+            final var obj = registry.<I>register(name, supplier);
             final var ro =
                     new RegistryObject<I>() {
 
                         @Override
                         public ResourceKey<I> getResourceKey() {
-                            return (ResourceKey<I>) obj.getKey();
+                            return obj.getKey();
                         }
 
                         @Override
@@ -68,7 +66,7 @@ public class ForgeRegistrationFactory implements RegistrationProvider.Factory {
 
                         @Override
                         public Holder<I> asHolder() {
-                            return (Holder<I>) obj.getDelegate();
+                            return obj.getHolder().orElseThrow();
                         }
                     };
             entries.add((RegistryObject<T>) ro);

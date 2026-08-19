@@ -6,6 +6,7 @@ import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceKey
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
@@ -32,7 +33,7 @@ open class SupplyRaftEntity(
     RaftEntity(type, world), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
-    private var raftLootTable: ResourceKey<LootTable>? = null
+    private var raftLootTable: ResourceLocation? = null
     private var raftLootTableSeed: Long = 0
 
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
@@ -53,18 +54,19 @@ open class SupplyRaftEntity(
         return containerResult
     }
 
-    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        super.defineSynchedData(builder)
+    override fun defineSynchedData() {
+        super.defineSynchedData()
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
-        this.addChestVehicleSaveData(tag, this.registryAccess())
+        this.addChestVehicleSaveData(tag)
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
         super.readAdditionalSaveData(tag)
-        this.readChestVehicleSaveData(tag, this.registryAccess())
+        setDamage(tag.getFloat("Damage"))
+        this.readChestVehicleSaveData(tag)
     }
 
     override fun isPickable(): Boolean {
@@ -138,11 +140,11 @@ open class SupplyRaftEntity(
         }
     }
 
-    override fun getLootTable(): ResourceKey<LootTable>? {
+    override fun getLootTable(): ResourceLocation? {
         return raftLootTable
     }
 
-    override fun setLootTable(id: ResourceKey<LootTable>?) {
+    override fun setLootTable(id: ResourceLocation?) {
         if (id != null) raftLootTable = id
     }
 

@@ -121,7 +121,7 @@ object  FSItemGroups {
             entries.accept(FSItems.WARPED_RAFT.get())
             entries.accept(FSItems.WARPED_SUPPLY_RAFT.get())
 
-            //  if (Services.PLATFORM.isModLoaded("hybrid_aquatic")) {
+            if (Services.PLATFORM.isModLoaded("hybrid_aquatic")) {
                 entries.accept(FSItems.DRIFTWOOD_BOAT.get())
                 entries.accept(FSItems.DRIFTWOOD_BOAT_WITH_CHEST.get())
                 entries.accept(FSItems.DRIFTWOOD_SAILBOAT.get())
@@ -131,7 +131,7 @@ object  FSItemGroups {
                 entries.accept(FSItems.DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST.get())
                 entries.accept(FSItems.DRIFTWOOD_RAFT.get())
                 entries.accept(FSItems.DRIFTWOOD_SUPPLY_RAFT.get())
-            //  }
+            }
 
             entries.accept(FSItems.SHIP.get())
             entries.accept(FSItems.TRAWLING_NET.get())

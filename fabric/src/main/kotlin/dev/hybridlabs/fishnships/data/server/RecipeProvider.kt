@@ -6,9 +6,8 @@ import dev.hybridlabs.fishnships.tag.FSItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.advancements.critereon.InventoryChangeTrigger
-import net.minecraft.core.HolderLookup
+import net.minecraft.data.recipes.FinishedRecipe
 import net.minecraft.data.recipes.RecipeCategory
-import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.tags.ItemTags
@@ -16,11 +15,10 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
-import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
 
-class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
-    FabricRecipeProvider(output, lookupProvider) {
-    override fun buildRecipes(exporter: RecipeOutput) {
+class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
+    override fun buildRecipes(exporter: Consumer<FinishedRecipe>) {
 
         offerCanoeRecipes(exporter, canoeTypeMap)
         offerCanoeChestUpgradeRecipes(exporter, canoeTypeMap, chestCanoeTypeMap)
@@ -131,7 +129,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     )
 
     private fun offerBoatRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, boatType) in map) {
@@ -148,7 +146,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerBoatChestUpgradeRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         boatMap: Map<Block, RegistryObject<out Item>>,
         chestBoatMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -211,7 +209,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     )
 
     private fun offerCanoeRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, canoeType) in map) {
@@ -229,7 +227,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerCanoeChestUpgradeRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         canoeMap: Map<Block, RegistryObject<out Item>>,
         chestCanoeMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -251,7 +249,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerCanoeDoubleChestUpgradeRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         canoeMap: Map<Block, RegistryObject<out Item>>,
         chestCanoeMap: Map<Block, RegistryObject<out Item>>,
         doubleChestCanoeMap: Map<Block, RegistryObject<out Item>>,
@@ -323,7 +321,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     )
 
     private fun offerSailboatRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, sailboatType) in map) {
@@ -341,7 +339,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerSailboatChestUpgradeRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         sailboatMap: Map<Block, RegistryObject<out Item>>,
         chestsailboatMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -391,7 +389,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     )
 
     private fun offerRaftRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, raftType) in map) {
@@ -407,7 +405,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerSupplyRaftUpgradeRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         raftMap: Map<Block, RegistryObject<out Item>>,
         supplyRaftMap: Map<Block, RegistryObject<out Item>>,
     ) {
@@ -429,7 +427,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodBoatRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         boat: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat.get(), 1)
@@ -444,7 +442,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodBoatChestUpgradeRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         boat: RegistryObject<out Item>,
         chestBoat: RegistryObject<out Item>,
     ) {
@@ -465,7 +463,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodCanoeRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         canoe: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, canoe.get(), 1)
@@ -484,7 +482,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodCanoeChestUpgradeRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         canoe: RegistryObject<out Item>,
         chestCanoe: RegistryObject<out Item>,
     ) {
@@ -505,7 +503,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodCanoeDoubleChestUpgradeRecipes(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         canoe: RegistryObject<out Item>,
         chestCanoe: RegistryObject<out Item>,
         doubleChestCanoe: RegistryObject<out Item>,
@@ -543,7 +541,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodRaftRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         raft: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, raft.get(), 1)
@@ -557,7 +555,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodRaftSupplyUpgradeRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         raft: RegistryObject<out Item>,
         supplyRaft: RegistryObject<out Item>,
     ) {
@@ -578,7 +576,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodSailboatRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         sailboat: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, sailboat.get(), 1)
@@ -594,7 +592,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     }
 
     private fun offerDriftwoodSailboatChestUpgradeRecipe(
-        exporter: RecipeOutput,
+        exporter: Consumer<FinishedRecipe>,
         sailboat: RegistryObject<out Item>,
         chestSailboat: RegistryObject<out Item>,
     ) {

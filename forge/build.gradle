@@ -10,8 +10,6 @@ dependencies {
     fabricDatagen project(path: ':fabric', configuration: 'datagenOutput')
 }
 
-
-
 legacyForge {
     apply plugin: 'org.jetbrains.kotlin.jvm'
     apply plugin: 'kotlin'
@@ -74,6 +72,7 @@ repositories {
         url  = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
     }
     mavenCentral()
+    mavenLocal()
 }
 
 sourceSets.main.resources.srcDirs += 'src/generated/resources'
@@ -90,6 +89,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:25.0.0'
     implementation 'thedarkcolour:kotlinforforge:4.11.0'
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.0"))
+    implementation("dev.hybridlabs.hapi:hapi-forge-1.20.1:1.0.0")
 }
 
 jar {

@@ -17,7 +17,6 @@ class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
     private val shipRows: Int = menu.rowCount
 
     init {
-
         // size of screen in pixels
         imageHeight = 226
         imageWidth = 182
@@ -72,7 +71,7 @@ class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
     }
 
     override fun render(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
-        renderBackground(guiGraphics, mouseX, mouseY, partialTick)
+        renderBackground(guiGraphics)
         super.render(guiGraphics, mouseX, mouseY, partialTick)
         renderTooltip(guiGraphics, mouseX, mouseY)
     }

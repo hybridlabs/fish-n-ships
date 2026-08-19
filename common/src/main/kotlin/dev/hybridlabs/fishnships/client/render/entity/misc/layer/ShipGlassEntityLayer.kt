@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.resources.ResourceLocation
 import software.bernie.geckolib.cache.`object`.BakedGeoModel
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer
-import software.bernie.geckolib.util.Color
 
 class ShipGlassEntityLayer<T: ShipEntity>(
     renderer: ShipEntityRenderer<T>
@@ -37,7 +36,6 @@ class ShipGlassEntityLayer<T: ShipEntity>(
 
         getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, glassRenderType,
             bufferSource.getBuffer(glassRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
-            Color.WHITE.argbInt
-        )
+            1f, 1f, 1f, 1f)
     }
 }

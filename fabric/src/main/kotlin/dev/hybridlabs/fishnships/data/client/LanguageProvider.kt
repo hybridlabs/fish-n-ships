@@ -4,7 +4,6 @@ import dev.hybridlabs.fishnships.data.FSDataGenerator.filterFishNShips
 import dev.hybridlabs.fishnships.entity.FSEntityTypes
 import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
-import dev.hybridlabs.fishnships.sound.FSSoundEvents
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.minecraft.Util
@@ -19,15 +18,8 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
                 .orElseThrow { IllegalStateException("Item group not registered") }, "Fish N Ships"
         )
 
-        generateEntities(builder)//Sound Events
-        mapOf(
-            FSSoundEvents.ALBATROSS_AMBIENT to "Albatross squawks",
-            FSSoundEvents.ALBATROSS_HURT to "Albatross hurts",
-            FSSoundEvents.ALBATROSS_DIE to "Albatross dies",
+        generateEntities(builder)
 
-        ).forEach { (soundEvent, translation) ->
-            builder.add(Util.makeDescriptionId("subtitles", soundEvent.get().location), translation)
-        }
         mapOf(
             FSItems.SHIP.get() to "Ship",
 

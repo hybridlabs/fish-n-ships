@@ -1,11 +1,13 @@
 package dev.hybridlabs.fishnships.platform.services;
 
 import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
-import dev.hybridlabs.fishnships.network.ChangeSailStatePayload;
-import dev.hybridlabs.fishnships.network.ShipMovementPayload;
-import dev.hybridlabs.fishnships.network.TrawlingPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.world.entity.*;
+import dev.hybridlabs.fishnships.packet.C2SPackets;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 
 public class FabricPlatformHelper implements PlatformHelper {
@@ -29,16 +31,28 @@ public class FabricPlatformHelper implements PlatformHelper {
 
     @Override
     public void sendTrawlingToServer(boolean enabled) {
-        ClientPlayNetworking.send(new TrawlingPayload(enabled));
+        FriendlyByteBuf packetData = PacketByteBufs.create();
+        packetData.writeBoolean(enabled);
+        ResourceLocation packetId = C2SPackets.INSTANCE.getTRAWLING_PACKET_ID();
+        if (ClientPlayNetworking.canSend(packetId))
+            ClientPlayNetworking.send(packetId, packetData);
     }
 
     @Override
     public void sendMovementToServer(boolean moving) {
-        ClientPlayNetworking.send(new ShipMovementPayload(moving));
+        FriendlyByteBuf packetData = PacketByteBufs.create();
+        packetData.writeBoolean(moving);
+        ResourceLocation packetId = C2SPackets.INSTANCE.getSHIP_MOVEMENT_PACKET_ID();
+        if (ClientPlayNetworking.canSend(packetId))
+            ClientPlayNetworking.send(packetId, packetData);
     }
 
     @Override
     public void changeSailState(SailboatEntity sailBoat) {
-        ClientPlayNetworking.send(new ChangeSailStatePayload(sailBoat.getUUID()));
+        FriendlyByteBuf packetData = PacketByteBufs.create();
+        packetData.writeUUID(sailBoat.getUUID());
+        ResourceLocation packetId = C2SPackets.INSTANCE.getCHANGE_SAIL_STATE_PACKET_IT();
+        if (ClientPlayNetworking.canSend(packetId))
+            ClientPlayNetworking.send(packetId, packetData);
     }
 }

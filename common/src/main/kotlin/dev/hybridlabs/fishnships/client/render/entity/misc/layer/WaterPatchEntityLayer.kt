@@ -9,7 +9,6 @@ import software.bernie.geckolib.animatable.GeoEntity
 import software.bernie.geckolib.cache.`object`.BakedGeoModel
 import software.bernie.geckolib.renderer.GeoRenderer
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer
-import software.bernie.geckolib.util.Color
 
 class WaterPatchEntityLayer<T : GeoEntity>(
     renderer: GeoRenderer<T>
@@ -38,7 +37,6 @@ class WaterPatchEntityLayer<T : GeoEntity>(
             partialTick,
             packedLight,
             OverlayTexture.NO_OVERLAY,
-            Color.WHITE.argbInt
-        )
+            1f, 1f, 1f, 1f)
     }
 }

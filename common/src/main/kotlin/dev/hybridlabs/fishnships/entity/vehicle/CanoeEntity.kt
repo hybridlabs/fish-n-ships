@@ -11,13 +11,13 @@ import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.sounds.SoundEvent
-import net.minecraft.tags.EntityTypeTags
 import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
+import net.minecraft.world.InteractionHand
+import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
-import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.animal.WaterAnimal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.util.GeckoLibUtil
 
 open class CanoeEntity(
@@ -50,11 +50,11 @@ open class CanoeEntity(
         return animCache
     }
 
-    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        super.defineSynchedData(builder)
-        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
-        builder.define(DATA_ID_PADDLE_LEFT, false)
-        builder.define(DATA_ID_PADDLE_RIGHT, false)
+    override fun defineSynchedData() {
+        super.defineSynchedData()
+        this.entityData.define(DATA_ID_TYPE, Type.OAK.ordinal)
+        this.entityData.define(DATA_ID_PADDLE_LEFT, false)
+        this.entityData.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
     override fun addAdditionalSaveData(tag: CompoundTag) {
@@ -67,6 +67,10 @@ open class CanoeEntity(
         if (tag.contains("Type", 8)) {
             this.variant = Type.byName(tag.getString("Type"))
         }
+    }
+
+    override fun getPassengersRidingOffset(): Double {
+        return -0.1
     }
 
     override fun hurt(source: DamageSource, amount: Float): Boolean {
@@ -206,11 +210,14 @@ open class CanoeEntity(
         ) else 0.0f
     }
 
-    override fun getPassengerAttachmentPoint(
-        passenger: Entity,
-        dimensions: EntityDimensions,
-        partialTick: Float
-    ): Vec3 {
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        if (!hasPassenger(passenger)) {
+            return
+        }
+
+        val yOffset =
+            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+
         val xOffset = when (passengers.indexOf(passenger)) {
             0 -> -0.25
             1 -> -0.9
@@ -218,26 +225,19 @@ open class CanoeEntity(
             else -> 0.0
         }
 
-        val yOffset = dimensions.height() / 3.0
+        val offset = Vec3(xOffset, 0.0, 0.0)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
 
-        return Vec3(0.0, yOffset, xOffset)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f))
-    }
+        callback.accept(
+            passenger,
+            x + offset.x,
+            y + yOffset,
+            z + offset.z
+        )
 
-    override fun positionRider(passenger: Entity, callback: MoveFunction) {
-        super.positionRider(passenger, callback)
-
-        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
-            passenger.yRot += deltaRotation
-            passenger.yHeadRot += deltaRotation
-            clampRotation(passenger)
-
-            if (passenger is Animal && passengers.size == maxPassengers) {
-                val rotation = if (passenger.id % 2 == 0) 90f else 270f
-                passenger.yBodyRot += rotation
-                passenger.yHeadRot += rotation
-            }
-        }
+        passenger.yRot += deltaRotation
+        passenger.yHeadRot += deltaRotation
+        clampRotation(passenger)
     }
 
     override fun getDismountLocationForPassenger(livingEntity: LivingEntity): Vec3 {
@@ -290,6 +290,20 @@ open class CanoeEntity(
 
     override fun onPassengerTurned(entityToUpdate: Entity) {
         this.clampRotation(entityToUpdate)
+    }
+
+    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+        return if (player.isSecondaryUseActive) {
+            InteractionResult.PASS
+        } else if (this.outOfControlTicks < 60.0f) {
+            if (!this.level().isClientSide) {
+                if (player.startRiding(this)) InteractionResult.CONSUME else InteractionResult.PASS
+            } else {
+                InteractionResult.SUCCESS
+            }
+        } else {
+            InteractionResult.PASS
+        }
     }
 
     fun getPaddleState(side: Int): Boolean {
@@ -374,7 +388,7 @@ open class CanoeEntity(
     enum class Type(
         private val key: String,
     ) : StringRepresentable {
-        OAK("oak"),
+        OAK( "oak"),
         SPRUCE("spruce"),
         BIRCH("birch"),
         JUNGLE("jungle"),

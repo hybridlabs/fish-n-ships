@@ -8,11 +8,11 @@ import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.network.FSNetworking
 import dev.hybridlabs.fishnships.tag.FSItemTags
 import dev.hybridlabs.fishnships.world.inventory.FSMenuTypes
-import net.neoforged.fml.common.Mod
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
-import net.neoforged.fml.event.lifecycle.FMLDedicatedServerSetupEvent
-import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
-import thedarkcolour.kotlinforforge.neoforge.forge.runForDist
+import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
+import thedarkcolour.kotlinforforge.forge.MOD_BUS
+import thedarkcolour.kotlinforforge.forge.runForDist
 
 /**
  * Main mod class. Should be an `object` declaration annotated with `@Mod`.
@@ -37,7 +37,7 @@ object FishNShipsForge {
 
         FSItemTags
 
-        MOD_BUS.register(FSNetworking)
+        FSNetworking.registerPackets()
 
         runForDist(
             clientTarget = {
