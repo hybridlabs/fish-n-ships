@@ -128,16 +128,26 @@ open class DinghyEntity(
         val stack = getDinghyItem()
         this.spawnAtLocation(stack)
     }
-
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+        if (!isAlive) {
+            return InteractionResult.PASS
+        }
+
+        val result = super.interact(player, hand)
+        if (result != InteractionResult.PASS) {
+            return result
+        }
+
         val stack = player.getItemInHand(hand)
 
-        if (stack.item is AxeItem) {
+        if (stack.item is AxeItem && !player.isSecondaryUseActive) {
             if (!level().isClientSide) {
                 this.alternate = !this.alternate
 
                 if (!player.abilities.instabuild) {
-                    stack.hurtAndBreak(1, player) { it.broadcastBreakEvent(hand) }
+                    stack.hurtAndBreak(1, player) {
+                        it.broadcastBreakEvent(hand)
+                    }
                 }
 
                 playSound(SoundEvents.AXE_STRIP)
@@ -146,7 +156,19 @@ open class DinghyEntity(
             return InteractionResult.sidedSuccess(level().isClientSide)
         }
 
-        return super.interact(player, hand)
+        return if (outOfControlTicks < 60.0f) {
+            if (!level().isClientSide) {
+                if (player.startRiding(this)) {
+                    InteractionResult.CONSUME
+                } else {
+                    InteractionResult.PASS
+                }
+            } else {
+                InteractionResult.SUCCESS
+            }
+        } else {
+            InteractionResult.PASS
+        }
     }
 
     override fun tick() {

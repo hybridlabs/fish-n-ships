@@ -4,6 +4,7 @@ import dev.hybridlabs.fishnships.item.FSItems
 import net.minecraft.core.NonNullList
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.sounds.SoundEvents
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ChestMenu
 import net.minecraft.world.inventory.ContainerData
+import net.minecraft.world.item.AxeItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
@@ -45,6 +47,24 @@ open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntit
                 gameEvent(GameEvent.CONTAINER_OPEN, player)
             }
             return containerResult
+        }
+
+        val stack = player.getItemInHand(hand)
+
+        if (stack.item is AxeItem && !player.isSecondaryUseActive) {
+            if (!level().isClientSide) {
+                this.alternate = !this.alternate
+
+                if (!player.abilities.instabuild) {
+                    stack.hurtAndBreak(1, player) {
+                        it.broadcastBreakEvent(hand)
+                    }
+                }
+
+                playSound(SoundEvents.AXE_STRIP)
+            }
+
+            return InteractionResult.sidedSuccess(level().isClientSide)
         }
 
         return if (outOfControlTicks < 60.0f) {
