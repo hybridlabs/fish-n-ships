@@ -28,6 +28,8 @@ object  FSItemGroups {
             entries.accept(FSItems.OAK_CANOE.get())
             entries.accept(FSItems.OAK_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.OAK_DINGHY.get())
+            entries.accept(FSItems.OAK_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.OAK_RAFT.get())
             entries.accept(FSItems.OAK_SUPPLY_RAFT.get())
 
@@ -38,6 +40,8 @@ object  FSItemGroups {
             entries.accept(FSItems.SPRUCE_CANOE.get())
             entries.accept(FSItems.SPRUCE_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.SPRUCE_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.SPRUCE_DINGHY.get())
+            entries.accept(FSItems.SPRUCE_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.SPRUCE_RAFT.get())
             entries.accept(FSItems.SPRUCE_SUPPLY_RAFT.get())
 
@@ -48,6 +52,8 @@ object  FSItemGroups {
             entries.accept(FSItems.BIRCH_CANOE.get())
             entries.accept(FSItems.BIRCH_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.BIRCH_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.BIRCH_DINGHY.get())
+            entries.accept(FSItems.BIRCH_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.BIRCH_RAFT.get())
             entries.accept(FSItems.BIRCH_SUPPLY_RAFT.get())
 
@@ -58,6 +64,8 @@ object  FSItemGroups {
             entries.accept(FSItems.JUNGLE_CANOE.get())
             entries.accept(FSItems.JUNGLE_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.JUNGLE_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.JUNGLE_DINGHY.get())
+            entries.accept(FSItems.JUNGLE_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.JUNGLE_RAFT.get())
             entries.accept(FSItems.JUNGLE_SUPPLY_RAFT.get())
 
@@ -68,6 +76,8 @@ object  FSItemGroups {
             entries.accept(FSItems.ACACIA_CANOE.get())
             entries.accept(FSItems.ACACIA_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.ACACIA_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.ACACIA_DINGHY.get())
+            entries.accept(FSItems.ACACIA_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.ACACIA_RAFT.get())
             entries.accept(FSItems.ACACIA_SUPPLY_RAFT.get())
 
@@ -78,6 +88,8 @@ object  FSItemGroups {
             entries.accept(FSItems.DARK_OAK_CANOE.get())
             entries.accept(FSItems.DARK_OAK_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.DARK_OAK_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.DARK_OAK_DINGHY.get())
+            entries.accept(FSItems.DARK_OAK_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.DARK_OAK_RAFT.get())
             entries.accept(FSItems.DARK_OAK_SUPPLY_RAFT.get())
 
@@ -88,6 +100,8 @@ object  FSItemGroups {
             entries.accept(FSItems.MANGROVE_CANOE.get())
             entries.accept(FSItems.MANGROVE_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.MANGROVE_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.MANGROVE_DINGHY.get())
+            entries.accept(FSItems.MANGROVE_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.MANGROVE_RAFT.get())
             entries.accept(FSItems.MANGROVE_SUPPLY_RAFT.get())
 
@@ -98,6 +112,8 @@ object  FSItemGroups {
             entries.accept(FSItems.CHERRY_CANOE.get())
             entries.accept(FSItems.CHERRY_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.CHERRY_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.CHERRY_DINGHY.get())
+            entries.accept(FSItems.CHERRY_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.CHERRY_RAFT.get())
             entries.accept(FSItems.CHERRY_SUPPLY_RAFT.get())
 
@@ -108,6 +124,8 @@ object  FSItemGroups {
             entries.accept(FSItems.CRIMSON_CANOE.get())
             entries.accept(FSItems.CRIMSON_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.CRIMSON_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.CRIMSON_DINGHY.get())
+            entries.accept(FSItems.CRIMSON_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.CRIMSON_RAFT.get())
             entries.accept(FSItems.CRIMSON_SUPPLY_RAFT.get())
 
@@ -118,6 +136,8 @@ object  FSItemGroups {
             entries.accept(FSItems.WARPED_CANOE.get())
             entries.accept(FSItems.WARPED_CANOE_WITH_CHEST.get())
             entries.accept(FSItems.WARPED_CANOE_WITH_DOUBLE_CHEST.get())
+            entries.accept(FSItems.WARPED_DINGHY.get())
+            entries.accept(FSItems.WARPED_DINGHY_WITH_CHEST.get())
             entries.accept(FSItems.WARPED_RAFT.get())
             entries.accept(FSItems.WARPED_SUPPLY_RAFT.get())
 
@@ -129,6 +149,8 @@ object  FSItemGroups {
                 entries.accept(FSItems.DRIFTWOOD_CANOE.get())
                 entries.accept(FSItems.DRIFTWOOD_CANOE_WITH_CHEST.get())
                 entries.accept(FSItems.DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST.get())
+                entries.accept(FSItems.DRIFTWOOD_DINGHY.get())
+                entries.accept(FSItems.DRIFTWOOD_DINGHY_WITH_CHEST.get())
                 entries.accept(FSItems.DRIFTWOOD_RAFT.get())
                 entries.accept(FSItems.DRIFTWOOD_SUPPLY_RAFT.get())
             //  }
