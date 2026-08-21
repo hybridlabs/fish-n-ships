@@ -85,6 +85,17 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             FSItems.DRIFTWOOD_SAILBOAT_WITH_CHEST
         )
 
+        offerDriftwoodDinghyRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_DINGHY
+        )
+
+        offerDriftwoodDinghyChestUpgradeRecipe(
+            exporter,
+            FSItems.DRIFTWOOD_DINGHY,
+            FSItems.DRIFTWOOD_DINGHY_WITH_CHEST
+        )
+
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FSItems.TRAWLING_NET.get())
             .pattern("S S")
             .pattern("I I")
@@ -609,6 +620,44 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             .save(
                 exporter,
                 "${getItemName(chestSailboat.get())}"
+            )
+    }
+
+    private fun offerDriftwoodDinghyRecipe(
+        exporter: Consumer<FinishedRecipe>,
+        dinghy: RegistryObject<out Item>,
+    ) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, dinghy.get(), 1)
+            .pattern("WSW")
+            .pattern("WCW")
+            .define('W', FSItemTags.DRIFTWOOD_PLANKS)
+            .define('C', FSItems.DRIFTWOOD_CANOE.get())
+            .define('S', Items.WOODEN_SHOVEL)
+            .unlockedBy(
+                "has_driftwood_planks",
+                has(FSItemTags.DRIFTWOOD_PLANKS)
+            )
+            .save(exporter, "${getItemName(dinghy.get())}")
+    }
+
+    private fun offerDriftwoodDinghyChestUpgradeRecipe(
+        exporter: Consumer<FinishedRecipe>,
+        dinghy: RegistryObject<out Item>,
+        chestBoat: RegistryObject<out Item>,
+    ) {
+        ShapelessRecipeBuilder.shapeless(
+            RecipeCategory.TRANSPORTATION,
+            chestBoat.get()
+        )
+            .requires(dinghy.get())
+            .requires(Blocks.CHEST)
+            .unlockedBy(
+                "has_${getItemName(dinghy.get())}",
+                has(dinghy.get())
+            )
+            .save(
+                exporter,
+                "${getItemName(chestBoat.get())}"
             )
     }
     //#endregion

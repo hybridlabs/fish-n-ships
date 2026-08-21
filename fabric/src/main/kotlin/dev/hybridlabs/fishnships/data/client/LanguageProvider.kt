@@ -6,7 +6,6 @@ import dev.hybridlabs.fishnships.item.FSItemGroups
 import dev.hybridlabs.fishnships.item.FSItems
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
-import net.minecraft.Util
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.Mob
@@ -178,15 +177,6 @@ class LanguageProvider(output: FabricDataOutput) : FabricLanguageProvider(output
 
         if (nonPresentEntityNames.isNotEmpty()) {
             throw IllegalStateException("Entity to display name map does not contain ${nonPresentEntityNames.joinToString()}. Please modify ${javaClass.simpleName} accordingly.")
-        }
-
-        entityNameMap.forEach { (entityType, translation) ->
-            val id = BuiltInRegistries.ENTITY_TYPE.getKey(entityType)
-            val translationKey = entityType.descriptionId
-            val namespace = id.namespace
-            val path = id.path
-            builder.add(translationKey, translation)
-            builder.add("item.$namespace.${path}_spawn_egg", "$translation Spawn Egg")
         }
     }
 }
