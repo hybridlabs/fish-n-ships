@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_driftwood_canoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "fish_n_ships:driftwood_canoe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:driftwood_canoe_with_double_chest_from_canoe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_driftwood_canoe",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:driftwood_canoe_with_double_chest_from_canoe"
+    ]
+  },
+  "sends_telemetry_event": false
+}

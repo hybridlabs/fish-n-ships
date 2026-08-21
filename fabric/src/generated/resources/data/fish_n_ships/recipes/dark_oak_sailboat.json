@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:banners"
+    },
+    "W": {
+      "item": "minecraft:dark_oak_planks"
+    }
+  },
+  "pattern": [
+    "WBW",
+    "WWW"
+  ],
+  "result": {
+    "item": "fish_n_ships:dark_oak_sailboat"
+  },
+  "show_notification": true
+}

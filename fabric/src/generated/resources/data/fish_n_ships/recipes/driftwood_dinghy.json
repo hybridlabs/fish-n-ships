@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "fish_n_ships:driftwood_canoe"
+    },
+    "S": {
+      "item": "minecraft:wooden_shovel"
+    },
+    "W": {
+      "tag": "hapi:driftwood_planks"
+    }
+  },
+  "pattern": [
+    "WSW",
+    "WCW"
+  ],
+  "result": {
+    "item": "fish_n_ships:driftwood_dinghy"
+  },
+  "show_notification": true
+}

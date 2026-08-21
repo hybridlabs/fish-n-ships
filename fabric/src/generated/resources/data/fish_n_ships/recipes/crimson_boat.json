@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "item": "minecraft:crimson_planks"
+    }
+  },
+  "pattern": [
+    "W W",
+    "WWW"
+  ],
+  "result": {
+    "item": "fish_n_ships:crimson_boat"
+  },
+  "show_notification": true
+}

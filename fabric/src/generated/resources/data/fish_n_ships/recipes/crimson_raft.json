@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "minecraft:crimson_stem"
+    }
+  },
+  "pattern": [
+    "LLL"
+  ],
+  "result": {
+    "item": "fish_n_ships:crimson_raft"
+  },
+  "show_notification": true
+}

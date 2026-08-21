@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "tag": "hapi:driftwood_log"
+    }
+  },
+  "pattern": [
+    "WWW"
+  ],
+  "result": {
+    "item": "fish_n_ships:driftwood_raft"
+  },
+  "show_notification": true
+}
