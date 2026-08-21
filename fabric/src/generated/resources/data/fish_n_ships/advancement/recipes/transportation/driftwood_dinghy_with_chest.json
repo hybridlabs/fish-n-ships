@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_driftwood_dinghy": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fish_n_ships:driftwood_dinghy"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fish_n_ships:driftwood_dinghy_with_chest"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_driftwood_dinghy"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fish_n_ships:driftwood_dinghy_with_chest"
+    ]
+  }
+}
