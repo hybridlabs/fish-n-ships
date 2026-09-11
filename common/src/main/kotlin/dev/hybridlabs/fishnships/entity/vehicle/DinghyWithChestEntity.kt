@@ -84,11 +84,22 @@ open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntit
         dimensions: EntityDimensions,
         partialTick: Float
     ): Vec3 {
+        val index = passengers.indexOf(passenger)
+
+        val (xOffset, zOffset) = when (index) {
+            0 -> 0.0 to 0.0
+
+            1 -> 0.75 to 0.5
+            2 -> 0.75 to -0.5
+
+            else -> 0.0 to 0.0
+        }
+
         return Vec3(
-            0.0,
-            dimensions.height() / 3.0,
-            0.5
-        ).yRot(-yRot * (Math.PI.toFloat() / 180f))
+            xOffset,
+            dimensions.height() / 3.0 + 0.25,
+            zOffset
+        ).yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
     }
 
     //#region Container

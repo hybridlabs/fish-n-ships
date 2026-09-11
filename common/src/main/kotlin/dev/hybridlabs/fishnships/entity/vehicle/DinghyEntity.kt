@@ -241,17 +241,25 @@ open class DinghyEntity(
         dimensions: EntityDimensions,
         partialTick: Float
     ): Vec3 {
-        val xOffset = when (passengers.indexOf(passenger)) {
-            0 -> -0.25
-            1 -> -0.9
-            2 -> 0.65
-            else -> 0.0
+        val index = passengers.indexOf(passenger)
+
+        val (xOffset, zOffset) = when (index) {
+            0 -> 0.0 to 0.0
+
+            1 -> 0.75 to 0.5
+            2 -> -0.75 to 0.5
+
+            3 -> 0.75 to -0.5
+            4 -> -0.75 to -0.5
+
+            else -> 0.0 to 0.0
         }
 
-        val yOffset = dimensions.height() / 3.0
-
-        return Vec3(0.0, yOffset, xOffset)
-            .yRot(-yRot * (Math.PI.toFloat() / 180f))
+        return Vec3(
+            xOffset,
+            dimensions.height() / 3.0 + 0.25,
+            zOffset
+        ).yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
     }
 
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
