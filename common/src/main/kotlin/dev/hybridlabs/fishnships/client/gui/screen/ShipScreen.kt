@@ -33,6 +33,10 @@ class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
     ) {
         val leftDrawPos = (this.width - this.imageWidth) / 2
         val topDrawPos = (this.height - this.imageHeight) / 2
+
+        val topHeight = shipRows * 18 + 71
+        val bottomHeight = imageHeight - topHeight
+
         guiGraphics.blit(
             SHIP_BACKGROUND,
             leftDrawPos,
@@ -40,21 +44,22 @@ class ShipScreen(menu: ShipMenu, playerInventory: Inventory, title: Component) :
             16,
             0,
             imageWidth,
-            shipRows * 18 + 71
+            topHeight
         )
 
         guiGraphics.blit(
             SHIP_BACKGROUND,
             leftDrawPos,
-            topDrawPos + shipRows * 18 + 71,
+            topDrawPos + topHeight,
             16,
             126,
             imageWidth,
-            226 - shipRows * 18 + 71
+            bottomHeight
         )
 
         if (this.menu.isLit()) {
             val litProgress = this.menu.getLitProgress()
+
             guiGraphics.blit(
                 SHIP_BACKGROUND,
                 leftDrawPos + 30,
