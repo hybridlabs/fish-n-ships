@@ -80,7 +80,7 @@ dependencies {
     implementation "software.bernie.geckolib:geckolib-neoforge-$geckolib_version"
     implementation 'org.jetbrains:annotations:25.0.0'
     implementation "thedarkcolour:kotlinforforge-neoforge:${kotlin_for_forge_version}"
-    implementation("dev.hybridlabs.hapi:hapi-neoforge-1.21.1:1.0.0")
+    implementation("dev.hybridlabs.hapi:hapi-neoforge-1.21.1:1.1.0")
 }
 
 compileKotlin {
