@@ -3,6 +3,7 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
+import dev.hybridlabs.fishnships.tag.FSBlockTags
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
@@ -234,7 +235,7 @@ open class ShipEntity(
                     pos.set(x, y, z)
 
                     val state = level().getBlockState(pos)
-                    if (state.`is`(Blocks.ICE) || state.`is`(Blocks.FROSTED_ICE)) {
+                    if (state.`is`(FSBlockTags.BREAKABLE_ICE)) {
 
                         if (!level().isClientSide) {
                             (level() as ServerLevel).sendParticles(
