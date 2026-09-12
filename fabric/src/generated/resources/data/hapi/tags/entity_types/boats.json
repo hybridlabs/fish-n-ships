@@ -9,6 +9,8 @@
     "fish_n_ships:canoe",
     "fish_n_ships:canoe_with_chest",
     "fish_n_ships:canoe_with_double_chest",
+    "fish_n_ships:dinghy",
+    "fish_n_ships:dinghy_with_chest",
     "fish_n_ships:raft",
     "fish_n_ships:supply_raft"
   ]

@@ -24,6 +24,8 @@ class EntityTypeTagProvider(output: FabricDataOutput, registriesFuture: Completa
                 FSEntityTypes.CANOE.get(),
                 FSEntityTypes.CANOE_WITH_CHEST.get(),
                 FSEntityTypes.CANOE_WITH_DOUBLE_CHEST.get(),
+                FSEntityTypes.DINGHY.get(),
+                FSEntityTypes.DINGHY_WITH_CHEST.get(),
                 FSEntityTypes.RAFT.get(),
                 FSEntityTypes.SUPPLY_RAFT.get()
             )
