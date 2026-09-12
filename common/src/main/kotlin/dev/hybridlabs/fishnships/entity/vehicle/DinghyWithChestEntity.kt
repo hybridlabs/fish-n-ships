@@ -9,6 +9,7 @@ import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.player.Inventory
@@ -22,6 +23,7 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
+import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 
 open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntity>, level: Level) :
@@ -134,6 +136,38 @@ open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntit
 
     override fun getPickResult(): ItemStack? {
         return ItemStack(this.getDinghyItem())
+    }
+
+    override fun positionRider(passenger: Entity, callback: MoveFunction) {
+        if (!hasPassenger(passenger)) {
+            return
+        }
+
+        val yOffset =
+            ((if (isRemoved) 0.01 else passengersRidingOffset) + passenger.myRidingOffset).toFloat()
+
+        val (xOffset, zOffset) = when (passengers.size) {
+            0 -> 0.0 to 0.0
+
+            1 -> 0.75 to 0.5
+            2 -> 0.75 to -0.5
+
+            else -> 0.0 to 0.0
+        }
+
+        val offset = Vec3(xOffset, 0.0, zOffset)
+            .yRot(-yRot * (Math.PI.toFloat() / 180f) - (Math.PI.toFloat() / 2f))
+
+        callback.accept(
+            passenger,
+            x + offset.x,
+            y + yOffset,
+            z + offset.z
+        )
+
+        passenger.yRot += deltaRotation
+        passenger.yHeadRot += deltaRotation
+        clampRotation(passenger)
     }
 
     override fun destroy(damageSource: DamageSource) {
