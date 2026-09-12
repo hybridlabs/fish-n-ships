@@ -168,16 +168,20 @@ open class ShipEntity(
     override fun addAdditionalSaveData(tag: CompoundTag) {
         super.addAdditionalSaveData(tag)
         tag.putInt("BurnTime", this.litTime)
+        tag.putInt("BurnDuration", this.litDuration)
         this.addChestVehicleSaveData(tag, this.registryAccess())
         tag.putBoolean("HasIceBreaker", this.hasIceBreaker())
         tag.putBoolean("HasTrawlingNet", this.hasTrawlingNet())
     }
 
     override fun readAdditionalSaveData(tag: CompoundTag) {
+        super.readAdditionalSaveData(tag)
         setHasTrawlingNet(tag.getBoolean("HasTrawlingNet"))
         setHasIceBreaker(tag.getBoolean("HasIceBreaker"))
 
         this.litTime = tag.getInt("BurnTime")
+        // Without this the fuel gauge falls back to a 200 tick scale after a reload and jumps.
+        this.litDuration = tag.getInt("BurnDuration")
         setLit(litTime > 0)
         this.readChestVehicleSaveData(tag, this.registryAccess())
     }
@@ -440,7 +444,10 @@ open class ShipEntity(
             0.0
         )
 
-        burnTick()
+        // Burning is server authoritative. The client only ever has the contents of the fuel slot
+        // while the menu is open, so ticking this on both sides consumed fuel twice over and left
+        // the lit state flickering against the synced value.
+        if (!this.level().isClientSide) burnTick()
 
         if (!this.level().isClientSide && this.outOfControlTicks >= 60.0f) {
             this.ejectPassengers()
