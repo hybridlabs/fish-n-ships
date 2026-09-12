@@ -6,6 +6,7 @@ import dev.hybridlabs.fishnships.data.client.ModelProvider
 import dev.hybridlabs.fishnships.data.server.RecipeProvider
 import dev.hybridlabs.fishnships.data.server.tag.BlockTagProvider
 import dev.hybridlabs.fishnships.data.server.tag.ItemTagProvider
+import dev.hybridlabs.fishnships.data.server.tag.EntityTypeTagProvider
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.minecraft.core.Registry
@@ -16,6 +17,7 @@ object FSDataGenerator : DataGeneratorEntrypoint {
 		pack.addProvider(::LanguageProvider)
 		pack.addProvider(::ModelProvider)
 		pack.addProvider(::BlockTagProvider)
+		pack.addProvider(::EntityTypeTagProvider)
 		pack.addProvider(::ItemTagProvider)
 		pack.addProvider(::RecipeProvider)
 	}
