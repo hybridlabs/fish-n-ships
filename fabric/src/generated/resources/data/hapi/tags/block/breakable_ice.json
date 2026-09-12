@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:ice",
+    "minecraft:frosted_ice",
+    {
+      "id": "ecologics:thin_ice",
+      "required": false
+    }
+  ]
+}

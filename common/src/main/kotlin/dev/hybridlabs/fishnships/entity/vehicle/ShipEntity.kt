@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec
 import dev.hybridlabs.fishnships.Constants
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.Services
+import dev.hybridlabs.fishnships.tag.FSBlockTags
 import dev.hybridlabs.fishnships.world.inventory.ShipMenu
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.SharedConstants
@@ -24,6 +25,7 @@ import net.minecraft.resources.ResourceKey
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
+import net.minecraft.tags.BlockTags
 import net.minecraft.tags.EntityTypeTags
 import net.minecraft.tags.ItemTags
 import net.minecraft.tags.TagKey
@@ -369,7 +371,7 @@ open class ShipEntity(
                     pos.set(x, y, z)
 
                     val state = level().getBlockState(pos)
-                    if (state.`is`(Blocks.ICE) || state.`is`(Blocks.FROSTED_ICE)) {
+                    if (state.`is`(FSBlockTags.BREAKABLE_ICE)) {
 
                         if (!level().isClientSide) {
                             (level() as ServerLevel).sendParticles(
