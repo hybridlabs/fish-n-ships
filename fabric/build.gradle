@@ -53,8 +53,10 @@ dependencies {
 configurations {
     datagenOutput
 }
+
 fabricApi {
     configureDataGeneration {
+        setModId("$mod_id")
         outputDirectory = file("src/generated/resources")
         client = true
     }
@@ -62,7 +64,6 @@ fabricApi {
         datagenOutput files(runDatagen)
     }
 }
-
 
 loom {
     dependencies {
@@ -72,6 +73,7 @@ loom {
     if(file("src/main/resources/${mod_id}.accesswidener").exists()) {
         accessWidenerPath.set(file("src/main/resources/${mod_id}.accesswidener"))
     }
+
     mixin {
         defaultRefmapName.set("${mod_id}.refmap.json")
     }
@@ -93,6 +95,14 @@ loom {
             setConfigName("Fabric Server")
             ideConfigGenerated(true)
             runDir("run")
+        }
+        datagen {
+            name "Fabric Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/generated/resources")}"
+
+            ideConfigGenerated(true)
+            runDir "build/datagen"
         }
     }
 }
