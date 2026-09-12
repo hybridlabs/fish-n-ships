@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "fish_n_ships:ship",
+    "fish_n_ships:boat",
+    "fish_n_ships:boat_with_chest",
+    "fish_n_ships:sailboat",
+    "fish_n_ships:sailboat_with_chest",
+    "fish_n_ships:canoe",
+    "fish_n_ships:canoe_with_chest",
+    "fish_n_ships:canoe_with_double_chest",
+    "fish_n_ships:raft",
+    "fish_n_ships:supply_raft"
+  ]
+}
