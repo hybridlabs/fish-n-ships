@@ -2,6 +2,7 @@ plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev.legacyforge'
     id 'org.jetbrains.kotlin.jvm'
+    id 'me.modmuss50.mod-publish-plugin'
 }
 
 // Create a configuration to acesss the output of the Fabric datagen task
@@ -98,4 +99,9 @@ jar {
 compileKotlin {
     source(project(":common").sourceSets.main.allSource)
     inputs.file "../gradle.properties"
+}
+
+publishMods.platforms.configureEach {
+    requires 'kotlin-for-forge', 'geckolib', 'hybrid-api'
+    optional 'hybrid-aquatic'
 }
