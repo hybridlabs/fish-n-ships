@@ -84,3 +84,8 @@ compileKotlin {
     source(project(":common").sourceSets.main.allSource)
     inputs.file "../gradle.properties"
 }
+
+publishMods.platforms.configureEach {
+    requires 'kotlin-for-forge', 'geckolib', 'hybrid-api'
+    optional 'hybrid-aquatic'
+}

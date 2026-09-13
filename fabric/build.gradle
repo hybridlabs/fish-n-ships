@@ -85,3 +85,8 @@ loom {
         }
     }
 }
+
+publishMods.platforms.configureEach {
+    requires 'fabric-api', 'fabric-language-kotlin', 'geckolib', 'hybrid-api'
+    optional 'hybrid-aquatic'
+}
