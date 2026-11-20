@@ -26,6 +26,9 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         offerCanoeChestUpgradeRecipes(exporter, canoeTypeMap, chestCanoeTypeMap)
         offerCanoeDoubleChestUpgradeRecipes(exporter, canoeTypeMap, chestCanoeTypeMap, doubleChestCanoeTypeMap)
 
+        offerDinghyRecipes(exporter, dinghyTypeMap)
+        offerDinghyChestUpgradeRecipes(exporter, dinghyTypeMap, chestDinghyTypeMap)
+
         offerSailboatRecipes(exporter, sailboatTypeMap)
         offerSailboatChestUpgradeRecipes(exporter, sailboatTypeMap, chestSailboatTypeMap)
 
@@ -129,13 +132,13 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             .unlockedBy("has_iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
             .save(exporter)
     }
-    
+
     //#region Boat Maps
     private val boatTypeMap = mapOf(
         Blocks.CRIMSON_PLANKS to FSItems.CRIMSON_BOAT,
         Blocks.WARPED_PLANKS to FSItems.WARPED_BOAT,
     )
-    
+
     private val chestBoatTypeMap = mapOf(
         Blocks.CRIMSON_PLANKS to FSItems.CRIMSON_BOAT_WITH_CHEST,
         Blocks.WARPED_PLANKS to FSItems.WARPED_BOAT_WITH_CHEST,
@@ -180,6 +183,76 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         }
     }
     //#endregion
+
+    //#region Dinghy Maps
+    private val dinghyTypeMap = mapOf(
+        Blocks.OAK_PLANKS to FSItems.OAK_DINGHY,
+        Blocks.SPRUCE_PLANKS to FSItems.SPRUCE_DINGHY,
+        Blocks.BIRCH_PLANKS to FSItems.BIRCH_DINGHY,
+        Blocks.DARK_OAK_PLANKS to FSItems.DARK_OAK_DINGHY,
+        Blocks.CHERRY_PLANKS to FSItems.CHERRY_DINGHY,
+        Blocks.MANGROVE_PLANKS to FSItems.MANGROVE_DINGHY,
+        Blocks.ACACIA_PLANKS to FSItems.ACACIA_DINGHY,
+        Blocks.JUNGLE_PLANKS to FSItems.JUNGLE_DINGHY,
+        Blocks.CRIMSON_PLANKS to FSItems.CRIMSON_DINGHY,
+        Blocks.WARPED_PLANKS to FSItems.WARPED_DINGHY,
+    )
+
+    private val chestDinghyTypeMap = mapOf(
+        Blocks.OAK_PLANKS to FSItems.OAK_DINGHY_WITH_CHEST,
+        Blocks.SPRUCE_PLANKS to FSItems.SPRUCE_DINGHY_WITH_CHEST,
+        Blocks.BIRCH_PLANKS to FSItems.BIRCH_DINGHY_WITH_CHEST,
+        Blocks.DARK_OAK_PLANKS to FSItems.DARK_OAK_DINGHY_WITH_CHEST,
+        Blocks.CHERRY_PLANKS to FSItems.CHERRY_DINGHY_WITH_CHEST,
+        Blocks.MANGROVE_PLANKS to FSItems.MANGROVE_DINGHY_WITH_CHEST,
+        Blocks.ACACIA_PLANKS to FSItems.ACACIA_DINGHY_WITH_CHEST,
+        Blocks.JUNGLE_PLANKS to FSItems.JUNGLE_DINGHY_WITH_CHEST,
+        Blocks.CRIMSON_PLANKS to FSItems.CRIMSON_DINGHY_WITH_CHEST,
+        Blocks.WARPED_PLANKS to FSItems.WARPED_DINGHY_WITH_CHEST,
+    )
+
+    private fun offerDinghyRecipes(
+        exporter: RecipeOutput,
+        map: Map<Block, RegistryObject<out Item>>,
+    ) {
+        for ((woodType, dinghyType) in map) {
+            val canoeType = canoeTypeMap[woodType] ?: continue
+
+            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, dinghyType.get(), 1)
+                .pattern("WSW")
+                .pattern("WCW")
+                .define('W', woodType)
+                .define('S', Items.WOODEN_SHOVEL)
+                .define('C', canoeType.get())
+                .unlockedBy(
+                    "has_${getItemName(woodType.asItem())}",
+                    has(woodType.asItem())
+                )
+                .save(exporter)
+        }
+    }
+
+    private fun offerDinghyChestUpgradeRecipes(
+        exporter: RecipeOutput,
+        dinghyMap: Map<Block, RegistryObject<out Item>>,
+        chestDinghyMap: Map<Block, RegistryObject<out Item>>,
+    ) {
+        for ((woodType, dinghy) in dinghyMap) {
+            val chestDinghy = chestDinghyMap[woodType] ?: continue
+
+            ShapelessRecipeBuilder.shapeless(
+                RecipeCategory.TRANSPORTATION,
+                chestDinghy.get()
+            )
+                .requires(dinghy.get())
+                .requires(Blocks.CHEST)
+                .unlockedBy(
+                    "has_${getItemName(dinghy.get())}",
+                    has(dinghy.get())
+                )
+                .save(exporter)
+        }
+    }
 
     //#region Canoe Maps
     private val canoeTypeMap = mapOf(
