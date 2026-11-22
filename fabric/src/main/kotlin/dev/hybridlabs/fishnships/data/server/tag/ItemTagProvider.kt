@@ -5,8 +5,9 @@ import dev.hybridlabs.fishnships.tag.FSItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider
 import net.minecraft.core.HolderLookup
+import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
-import net.minecraft.data.tags.TagAppender
+import net.minecraft.data.tags.BlockItemTagAppender
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.item.Item
 import net.minecraft.resources.Identifier
@@ -39,7 +40,7 @@ class ItemTagProvider(output: FabricPackOutput, registriesFuture: CompletableFut
             FSItems.CRIMSON_BOAT.get(),
             FSItems.WARPED_BOAT.get(),
         ).forEach { item ->
-            valueLookupBuilder(ItemTags.BOATS).add(item)
+            builder(ItemTags.BOATS).addItem(item)
         }
         
         setOf(
@@ -76,7 +77,7 @@ class ItemTagProvider(output: FabricPackOutput, registriesFuture: CompletableFut
             FSItems.CRIMSON_BOAT_WITH_CHEST.get(),
             FSItems.WARPED_BOAT_WITH_CHEST.get(),
         ).forEach { item ->
-            valueLookupBuilder(ItemTags.CHEST_BOATS).add(item)
+            builder(ItemTags.CHEST_BOATS).addItem(item)
         }
 
         builder(FSItemTags.DRIFTWOOD_LOG)
@@ -89,6 +90,9 @@ class ItemTagProvider(output: FabricPackOutput, registriesFuture: CompletableFut
             .addOptionalItem(Identifier.fromNamespaceAndPath("hybrid_aquatic", "driftwood_slab"))
     }
 
-    private fun TagAppender<ResourceKey<Item>, Item>.addOptionalItem(id: Identifier) =
+    private fun BlockItemTagAppender<Item>.addItem(item: Item) =
+        add(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)))
+
+    private fun BlockItemTagAppender<Item>.addOptionalItem(id: Identifier) =
         addOptional(ResourceKey.create(Registries.ITEM, id))
 }
