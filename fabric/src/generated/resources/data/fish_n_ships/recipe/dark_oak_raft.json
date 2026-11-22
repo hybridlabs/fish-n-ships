@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "raft",
   "key": {
     "L": {
       "item": "minecraft:dark_oak_log"

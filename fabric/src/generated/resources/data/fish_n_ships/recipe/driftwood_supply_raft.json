@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
+  "group": "supply_raft",
   "ingredients": [
     {
       "item": "fish_n_ships:driftwood_raft"
