@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fish_n_ships:warped_supply_raft"
+        "recipes": "fish_n_ships:warped_supply_raft"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

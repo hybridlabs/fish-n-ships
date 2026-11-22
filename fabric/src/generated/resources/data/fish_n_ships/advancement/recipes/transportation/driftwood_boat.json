@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fish_n_ships:driftwood_boat"
+        "recipes": "fish_n_ships:driftwood_boat"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

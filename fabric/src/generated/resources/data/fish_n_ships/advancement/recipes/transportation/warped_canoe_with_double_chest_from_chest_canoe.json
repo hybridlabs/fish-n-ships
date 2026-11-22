@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fish_n_ships:warped_canoe_with_double_chest_from_chest_canoe"
+        "recipes": "fish_n_ships:warped_canoe_with_double_chest_from_chest_canoe"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

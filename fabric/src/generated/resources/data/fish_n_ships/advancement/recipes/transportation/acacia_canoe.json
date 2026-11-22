@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fish_n_ships:acacia_canoe"
+        "recipes": "fish_n_ships:acacia_canoe"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

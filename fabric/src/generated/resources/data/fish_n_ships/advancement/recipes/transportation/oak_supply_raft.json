@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fish_n_ships:oak_supply_raft"
+        "recipes": "fish_n_ships:oak_supply_raft"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
