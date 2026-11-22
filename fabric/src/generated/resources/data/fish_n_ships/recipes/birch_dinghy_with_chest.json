@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
+  "group": "dinghy_with_chest",
   "ingredients": [
     {
       "item": "fish_n_ships:birch_dinghy"

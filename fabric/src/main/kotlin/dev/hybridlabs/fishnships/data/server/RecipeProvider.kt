@@ -217,6 +217,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             val canoeType = canoeTypeMap[woodType] ?: continue
 
             ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, dinghyType.get(), 1)
+                .group("dinghy")
                 .pattern("WSW")
                 .pattern("WCW")
                 .define('W', woodType)
@@ -242,6 +243,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
                 RecipeCategory.TRANSPORTATION,
                 chestDinghy.get()
             )
+                .group("dinghy_with_chest")
                 .requires(dinghy.get())
                 .requires(Blocks.CHEST)
                 .unlockedBy(
@@ -701,6 +703,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
         dinghy: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, dinghy.get(), 1)
+            .group("dinghy")
             .pattern("WSW")
             .pattern("WCW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -722,6 +725,7 @@ class RecipeProvider(output: FabricDataOutput) : FabricRecipeProvider(output) {
             RecipeCategory.TRANSPORTATION,
             chestBoat.get()
         )
+            .group("dinghy_with_chest")
             .requires(dinghy.get())
             .requires(Blocks.CHEST)
             .unlockedBy(
