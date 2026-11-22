@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "canoe",
   "key": {
     "S": {
       "item": "minecraft:wooden_shovel"
