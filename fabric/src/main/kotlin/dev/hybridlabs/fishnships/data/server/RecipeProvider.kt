@@ -150,6 +150,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     ) {
         for ((woodType, boatType) in map) {
             ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boatType.get(), 1)
+                .group("boat")
                 .pattern("W W")
                 .pattern("WWW")
                 .define('W', woodType)
@@ -173,6 +174,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
                 RecipeCategory.TRANSPORTATION,
                 chestBoat.get()
             )
+                .group("boat_with_chest")
                 .requires(boat.get())
                 .requires(Blocks.CHEST)
                 .unlockedBy(
@@ -302,6 +304,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     ) {
         for ((woodType, canoeType) in map) {
             ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, canoeType.get(), 1)
+                .group("canoe")
                 .pattern("WSW")
                 .pattern("WWW")
                 .define('W', woodType)
@@ -326,6 +329,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
                 RecipeCategory.TRANSPORTATION,
                 chestCanoe.get()
             )
+                .group("canoe_with_chest")
                 .requires(canoe.get())
                 .requires(Blocks.CHEST)
                 .unlockedBy(
@@ -351,6 +355,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
                 RecipeCategory.TRANSPORTATION,
                 doubleChestCanoe.get()
             )
+                .group("canoe_with_double_chest")
                 .requires(canoe.get())
                 .requires(Blocks.CHEST)
                 .requires(Blocks.CHEST)
@@ -367,6 +372,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
                 RecipeCategory.TRANSPORTATION,
                 doubleChestCanoe.get()
             )
+                .group("canoe_with_double_chest")
                 .requires(chestCanoe.get())
                 .requires(Blocks.CHEST)
                 .unlockedBy(
@@ -414,6 +420,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     ) {
         for ((woodType, sailboatType) in map) {
             ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, sailboatType.get(), 1)
+                .group("sailboat")
                 .pattern("WBW")
                 .pattern("WWW")
                 .define('W', woodType)
@@ -438,6 +445,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
                 RecipeCategory.TRANSPORTATION,
                 chestCanoe.get()
             )
+                .group("sailboat_with_chest")
                 .requires(sailboat.get())
                 .requires(Blocks.CHEST)
                 .unlockedBy(
@@ -482,6 +490,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
     ) {
         for ((woodType, raftType) in map) {
             ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, raftType.get(), 1)
+                .group("raft")
                 .pattern("LLL")
                 .define('L', woodType)
                 .unlockedBy(
@@ -504,6 +513,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
                 RecipeCategory.TRANSPORTATION,
                 supplyRaft.get()
             )
+                .group("supply_raft")
                 .requires(raft.get())
                 .requires(Blocks.CHEST)
                 .unlockedBy(
@@ -519,6 +529,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         boat: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat.get(), 1)
+            .group("boat")
             .pattern("W W")
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -538,6 +549,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             RecipeCategory.TRANSPORTATION,
             chestBoat.get()
         )
+            .group("boat_with_chest")
             .requires(boat.get())
             .requires(Blocks.CHEST)
             .unlockedBy(
@@ -555,6 +567,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         canoe: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, canoe.get(), 1)
+            .group("canoe")
             .pattern("WSW")
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -578,6 +591,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             RecipeCategory.TRANSPORTATION,
             chestCanoe.get()
         )
+            .group("canoe_with_chest")
             .requires(canoe.get())
             .requires(Blocks.CHEST)
             .unlockedBy(
@@ -600,6 +614,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             RecipeCategory.TRANSPORTATION,
             doubleChestCanoe.get()
         )
+            .group("canoe_with_double_chest")
             .requires(canoe.get())
             .requires(Blocks.CHEST)
             .requires(Blocks.CHEST)
@@ -616,6 +631,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             RecipeCategory.TRANSPORTATION,
             doubleChestCanoe.get()
         )
+            .group("canoe_with_double_chest")
             .requires(chestCanoe.get())
             .requires(Blocks.CHEST)
             .unlockedBy(
@@ -633,6 +649,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         raft: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, raft.get(), 1)
+            .group("raft")
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_LOG)
             .unlockedBy(
@@ -651,6 +668,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             RecipeCategory.TRANSPORTATION,
             supplyRaft.get()
         )
+            .group("supply_raft")
             .requires(raft.get())
             .requires(Blocks.CHEST)
             .unlockedBy(
@@ -668,6 +686,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         sailboat: RegistryObject<out Item>,
     ) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, sailboat.get(), 1)
+            .group("sailboat")
             .pattern("WBW")
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -688,6 +707,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             RecipeCategory.TRANSPORTATION,
             chestSailboat.get()
         )
+            .group("sailboat_with_chest")
             .requires(sailboat.get())
             .requires(Blocks.CHEST)
             .unlockedBy(
