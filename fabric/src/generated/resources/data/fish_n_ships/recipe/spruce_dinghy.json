@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "C": "fish_n_ships:spruce_canoe",
     "S": "minecraft:wooden_shovel",

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     "fish_n_ships:cherry_dinghy",
     "minecraft:chest"
