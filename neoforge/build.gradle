@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation "com.geckolib:geckolib-neoforge-$geckolib_version"
 
-    implementation("dev.hybridlabs.hapi:hapi-neoforge-26.1.2:1.4.0")
+    implementation("dev.hybridlabs.hapi:hapi-neoforge-26.2:1.5.0")
 }
 
 // GeckoLib 5 marks vanilla render states as GeoRenderState via NeoForge interface injection.
