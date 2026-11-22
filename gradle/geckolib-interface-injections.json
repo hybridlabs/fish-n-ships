@@ -1,2 +1,2 @@
 { "net/minecraft/client/renderer/entity/state/EntityRenderState": [
-    "software/bernie/geckolib/renderer/base/GeoRenderState" ] }
+    "com/geckolib/renderer/base/GeoRenderState" ] }

@@ -50,12 +50,12 @@
     "accessWidener": "fish_n_ships.accesswidener",
 
   "depends": {
-    "fabricloader": ">=0.19",
-    "minecraft": "~1.21.11",
-    "java": ">=21",
+    "fabricloader": ">=0.20",
+    "minecraft": "~26.1.2",
+    "java": ">=25",
     "fabric-language-kotlin": "*",
-    "fabric-api": ">=0.141",
-    "geckolib": ">=5.4.5",
-    "hapi": ">=1.3.0"
+    "fabric-api": ">=0.155",
+    "geckolib": ">=5.5.2",
+    "hapi": ">=1.4.0"
     }
 }
