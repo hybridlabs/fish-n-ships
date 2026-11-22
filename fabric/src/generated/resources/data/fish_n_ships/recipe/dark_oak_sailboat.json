@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "tag": "minecraft:banners"
-    },
-    "W": {
-      "item": "minecraft:dark_oak_planks"
-    }
+    "B": "#minecraft:banners",
+    "W": "minecraft:dark_oak_planks"
   },
   "pattern": [
     "WBW",

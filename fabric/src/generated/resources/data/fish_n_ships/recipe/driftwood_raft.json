@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "W": {
-      "tag": "hapi:driftwood_log"
-    }
+    "W": "#hapi:driftwood_log"
   },
   "pattern": [
     "WWW"

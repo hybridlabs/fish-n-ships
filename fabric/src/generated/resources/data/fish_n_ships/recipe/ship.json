@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "tag": "minecraft:chest_boats"
-    },
-    "C": {
-      "item": "minecraft:copper_ingot"
-    },
-    "F": {
-      "item": "minecraft:blast_furnace"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
-    "W": {
-      "tag": "minecraft:planks"
-    }
+    "B": "#minecraft:chest_boats",
+    "C": "minecraft:copper_ingot",
+    "F": "minecraft:blast_furnace",
+    "I": "minecraft:iron_ingot",
+    "W": "#minecraft:planks"
   },
   "pattern": [
     "CCC",

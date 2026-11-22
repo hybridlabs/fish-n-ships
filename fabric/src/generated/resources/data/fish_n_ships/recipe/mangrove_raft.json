@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "L": {
-      "item": "minecraft:mangrove_log"
-    }
+    "L": "minecraft:mangrove_log"
   },
   "pattern": [
     "LLL"

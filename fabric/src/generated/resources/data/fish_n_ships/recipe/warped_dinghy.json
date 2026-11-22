@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "item": "fish_n_ships:warped_canoe"
-    },
-    "S": {
-      "item": "minecraft:wooden_shovel"
-    },
-    "W": {
-      "item": "minecraft:warped_planks"
-    }
+    "C": "fish_n_ships:warped_canoe",
+    "S": "minecraft:wooden_shovel",
+    "W": "minecraft:warped_planks"
   },
   "pattern": [
     "WSW",

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "tag": "minecraft:banners"
-    },
-    "W": {
-      "tag": "hapi:driftwood_planks"
-    }
+    "B": "#minecraft:banners",
+    "W": "#hapi:driftwood_planks"
   },
   "pattern": [
     "WBW",

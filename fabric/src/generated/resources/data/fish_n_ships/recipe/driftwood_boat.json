@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "W": {
-      "tag": "hapi:driftwood_planks"
-    }
+    "W": "#hapi:driftwood_planks"
   },
   "pattern": [
     "W W",

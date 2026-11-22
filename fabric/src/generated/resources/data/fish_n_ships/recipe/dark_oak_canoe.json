@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "S": {
-      "item": "minecraft:wooden_shovel"
-    },
-    "W": {
-      "item": "minecraft:dark_oak_planks"
-    }
+    "S": "minecraft:wooden_shovel",
+    "W": "minecraft:dark_oak_planks"
   },
   "pattern": [
     "WSW",

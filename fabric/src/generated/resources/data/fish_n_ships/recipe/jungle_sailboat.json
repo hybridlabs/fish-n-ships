@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "tag": "minecraft:banners"
-    },
-    "W": {
-      "item": "minecraft:jungle_planks"
-    }
+    "B": "#minecraft:banners",
+    "W": "minecraft:jungle_planks"
   },
   "pattern": [
     "WBW",

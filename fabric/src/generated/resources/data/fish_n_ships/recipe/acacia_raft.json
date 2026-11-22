@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "L": {
-      "item": "minecraft:acacia_log"
-    }
+    "L": "minecraft:acacia_log"
   },
   "pattern": [
     "LLL"

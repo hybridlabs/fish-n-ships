@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "S": {
-      "item": "minecraft:wooden_shovel"
-    },
-    "W": {
-      "tag": "hapi:driftwood_planks"
-    }
+    "S": "minecraft:wooden_shovel",
+    "W": "#hapi:driftwood_planks"
   },
   "pattern": [
     "WSW",
