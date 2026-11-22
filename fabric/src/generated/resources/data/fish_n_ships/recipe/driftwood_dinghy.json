@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "dinghy",
   "key": {
     "C": "fish_n_ships:driftwood_canoe",
     "S": "minecraft:wooden_shovel",

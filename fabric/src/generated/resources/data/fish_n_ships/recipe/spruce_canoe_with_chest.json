@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "canoe_with_chest",
   "ingredients": [
     "fish_n_ships:spruce_canoe",
     "minecraft:chest"

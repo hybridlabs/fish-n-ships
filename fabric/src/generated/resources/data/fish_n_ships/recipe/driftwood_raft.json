@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "raft",
   "key": {
     "W": "#hapi:driftwood_log"
   },

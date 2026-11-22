@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "canoe",
   "key": {
     "S": "minecraft:wooden_shovel",
     "W": "minecraft:crimson_planks"
