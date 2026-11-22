@@ -6,7 +6,7 @@ import dev.hybridlabs.fishnships.entity.vehicle.SailboatEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLEnvironment;
 
 public class ForgePlatformHelper implements PlatformHelper {
 
@@ -31,7 +31,7 @@ public class ForgePlatformHelper implements PlatformHelper {
     @Override
     public boolean isDevelopmentEnvironment() {
 
-        return !FMLLoader.isProduction();
+        return !FMLEnvironment.isProduction();
     }
 
     @Override

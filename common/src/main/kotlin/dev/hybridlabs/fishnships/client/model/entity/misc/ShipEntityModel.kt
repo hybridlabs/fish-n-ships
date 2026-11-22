@@ -2,54 +2,29 @@ package dev.hybridlabs.fishnships.client.model.entity.misc
 
 import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
-import net.minecraft.client.model.geom.PartNames
-import net.minecraft.client.renderer.RenderType
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.util.Mth
-import software.bernie.geckolib.animation.AnimationState
-import software.bernie.geckolib.model.GeoModel
+import net.minecraft.resources.Identifier
+import software.bernie.geckolib.renderer.base.GeoRenderState
 
-@Suppress("OVERRIDE_DEPRECATION")
-class ShipEntityModel<T : ShipEntity>() :
-    GeoModel<T>() {
+class ShipEntityModel<T : ShipEntity>() : FSVehicleModel<T>(
+    "entity/ship/ship",
+    "entity/ship/ship",
+    "ship",
+    "ship",
+) {
 
-    override fun getRenderType(animatable: T, texture: ResourceLocation): RenderType {
-        return RenderType.entityTranslucent(texture)
-    }
-
-    override fun getModelResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("geo/entity/ship/ship.geo.json")
-    }
-
-    override fun getTextureResource(animatable: T): ResourceLocation {
+    override fun getTextureResource(renderState: GeoRenderState): Identifier {
         return CommonClass.locate("textures/entity/ship/ship.png")
     }
 
-    fun getIcebreakerTextureResource(): ResourceLocation {
+    fun getIcebreakerTextureResource(): Identifier {
         return CommonClass.locate("textures/entity/ship/icebreaker.png")
     }
 
-    fun getTrawlingNetTextureResource(): ResourceLocation {
+    fun getTrawlingNetTextureResource(): Identifier {
         return CommonClass.locate("textures/entity/ship/trawling_net.png")
     }
 
-    fun getGlassTextureResource(): ResourceLocation {
+    fun getGlassTextureResource(): Identifier {
         return CommonClass.locate("textures/entity/ship/glass.png")
-    }
-
-    override fun getAnimationResource(animatable: T): ResourceLocation {
-        return CommonClass.locate("animations/entity/ship/ship.animation.json")
-    }
-
-    override fun setCustomAnimations(
-        animatable: T,
-        instanceId: Long,
-        animationState: AnimationState<T>,
-    ) {
-        val deltaTime: Float = animationState.partialTick
-        val body = animationProcessor.getBone(PartNames.BODY)
-
-        val yaw = Mth.rotLerp(deltaTime, animatable.yRotO, animatable.yRot)
-        body.rotY = -yaw * Mth.DEG_TO_RAD
     }
 }

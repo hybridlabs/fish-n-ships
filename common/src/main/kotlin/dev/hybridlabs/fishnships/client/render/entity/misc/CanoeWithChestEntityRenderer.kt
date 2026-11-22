@@ -4,18 +4,12 @@ import dev.hybridlabs.fishnships.client.model.entity.misc.CanoeWithChestEntityMo
 import dev.hybridlabs.fishnships.client.render.entity.misc.layer.WaterPatchEntityLayer
 import dev.hybridlabs.fishnships.entity.vehicle.CanoeWithChestEntity
 import net.minecraft.client.renderer.entity.EntityRendererProvider
-import software.bernie.geckolib.renderer.GeoEntityRenderer
 
 class CanoeWithChestEntityRenderer<T : CanoeWithChestEntity>(
     context: EntityRendererProvider.Context,
-) : GeoEntityRenderer<T>(context, CanoeWithChestEntityModel()) {
+) : FSVehicleRenderer<T>(context, CanoeWithChestEntityModel()) {
 
     init {
-        addRenderLayer(WaterPatchEntityLayer(this))
-        this.shadowRadius = 0.3f
-    }
-
-    override fun getMotionAnimThreshold(animatable: T): Float {
-        return 0.0025f
+        withRenderLayer(WaterPatchEntityLayer(this))
     }
 }

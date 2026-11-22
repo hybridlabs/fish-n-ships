@@ -3,9 +3,10 @@ package dev.hybridlabs.fishnships.client.gui.screen
 import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.world.inventory.SupplyRaftMenu
 import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.renderer.RenderPipelines
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.player.Inventory
 
 class SupplyRaftScreen(
@@ -36,13 +37,16 @@ class SupplyRaftScreen(
         val top = (height - imageHeight) / 2
 
         guiGraphics.blit(
+            RenderPipelines.GUI_TEXTURED,
             SUPPLY_RAFT_BACKGROUND,
             left,
             top,
-            0,
-            0,
+            0f,
+            0f,
             imageWidth,
-            imageHeight
+            imageHeight,
+            256,
+            256
         )
     }
 
@@ -53,6 +57,6 @@ class SupplyRaftScreen(
     }
 
     companion object {
-        val SUPPLY_RAFT_BACKGROUND: ResourceLocation = CommonClass.locate("textures/gui/container/supply_raft_6row.png")
+        val SUPPLY_RAFT_BACKGROUND: Identifier = CommonClass.locate("textures/gui/container/supply_raft_6row.png")
     }
 }

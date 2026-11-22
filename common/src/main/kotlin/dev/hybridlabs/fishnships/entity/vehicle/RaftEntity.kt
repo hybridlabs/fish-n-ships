@@ -5,7 +5,9 @@ import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.level.storage.ValueInput
+import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
@@ -22,7 +24,7 @@ import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.Items
-import net.minecraft.world.level.GameRules
+import net.minecraft.world.level.gamerules.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
@@ -36,11 +38,9 @@ open class RaftEntity(
     world: Level,
 ) :
     BaseBoatEntity(type, world),
-    VariantHolder<RaftEntity.Type>,
     GeoEntity {
 
     init {
-        noCulling = true
     }
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {
@@ -48,35 +48,33 @@ open class RaftEntity(
         builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
     }
 
-    override fun addAdditionalSaveData(tag: CompoundTag) {
+    override fun addAdditionalSaveData(tag: ValueOutput) {
         tag.putFloat("Damage", getDamage())
 
-        tag.putString("Type", this.variant.getSerializedName())
+        tag.putString("Type", this.getVariant().getSerializedName())
     }
 
-    override fun readAdditionalSaveData(tag: CompoundTag) {
-        setDamage(tag.getFloat("Damage"))
+    override fun readAdditionalSaveData(tag: ValueInput) {
+        setDamage(tag.getFloatOr("Damage", 0.0f))
 
-        if (tag.contains("Type", 8)) {
-            this.variant = Type.byName(tag.getString("Type"))
-        }
+        this.setVariant(Type.byName(tag.getStringOr("Type", "oak")))
     }
 
-    override fun hurt(source: DamageSource, amount: Float): Boolean {
-        if (source.entity != null && this.hasPassenger(source.entity)) {
+    override fun hurtServer(level: ServerLevel, source: DamageSource, amount: Float): Boolean {
+        if (source.entity != null && this.hasPassenger(source.entity!!)) {
             return false
         }
 
-        if (this.isInvulnerableTo(source)) {
+        if (this.isInvulnerableToBase(source)) {
             return false
         } else if (!this.level().isClientSide && !this.isRemoved) {
             this.setHurtTime(10)
             this.setDamage(this.getDamage() + amount * 10.0f)
             this.markHurt()
-            this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity)
+            this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity!!)
             val flag = source.entity is Player && (source.entity as Player).abilities.instabuild
             if (flag || this.getDamage() > 60.0f) {
-                if (!flag && this.level().gameRules.getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                if (!flag && (level() as ServerLevel).getGameRules().get(GameRules.ENTITY_DROPS)) {
                     this.destroy(source)
                 }
 
@@ -238,10 +236,10 @@ open class RaftEntity(
 
                     this.causeFallDamage(this.fallDistance, 1.0f, this.damageSources().fall())
                     if (!this.level().isClientSide && !this.isRemoved) {
-                        this.kill()
-                        if (this.level().gameRules.getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                        this.kill(level() as ServerLevel)
+                        if ((level() as ServerLevel).getGameRules().get(GameRules.ENTITY_DROPS)) {
                             for (j in 0..1) {
-                                this.spawnAtLocation(Items.STICK)
+                                this.spawnAtLocation(level() as ServerLevel, Items.STICK)
                             }
                         }
                     }
@@ -259,7 +257,7 @@ open class RaftEntity(
 
     open fun getRaftItem(): Item {
         val item: Item
-        when (this.variant.ordinal) {
+        when (this.getVariant().ordinal) {
             1 -> item = FSItems.SPRUCE_RAFT.get()
             2 -> item = FSItems.BIRCH_RAFT.get()
             3 -> item = FSItems.JUNGLE_RAFT.get()
@@ -281,7 +279,7 @@ open class RaftEntity(
 
     protected open fun destroy(damageSource: DamageSource) {
         val stack = getRaftItem()
-        this.spawnAtLocation(stack)
+        this.spawnAtLocation(level() as ServerLevel, stack)
     }
 
     companion object {
@@ -289,11 +287,11 @@ open class RaftEntity(
             SynchedEntityData.defineId(RaftEntity::class.java, EntityDataSerializers.INT)
     }
 
-    override fun setVariant(variant: Type) {
+    fun setVariant(variant: Type) {
         this.entityData.set(DATA_ID_TYPE, variant.ordinal)
     }
 
-    override fun getVariant(): Type {
+    fun getVariant(): Type {
         return Type.byId(this.entityData.get(DATA_ID_TYPE) as Int)
     }
 

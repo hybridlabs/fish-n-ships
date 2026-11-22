@@ -18,7 +18,7 @@ object FSDataGenerator : DataGeneratorEntrypoint {
 		pack.addProvider(::RecipeProvider)
 	}
 
-	fun <T> filterFishNShips(registry: Registry<T>): (T) -> Boolean {
+	fun <T : Any> filterFishNShips(registry: Registry<T>): (T) -> Boolean {
 		return { o ->
 			val id = registry.getKey(o)
 			id?.namespace == Constants.MOD_ID

@@ -1,7 +1,7 @@
 package dev.hybridlabs.fishnships.network
 
 import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.neoforge.network.PacketDistributor
+import net.neoforged.neoforge.client.network.ClientPacketDistributor
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent
 import java.util.*
 
@@ -33,14 +33,14 @@ object FSNetworking {
     }
 
     fun sendMovingPacket(moving: Boolean) {
-        PacketDistributor.sendToServer(MovingPacket(moving))
+        ClientPacketDistributor.sendToServer(MovingPacket(moving))
     }
 
     fun sendTrawlingPacket(trawling: Boolean) {
-        PacketDistributor.sendToServer(TrawlingPacket(trawling))
+        ClientPacketDistributor.sendToServer(TrawlingPacket(trawling))
     }
 
     fun sendSailingPacket(uuid: UUID) {
-        PacketDistributor.sendToServer(SailingPacket(uuid))
+        ClientPacketDistributor.sendToServer(SailingPacket(uuid))
     }
 }

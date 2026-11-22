@@ -5,12 +5,12 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.Identifier
 
 data class ShipMovementPayload(val moving: Boolean) : CustomPacketPayload {
 
     companion object {
-        val SHIP_MOVEMENT_PAYLOAD_TYPE: ResourceLocation = CommonClass.locate("ship_movement")
+        val SHIP_MOVEMENT_PAYLOAD_TYPE: Identifier = CommonClass.locate("ship_movement")
         val type: CustomPacketPayload.Type<ShipMovementPayload> =
             CustomPacketPayload.Type(SHIP_MOVEMENT_PAYLOAD_TYPE)
 

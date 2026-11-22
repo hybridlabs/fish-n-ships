@@ -3,14 +3,18 @@ package dev.hybridlabs.fishnships.entity.vehicle
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.world.inventory.SupplyRaftMenu
 import net.minecraft.core.NonNullList
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.level.storage.ValueInput
+import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
+import net.minecraft.world.entity.ContainerUser
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.SlotAccess
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.player.Inventory
@@ -57,14 +61,14 @@ open class SupplyRaftEntity(
         super.defineSynchedData(builder)
     }
 
-    override fun addAdditionalSaveData(tag: CompoundTag) {
+    override fun addAdditionalSaveData(tag: ValueOutput) {
         super.addAdditionalSaveData(tag)
-        this.addChestVehicleSaveData(tag, this.registryAccess())
+        this.addChestVehicleSaveData(tag)
     }
 
-    override fun readAdditionalSaveData(tag: CompoundTag) {
+    override fun readAdditionalSaveData(tag: ValueInput) {
         super.readAdditionalSaveData(tag)
-        this.readChestVehicleSaveData(tag, this.registryAccess())
+        this.readChestVehicleSaveData(tag)
     }
 
     override fun isPickable(): Boolean {
@@ -80,7 +84,7 @@ open class SupplyRaftEntity(
 
     override fun getRaftItem(): Item {
         val item: Item
-        when (this.variant.ordinal) {
+        when (this.getVariant().ordinal) {
             1 -> item = FSItems.SPRUCE_SUPPLY_RAFT.get()
             2 -> item = FSItems.BIRCH_SUPPLY_RAFT.get()
             3 -> item = FSItems.JUNGLE_SUPPLY_RAFT.get()
@@ -117,8 +121,8 @@ open class SupplyRaftEntity(
 
     override fun destroy(damageSource: DamageSource) {
         val stack = getRaftItem()
-        this.spawnAtLocation(stack)
-        this.chestVehicleDestroyed(damageSource, this.level(), this)
+        this.spawnAtLocation(level() as ServerLevel, stack)
+        this.chestVehicleDestroyed(damageSource, this.level() as ServerLevel, this)
     }
 
     override fun remove(reason: RemovalReason) {
@@ -138,20 +142,24 @@ open class SupplyRaftEntity(
         }
     }
 
-    override fun getLootTable(): ResourceKey<LootTable>? {
+    override fun getContainerLootTable(): ResourceKey<LootTable>? {
         return raftLootTable
     }
 
-    override fun setLootTable(id: ResourceKey<LootTable>?) {
+    override fun setContainerLootTable(id: ResourceKey<LootTable>?) {
         if (id != null) raftLootTable = id
     }
 
-    override fun getLootTableSeed(): Long {
+    override fun getContainerLootTableSeed(): Long {
         return raftLootTableSeed
     }
 
-    override fun setLootTableSeed(seed: Long) {
+    override fun setContainerLootTableSeed(seed: Long) {
         raftLootTableSeed = seed
+    }
+
+    override fun getSlot(slot: Int): SlotAccess? {
+        return this.getChestVehicleSlot(slot)
     }
 
     override fun getItemStacks(): NonNullList<ItemStack> {
@@ -197,7 +205,7 @@ open class SupplyRaftEntity(
         playerInventory: Inventory,
         player: Player,
     ): AbstractContainerMenu? {
-        if (this.lootTable != null && player.isSpectator) {
+        if (this.getContainerLootTable() != null && player.isSpectator) {
             return null
         } else {
             this.unpackLootTable(playerInventory.player)
@@ -209,8 +217,8 @@ open class SupplyRaftEntity(
         this.unpackChestVehicleLootTable(player)
     }
 
-    override fun stopOpen(player: Player) {
-        this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
+    override fun stopOpen(player: ContainerUser) {
+        this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player as? Entity))
     }
     //#endregion
 }

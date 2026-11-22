@@ -1,43 +1,28 @@
 package dev.hybridlabs.fishnships.client.render.entity.misc.layer
 
-import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.blaze3d.vertex.VertexConsumer
-import dev.hybridlabs.fishnships.client.render.entity.misc.ShipEntityRenderer
+import dev.hybridlabs.fishnships.client.model.FSRenderData
 import dev.hybridlabs.fishnships.client.model.entity.misc.ShipEntityModel
+import dev.hybridlabs.fishnships.client.render.entity.misc.ShipEntityRenderer
 import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
-import net.minecraft.client.renderer.MultiBufferSource
-import net.minecraft.client.renderer.RenderType
-import net.minecraft.client.renderer.texture.OverlayTexture
-import net.minecraft.resources.ResourceLocation
-import software.bernie.geckolib.cache.`object`.BakedGeoModel
-import software.bernie.geckolib.renderer.layer.GeoRenderLayer
-import software.bernie.geckolib.util.Color
+import net.minecraft.client.renderer.entity.state.EntityRenderState
+import net.minecraft.client.renderer.rendertype.RenderType
+import net.minecraft.client.renderer.rendertype.RenderTypes
+import net.minecraft.resources.Identifier
+import software.bernie.geckolib.renderer.layer.builtin.TextureLayerGeoLayer
 
-class ShipGlassEntityLayer<T: ShipEntity>(
-    renderer: ShipEntityRenderer<T>
-): GeoRenderLayer<T>(renderer) {
+class ShipGlassEntityLayer<T : ShipEntity>(
+    renderer: ShipEntityRenderer<T>,
+) : TextureLayerGeoLayer<T, Void, EntityRenderState>(renderer, PLACEHOLDER_TEXTURE) {
 
-    private fun getGlassTexture(): ResourceLocation {
-        return (geoModel as ShipEntityModel).getGlassTextureResource()
+    override fun getTextureResource(renderState: EntityRenderState): Identifier {
+        return (geoModel as ShipEntityModel<*>).getGlassTextureResource()
     }
 
-    override fun render(
-        poseStack: PoseStack,
-        animatable: T,
-        bakedModel: BakedGeoModel,
-        renderType: RenderType?,
-        bufferSource: MultiBufferSource,
-        buffer: VertexConsumer?,
-        partialTick: Float,
-        packedLight: Int,
-        packedOverlay: Int
-    ) {
-        val glassTexture = getGlassTexture()
-        val glassRenderType = RenderType.entityTranslucentCull(glassTexture)
+    override fun getRenderType(renderState: EntityRenderState): RenderType {
+        return RenderTypes.entityTranslucent(getTextureResource(renderState))
+    }
 
-        getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, glassRenderType,
-            bufferSource.getBuffer(glassRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY,
-            Color.WHITE.argbInt
-        )
+    companion object {
+        private val PLACEHOLDER_TEXTURE = Identifier.withDefaultNamespace("textures/misc/white.png")
     }
 }

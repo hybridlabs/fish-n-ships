@@ -1,12 +1,15 @@
 package dev.hybridlabs.fishnships.entity.vehicle
 
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.level.storage.ValueInput
+import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientGamePacketListener
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.server.level.ServerEntity
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.ContainerUser
 import net.minecraft.world.entity.EntityDimensions
 import net.minecraft.world.entity.Pose
 import net.minecraft.world.item.ItemStack
@@ -26,10 +29,10 @@ class ShipCabinPart(parentMob: ShipEntity, name: String?, width: Float, height: 
     override fun defineSynchedData(p0: SynchedEntityData.Builder) {
     }
 
-    override fun readAdditionalSaveData(compound: CompoundTag) {
+    override fun readAdditionalSaveData(compound: ValueInput) {
     }
 
-    override fun addAdditionalSaveData(compound: CompoundTag) {
+    override fun addAdditionalSaveData(compound: ValueOutput) {
     }
 
     override fun isPickable(): Boolean {
@@ -40,15 +43,15 @@ class ShipCabinPart(parentMob: ShipEntity, name: String?, width: Float, height: 
         return this.parentMob.pickResult
     }
 
-    override fun hurt(source: DamageSource, amount: Float): Boolean {
-        return if (isInvulnerableTo(source)) {
+    override fun hurtServer(level: ServerLevel, source: DamageSource, amount: Float): Boolean {
+        return if (isInvulnerableToBase(source)) {
             false
         } else {
-            parentMob.hurt(source, amount)
+            parentMob.hurtServer(level, source, amount)
         }
     }
 
-    override fun canBeCollidedWith(): Boolean {
+    override fun canBeCollidedWith(entity: Entity?): Boolean {
         return true
     }
 
@@ -78,7 +81,7 @@ class ShipCabinPart(parentMob: ShipEntity, name: String?, width: Float, height: 
     }
 
     private fun tickLerp() {
-        if (this.isControlledByLocalInstance) {
+        if (this.isLocalInstanceAuthoritative) {
             this.syncPacketPositionCodec(this.x, this.y, this.z)
         }
     }

@@ -10,14 +10,15 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
 import net.minecraft.core.particles.BlockParticleOption
 import net.minecraft.core.particles.ParticleTypes
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.level.storage.ValueInput
+import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceKey
-import net.minecraft.server.level.ServerLevel
 import net.minecraft.sounds.SoundEvents
 import net.minecraft.sounds.SoundSource
 import net.minecraft.tags.EntityTypeTags
@@ -37,11 +38,10 @@ import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ContainerData
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.level.GameRules
+import net.minecraft.world.level.gamerules.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.IceBlock
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.level.storage.loot.BuiltInLootTables
 import net.minecraft.world.level.storage.loot.LootParams
@@ -50,10 +50,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.animation.AnimatableManager
+import software.bernie.geckolib.animatable.manager.AnimatableManager
 import software.bernie.geckolib.animation.AnimationController
 import software.bernie.geckolib.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.animation.AnimationState
+import software.bernie.geckolib.animation.state.AnimationTest
 import software.bernie.geckolib.animation.RawAnimation
 import java.util.function.IntFunction
 import kotlin.math.min
@@ -118,7 +118,6 @@ open class ShipEntity(
     }
 
     init {
-        noCulling = true
     }
 
     private val dataAccess = object : ContainerData {
@@ -154,27 +153,27 @@ open class ShipEntity(
         builder.define(HAS_ICEBREAKER, false)
     }
 
-    override fun addAdditionalSaveData(tag: CompoundTag) {
+    override fun addAdditionalSaveData(tag: ValueOutput) {
         super.addAdditionalSaveData(tag)
         tag.putInt("BurnTime", this.litTime)
-        this.addChestVehicleSaveData(tag, this.registryAccess())
+        this.addChestVehicleSaveData(tag)
         tag.putBoolean("HasIceBreaker", this.hasIceBreaker())
         tag.putBoolean("HasTrawlingNet", this.hasTrawlingNet())
     }
 
-    override fun readAdditionalSaveData(tag: CompoundTag) {
-        setHasTrawlingNet(tag.getBoolean("HasTrawlingNet"))
-        setHasIceBreaker(tag.getBoolean("HasIceBreaker"))
+    override fun readAdditionalSaveData(tag: ValueInput) {
+        setHasTrawlingNet(tag.getBooleanOr("HasTrawlingNet", false))
+        setHasIceBreaker(tag.getBooleanOr("HasIceBreaker", false))
 
-        this.litTime = tag.getInt("BurnTime")
+        this.litTime = tag.getIntOr("BurnTime", 0)
         setLit(litTime > 0)
-        this.readChestVehicleSaveData(tag, this.registryAccess())
+        this.readChestVehicleSaveData(tag)
     }
     //#endregion
 
     open fun getBurnDuration(fuel: ItemStack): Int {
         return if (fuel.isEmpty) 0
-        else AbstractFurnaceBlockEntity.getFuel().getOrDefault(fuel.item, 0) * 2
+        else level().fuelValues().burnDuration(fuel) * 2
     }
 
     fun isLit(): Boolean {
@@ -200,9 +199,9 @@ open class ShipEntity(
 
         litDuration = litTime
 
-        val itemRemainder = fuelItemStack.item.craftingRemainingItem
+        val itemRemainder = fuelItemStack.item.craftingRemainder
         fuelItemStack.shrink(1)
-        if (fuelItemStack.isEmpty && itemRemainder != null) itemStacks[0] = itemRemainder.defaultInstance
+        if (fuelItemStack.isEmpty && !itemRemainder.isEmpty) itemStacks[0] = itemRemainder.copy()
 
         setLit(true)
     }
@@ -290,11 +289,11 @@ open class ShipEntity(
                             )
                         }
 
-                        if (level().dimensionType().ultraWarm()) {
+                        if (level().environmentAttributes().getValue(net.minecraft.world.attribute.EnvironmentAttributes.WATER_EVAPORATES, pos)) {
                             level().removeBlock(pos, false)
                         } else {
                             level().setBlockAndUpdate(pos, IceBlock.meltsInto())
-                            level().neighborChanged(pos, IceBlock.meltsInto().block, pos)
+                            level().neighborChanged(pos, IceBlock.meltsInto().block, null)
                         }
                     }
                 }
@@ -350,7 +349,7 @@ open class ShipEntity(
             this.setDamage(this.getDamage() - 1.0f)
         }
 
-        if (this.isControlledByLocalInstance) {
+        if (this.isLocalInstanceAuthoritative) {
             if (this.firstPassenger !is Player) {
                 setPropellerState(left = false, right = false)
             }
@@ -376,7 +375,6 @@ open class ShipEntity(
 
         tickTrawling()
 
-        this.checkInsideBlocks()
 
         if (!level().isClientSide && hasIceBreaker()) {
             breakIce()
@@ -390,14 +388,14 @@ open class ShipEntity(
             || random.nextFloat() > trawlingChance
         ) return
 
-        val lootTable = server?.reloadableRegistries()?.getLootTable(BuiltInLootTables.FISHING) ?: return
+        val lootTable = level().server?.reloadableRegistries()?.getLootTable(BuiltInLootTables.FISHING) ?: return
 
         val lootParamsBuilder = LootParams.Builder(level() as ServerLevel)
             .withParameter(LootContextParams.ORIGIN, position())
 
         val loot = lootTable.getRandomItems(
             lootParamsBuilder.create(LootContextParamSets.CHEST),
-            lootTableSeed
+            getContainerLootTableSeed()
         )
 
         val openSlots = getAvailableTrawlSlots()
@@ -491,9 +489,9 @@ open class ShipEntity(
             lastJumpInput = inputJumping
 
             this.deltaMovement = this.deltaMovement.add(
-                (Mth.sin(-this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble(),
+                (Mth.sin((-this.yRot * (Math.PI.toFloat() / 180f)).toDouble()) * f).toDouble(),
                 0.0,
-                (Mth.cos(this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble()
+                (Mth.cos((this.yRot * (Math.PI.toFloat() / 180f)).toDouble()) * f).toDouble()
             )
             this.setPropellerState(
                 this.inputRight && !this.inputLeft || this.inputUp,
@@ -527,21 +525,21 @@ open class ShipEntity(
         return this.entityData.get(if (side == 0) DATA_ID_LEFT_PROPELLER else DATA_ID_RIGHT_PROPELLER) && this.getControllingPassenger() != null
     }
 
-    override fun hurt(source: DamageSource, amount: Float): Boolean {
+    override fun hurtServer(level: ServerLevel, source: DamageSource, amount: Float): Boolean {
         if (source.entity != null && this.hasPassenger(source.entity!!)) {
             return false
         }
 
-        if (this.isInvulnerableTo(source)) {
+        if (this.isInvulnerableToBase(source)) {
             return false
         } else if (!this.level().isClientSide && !this.isRemoved) {
             this.setHurtTime(10)
             this.setDamage(this.getDamage() + amount * 10.0f)
             this.markHurt()
-            this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity)
+            this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity!!)
             val flag = source.entity is Player && (source.entity as Player).abilities.instabuild
             if (flag || this.getDamage() > 100.0f) {
-                if (!flag && this.level().gameRules.getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                if (!flag && (level() as ServerLevel).getGameRules().get(GameRules.ENTITY_DROPS)) {
                     this.destroy(source)
                 }
 
@@ -564,8 +562,8 @@ open class ShipEntity(
         super.registerControllers(controllers)
         controllers.add(
             AnimationController(
-                this, "Trawling",
-                AnimationStateHandler { state: AnimationState<ShipEntity> ->
+                "Trawling", 4,
+                AnimationStateHandler { state: AnimationTest<ShipEntity> ->
                     if (this.isTrawling())
                         return@AnimationStateHandler state.setAndContinue(TRAWL_ON_ANIMATION)
                     else return@AnimationStateHandler state.setAndContinue(TRAWL_OFF_ANIMATION)
@@ -630,8 +628,8 @@ open class ShipEntity(
     //#region Container
     protected open fun destroy(damageSource: DamageSource) {
         val stack = getShipItem(this)
-        this.spawnAtLocation(stack)
-        this.chestVehicleDestroyed(damageSource, this.level(), this)
+        this.spawnAtLocation(level() as ServerLevel, stack)
+        this.chestVehicleDestroyed(damageSource, this.level() as ServerLevel, this)
     }
 
     override fun remove(reason: RemovalReason) {
@@ -648,20 +646,24 @@ open class ShipEntity(
         }
     }
 
-    override fun getLootTable(): ResourceKey<LootTable>? {
+    override fun getContainerLootTable(): ResourceKey<LootTable>? {
         return shipLootTable
     }
 
-    override fun setLootTable(id: ResourceKey<LootTable>?) {
-        if (id != null) shipLootTable = id
+    override fun setContainerLootTable(id: ResourceKey<LootTable>?) {
+        shipLootTable = id
     }
 
-    override fun getLootTableSeed(): Long {
+    override fun getContainerLootTableSeed(): Long {
         return shipLootTableSeed
     }
 
-    override fun setLootTableSeed(seed: Long) {
+    override fun setContainerLootTableSeed(seed: Long) {
         shipLootTableSeed = seed
+    }
+
+    override fun getSlot(slot: Int): SlotAccess? {
+        return this.getChestVehicleSlot(slot)
     }
 
     override fun getItemStacks(): NonNullList<ItemStack> {
@@ -726,7 +728,7 @@ open class ShipEntity(
         playerInventory: Inventory,
         player: Player,
     ): AbstractContainerMenu? {
-        if (this.lootTable != null && player.isSpectator) {
+        if (this.getContainerLootTable() != null && player.isSpectator) {
             return null
         } else {
             this.unpackLootTable(playerInventory.player)
@@ -738,8 +740,8 @@ open class ShipEntity(
         this.unpackChestVehicleLootTable(player)
     }
 
-    override fun stopOpen(player: Player) {
-        this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player))
+    override fun stopOpen(player: net.minecraft.world.entity.ContainerUser) {
+        this.level().gameEvent(GameEvent.CONTAINER_CLOSE, this.position(), GameEvent.Context.of(player as? Entity))
     }
     //#endregion
 

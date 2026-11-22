@@ -3,7 +3,7 @@
 package dev.hybridlabs.fishnships.tag
 
 import net.minecraft.core.registries.Registries
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.Identifier
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import dev.hybridlabs.hapi.CommonClass
@@ -18,6 +18,6 @@ object FSItemTags {
     }
 
     private fun createConventional(id: String): TagKey<Item> {
-		return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", id))
+		return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", id))
     }
 }

@@ -5,7 +5,9 @@ import com.google.common.collect.UnmodifiableIterator
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
-import net.minecraft.nbt.CompoundTag
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.level.storage.ValueInput
+import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
@@ -21,13 +23,13 @@ import net.minecraft.world.InteractionResult
 import net.minecraft.world.damagesource.DamageSource
 import net.minecraft.world.entity.*
 import net.minecraft.world.entity.animal.Animal
-import net.minecraft.world.entity.animal.WaterAnimal
+import net.minecraft.world.entity.animal.fish.WaterAnimal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
 import net.minecraft.world.item.AxeItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.level.GameRules
+import net.minecraft.world.level.gamerules.GameRules
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
@@ -38,10 +40,9 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.util.GeckoLibUtil
 
 open class DinghyEntity(
-    entityType: EntityType<out DinghyEntity?>, level: Level,
+    entityType: EntityType<out DinghyEntity>, level: Level,
 ) :
     BaseBoatEntity(entityType, level),
-    VariantHolder<DinghyEntity.Type>,
     GeoEntity {
     private val animCache = GeckoLibUtil.createInstanceCache(this)
     private val paddlePositions: FloatArray = FloatArray(2)
@@ -50,7 +51,7 @@ open class DinghyEntity(
     private var inputUp = false
     private var inputDown = false
 
-    override fun getAnimatableInstanceCache(): AnimatableInstanceCache? {
+    override fun getAnimatableInstanceCache(): AnimatableInstanceCache {
         return animCache
     }
 
@@ -62,38 +63,34 @@ open class DinghyEntity(
         builder.define(DATA_ID_PADDLE_RIGHT, false)
     }
 
-    override fun addAdditionalSaveData(tag: CompoundTag) {
+    override fun addAdditionalSaveData(tag: ValueOutput) {
         super.addAdditionalSaveData(tag)
-        tag.putString("Type", this.variant.getSerializedName())
+        tag.putString("Type", this.getVariant().getSerializedName())
         tag.putBoolean("Alternate", this.alternate)
     }
 
-    override fun readAdditionalSaveData(tag: CompoundTag) {
+    override fun readAdditionalSaveData(tag: ValueInput) {
         super.readAdditionalSaveData(tag)
-        if (tag.contains("Type", 8)) {
-            this.variant = Type.byName(tag.getString("Type"))
-        }
+        this.setVariant(Type.byName(tag.getStringOr("Type", "oak")))
 
-        if (tag.contains("Alternate", 1)) {
-            this.alternate = tag.getBoolean("Alternate")
-        }
+        this.alternate = tag.getBooleanOr("Alternate", false)
     }
 
-    override fun hurt(source: DamageSource, amount: Float): Boolean {
-        if (source.entity != null && this.hasPassenger(source.entity)) {
+    override fun hurtServer(level: ServerLevel, source: DamageSource, amount: Float): Boolean {
+        if (source.entity != null && this.hasPassenger(source.entity!!)) {
             return false
         }
 
-        if (this.isInvulnerableTo(source)) {
+        if (this.isInvulnerableToBase(source)) {
             return false
         } else if (!this.level().isClientSide && !this.isRemoved) {
             this.setHurtTime(10)
             this.setDamage(this.getDamage() + amount * 10.0f)
             this.markHurt()
-            this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity)
+            this.gameEvent(GameEvent.ENTITY_DAMAGE, source.entity!!)
             val flag = source.entity is Player && (source.entity as Player).abilities.instabuild
             if (flag || this.getDamage() > 50.0f) {
-                if (!flag && this.level().gameRules.getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+                if (!flag && (level() as ServerLevel).getGameRules().get(GameRules.ENTITY_DROPS)) {
                     this.destroy(source)
                 }
 
@@ -108,7 +105,7 @@ open class DinghyEntity(
 
     open fun getDinghyItem(): Item {
         val item: Item
-        when (this.variant.ordinal) {
+        when (this.getVariant().ordinal) {
             1 -> item = FSItems.SPRUCE_DINGHY.get()
             2 -> item = FSItems.BIRCH_DINGHY.get()
             3 -> item = FSItems.JUNGLE_DINGHY.get()
@@ -130,7 +127,7 @@ open class DinghyEntity(
 
     protected open fun destroy(damageSource: DamageSource) {
         val stack = getDinghyItem()
-        this.spawnAtLocation(stack)
+        this.spawnAtLocation(level() as ServerLevel, stack)
     }
 
     override fun interact(player: Player, hand: InteractionHand): InteractionResult {
@@ -147,7 +144,7 @@ open class DinghyEntity(
                 playSound(SoundEvents.AXE_STRIP)
             }
 
-            return InteractionResult.sidedSuccess(level().isClientSide)
+            return if (level().isClientSide) InteractionResult.SUCCESS else InteractionResult.SUCCESS_SERVER
         }
 
         return super.interact(player, hand)
@@ -156,7 +153,7 @@ open class DinghyEntity(
     override fun tick() {
         super.tick()
 
-        if (this.isControlledByLocalInstance) {
+        if (this.isLocalInstanceAuthoritative) {
             if (this.firstPassenger !is Player) {
                 this.setPaddleState(left = false, right = false)
             }
@@ -201,7 +198,6 @@ open class DinghyEntity(
             }
         }
 
-        this.checkInsideBlocks()
         val list = this.level()
             .getEntities(this, this.boundingBox.inflate(0.2, -0.01, 0.2), EntitySelector.pushableBy(this))
         if (!list.isEmpty()) {
@@ -367,9 +363,9 @@ open class DinghyEntity(
             }
 
             this.deltaMovement = this.deltaMovement.add(
-                (Mth.sin(-this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble(),
+                (Mth.sin((-this.yRot * (Math.PI.toFloat() / 180f)).toDouble()) * f).toDouble(),
                 0.0,
-                (Mth.cos(this.yRot * (Math.PI.toFloat() / 180f)) * f).toDouble()
+                (Mth.cos((this.yRot * (Math.PI.toFloat() / 180f)).toDouble()) * f).toDouble()
             )
             this.setPaddleState(
                 this.inputRight && !this.inputLeft || this.inputUp,
@@ -401,11 +397,11 @@ open class DinghyEntity(
             SynchedEntityData.defineId(DinghyEntity::class.java, EntityDataSerializers.BOOLEAN)
     }
 
-    override fun setVariant(variant: Type) {
+    fun setVariant(variant: Type) {
         this.entityData.set(DATA_ID_TYPE, variant.ordinal)
     }
 
-    override fun getVariant(): Type {
+    fun getVariant(): Type {
         return Type.byId(this.entityData.get(DATA_ID_TYPE) as Int)
     }
 

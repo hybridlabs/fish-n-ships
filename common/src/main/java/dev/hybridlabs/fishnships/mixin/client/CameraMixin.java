@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity;
 import net.minecraft.client.Camera;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,7 +29,7 @@ public abstract class CameraMixin {
 		method = "setup",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Camera;setPosition(DDD)V", shift = At.Shift.AFTER)
 	)
-	private void changeCameraPosInShip(BlockGetter level, Entity entity, boolean detached, boolean thirdPersonReverse, float partialTick, CallbackInfo ci) {
+	private void changeCameraPosInShip(Level level, Entity entity, boolean detached, boolean thirdPersonReverse, float partialTick, CallbackInfo ci) {
 		if (!detached && entity.getRootVehicle() != entity && entity.getRootVehicle() instanceof ShipEntity ship) {
 			var shipRotationRadX = Math.toRadians(ship.getRotationVector().x);
 			this.move((float)(shipRotationRadX * 0.25), (float)(Math.abs(shipRotationRadX * 0.25)), 0.0f);

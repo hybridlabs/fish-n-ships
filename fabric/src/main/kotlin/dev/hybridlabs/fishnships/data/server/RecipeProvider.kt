@@ -5,7 +5,7 @@ import dev.hybridlabs.fishnships.platform.registration.RegistryObject
 import dev.hybridlabs.fishnships.tag.FSItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
-import net.minecraft.advancements.critereon.InventoryChangeTrigger
+import net.minecraft.advancements.criterion.InventoryChangeTrigger
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
@@ -16,11 +16,28 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.core.registries.Registries
+import net.minecraft.data.recipes.RecipeProvider as VanillaRecipeProvider
 import java.util.concurrent.CompletableFuture
 
 class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
     FabricRecipeProvider(output, lookupProvider) {
-    override fun buildRecipes(exporter: RecipeOutput) {
+
+    override fun createRecipeProvider(
+        registries: HolderLookup.Provider,
+        output: RecipeOutput
+    ): VanillaRecipeProvider = GeneratedRecipes(registries, output)
+
+    override fun getName(): String = "Recipes"
+
+    private class GeneratedRecipes(
+        registries: HolderLookup.Provider,
+        output: RecipeOutput
+    ) : VanillaRecipeProvider(registries, output) {
+        private val itemLookup = registries.lookupOrThrow(Registries.ITEM)
+
+    override fun buildRecipes() {
+        val exporter = this.output
 
         offerCanoeRecipes(exporter, canoeTypeMap)
         offerCanoeChestUpgradeRecipes(exporter, canoeTypeMap, chestCanoeTypeMap)
@@ -101,7 +118,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             FSItems.DRIFTWOOD_DINGHY_WITH_CHEST
         )
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FSItems.TRAWLING_NET.get())
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TOOLS, FSItems.TRAWLING_NET.get())
             .pattern("S S")
             .pattern("I I")
             .pattern("WWW")
@@ -111,7 +128,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             .unlockedBy("has_iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
             .save(exporter)
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, FSItems.ICEBREAKER.get())
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TOOLS, FSItems.ICEBREAKER.get())
             .pattern("I I")
             .pattern("IBI")
             .pattern(" B ")
@@ -120,7 +137,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             .unlockedBy("has_iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
             .save(exporter)
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, FSItems.SHIP.get())
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, FSItems.SHIP.get())
             .pattern("CCC")
             .pattern("WFW")
             .pattern("IBI")
@@ -149,7 +166,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, boatType) in map) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boatType.get(), 1)
+            ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, boatType.get(), 1)
                 .pattern("W W")
                 .pattern("WWW")
                 .define('W', woodType)
@@ -170,6 +187,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             val chestBoat = chestBoatMap[woodType] ?: continue
 
             ShapelessRecipeBuilder.shapeless(
+                itemLookup,
                 RecipeCategory.TRANSPORTATION,
                 chestBoat.get()
             )
@@ -229,7 +247,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, canoeType) in map) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, canoeType.get(), 1)
+            ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, canoeType.get(), 1)
                 .pattern("WSW")
                 .pattern("WWW")
                 .define('W', woodType)
@@ -251,6 +269,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             val chestCanoe = chestCanoeMap[woodType] ?: continue
 
             ShapelessRecipeBuilder.shapeless(
+                itemLookup,
                 RecipeCategory.TRANSPORTATION,
                 chestCanoe.get()
             )
@@ -276,6 +295,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             val doubleChestCanoe = doubleChestCanoeMap[woodType] ?: continue
 
             ShapelessRecipeBuilder.shapeless(
+                itemLookup,
                 RecipeCategory.TRANSPORTATION,
                 doubleChestCanoe.get()
             )
@@ -292,6 +312,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
                 )
 
             ShapelessRecipeBuilder.shapeless(
+                itemLookup,
                 RecipeCategory.TRANSPORTATION,
                 doubleChestCanoe.get()
             )
@@ -341,7 +362,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, sailboatType) in map) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, sailboatType.get(), 1)
+            ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, sailboatType.get(), 1)
                 .pattern("WBW")
                 .pattern("WWW")
                 .define('W', woodType)
@@ -363,6 +384,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             val chestCanoe = chestsailboatMap[woodType] ?: continue
 
             ShapelessRecipeBuilder.shapeless(
+                itemLookup,
                 RecipeCategory.TRANSPORTATION,
                 chestCanoe.get()
             )
@@ -411,7 +433,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         for ((woodType, dinghyType) in map) {
             val canoeType = canoeTypeMap[woodType] ?: continue
 
-            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, dinghyType.get(), 1)
+            ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, dinghyType.get(), 1)
                 .pattern("WSW")
                 .pattern("WCW")
                 .define('W', woodType)
@@ -434,6 +456,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             val chestDinghy = chestDinghyMap[woodType] ?: continue
 
             ShapelessRecipeBuilder.shapeless(
+                itemLookup,
                 RecipeCategory.TRANSPORTATION,
                 chestDinghy.get()
             )
@@ -480,7 +503,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         map: Map<Block, RegistryObject<out Item>>,
     ) {
         for ((woodType, raftType) in map) {
-            ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, raftType.get(), 1)
+            ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, raftType.get(), 1)
                 .pattern("LLL")
                 .define('L', woodType)
                 .unlockedBy(
@@ -500,6 +523,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             val supplyRaft = supplyRaftMap[woodType] ?: continue
 
             ShapelessRecipeBuilder.shapeless(
+                itemLookup,
                 RecipeCategory.TRANSPORTATION,
                 supplyRaft.get()
             )
@@ -517,7 +541,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         exporter: RecipeOutput,
         boat: RegistryObject<out Item>,
     ) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat.get(), 1)
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, boat.get(), 1)
             .pattern("W W")
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -534,6 +558,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         chestBoat: RegistryObject<out Item>,
     ) {
         ShapelessRecipeBuilder.shapeless(
+            itemLookup,
             RecipeCategory.TRANSPORTATION,
             chestBoat.get()
         )
@@ -553,7 +578,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         exporter: RecipeOutput,
         canoe: RegistryObject<out Item>,
     ) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, canoe.get(), 1)
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, canoe.get(), 1)
             .pattern("WSW")
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -574,6 +599,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         chestCanoe: RegistryObject<out Item>,
     ) {
         ShapelessRecipeBuilder.shapeless(
+            itemLookup,
             RecipeCategory.TRANSPORTATION,
             chestCanoe.get()
         )
@@ -596,6 +622,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         doubleChestCanoe: RegistryObject<out Item>,
     ) {
         ShapelessRecipeBuilder.shapeless(
+            itemLookup,
             RecipeCategory.TRANSPORTATION,
             doubleChestCanoe.get()
         )
@@ -612,6 +639,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             )
 
         ShapelessRecipeBuilder.shapeless(
+            itemLookup,
             RecipeCategory.TRANSPORTATION,
             doubleChestCanoe.get()
         )
@@ -631,7 +659,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         exporter: RecipeOutput,
         raft: RegistryObject<out Item>,
     ) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, raft.get(), 1)
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, raft.get(), 1)
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_LOG)
             .unlockedBy(
@@ -647,6 +675,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         supplyRaft: RegistryObject<out Item>,
     ) {
         ShapelessRecipeBuilder.shapeless(
+            itemLookup,
             RecipeCategory.TRANSPORTATION,
             supplyRaft.get()
         )
@@ -666,7 +695,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         exporter: RecipeOutput,
         sailboat: RegistryObject<out Item>,
     ) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, sailboat.get(), 1)
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, sailboat.get(), 1)
             .pattern("WBW")
             .pattern("WWW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -684,6 +713,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         chestSailboat: RegistryObject<out Item>,
     ) {
         ShapelessRecipeBuilder.shapeless(
+            itemLookup,
             RecipeCategory.TRANSPORTATION,
             chestSailboat.get()
         )
@@ -703,7 +733,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         exporter: RecipeOutput,
         dinghy: RegistryObject<out Item>,
     ) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, dinghy.get(), 1)
+        ShapedRecipeBuilder.shaped(itemLookup, RecipeCategory.TRANSPORTATION, dinghy.get(), 1)
             .pattern("WSW")
             .pattern("WCW")
             .define('W', FSItemTags.DRIFTWOOD_PLANKS)
@@ -722,6 +752,7 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
         chestDinghy: RegistryObject<out Item>,
     ) {
         ShapelessRecipeBuilder.shapeless(
+            itemLookup,
             RecipeCategory.TRANSPORTATION,
             chestDinghy.get()
         )
@@ -737,4 +768,5 @@ class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture
             )
     }
     //#endregion
+}
 }

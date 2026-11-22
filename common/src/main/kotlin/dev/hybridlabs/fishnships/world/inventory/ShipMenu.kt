@@ -6,7 +6,7 @@ import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.*
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity
+import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 
 class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, container: Container, rows: Int, val containerData: ContainerData) :
     AbstractContainerMenu(type, containerId) {
@@ -130,7 +130,9 @@ class ShipMenu(type: MenuType<*>, containerId: Int, playerInventory: Inventory, 
     }
 
     fun isFuel(stack: ItemStack): Boolean {
-        return AbstractFurnaceBlockEntity.isFuel(stack)
+        val ship = this.container as? ShipEntity ?: return false
+
+        return ship.level().fuelValues().isFuel(stack)
     }
 
     fun getLitProgress(): Int {

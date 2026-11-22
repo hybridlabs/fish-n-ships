@@ -5,7 +5,11 @@ import dev.hybridlabs.fishnships.tag.FSItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.core.HolderLookup
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.core.registries.Registries
+import net.minecraft.data.tags.TagAppender
+import net.minecraft.resources.ResourceKey
+import net.minecraft.world.item.Item
+import net.minecraft.resources.Identifier
 import net.minecraft.tags.ItemTags
 import java.util.concurrent.CompletableFuture
 
@@ -35,7 +39,7 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             FSItems.CRIMSON_BOAT.get(),
             FSItems.WARPED_BOAT.get(),
         ).forEach { item ->
-            getOrCreateTagBuilder(ItemTags.BOATS).add(item)
+            valueLookupBuilder(ItemTags.BOATS).add(item)
         }
         
         setOf(
@@ -72,16 +76,19 @@ class ItemTagProvider(output: FabricDataOutput, registriesFuture: CompletableFut
             FSItems.CRIMSON_BOAT_WITH_CHEST.get(),
             FSItems.WARPED_BOAT_WITH_CHEST.get(),
         ).forEach { item ->
-            getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(item)
+            valueLookupBuilder(ItemTags.CHEST_BOATS).add(item)
         }
 
-        getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_LOG)
-            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_log"))
+        builder(FSItemTags.DRIFTWOOD_LOG)
+            .addOptionalItem(Identifier.fromNamespaceAndPath("hybrid_aquatic", "driftwood_log"))
 
-        getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_PLANKS)
-            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_planks"))
+        builder(FSItemTags.DRIFTWOOD_PLANKS)
+            .addOptionalItem(Identifier.fromNamespaceAndPath("hybrid_aquatic", "driftwood_planks"))
 
-        getOrCreateTagBuilder(FSItemTags.DRIFTWOOD_SLAB)
-            .addOptional(ResourceLocation.fromNamespaceAndPath("hybrid_aquatic", "driftwood_slab"))
+        builder(FSItemTags.DRIFTWOOD_SLAB)
+            .addOptionalItem(Identifier.fromNamespaceAndPath("hybrid_aquatic", "driftwood_slab"))
     }
+
+    private fun TagAppender<ResourceKey<Item>, Item>.addOptionalItem(id: Identifier) =
+        addOptional(ResourceKey.create(Registries.ITEM, id))
 }
