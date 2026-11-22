@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "boat_with_chest",
   "ingredients": [
     "fish_n_ships:driftwood_boat",
     "minecraft:chest"

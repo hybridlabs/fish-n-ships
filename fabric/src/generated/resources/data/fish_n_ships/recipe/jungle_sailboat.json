@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "sailboat",
   "key": {
     "B": "#minecraft:banners",
     "W": "minecraft:jungle_planks"

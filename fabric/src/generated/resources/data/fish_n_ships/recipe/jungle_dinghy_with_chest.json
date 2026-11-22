@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "dinghy_with_chest",
   "ingredients": [
     "fish_n_ships:jungle_dinghy",
     "minecraft:chest"
