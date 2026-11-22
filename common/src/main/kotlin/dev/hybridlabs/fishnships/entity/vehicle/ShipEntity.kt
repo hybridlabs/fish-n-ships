@@ -8,6 +8,7 @@ import dev.hybridlabs.fishnships.world.inventory.ShipMenu
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.core.NonNullList
+import net.minecraft.core.component.DataComponents
 import net.minecraft.core.particles.BlockParticleOption
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.server.level.ServerLevel
@@ -44,6 +45,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.IceBlock
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.level.storage.loot.BuiltInLootTables
+import net.minecraft.world.level.storage.loot.LootContext
 import net.minecraft.world.level.storage.loot.LootParams
 import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
@@ -172,8 +174,17 @@ open class ShipEntity(
     //#endregion
 
     open fun getBurnDuration(fuel: ItemStack): Int {
-        return if (fuel.isEmpty) 0
-        else level().fuelValues().burnDuration(fuel) * 2
+        if (fuel.isEmpty) return 0
+
+        val serverLevel = level() as? ServerLevel ?: return 0
+        val cookingFuel = fuel.get(DataComponents.COOKING_FUEL) ?: return 0
+        val params = LootParams.Builder(serverLevel)
+            .withParameter(LootContextParams.ORIGIN, position())
+            .withParameter(LootContextParams.THIS_ENTITY, this)
+            .create(LootContextParamSets.CONTAINER_PROCESS)
+        val context = LootContext.Builder(params).create(java.util.Optional.empty())
+
+        return cookingFuel.burnTime().get(context, 0) * 2
     }
 
     fun isLit(): Boolean {

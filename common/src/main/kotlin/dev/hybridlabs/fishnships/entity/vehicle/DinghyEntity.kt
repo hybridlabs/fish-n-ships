@@ -26,7 +26,7 @@ import net.minecraft.world.entity.animal.Animal
 import net.minecraft.world.entity.animal.fish.WaterAnimal
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.vehicle.DismountHelper
-import net.minecraft.world.item.AxeItem
+import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.gamerules.GameRules
@@ -133,7 +133,7 @@ open class DinghyEntity(
     override fun interact(player: Player, hand: InteractionHand, hitPosition: Vec3): InteractionResult {
         val stack = player.getItemInHand(hand)
 
-        if (stack.item is AxeItem) {
+        if (stack.`is`(ItemTags.AXES)) {
             if (!level().isClientSide) {
                 this.alternate = !this.alternate
 
@@ -141,7 +141,7 @@ open class DinghyEntity(
                     stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND)
                 }
 
-                playSound(SoundEvents.AXE_STRIP)
+                playSound(SoundEvents.AXE_STRIP.value())
             }
 
             return if (level().isClientSide) InteractionResult.SUCCESS else InteractionResult.SUCCESS_SERVER

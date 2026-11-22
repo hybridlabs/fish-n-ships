@@ -16,8 +16,11 @@ import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
+import net.minecraft.advancements.Advancement
 import net.minecraft.core.registries.Registries
 import net.minecraft.data.recipes.RecipeProvider as VanillaRecipeProvider
+import net.minecraft.data.worldgen.BootstrapContext
+import net.minecraft.world.item.crafting.Recipe
 import java.util.concurrent.CompletableFuture
 
 class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
@@ -25,16 +28,17 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
 
     override fun createRecipeProvider(
         registries: HolderLookup.Provider,
-        output: RecipeOutput
-    ): VanillaRecipeProvider = GeneratedRecipes(registries, output)
+        recipes: BootstrapContext<Recipe<*>>,
+        advancements: BootstrapContext<Advancement>
+    ): VanillaRecipeProvider = GeneratedRecipes(recipes, advancements)
 
     override fun getName(): String = "Recipes"
 
     private class GeneratedRecipes(
-        registries: HolderLookup.Provider,
-        output: RecipeOutput
-    ) : VanillaRecipeProvider(registries, output) {
-        private val itemLookup = registries.lookupOrThrow(Registries.ITEM)
+        recipes: BootstrapContext<Recipe<*>>,
+        advancements: BootstrapContext<Advancement>
+    ) : VanillaRecipeProvider(recipes, advancements) {
+        private val itemLookup = recipes.lookup(Registries.ITEM)
 
     override fun buildRecipes() {
         val exporter = this.output
