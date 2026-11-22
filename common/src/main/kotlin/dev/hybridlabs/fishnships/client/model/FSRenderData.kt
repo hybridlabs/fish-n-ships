@@ -1,6 +1,6 @@
 package dev.hybridlabs.fishnships.client.model
 
-import software.bernie.geckolib.constant.dataticket.DataTicket
+import com.geckolib.constant.dataticket.DataTicket
 
 /**
  * Model-local render state data. GeckoLib 5 models and render layers only receive a render state,

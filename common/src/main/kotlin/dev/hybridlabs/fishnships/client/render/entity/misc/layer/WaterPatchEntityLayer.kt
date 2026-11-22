@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.rendertype.RenderType
 import net.minecraft.client.renderer.rendertype.RenderTypes
 import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.Entity
-import software.bernie.geckolib.animatable.GeoAnimatable
-import software.bernie.geckolib.renderer.layer.builtin.TextureLayerGeoLayer
+import com.geckolib.animatable.GeoAnimatable
+import com.geckolib.renderer.layer.builtin.TextureLayerGeoLayer
 
 class WaterPatchEntityLayer<T>(
     renderer: FSVehicleRenderer<T>,

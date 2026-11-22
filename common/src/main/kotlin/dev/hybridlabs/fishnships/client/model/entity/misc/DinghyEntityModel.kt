@@ -4,7 +4,7 @@ import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.client.model.FSRenderData
 import dev.hybridlabs.fishnships.entity.vehicle.DinghyEntity
 import net.minecraft.resources.Identifier
-import software.bernie.geckolib.renderer.base.GeoRenderState
+import com.geckolib.renderer.base.GeoRenderState
 
 class DinghyEntityModel<T : DinghyEntity>() : FSVehicleModel<T>(
     "entity/dinghy/dinghy",

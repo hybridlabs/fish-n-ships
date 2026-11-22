@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.state.EntityRenderState
 import net.minecraft.client.renderer.rendertype.RenderType
 import net.minecraft.client.renderer.rendertype.RenderTypes
 import net.minecraft.resources.Identifier
-import software.bernie.geckolib.renderer.layer.builtin.TextureLayerGeoLayer
+import com.geckolib.renderer.layer.builtin.TextureLayerGeoLayer
 
 class ShipTrawlingNetEntityLayer<T : ShipEntity>(
     renderer: ShipEntityRenderer<T>,

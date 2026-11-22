@@ -28,7 +28,7 @@ import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.phys.Vec3
-import software.bernie.geckolib.animatable.GeoEntity
+import com.geckolib.animatable.GeoEntity
 
 open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntity>, level: Level) :
     DinghyEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
@@ -37,12 +37,12 @@ open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntit
     private var dinghyLootTable: ResourceKey<LootTable>? = null
     private var dinghyLootTableSeed: Long = 0
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+    override fun interact(player: Player, hand: InteractionHand, hitPosition: Vec3): InteractionResult {
         if (!isAlive) {
             return InteractionResult.PASS
         }
 
-        val result = super.interact(player, hand)
+        val result = super.interact(player, hand, hitPosition)
         if (result != InteractionResult.PASS) {
             return result
         }

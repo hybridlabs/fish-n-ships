@@ -3,7 +3,7 @@ package dev.hybridlabs.fishnships.client.model.entity.misc
 import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.entity.vehicle.ShipEntity
 import net.minecraft.resources.Identifier
-import software.bernie.geckolib.renderer.base.GeoRenderState
+import com.geckolib.renderer.base.GeoRenderState
 
 class ShipEntityModel<T : ShipEntity>() : FSVehicleModel<T>(
     "entity/ship/ship",

@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.rendertype.RenderType
 import net.minecraft.client.renderer.rendertype.RenderTypes
 import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.Entity
-import software.bernie.geckolib.animatable.GeoAnimatable
-import software.bernie.geckolib.model.GeoModel
-import software.bernie.geckolib.renderer.GeoEntityRenderer
-import software.bernie.geckolib.renderer.base.BoneSnapshots
-import software.bernie.geckolib.renderer.base.RenderPassInfo
+import com.geckolib.animatable.GeoAnimatable
+import com.geckolib.model.GeoModel
+import com.geckolib.renderer.GeoEntityRenderer
+import com.geckolib.renderer.base.BoneSnapshots
+import com.geckolib.renderer.base.RenderPassInfo
 
 /**
  * Shared GeckoLib 5 renderer for the mod's vehicles. GeckoLib 4 let models pose bones in

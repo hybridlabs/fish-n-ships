@@ -3,7 +3,7 @@ package dev.hybridlabs.fishnships.data.server
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject
 import dev.hybridlabs.fishnships.tag.FSItemTags
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.minecraft.advancements.criterion.InventoryChangeTrigger
 import net.minecraft.core.HolderLookup
@@ -20,7 +20,7 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.data.recipes.RecipeProvider as VanillaRecipeProvider
 import java.util.concurrent.CompletableFuture
 
-class RecipeProvider(output: FabricDataOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
+class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
     FabricRecipeProvider(output, lookupProvider) {
 
     override fun createRecipeProvider(

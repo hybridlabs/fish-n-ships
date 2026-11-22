@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
-import software.bernie.geckolib.animatable.GeoEntity
+import com.geckolib.animatable.GeoEntity
 
 open class RaftEntity(
     type: EntityType<out RaftEntity>,
@@ -159,7 +159,7 @@ open class RaftEntity(
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         super.positionRider(passenger, callback)
 
-        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+        if (!passenger.type.builtInRegistryHolder().`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation
             passenger.yHeadRot += deltaRotation
             clampRotation(passenger)

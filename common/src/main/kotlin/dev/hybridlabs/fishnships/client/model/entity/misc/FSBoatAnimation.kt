@@ -7,10 +7,10 @@ import dev.hybridlabs.fishnships.client.model.FSRenderData
 import net.minecraft.client.renderer.entity.state.EntityRenderState
 import net.minecraft.util.Mth
 import net.minecraft.world.entity.Entity
-import software.bernie.geckolib.animation.state.BoneSnapshot
-import software.bernie.geckolib.renderer.base.BoneSnapshots
-import software.bernie.geckolib.renderer.base.GeoRenderState
-import software.bernie.geckolib.renderer.base.RenderPassInfo
+import com.geckolib.animation.state.BoneSnapshot
+import com.geckolib.renderer.base.BoneSnapshots
+import com.geckolib.renderer.base.GeoRenderState
+import com.geckolib.renderer.base.RenderPassInfo
 
 /**
  * Captures and applies the vehicle-specific bone poses that GeckoLib 4 models used to set in

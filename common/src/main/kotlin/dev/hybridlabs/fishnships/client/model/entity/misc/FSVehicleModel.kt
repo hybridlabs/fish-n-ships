@@ -3,9 +3,9 @@ package dev.hybridlabs.fishnships.client.model.entity.misc
 import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.client.model.FSRenderData
 import net.minecraft.resources.Identifier
-import software.bernie.geckolib.animatable.GeoAnimatable
-import software.bernie.geckolib.model.GeoModel
-import software.bernie.geckolib.renderer.base.GeoRenderState
+import com.geckolib.animatable.GeoAnimatable
+import com.geckolib.model.GeoModel
+import com.geckolib.renderer.base.GeoRenderState
 
 /**
  * Base model for every Fish N' Ships vehicle. The vehicle's variant is captured as its serialized

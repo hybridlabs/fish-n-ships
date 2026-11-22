@@ -35,9 +35,9 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
-import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache
-import software.bernie.geckolib.util.GeckoLibUtil
+import com.geckolib.animatable.GeoEntity
+import com.geckolib.animatable.instance.AnimatableInstanceCache
+import com.geckolib.util.GeckoLibUtil
 
 open class DinghyEntity(
     entityType: EntityType<out DinghyEntity>, level: Level,
@@ -130,7 +130,7 @@ open class DinghyEntity(
         this.spawnAtLocation(level() as ServerLevel, stack)
     }
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+    override fun interact(player: Player, hand: InteractionHand, hitPosition: Vec3): InteractionResult {
         val stack = player.getItemInHand(hand)
 
         if (stack.item is AxeItem) {
@@ -147,7 +147,7 @@ open class DinghyEntity(
             return if (level().isClientSide) InteractionResult.SUCCESS else InteractionResult.SUCCESS_SERVER
         }
 
-        return super.interact(player, hand)
+        return super.interact(player, hand, hitPosition)
     }
 
     override fun tick() {
@@ -253,7 +253,7 @@ open class DinghyEntity(
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         super.positionRider(passenger, callback)
 
-        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+        if (!passenger.type.builtInRegistryHolder().`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation
             passenger.yHeadRot += deltaRotation
             clampRotation(passenger)

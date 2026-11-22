@@ -8,9 +8,9 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 object FSNetworking {
 
     init {
-        PayloadTypeRegistry.playC2S().register(TrawlingPayload.type, TrawlingPayload.CODEC)
-        PayloadTypeRegistry.playC2S().register(ShipMovementPayload.type, ShipMovementPayload.CODEC)
-        PayloadTypeRegistry.playC2S().register(ChangeSailStatePayload.type, ChangeSailStatePayload.CODEC)
+        PayloadTypeRegistry.serverboundPlay().register(TrawlingPayload.type, TrawlingPayload.CODEC)
+        PayloadTypeRegistry.serverboundPlay().register(ShipMovementPayload.type, ShipMovementPayload.CODEC)
+        PayloadTypeRegistry.serverboundPlay().register(ChangeSailStatePayload.type, ChangeSailStatePayload.CODEC)
     }
 
     fun registerNetworking() {

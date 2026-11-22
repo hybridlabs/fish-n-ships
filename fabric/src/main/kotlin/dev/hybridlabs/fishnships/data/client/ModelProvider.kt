@@ -1,13 +1,13 @@
 package dev.hybridlabs.fishnships.data.client
 
 import dev.hybridlabs.fishnships.item.FSItems
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider
 import net.minecraft.client.data.models.BlockModelGenerators
 import net.minecraft.client.data.models.ItemModelGenerators
 import net.minecraft.client.data.models.model.ModelTemplates
 
-class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
+class ModelProvider(output: FabricPackOutput) : FabricModelProvider(output) {
     override fun generateBlockStateModels(generator: BlockModelGenerators) {
     }
 

@@ -49,12 +49,12 @@ import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams
 import net.minecraft.world.phys.Vec3
-import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.animatable.manager.AnimatableManager
-import software.bernie.geckolib.animation.AnimationController
-import software.bernie.geckolib.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.animation.state.AnimationTest
-import software.bernie.geckolib.animation.RawAnimation
+import com.geckolib.animatable.GeoEntity
+import com.geckolib.animatable.manager.AnimatableManager
+import com.geckolib.animation.AnimationController
+import com.geckolib.animation.AnimationController.AnimationStateHandler
+import com.geckolib.animation.state.AnimationTest
+import com.geckolib.animation.RawAnimation
 import java.util.function.IntFunction
 import kotlin.math.min
 
@@ -84,12 +84,12 @@ open class ShipEntity(
     private val trawlingSlots = 3..14
     private var moving = false
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+    override fun interact(player: Player, hand: InteractionHand, hitPosition: Vec3): InteractionResult {
         if (!isAlive) {
             return InteractionResult.PASS
         }
 
-        val result = super.interact(player, hand)
+        val result = super.interact(player, hand, hitPosition)
         if (result != InteractionResult.PASS) {
             return result
         }
@@ -199,9 +199,9 @@ open class ShipEntity(
 
         litDuration = litTime
 
-        val itemRemainder = fuelItemStack.item.craftingRemainder
+        val itemRemainder = fuelItemStack.item.craftingRemainder?.create()
         fuelItemStack.shrink(1)
-        if (fuelItemStack.isEmpty && !itemRemainder.isEmpty) itemStacks[0] = itemRemainder.copy()
+        if (fuelItemStack.isEmpty && itemRemainder != null && !itemRemainder.isEmpty) itemStacks[0] = itemRemainder
 
         setLit(true)
     }
@@ -600,7 +600,7 @@ open class ShipEntity(
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         super.positionRider(passenger, callback)
 
-        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+        if (!passenger.type.builtInRegistryHolder().`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation
             passenger.yHeadRot += deltaRotation
             clampRotation(passenger)

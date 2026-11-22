@@ -29,12 +29,12 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.phys.Vec3
-import software.bernie.geckolib.animatable.GeoEntity
-import software.bernie.geckolib.animatable.manager.AnimatableManager
-import software.bernie.geckolib.animation.AnimationController
-import software.bernie.geckolib.animation.AnimationController.AnimationStateHandler
-import software.bernie.geckolib.animation.state.AnimationTest
-import software.bernie.geckolib.animation.RawAnimation
+import com.geckolib.animatable.GeoEntity
+import com.geckolib.animatable.manager.AnimatableManager
+import com.geckolib.animation.AnimationController
+import com.geckolib.animation.AnimationController.AnimationStateHandler
+import com.geckolib.animation.state.AnimationTest
+import com.geckolib.animation.RawAnimation
 
 open class SailboatEntity(
     entityType: EntityType<out SailboatEntity>, level: Level,
@@ -190,7 +190,7 @@ open class SailboatEntity(
     override fun positionRider(passenger: Entity, callback: MoveFunction) {
         super.positionRider(passenger, callback)
 
-        if (!passenger.type.`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
+        if (!passenger.type.builtInRegistryHolder().`is`(EntityTypeTags.CAN_TURN_IN_BOATS)) {
             passenger.yRot += deltaRotation
             passenger.yHeadRot += deltaRotation
             clampRotation(passenger)

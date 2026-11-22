@@ -18,6 +18,7 @@ import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.HasCustomInventoryScreen
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
+import net.minecraft.world.phys.Vec3
 import net.minecraft.world.entity.vehicle.ContainerEntity
 import net.minecraft.world.inventory.AbstractContainerMenu
 import net.minecraft.world.inventory.ChestMenu
@@ -27,7 +28,7 @@ import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.gameevent.GameEvent
 import net.minecraft.world.level.storage.loot.LootTable
-import software.bernie.geckolib.animatable.GeoEntity
+import com.geckolib.animatable.GeoEntity
 
 open class CustomChestBoatEntity(
     entityType: EntityType<out CustomChestBoatEntity>, level: Level,
@@ -40,12 +41,12 @@ open class CustomChestBoatEntity(
     private var chestBoatLootTable: ResourceKey<LootTable>? = null
     private var chestBoatLootTableSeed: Long = 0
 
-    override fun interact(player: Player, hand: InteractionHand): InteractionResult {
+    override fun interact(player: Player, hand: InteractionHand, hitPosition: Vec3): InteractionResult {
         if (!isAlive) {
             return InteractionResult.PASS
         }
 
-        val result = super.interact(player, hand)
+        val result = super.interact(player, hand, hitPosition)
         if (result != InteractionResult.PASS) {
             return result
         }
