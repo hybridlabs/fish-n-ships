@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "dinghy",
   "key": {
     "C": "fish_n_ships:warped_canoe",
     "S": "minecraft:wooden_shovel",

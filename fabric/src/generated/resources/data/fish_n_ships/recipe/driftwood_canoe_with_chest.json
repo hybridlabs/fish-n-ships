@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
+  "group": "canoe_with_chest",
   "ingredients": [
     "fish_n_ships:driftwood_canoe",
     "minecraft:chest"
