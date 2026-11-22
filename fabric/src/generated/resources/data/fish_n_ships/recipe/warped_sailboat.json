@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
+  "group": "sailboat",
   "key": {
     "B": "#minecraft:banners",
     "W": "minecraft:warped_planks"

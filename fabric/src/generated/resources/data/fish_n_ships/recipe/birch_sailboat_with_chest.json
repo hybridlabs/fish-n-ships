@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
+  "group": "sailboat_with_chest",
   "ingredients": [
     "fish_n_ships:birch_sailboat",
     "minecraft:chest"
