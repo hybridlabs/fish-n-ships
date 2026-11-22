@@ -180,8 +180,7 @@ open class ShipEntity(
         val cookingFuel = fuel.get(DataComponents.COOKING_FUEL) ?: return 0
         val params = LootParams.Builder(serverLevel)
             .withParameter(LootContextParams.ORIGIN, position())
-            .withParameter(LootContextParams.THIS_ENTITY, this)
-            .create(LootContextParamSets.CONTAINER_PROCESS)
+            .create(LootContextParamSets.CHEST)
         val context = LootContext.Builder(params).create(java.util.Optional.empty())
 
         return cookingFuel.burnTime().get(context, 0) * 2
