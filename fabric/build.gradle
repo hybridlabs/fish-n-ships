@@ -54,16 +54,6 @@ dependencies {
 configurations {
     datagenOutput
 }
-fabricApi {
-    configureDataGeneration {
-        setModId("$mod_id")
-        outputDirectory = file("src/generated/resources")
-    }
-
-    dependencies {
-        datagenOutput files(runDatagen)
-    }
-}
 
 loom {
 
@@ -92,5 +82,18 @@ loom {
             ideConfigGenerated(true)
             runDir("run")
         }
+    }
+}
+
+// Must be configured after loom's run configs so the generated "datagen" run inherits
+// the server run's IDE generation flag.
+fabricApi {
+    configureDataGeneration {
+        setModId("$mod_id")
+        outputDirectory = file("src/generated/resources")
+    }
+
+    dependencies {
+        datagenOutput files(runDatagen)
     }
 }
