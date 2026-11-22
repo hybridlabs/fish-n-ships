@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "dinghy_with_chest",
+  "ingredients": [
+    {
+      "item": "fish_n_ships:spruce_dinghy"
+    },
+    {
+      "item": "minecraft:chest"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "fish_n_ships:spruce_dinghy_with_chest"
+  }
+}
