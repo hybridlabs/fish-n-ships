@@ -153,21 +153,8 @@ open class DinghyEntity(
     override fun tick() {
         super.tick()
 
-        if (this.isLocalInstanceAuthoritative) {
-            if (this.firstPassenger !is Player) {
-                this.setPaddleState(left = false, right = false)
-            }
-
-            floatWaterVehicle()
-            if (this.level().isClientSide) {
-                this.controlDinghy()
-                this.level()
-                    .sendPacketToServer(ServerboundPaddleBoatPacket(this.getPaddleState(0), this.getPaddleState(1)))
-            }
-
-            this.move(MoverType.SELF, this.deltaMovement)
-        } else {
-            this.deltaMovement = Vec3.ZERO
+        if (this.isLocalInstanceAuthoritative && this.firstPassenger !is Player) {
+            this.setPaddleState(left = false, right = false)
         }
 
         for (i in 0..1) {
@@ -197,25 +184,13 @@ open class DinghyEntity(
                 this.paddlePositions[i] = 0.0f
             }
         }
+    }
 
-        val list = this.level()
-            .getEntities(this, this.boundingBox.inflate(0.2, -0.01, 0.2), EntitySelector.pushableBy(this))
-        if (!list.isEmpty()) {
-            val flag = !this.level().isClientSide && this.getControllingPassenger() !is Player
-
-            for (j in list.indices) {
-                val entity = list[j] as Entity
-                if (!entity.hasPassenger(this)) {
-                    if (flag && this.passengers.size < this.maxPassengers && !entity.isPassenger && this.hasEnoughSpaceFor(
-                            entity
-                        ) && entity is LivingEntity && (entity !is WaterAnimal) && (entity !is Player)
-                    ) {
-                        entity.startRiding(this)
-                    } else {
-                        this.push(entity)
-                    }
-                }
-            }
+    override fun controlBoat() {
+        if (this.level().isClientSide) {
+            this.controlDinghy()
+            this.level()
+                .sendPacketToServer(ServerboundPaddleBoatPacket(this.getPaddleState(0), this.getPaddleState(1)))
         }
     }
 
@@ -226,9 +201,9 @@ open class DinghyEntity(
 
     fun getRowingTime(side: Int, limbSwing: Float): Float {
         return if (this.getPaddleState(side)) Mth.clampedLerp(
+            limbSwing,
             this.paddlePositions[side] - (Math.PI.toFloat() / 8f),
-            this.paddlePositions[side],
-            limbSwing
+            this.paddlePositions[side]
         ) else 0.0f
     }
 

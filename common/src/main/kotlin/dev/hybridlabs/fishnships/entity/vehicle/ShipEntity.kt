@@ -347,47 +347,31 @@ open class ShipEntity(
 
         burnTick()
 
-        if (!this.level().isClientSide && this.outOfControlTicks >= 60.0f) {
-            this.ejectPassengers()
-        }
-
-        if (this.getHurtTime() > 0) {
-            this.setHurtTime(this.getHurtTime() - 1)
-        }
-
-        if (this.getDamage() > 0.0f) {
-            this.setDamage(this.getDamage() - 1.0f)
-        }
-
-        if (this.isLocalInstanceAuthoritative) {
-            if (this.firstPassenger !is Player) {
-                setPropellerState(left = false, right = false)
-            }
-
-            if (this.level().isClientSide) {
-                if (isLit()) controlShip()
-
-                this.level().sendPacketToServer(
-                    ServerboundPaddleBoatPacket(
-                        getPropellerState(0),
-                        getPropellerState(1)
-                    )
-                )
-            }
-
-        } else {
-            this.deltaMovement = Vec3.ZERO
-        }
-        this.move(MoverType.SELF, this.deltaMovement)
-        if (level().isClientSide){
+        if (level().isClientSide) {
             Services.PLATFORM.sendMovementToServer(didMove())
         }
 
         tickTrawling()
 
-
         if (!level().isClientSide && hasIceBreaker()) {
             breakIce()
+        }
+    }
+
+    override fun controlBoat() {
+        if (this.firstPassenger !is Player) {
+            setPropellerState(left = false, right = false)
+        }
+
+        if (this.level().isClientSide) {
+            if (isLit()) controlShip()
+
+            this.level().sendPacketToServer(
+                ServerboundPaddleBoatPacket(
+                    getPropellerState(0),
+                    getPropellerState(1)
+                )
+            )
         }
     }
 
