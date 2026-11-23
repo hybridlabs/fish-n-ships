@@ -46,7 +46,6 @@ class RaftItem(
 
             if (hitresult.type == HitResult.Type.BLOCK) {
                 val raft = getRaft(level, hitresult)
-                raft.setVariant(variant)
                 raft.yRot = player.yRot
 
                 if (!level.noCollision(raft, raft.boundingBox)) {
@@ -70,7 +69,7 @@ class RaftItem(
     }
 
     private fun getRaft(level: Level, hitResult: HitResult): RaftEntity {
-        val raft = FSEntityTypes.RAFT.get().create(level, EntitySpawnReason.MOB_SUMMONED)
+        val raft = FSEntityTypes.RAFTS.getValue(variant).get().create(level, EntitySpawnReason.MOB_SUMMONED)
             ?: throw IllegalStateException("Failed to create raft")
 
         raft.setPos(
