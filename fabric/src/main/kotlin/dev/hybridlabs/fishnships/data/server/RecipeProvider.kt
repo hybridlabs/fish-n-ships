@@ -1,16 +1,25 @@
 package dev.hybridlabs.fishnships.data.server
 
+import com.google.common.hash.HashCode
+import com.google.common.hash.Hashing
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.fishnships.platform.registration.RegistryObject
 import dev.hybridlabs.fishnships.tag.FSItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions
 import net.minecraft.advancements.triggers.InventoryChangeTrigger
 import net.minecraft.core.HolderLookup
+import net.minecraft.data.CachedOutput
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
+import net.minecraft.resources.Identifier
 import net.minecraft.tags.ItemTags
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
@@ -21,6 +30,8 @@ import net.minecraft.core.registries.Registries
 import net.minecraft.data.recipes.RecipeProvider as VanillaRecipeProvider
 import net.minecraft.data.worldgen.BootstrapContext
 import net.minecraft.world.item.crafting.Recipe
+import java.nio.charset.StandardCharsets
+import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
 
 class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture<HolderLookup.Provider>) :
@@ -34,7 +45,57 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
 
     override fun getName(): String = "Recipes"
 
-    private class GeneratedRecipes(
+    /**
+     * Fabric's recipe output API adds the Fabric condition to the recipe and its advancement. The
+     * generated resources are shared with NeoForge, so the wrapper below mirrors that condition into
+     * NeoForge's key; there is no single API that writes both loaders' keys in one data pack.
+     */
+    override fun run(output: CachedOutput): CompletableFuture<*> = super.run(NeoForgeConditionOutput(output))
+
+    private class NeoForgeConditionOutput(private val output: CachedOutput) : CachedOutput {
+        @Suppress("DEPRECATION")
+        override fun writeIfNeeded(path: Path, data: ByteArray, hash: HashCode) {
+            val item = CONDITIONED_DRIFTWOOD_RECIPES[path.fileName.toString()]
+
+            if (item == null) {
+                output.writeIfNeeded(path, data, hash)
+                return
+            }
+
+            val original = JsonParser.parseString(data.toString(StandardCharsets.UTF_8)).asJsonObject
+            val conditioned = JsonObject()
+            original.remove("fabric:load_conditions")?.let { conditioned.add("fabric:load_conditions", it) }
+            conditioned.add("neoforge:conditions", JsonArray().apply {
+                add(JsonObject().apply {
+                    addProperty("type", "neoforge:registered")
+                    addProperty("value", item.toString())
+                })
+            })
+            original.entrySet().forEach { (key, value) -> conditioned.add(key, value) }
+
+            val bytes = GSON.toJson(conditioned).toByteArray(StandardCharsets.UTF_8)
+            output.writeIfNeeded(path, bytes, Hashing.sha1().hashBytes(bytes))
+        }
+
+        private companion object {
+            private val GSON = GsonBuilder().setPrettyPrinting().create()
+        }
+    }
+
+    private companion object {
+        private val DRIFTWOOD_PLANKS = Identifier.fromNamespaceAndPath("hybrid_aquatic", "driftwood_planks")
+        private val DRIFTWOOD_LOG = Identifier.fromNamespaceAndPath("hybrid_aquatic", "driftwood_log")
+
+        private val CONDITIONED_DRIFTWOOD_RECIPES = mapOf(
+            "driftwood_boat.json" to DRIFTWOOD_PLANKS,
+            "driftwood_canoe.json" to DRIFTWOOD_PLANKS,
+            "driftwood_dinghy.json" to DRIFTWOOD_PLANKS,
+            "driftwood_raft.json" to DRIFTWOOD_LOG,
+            "driftwood_sailboat.json" to DRIFTWOOD_PLANKS,
+        )
+    }
+
+    private inner class GeneratedRecipes(
         recipes: BootstrapContext<Recipe<*>>,
         advancements: BootstrapContext<Advancement>
     ) : VanillaRecipeProvider(recipes, advancements) {
@@ -42,6 +103,14 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
 
     override fun buildRecipes() {
         val exporter = this.output
+        val driftwoodPlanksExporter = this@RecipeProvider.withConditions(
+            exporter,
+            ResourceConditions.registryContains(Registries.ITEM, DRIFTWOOD_PLANKS)
+        )
+        val driftwoodLogExporter = this@RecipeProvider.withConditions(
+            exporter,
+            ResourceConditions.registryContains(Registries.ITEM, DRIFTWOOD_LOG)
+        )
 
         offerCanoeRecipes(exporter, canoeTypeMap)
         offerCanoeChestUpgradeRecipes(exporter, canoeTypeMap, chestCanoeTypeMap)
@@ -61,7 +130,7 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
 
 
         offerDriftwoodBoatRecipe(
-            exporter,
+            driftwoodPlanksExporter,
             FSItems.DRIFTWOOD_BOAT
         )
 
@@ -72,7 +141,7 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
         )
 
         offerDriftwoodCanoeRecipe(
-            exporter,
+            driftwoodPlanksExporter,
             FSItems.DRIFTWOOD_CANOE
         )
 
@@ -90,7 +159,7 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
         )
 
         offerDriftwoodRaftRecipe(
-            exporter,
+            driftwoodLogExporter,
             FSItems.DRIFTWOOD_RAFT
         )
 
@@ -101,7 +170,7 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
         )
 
         offerDriftwoodSailboatRecipe(
-            exporter,
+            driftwoodPlanksExporter,
             FSItems.DRIFTWOOD_SAILBOAT
         )
 
@@ -112,7 +181,7 @@ class RecipeProvider(output: FabricPackOutput, lookupProvider: CompletableFuture
         )
 
         offerDriftwoodDinghyRecipe(
-            exporter,
+            driftwoodPlanksExporter,
             FSItems.DRIFTWOOD_DINGHY
         )
 
