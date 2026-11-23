@@ -3,6 +3,7 @@
     "package": "dev.hybridlabs.fishnships.mixin",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
+      "EntityTypeMixin",
       "ServerGamePacketListenerImplMixin"
     ],
   "client": [
