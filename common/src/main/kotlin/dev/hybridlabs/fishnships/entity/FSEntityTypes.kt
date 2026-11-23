@@ -106,7 +106,6 @@ object FSEntityTypes {
                 .of(entityFactory, MobCategory.MISC)
                 .sized(dimensions.width, dimensions.height)
                 .clientTrackingRange(10)
-                .updateInterval(10)
                 .build(ResourceKey.create(Registries.ENTITY_TYPE, CommonClass.locate(id)))
         }
     }

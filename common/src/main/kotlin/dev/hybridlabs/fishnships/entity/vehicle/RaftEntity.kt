@@ -102,15 +102,12 @@ open class RaftEntity(
     override fun tick() {
         super.tick()
 
-        this.move(MoverType.SELF, this.deltaMovement)
-
         val velocity = this.deltaMovement
 
         if (velocity.horizontalDistanceSqr() > 1.0E-4) {
             val targetYaw = (Mth.atan2(velocity.z, velocity.x) * (180.0 / Math.PI)).toFloat() - 90.0f
 
             this.yRot = Mth.approachDegrees(this.yRot, targetYaw, 5.0f)
-            this.yRot = this.yRot
             this.setYBodyRot(yRot)
             this.yHeadRot = this.yRot
         }

@@ -58,30 +58,32 @@ object FSBoatAnimation {
         val f = rowingTime + Math.PI.toFloat()
 
         val xAnim = Mth.clampedLerp(
+            ((Mth.sin(-f.toDouble()) + 1.0) / 2.0).toFloat(),
             -Math.PI.toFloat() / 3f,
-            -0.2617994f,
-            ((Mth.sin(-f.toDouble()) + 1.0) / 2.0).toFloat()
+            -0.2617994f
         )
 
         val yAnim = Mth.clampedLerp(
+            (1.0 - (Mth.sin((-f + 1f).toDouble()) + 1.0) / 2.0).toFloat(),
             -Math.PI.toFloat() / 4f,
-            Math.PI.toFloat() / 4f,
-            (1.0 - (Mth.sin((-f + 1f).toDouble()) + 1.0) / 2.0).toFloat()
+            Math.PI.toFloat() / 4f
         )
 
-        val rotX = Math.toRadians(-124.0).toFloat() + xAnim
-
+        // GeckoLib 4's setCustomAnimations replaced the bone's rest rotation, while GeckoLib 5 adds
+        // the snapshot rotation on top of it. The geo file's paddle rests are [124, 50, 165] (left)
+        // and [124, -50, -165] (right) and the loader negates X and Y, so the snapshot is the old
+        // absolute pose minus that rest rotation.
         if (side == 0) {
             bone.setRotation(
-                rotX,
-                Math.toRadians(-90.0).toFloat() + yAnim,
-                Math.toRadians(-165.0).toFloat()
+                xAnim,
+                Math.toRadians(-40.0).toFloat() + yAnim,
+                Math.toRadians(-330.0).toFloat()
             )
         } else {
             bone.setRotation(
-                rotX,
-                Math.toRadians(90.0).toFloat() - yAnim,
-                Math.toRadians(165.0).toFloat()
+                xAnim,
+                Math.toRadians(40.0).toFloat() - yAnim,
+                Math.toRadians(330.0).toFloat()
             )
         }
     }

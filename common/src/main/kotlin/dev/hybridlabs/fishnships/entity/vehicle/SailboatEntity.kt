@@ -52,6 +52,16 @@ open class SailboatEntity(
             AnimationController(
                 "Sailing", 4,
                 AnimationStateHandler { state: AnimationTest<SailboatEntity> ->
+                    // GeckoLib 5 applies a "reset" transition when an animation first starts from
+                    // rest, lerping a bone back to the model's base pose before the animation's own
+                    // value takes over. For the sail that reads as the banner extending down to full
+                    // scale and then vanishing back to its furled sliver on spawn. Drop the
+                    // transition for that first animation so the sail appears at its correct pose
+                    // immediately, while keeping the 4-tick transition for sail up/down toggles.
+                    state.controller.setTransitionTicks(
+                        if (state.controller.getCurrentRawAnimation() == null) 0 else 4
+                    )
+
                     if (this.isSailDown())
                         return@AnimationStateHandler state.setAndContinue(SAIL_DOWN_ANIMATION)
                     else return@AnimationStateHandler state.setAndContinue(SAIL_UP_ANIMATION)
@@ -138,15 +148,12 @@ open class SailboatEntity(
         this.spawnAtLocation(level() as ServerLevel, stack)
     }
 
-    override fun tick() {
-
-        super.tick()
-
-        if (isLocalInstanceAuthoritative && level().isClientSide) {
-            controlSailboat()
+    override fun controlBoat() {
+        if (this.level().isClientSide) {
+            this.controlSailboat()
         }
 
-        moveWithSailDown()
+        this.moveWithSailDown()
     }
 
     fun moveWithSailDown() {
