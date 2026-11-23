@@ -3,6 +3,7 @@ package dev.hybridlabs.fishnships.entity
 import dev.hybridlabs.fishnships.CommonClass
 import dev.hybridlabs.fishnships.Constants
 import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.EntityType
 
 /**
@@ -53,5 +54,23 @@ object LegacyVehicleIds {
             ?: BuiltInRegistries.ENTITY_TYPE
                 .getOptional(CommonClass.locate("${family.defaultVariant}_${family.suffix}"))
                 .orElse(null)
+    }
+
+    /**
+     * True when [id] is one of the shared vehicle entity ids this mod used before the split and
+     * its replacement is registered. Used to keep Fabric's "missing content" check from reporting
+     * migrated vehicles as lost content.
+     */
+    @JvmStatic
+    fun isLegacyVehicleEntity(id: Identifier): Boolean {
+        if (id.namespace != Constants.MOD_ID) {
+            return false
+        }
+
+        val family = FAMILIES[id.path] ?: return false
+
+        return BuiltInRegistries.ENTITY_TYPE
+            .getOptional(CommonClass.locate("${family.defaultVariant}_${family.suffix}"))
+            .isPresent()
     }
 }
