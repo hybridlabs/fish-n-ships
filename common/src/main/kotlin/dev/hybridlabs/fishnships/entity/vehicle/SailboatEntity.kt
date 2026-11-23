@@ -7,13 +7,10 @@ import dev.hybridlabs.fishnships.platform.Services
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.level.storage.ValueInput
-import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.tags.EntityTypeTags
-import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.damagesource.DamageSource
@@ -38,6 +35,7 @@ import com.geckolib.animation.RawAnimation
 
 open class SailboatEntity(
     entityType: EntityType<out SailboatEntity>, level: Level,
+    private val variant: Type,
 ) :
     BaseBoatEntity(entityType, level),
     GeoEntity {
@@ -72,18 +70,7 @@ open class SailboatEntity(
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {
         super.defineSynchedData(builder)
-        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
         builder.define(IS_SAIL_DOWN, false)
-    }
-
-    override fun addAdditionalSaveData(tag: ValueOutput) {
-        super.addAdditionalSaveData(tag)
-        tag.putString("Type", this.getVariant().getSerializedName())
-    }
-
-    override fun readAdditionalSaveData(tag: ValueInput) {
-        super.readAdditionalSaveData(tag)
-        this.setVariant(Type.byName(tag.getStringOr("Type", "oak")))
     }
 
     fun setSailDown(value: Boolean) {
@@ -133,6 +120,7 @@ open class SailboatEntity(
             7 -> item = FSItems.MANGROVE_SAILBOAT.get()
             8 -> item = FSItems.CRIMSON_SAILBOAT.get()
             9 -> item = FSItems.WARPED_SAILBOAT.get()
+            10 -> item = FSItems.DRIFTWOOD_SAILBOAT.get()
             else -> item = FSItems.OAK_SAILBOAT.get()
         }
 
@@ -310,8 +298,6 @@ open class SailboatEntity(
     }
 
     companion object {
-        private val DATA_ID_TYPE: EntityDataAccessor<Int> =
-            SynchedEntityData.defineId(SailboatEntity::class.java, EntityDataSerializers.INT)
         private val IS_SAIL_DOWN: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(SailboatEntity::class.java, EntityDataSerializers.BOOLEAN)
 
@@ -319,12 +305,8 @@ open class SailboatEntity(
         val SAIL_DOWN_ANIMATION: RawAnimation = RawAnimation.begin().thenPlay("misc.sail_down")
     }
 
-    fun setVariant(variant: Type) {
-        this.entityData.set(DATA_ID_TYPE, variant.ordinal)
-    }
-
     fun getVariant(): Type {
-        return Type.byId(this.entityData.get(DATA_ID_TYPE) as Int)
+        return variant
     }
 
     enum class Type(
@@ -345,13 +327,5 @@ open class SailboatEntity(
         override fun getSerializedName(): String = key
 
         override fun toString(): String = key
-
-        companion object {
-            val CODEC = StringRepresentable.fromEnum(::values)
-            private val BY_ID = ByIdMap.continuous({ it.ordinal }, entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)
-
-            fun byId(id: Int) = BY_ID.apply(id)
-            fun byName(key: String) = CODEC.byName(key, OAK)
-        }
     }
 }

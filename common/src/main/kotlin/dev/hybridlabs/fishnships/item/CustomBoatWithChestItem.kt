@@ -46,7 +46,6 @@ class CustomBoatWithChestItem(
 
             if (hitresult.type == HitResult.Type.BLOCK) {
                 val boat = getCustomBoat(level, hitresult)
-                boat.setVariant(variant)
                 boat.yRot = player.yRot
 
                 if (!level.noCollision(boat, boat.boundingBox)) {
@@ -70,7 +69,7 @@ class CustomBoatWithChestItem(
     }
 
     private fun getCustomBoat(level: Level, hitResult: HitResult): CustomBoatEntity {
-        val boat = FSEntityTypes.CUSTOM_CHEST_BOAT.get().create(level, EntitySpawnReason.MOB_SUMMONED)
+        val boat = FSEntityTypes.CUSTOM_CHEST_BOATS.getValue(variant).get().create(level, EntitySpawnReason.MOB_SUMMONED)
             ?: throw IllegalStateException("Failed to create canoe")
 
         boat.setPos(

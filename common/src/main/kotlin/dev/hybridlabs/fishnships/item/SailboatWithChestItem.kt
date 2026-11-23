@@ -47,7 +47,6 @@ class SailboatWithChestItem(
 
             if (hitresult.type == HitResult.Type.BLOCK) {
                 val sailboat = getSailboat(level, hitresult)
-                sailboat.setVariant(variant)
                 sailboat.yRot = player.yRot
 
                 if (!level.noCollision(sailboat, sailboat.boundingBox)) {
@@ -71,7 +70,7 @@ class SailboatWithChestItem(
     }
 
     private fun getSailboat(level: Level, hitResult: HitResult): SailboatWithChestEntity {
-        val sailboat = FSEntityTypes.SAILBOAT_WITH_CHEST.get().create(level, EntitySpawnReason.MOB_SUMMONED)
+        val sailboat = FSEntityTypes.SAILBOATS_WITH_CHEST.getValue(variant).get().create(level, EntitySpawnReason.MOB_SUMMONED)
             ?: throw IllegalStateException("Failed to create sailboat")
 
         sailboat.setPos(

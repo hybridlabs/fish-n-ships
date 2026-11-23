@@ -46,7 +46,6 @@ class DinghyItem(
 
             if (hitresult.type == HitResult.Type.BLOCK) {
                 val dinghy = getDinghy(level, hitresult)
-                dinghy.setVariant(variant)
                 dinghy.yRot = player.yRot
 
                 if (!level.noCollision(dinghy, dinghy.boundingBox)) {
@@ -70,7 +69,7 @@ class DinghyItem(
     }
 
     private fun getDinghy(level: Level, hitResult: HitResult): DinghyEntity {
-        val dinghy = FSEntityTypes.DINGHY.get().create(level, EntitySpawnReason.MOB_SUMMONED)
+        val dinghy = FSEntityTypes.DINGHIES.getValue(variant).get().create(level, EntitySpawnReason.MOB_SUMMONED)
             ?: throw IllegalStateException("Failed to create dinghy")
 
         dinghy.setPos(

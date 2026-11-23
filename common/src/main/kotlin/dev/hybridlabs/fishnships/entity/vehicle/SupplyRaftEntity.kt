@@ -6,7 +6,6 @@ import net.minecraft.core.NonNullList
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
-import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
@@ -33,8 +32,9 @@ import com.geckolib.animatable.GeoEntity
 open class SupplyRaftEntity(
     type: EntityType<out SupplyRaftEntity>,
     world: Level,
+    variant: RaftEntity.Type,
 ) :
-    RaftEntity(type, world), HasCustomInventoryScreen, ContainerEntity,
+    RaftEntity(type, world, variant), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(66, ItemStack.EMPTY)
     private var raftLootTable: ResourceKey<LootTable>? = null
@@ -56,10 +56,6 @@ open class SupplyRaftEntity(
         }
 
         return containerResult
-    }
-
-    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        super.defineSynchedData(builder)
     }
 
     override fun addAdditionalSaveData(tag: ValueOutput) {
@@ -95,6 +91,7 @@ open class SupplyRaftEntity(
             7 -> item = FSItems.MANGROVE_SUPPLY_RAFT.get()
             8 -> item = FSItems.CRIMSON_SUPPLY_RAFT.get()
             9 -> item = FSItems.WARPED_SUPPLY_RAFT.get()
+            10 -> item = FSItems.DRIFTWOOD_SUPPLY_RAFT.get()
             else -> item = FSItems.OAK_SUPPLY_RAFT.get()
         }
 
