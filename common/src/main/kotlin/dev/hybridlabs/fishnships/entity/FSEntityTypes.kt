@@ -29,71 +29,129 @@ object FSEntityTypes {
             EntityDimensions.fixed(4.75f, 1.0f),
     )
 
-    val CUSTOM_BOAT = registerMisc(
-        "boat",
-        ::CustomBoatEntity,
-            EntityDimensions.fixed(1.375f, 0.5625f),
-    )
+    // Vanilla gave every wood type its own boat entity type in 1.21.2 (24w39a). Our vehicles follow
+    // that convention: the entity id matches the item id, and the wood type is encoded by the id
+    // rather than by a shared "boat"/"sailboat"/... entity type.
+    val CUSTOM_BOATS: Map<CustomBoatEntity.Type, RegistryObject<EntityType<CustomBoatEntity>>> =
+        CustomBoatEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_boat",
+                { entityType, level ->
+                    CustomBoatEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(1.375f, 0.5625f),
+            )
+        }
 
-    val CUSTOM_CHEST_BOAT = registerMisc(
-        "boat_with_chest",
-        ::CustomChestBoatEntity,
-            EntityDimensions.fixed(1.375f, 0.5625f),
-    )
+    val CUSTOM_CHEST_BOATS: Map<CustomBoatEntity.Type, RegistryObject<EntityType<CustomChestBoatEntity>>> =
+        CustomBoatEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_boat_with_chest",
+                { entityType, level ->
+                    CustomChestBoatEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(1.375f, 0.5625f),
+            )
+        }
 
-    val SAILBOAT = registerMisc(
-        "sailboat",
-        ::SailboatEntity,
-            EntityDimensions.fixed(1.375f, 0.5625f),
-    )
+    val SAILBOATS: Map<SailboatEntity.Type, RegistryObject<EntityType<SailboatEntity>>> =
+        SailboatEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_sailboat",
+                { entityType, level ->
+                    SailboatEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(1.375f, 0.5625f),
+            )
+        }
 
-    val SAILBOAT_WITH_CHEST = registerMisc(
-        "sailboat_with_chest",
-        ::SailboatWithChestEntity,
-            EntityDimensions.fixed(1.375f, 0.5625f),
-    )
+    val SAILBOATS_WITH_CHEST: Map<SailboatEntity.Type, RegistryObject<EntityType<SailboatWithChestEntity>>> =
+        SailboatEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_sailboat_with_chest",
+                { entityType, level ->
+                    SailboatWithChestEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(1.375f, 0.5625f),
+            )
+        }
 
-    val CANOE = registerMisc(
-        "canoe",
-        ::CanoeEntity,
-            EntityDimensions.fixed(2.5f, 0.5625f),
-    )
+    val CANOES: Map<CanoeEntity.Type, RegistryObject<EntityType<CanoeEntity>>> =
+        CanoeEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_canoe",
+                { entityType, level ->
+                    CanoeEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(2.5f, 0.5625f),
+            )
+        }
 
-    val CANOE_WITH_CHEST = registerMisc(
-        "canoe_with_chest",
-        ::CanoeWithChestEntity,
-            EntityDimensions.fixed(2.5f, 0.5625f),
-    )
+    val CANOES_WITH_CHEST: Map<CanoeEntity.Type, RegistryObject<EntityType<CanoeWithChestEntity>>> =
+        CanoeEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_canoe_with_chest",
+                { entityType, level ->
+                    CanoeWithChestEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(2.5f, 0.5625f),
+            )
+        }
 
-    val CANOE_WITH_DOUBLE_CHEST = registerMisc(
-        "canoe_with_double_chest",
-        ::CanoeWithDoubleChestEntity,
-            EntityDimensions.fixed(2.5f, 0.5625f),
-    )
+    val CANOES_WITH_DOUBLE_CHEST: Map<CanoeEntity.Type, RegistryObject<EntityType<CanoeWithDoubleChestEntity>>> =
+        CanoeEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_canoe_with_double_chest",
+                { entityType, level ->
+                    CanoeWithDoubleChestEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(2.5f, 0.5625f),
+            )
+        }
 
-    val DINGHY = registerMisc(
-        "dinghy",
-        ::DinghyEntity,
-            EntityDimensions.fixed(2.8f, 0.5625f),
-    )
+    val DINGHIES: Map<DinghyEntity.Type, RegistryObject<EntityType<DinghyEntity>>> =
+        DinghyEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_dinghy",
+                { entityType, level ->
+                    DinghyEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(2.8f, 0.5625f),
+            )
+        }
 
-    val DINGHY_WITH_CHEST = registerMisc(
-        "dinghy_with_chest",
-        ::DinghyWithChestEntity,
-            EntityDimensions.fixed(2.8f, 0.5625f),
-    )
+    val DINGHIES_WITH_CHEST: Map<DinghyEntity.Type, RegistryObject<EntityType<DinghyWithChestEntity>>> =
+        DinghyEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_dinghy_with_chest",
+                { entityType, level ->
+                    DinghyWithChestEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(2.8f, 0.5625f),
+            )
+        }
 
-    val RAFT = registerMisc(
-        "raft",
-        ::RaftEntity,
-            EntityDimensions.fixed(2.75f, 0.5625f),
-    )
+    val RAFTS: Map<RaftEntity.Type, RegistryObject<EntityType<RaftEntity>>> =
+        RaftEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_raft",
+                { entityType, level ->
+                    RaftEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(2.75f, 0.5625f),
+            )
+        }
 
-    val SUPPLY_RAFT = registerMisc(
-        "supply_raft",
-        ::SupplyRaftEntity,
-            EntityDimensions.fixed(2.75f, 0.5625f),
-    )
+    val SUPPLY_RAFTS: Map<RaftEntity.Type, RegistryObject<EntityType<SupplyRaftEntity>>> =
+        RaftEntity.Type.entries.associateWith { variant ->
+            registerMisc(
+                "${variant.serializedName}_supply_raft",
+                { entityType, level ->
+                    SupplyRaftEntity(entityType, level, variant)
+                },
+                EntityDimensions.fixed(2.75f, 0.5625f),
+            )
+        }
 
     //#region Misc Entity Registration
     private fun <T : Entity> registerMisc(

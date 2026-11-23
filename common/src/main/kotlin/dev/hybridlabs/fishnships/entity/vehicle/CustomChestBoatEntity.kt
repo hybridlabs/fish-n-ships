@@ -5,7 +5,6 @@ import net.minecraft.core.NonNullList
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
-import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
@@ -32,8 +31,9 @@ import com.geckolib.animatable.GeoEntity
 
 open class CustomChestBoatEntity(
     entityType: EntityType<out CustomChestBoatEntity>, level: Level,
+    variant: CustomBoatEntity.Type,
 ) :
-    CustomBoatEntity(entityType, level),
+    CustomBoatEntity(entityType, level, variant),
     HasCustomInventoryScreen,
     ContainerEntity,
     GeoEntity {
@@ -74,10 +74,6 @@ open class CustomChestBoatEntity(
         }
     }
 
-    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        super.defineSynchedData(builder)
-    }
-
     override fun addAdditionalSaveData(tag: ValueOutput) {
         super.addAdditionalSaveData(tag)
         this.addChestVehicleSaveData(tag)
@@ -96,13 +92,11 @@ open class CustomChestBoatEntity(
         get() = 1
 
     override fun getBoatItem(): Item {
-        val item: Item
-        when (this.getVariant().ordinal) {
-            1 -> item = FSItems.WARPED_BOAT_WITH_CHEST.get()
-            else -> item = FSItems.CRIMSON_BOAT_WITH_CHEST.get()
+        return when (this.getVariant()) {
+            CustomBoatEntity.Type.WARPED -> FSItems.WARPED_BOAT_WITH_CHEST.get()
+            CustomBoatEntity.Type.DRIFTWOOD -> FSItems.DRIFTWOOD_BOAT_WITH_CHEST.get()
+            else -> FSItems.CRIMSON_BOAT_WITH_CHEST.get()
         }
-
-        return item
     }
 
     override fun getPickResult(): ItemStack? {

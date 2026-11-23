@@ -5,7 +5,6 @@ import net.minecraft.core.NonNullList
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.storage.ValueInput
 import net.minecraft.world.level.storage.ValueOutput
-import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.ResourceKey
 import net.minecraft.world.Containers
 import net.minecraft.world.InteractionHand
@@ -32,8 +31,9 @@ import com.geckolib.animatable.GeoEntity
 
 open class SailboatWithChestEntity(
     entityType: EntityType<out SailboatWithChestEntity>, level: Level,
+    variant: SailboatEntity.Type,
 ) :
-    SailboatEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
+    SailboatEntity(entityType, level, variant), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(27, ItemStack.EMPTY)
     private var sailboatLootTable: ResourceKey<LootTable>? = null
@@ -75,10 +75,6 @@ open class SailboatWithChestEntity(
     override val maxPassengers: Int
         get() = 1
 
-    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        super.defineSynchedData(builder)
-    }
-
     override fun addAdditionalSaveData(tag: ValueOutput) {
         super.addAdditionalSaveData(tag)
         this.addChestVehicleSaveData(tag)
@@ -101,6 +97,7 @@ open class SailboatWithChestEntity(
             7 -> item = FSItems.MANGROVE_SAILBOAT_WITH_CHEST.get()
             8 -> item = FSItems.CRIMSON_SAILBOAT_WITH_CHEST.get()
             9 -> item = FSItems.WARPED_SAILBOAT_WITH_CHEST.get()
+            10 -> item = FSItems.DRIFTWOOD_SAILBOAT_WITH_CHEST.get()
             else -> item = FSItems.OAK_SAILBOAT_WITH_CHEST.get()
         }
 

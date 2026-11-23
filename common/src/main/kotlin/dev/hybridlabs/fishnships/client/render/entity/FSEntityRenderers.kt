@@ -17,76 +17,65 @@ import dev.hybridlabs.fishnships.platform.ClientServices
 
 @Suppress("unused")
 object FSEntityRenderers {
-    //region fish
     val SHIP =
         ClientServices.RENDERER.registerEntityRenderer(
             FSEntityTypes.SHIP,
             ::ShipEntityRenderer
         )
 
-    val CUSTOM_BOAT =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.CUSTOM_BOAT,
-            ::CustomBoatEntityRenderer
-        )
+    // Every wood type is its own entity type, so every one needs its own renderer registration.
+    val CUSTOM_BOATS = FSEntityTypes.CUSTOM_BOATS.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::CustomBoatEntityRenderer)
+        entityType
+    }
 
-    val CUSTOM_BOAT_WITH_CHEST =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.CUSTOM_CHEST_BOAT,
-            ::CustomBoatWithChestEntityRenderer
-        )
+    val CUSTOM_CHEST_BOATS = FSEntityTypes.CUSTOM_CHEST_BOATS.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::CustomBoatWithChestEntityRenderer)
+        entityType
+    }
 
-    val SAILBOAT =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.SAILBOAT,
-            ::SailboatEntityRenderer
-        )
+    val SAILBOATS = FSEntityTypes.SAILBOATS.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::SailboatEntityRenderer)
+        entityType
+    }
 
-    val SAILBOAT_WITH_CHEST =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.SAILBOAT_WITH_CHEST,
-            ::SailboatWithChestEntityRenderer
-        )
+    val SAILBOATS_WITH_CHEST = FSEntityTypes.SAILBOATS_WITH_CHEST.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::SailboatWithChestEntityRenderer)
+        entityType
+    }
 
-    val CANOE =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.CANOE,
-            ::CanoeEntityRenderer
-        )
+    val CANOES = FSEntityTypes.CANOES.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::CanoeEntityRenderer)
+        entityType
+    }
 
-    val CANOE_WITH_CHEST =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.CANOE_WITH_CHEST,
-            ::CanoeWithChestEntityRenderer
-        )
+    val CANOES_WITH_CHEST = FSEntityTypes.CANOES_WITH_CHEST.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::CanoeWithChestEntityRenderer)
+        entityType
+    }
 
-    val CANOE_WITH_DOUBLE_CHEST =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.CANOE_WITH_DOUBLE_CHEST,
-            ::CanoeWithDoubleChestEntityRenderer
-        )
+    val CANOES_WITH_DOUBLE_CHEST = FSEntityTypes.CANOES_WITH_DOUBLE_CHEST.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::CanoeWithDoubleChestEntityRenderer)
+        entityType
+    }
 
-    val RAFT =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.RAFT,
-            ::RaftEntityRenderer
-        )
+    val DINGHIES = FSEntityTypes.DINGHIES.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::DinghyEntityRenderer)
+        entityType
+    }
 
-    val SUPPLY_RAFT =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.SUPPLY_RAFT,
-            ::SupplyRaftEntityRenderer
-        )
+    val DINGHIES_WITH_CHEST = FSEntityTypes.DINGHIES_WITH_CHEST.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::DinghyWithChestEntityRenderer)
+        entityType
+    }
 
-    val DINGHY =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.DINGHY,
-            ::DinghyEntityRenderer
-        )
+    val RAFTS = FSEntityTypes.RAFTS.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::RaftEntityRenderer)
+        entityType
+    }
 
-    val DINGHY_WITH_CHEST =
-        ClientServices.RENDERER.registerEntityRenderer(
-            FSEntityTypes.DINGHY_WITH_CHEST,
-            ::DinghyWithChestEntityRenderer
-        )
+    val SUPPLY_RAFTS = FSEntityTypes.SUPPLY_RAFTS.mapValues { (_, entityType) ->
+        ClientServices.RENDERER.registerEntityRenderer(entityType, ::SupplyRaftEntityRenderer)
+        entityType
+    }
 }
