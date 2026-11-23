@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Updated to Minecraft 26.2
+- Fixed boats, canoes, dinghies and rafts stuttering while moving, turning, drifting unoccupied,
+  or being led on a lead
+- Fixed boat, canoe and dinghy paddles not rowing and resting in the wrong position
+- Fixed sailboats' sail animating when first rendered (extending down, then vanishing) after the
+  GeckoLib 5 migration
 
 <details>
 <summary>Developer notes</summary>
