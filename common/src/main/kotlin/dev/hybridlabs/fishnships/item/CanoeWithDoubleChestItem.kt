@@ -46,7 +46,6 @@ class CanoeWithDoubleChestItem(
 
             if (hitresult.type == HitResult.Type.BLOCK) {
                 val canoe = getCanoe(level, hitresult)
-                canoe.setVariant(variant)
                 canoe.yRot = player.yRot
 
                 if (!level.noCollision(canoe, canoe.boundingBox)) {
@@ -70,7 +69,7 @@ class CanoeWithDoubleChestItem(
     }
 
     private fun getCanoe(level: Level, hitResult: HitResult): CanoeEntity {
-        val canoe = FSEntityTypes.CANOE_WITH_DOUBLE_CHEST.get().create(level, EntitySpawnReason.MOB_SUMMONED)
+        val canoe = FSEntityTypes.CANOES_WITH_DOUBLE_CHEST.getValue(variant).get().create(level, EntitySpawnReason.MOB_SUMMONED)
             ?: throw IllegalStateException("Failed to create canoe")
 
         canoe.setPos(

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Updated to Minecraft 1.21.11
+- Vehicle entity identifiers now include the wood type, matching vanilla's per-wood boat entities
+  since 1.21.2 (for example `fish_n_ships:oak_canoe` instead of `fish_n_ships:canoe`)
+- Destroyed vehicles now drop the item matching their wood type, including driftwood
 - Fixed boats, canoes, dinghies and rafts stuttering while moving, turning, drifting unoccupied,
   or being led on a lead
 - Fixed boat, canoe and dinghy paddles not rowing and resting in the wrong position

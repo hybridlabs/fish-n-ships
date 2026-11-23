@@ -6,14 +6,8 @@ import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.level.storage.ValueInput
-import net.minecraft.world.level.storage.ValueOutput
-import net.minecraft.network.syncher.EntityDataAccessor
-import net.minecraft.network.syncher.EntityDataSerializers
-import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.tags.EntityTypeTags
 import net.minecraft.tags.FluidTags
-import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.damagesource.DamageSource
@@ -36,28 +30,12 @@ import software.bernie.geckolib.animatable.GeoEntity
 open class RaftEntity(
     type: EntityType<out RaftEntity>,
     world: Level,
+    private val variant: Type,
 ) :
     BaseBoatEntity(type, world),
     GeoEntity {
 
     init {
-    }
-
-    override fun defineSynchedData(builder: SynchedEntityData.Builder) {
-        super.defineSynchedData(builder)
-        builder.define(DATA_ID_TYPE, Type.OAK.ordinal)
-    }
-
-    override fun addAdditionalSaveData(tag: ValueOutput) {
-        tag.putFloat("Damage", getDamage())
-
-        tag.putString("Type", this.getVariant().getSerializedName())
-    }
-
-    override fun readAdditionalSaveData(tag: ValueInput) {
-        setDamage(tag.getFloatOr("Damage", 0.0f))
-
-        this.setVariant(Type.byName(tag.getStringOr("Type", "oak")))
     }
 
     override fun hurtServer(level: ServerLevel, source: DamageSource, amount: Float): Boolean {
@@ -264,6 +242,7 @@ open class RaftEntity(
             7 -> item = FSItems.MANGROVE_RAFT.get()
             8 -> item = FSItems.CRIMSON_RAFT.get()
             9 -> item = FSItems.WARPED_RAFT.get()
+            10 -> item = FSItems.DRIFTWOOD_RAFT.get()
             else -> item = FSItems.OAK_RAFT.get()
         }
 
@@ -279,17 +258,8 @@ open class RaftEntity(
         this.spawnAtLocation(level() as ServerLevel, stack)
     }
 
-    companion object {
-        private val DATA_ID_TYPE: EntityDataAccessor<Int> =
-            SynchedEntityData.defineId(RaftEntity::class.java, EntityDataSerializers.INT)
-    }
-
-    fun setVariant(variant: Type) {
-        this.entityData.set(DATA_ID_TYPE, variant.ordinal)
-    }
-
     fun getVariant(): Type {
-        return Type.byId(this.entityData.get(DATA_ID_TYPE) as Int)
+        return variant
     }
 
     enum class Type(
@@ -310,13 +280,5 @@ open class RaftEntity(
         override fun getSerializedName(): String = key
 
         override fun toString(): String = key
-
-        companion object {
-            val CODEC = StringRepresentable.fromEnum(::values)
-            private val BY_ID = ByIdMap.continuous({ it.ordinal }, entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)
-
-            fun byId(id: Int) = BY_ID.apply(id)
-            fun byName(key: String) = CODEC.byName(key, OAK)
-        }
     }
 }

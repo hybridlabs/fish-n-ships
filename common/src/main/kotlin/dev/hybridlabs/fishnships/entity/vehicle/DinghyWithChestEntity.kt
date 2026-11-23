@@ -30,8 +30,8 @@ import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 
-open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntity>, level: Level) :
-    DinghyEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
+open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntity>, level: Level, variant: DinghyEntity.Type) :
+    DinghyEntity(entityType, level, variant), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(54, ItemStack.EMPTY)
     private var dinghyLootTable: ResourceKey<LootTable>? = null
@@ -121,6 +121,7 @@ open class DinghyWithChestEntity(entityType: EntityType<out DinghyWithChestEntit
             7 -> item = FSItems.MANGROVE_DINGHY_WITH_CHEST.get()
             8 -> item = FSItems.CRIMSON_DINGHY_WITH_CHEST.get()
             9 -> item = FSItems.WARPED_DINGHY_WITH_CHEST.get()
+            10 -> item = FSItems.DRIFTWOOD_DINGHY_WITH_CHEST.get()
             else -> item = FSItems.OAK_DINGHY_WITH_CHEST.get()
         }
 

@@ -147,21 +147,48 @@ class LanguageProvider( output: FabricDataOutput, lookupProvider: CompletableFut
         generateEntities(builder)
     }
 
+    private fun String.prettyName(): String {
+        return split('_').joinToString(" ") { it.replaceFirstChar(Char::uppercase) }
+    }
+
     private fun generateEntities(builder: TranslationBuilder) {
-        val entityNameMap = mapOf<EntityType<*>, String>(
-            FSEntityTypes.SHIP.get() to "Ship",
-            FSEntityTypes.CUSTOM_BOAT.get() to "Boat",
-            FSEntityTypes.CUSTOM_CHEST_BOAT.get() to "Boat With Chest",
-            FSEntityTypes.SAILBOAT.get() to "Sailboat",
-            FSEntityTypes.SAILBOAT_WITH_CHEST.get() to "Sailboat With Chest",
-            FSEntityTypes.CANOE.get() to "Canoe",
-            FSEntityTypes.CANOE_WITH_CHEST.get() to "Canoe With Chest",
-            FSEntityTypes.CANOE_WITH_DOUBLE_CHEST.get() to "Canoe With Double Chest",
-            FSEntityTypes.DINGHY.get() to "Dinghy",
-            FSEntityTypes.DINGHY_WITH_CHEST.get() to "Dinghy With Chest",
-            FSEntityTypes.RAFT.get() to "Raft",
-            FSEntityTypes.SUPPLY_RAFT.get() to "Supply Raft",
-        )
+        val entityNameMap = buildMap<EntityType<*>, String> {
+            put(FSEntityTypes.SHIP.get(), "Ship")
+
+            FSEntityTypes.CUSTOM_BOATS.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Boat")
+            }
+            FSEntityTypes.CUSTOM_CHEST_BOATS.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Boat With Chest")
+            }
+            FSEntityTypes.SAILBOATS.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Sailboat")
+            }
+            FSEntityTypes.SAILBOATS_WITH_CHEST.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Sailboat With Chest")
+            }
+            FSEntityTypes.CANOES.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Canoe")
+            }
+            FSEntityTypes.CANOES_WITH_CHEST.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Canoe With Chest")
+            }
+            FSEntityTypes.CANOES_WITH_DOUBLE_CHEST.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Canoe With Double Chest")
+            }
+            FSEntityTypes.DINGHIES.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Dinghy")
+            }
+            FSEntityTypes.DINGHIES_WITH_CHEST.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Dinghy With Chest")
+            }
+            FSEntityTypes.RAFTS.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Raft")
+            }
+            FSEntityTypes.SUPPLY_RAFTS.forEach { (type, entityType) ->
+                put(entityType.get(), "${type.serializedName.prettyName()} Supply Raft")
+            }
+        }
 
         val nonPresentEntityNames = mutableListOf<EntityType<*>>()
 

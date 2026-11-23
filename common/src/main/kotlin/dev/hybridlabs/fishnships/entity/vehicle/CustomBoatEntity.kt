@@ -6,15 +6,12 @@ import dev.hybridlabs.fishnships.item.FSItems
 import dev.hybridlabs.hapi.entity.base.vehicle.BaseBoatEntity
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.level.storage.ValueInput
-import net.minecraft.world.level.storage.ValueOutput
 import net.minecraft.network.protocol.game.ServerboundPaddleBoatPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.sounds.SoundEvent
 import net.minecraft.tags.EntityTypeTags
-import net.minecraft.util.ByIdMap
 import net.minecraft.util.Mth
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.damagesource.DamageSource
@@ -37,6 +34,7 @@ import software.bernie.geckolib.util.GeckoLibUtil
 
 open class CustomBoatEntity(
     entityType: EntityType<out CustomBoatEntity>, level: Level,
+    private val variant: Type,
 ) :
     BaseBoatEntity(entityType, level),
     GeoEntity {
@@ -53,19 +51,8 @@ open class CustomBoatEntity(
 
     override fun defineSynchedData(builder: SynchedEntityData.Builder) {
         super.defineSynchedData(builder)
-        builder.define(DATA_ID_TYPE, Type.CRIMSON.ordinal)
         builder.define(DATA_ID_PADDLE_LEFT, false)
         builder.define(DATA_ID_PADDLE_RIGHT, false)
-    }
-
-    override fun addAdditionalSaveData(tag: ValueOutput) {
-        super.addAdditionalSaveData(tag)
-        tag.putString("Type", this.getVariant().getSerializedName())
-    }
-
-    override fun readAdditionalSaveData(tag: ValueInput) {
-        super.readAdditionalSaveData(tag)
-        this.setVariant(Type.byName(tag.getStringOr("Type", "oak")))
     }
 
     override fun hurtServer(level: ServerLevel, source: DamageSource, amount: Float): Boolean {
@@ -96,13 +83,11 @@ open class CustomBoatEntity(
     }
 
     open fun getBoatItem(): Item {
-        val item: Item
-        when (this.getVariant().ordinal) {
-            1 -> item = FSItems.WARPED_BOAT.get()
-            else -> item = FSItems.CRIMSON_BOAT.get()
+        return when (this.getVariant()) {
+            Type.WARPED -> FSItems.WARPED_BOAT.get()
+            Type.DRIFTWOOD -> FSItems.DRIFTWOOD_BOAT.get()
+            else -> FSItems.CRIMSON_BOAT.get()
         }
-
-        return item
     }
 
     override fun getPickResult(): ItemStack? {
@@ -332,20 +317,14 @@ open class CustomBoatEntity(
     }
 
     companion object {
-        private val DATA_ID_TYPE: EntityDataAccessor<Int> =
-            SynchedEntityData.defineId(CustomBoatEntity::class.java, EntityDataSerializers.INT)
         private val DATA_ID_PADDLE_LEFT: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(CustomBoatEntity::class.java, EntityDataSerializers.BOOLEAN)
         private val DATA_ID_PADDLE_RIGHT: EntityDataAccessor<Boolean> =
             SynchedEntityData.defineId(CustomBoatEntity::class.java, EntityDataSerializers.BOOLEAN)
     }
 
-    fun setVariant(variant: Type) {
-        this.entityData.set(DATA_ID_TYPE, variant.ordinal)
-    }
-
     fun getVariant(): Type {
-        return Type.byId(this.entityData.get(DATA_ID_TYPE) as Int)
+        return variant
     }
 
     enum class Type(
@@ -358,13 +337,5 @@ open class CustomBoatEntity(
         override fun getSerializedName(): String = key
 
         override fun toString(): String = key
-
-        companion object {
-            val CODEC = StringRepresentable.fromEnum(::values)
-            private val BY_ID = ByIdMap.continuous({ it.ordinal }, entries.toTypedArray(), ByIdMap.OutOfBoundsStrategy.ZERO)
-
-            fun byId(id: Int) = BY_ID.apply(id)
-            fun byName(key: String) = CODEC.byName(key, CRIMSON)
-        }
     }
 }

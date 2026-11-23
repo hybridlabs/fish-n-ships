@@ -30,8 +30,8 @@ import net.minecraft.world.level.storage.loot.LootTable
 import net.minecraft.world.phys.Vec3
 import software.bernie.geckolib.animatable.GeoEntity
 
-open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDoubleChestEntity>, level: Level) :
-    CanoeEntity(entityType, level), HasCustomInventoryScreen, ContainerEntity,
+open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDoubleChestEntity>, level: Level, variant: CanoeEntity.Type) :
+    CanoeEntity(entityType, level, variant), HasCustomInventoryScreen, ContainerEntity,
     GeoEntity {
     private var itemStacks: NonNullList<ItemStack> = NonNullList.withSize(54, ItemStack.EMPTY)
     private var canoeLootTable: ResourceKey<LootTable>? = null
@@ -121,6 +121,7 @@ open class CanoeWithDoubleChestEntity(entityType: EntityType<out CanoeWithDouble
             7 -> item = FSItems.MANGROVE_CANOE_WITH_DOUBLE_CHEST.get()
             8 -> item = FSItems.CRIMSON_CANOE_WITH_DOUBLE_CHEST.get()
             9 -> item = FSItems.WARPED_CANOE_WITH_DOUBLE_CHEST.get()
+            10 -> item = FSItems.DRIFTWOOD_CANOE_WITH_DOUBLE_CHEST.get()
             else -> item = FSItems.OAK_CANOE_WITH_DOUBLE_CHEST.get()
         }
 
