@@ -56,7 +56,7 @@
     "fabric-language-kotlin": "*",
     "fabric-api": ">=0.92",
     "geckolib": ">=4.4",
-    "hapi": ">=1.1.0"
+    "hapi": ">=1.2.0"
   },
 
   "suggests": {
